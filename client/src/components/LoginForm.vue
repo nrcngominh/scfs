@@ -24,13 +24,14 @@ export default {
     }
   },
   methods: {
-    login() {
+    async login() {
       console.log('Logging in...')
       try {
-        AxiosService.post('/login/', {
+        const res = await AxiosService.post('/login/', {
           email: this.email,
           password: this.password
         })
+        console.log(res.data)
       } catch (err) {
         console.log(err)
       }

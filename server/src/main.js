@@ -1,6 +1,7 @@
-import express, { json } from 'express'
+import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
+import BaseRouter from './api/routers/base-router'
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
@@ -12,11 +13,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 const server = express()
 server.use(cors())
 server.use(express.json())
-
-// Login
-server.post('/login', (req, res) => {
-  console.log(req.body)
-})
+server.use(BaseRouter)
 
 // Start server
 const app = server.listen(process.env.PORT || 3000, () => {
