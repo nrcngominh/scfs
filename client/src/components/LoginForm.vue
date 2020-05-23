@@ -25,13 +25,17 @@ export default {
   },
   methods: {
     async login() {
-      console.log('Logging in...')
       try {
         const res = await AxiosService.post('/login/', {
           email: this.email,
           password: this.password
         })
         console.log(res.data)
+        if (res.data.status == 'success') {
+          alert('Login success')
+        } else {
+          alert('Login failed')
+        }
         // this.$router.push('error')
       } catch (err) {
         console.log(err)
