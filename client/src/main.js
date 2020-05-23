@@ -2,7 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 
 import "bootstrap";
-import "bo"
+import "bootstrap/dist/css/bootstrap.css";
+import {library} from "@fortawesome/fontawesome-svg-core";
+
 
 Vue.config.productionTip = false
 

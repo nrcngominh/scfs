@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <LoginForm />
+    <div><h1>asdfadf</h1></div>
   </div>
 </template>
 
@@ -23,5 +24,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  background-color: navy;
 }
+
 </style>
