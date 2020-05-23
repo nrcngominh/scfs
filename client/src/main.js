@@ -5,7 +5,7 @@ import './assets/global.css'
 
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
-import {library} from "@fortawesome/fontawesome-svg-core";
+//import {library} from "@fortawesome/fontawesome-svg-core";
 
 
 Vue.config.productionTip = false
