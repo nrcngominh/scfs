@@ -32,6 +32,7 @@ export default {
           password: this.password
         })
         console.log(res.data)
+        this.$router.push('error')
       } catch (err) {
         console.log(err)
       }
