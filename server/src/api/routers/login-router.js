@@ -10,7 +10,7 @@ LoginRouter.post('/login', (req, res) => {
   // })
   console.log(req.body)
   res.send({
-    status: 'Success'
+    status: 'Ngoc'
   })
 })
 
