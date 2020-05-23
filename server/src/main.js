@@ -1,7 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
-import BaseRouter from './api/routers/base-router'
+import BaseRouter from './api/routers'
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
