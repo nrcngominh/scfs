@@ -7,9 +7,8 @@
     "npm": "6.x"
   },
   "scripts": {
-      "start": "cd ${PREFIX}/server && npm run dev",
-      "heroku-prebuild": "export PREFIX=$(pwd)",
-      "heroku-postbuild": "cd ${PREFIX}/server && npm install --production"
+      "start": "npm run dev",
+      "heroku-postbuild": "cd server && npm install"
   },
   "repository": {
     "type": "git",
