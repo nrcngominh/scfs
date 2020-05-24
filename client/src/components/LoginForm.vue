@@ -37,7 +37,6 @@ export default {
         console.log(res.data)
         if (res.data.status == 'success') {
           this.$router.push('admin')
-          //alert('Login success')
         } else {
           alert('Login failed')
         }
