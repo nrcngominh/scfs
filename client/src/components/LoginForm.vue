@@ -23,6 +23,9 @@ export default {
       password: ""
     }
   },
+  beforeCreate() {
+    document.body.className = "login";
+  },
   methods: {
     async login() {
       try {
@@ -32,12 +35,12 @@ export default {
         })
         console.log(res.data)
         if (res.data.status == 'success') {
-          alert('Login success')
+          this.$router.push('admin')
+          //alert('Login success')
         } else {
           alert('Login failed')
         }
-        // this.$router.push('error')
-      } catch (err) {
+      } catch (err) { 
         console.log(err)
       }
     }
