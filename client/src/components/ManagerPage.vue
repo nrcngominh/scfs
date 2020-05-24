@@ -32,6 +32,8 @@
           <div>Tên: {{ food.name }}</div>
           <div>Giá: {{ food.price }}</div>
           <div>Mô tả: {{ food.description }}</div>
+          <button class="btn btn-danger" @click="remove">Remove</button>
+
           <br />
         </div>
     </div>
