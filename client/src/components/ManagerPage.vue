@@ -5,7 +5,7 @@
         <button @click="logout">Logout</button>
     </div>
 
-    <form>
+    <div>
       <div class="input-group input-group-sm mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text" id="inputGroup-sizing-sm">Name</span>
@@ -24,8 +24,8 @@
         </div>
         <input type="text" class="form-control" v-model="description" aria-label="Description" aria-describedby="inputGroup-sizing-sm">
       </div>
-      <button type="submit" class="btn btn-primary" :click="add">Add</button>
-    </form>
+      <button type="submit" class="btn btn-primary" @click="add">Add</button>
+    </div>
 
     <div class="food-container">
         <div v-for="food in foods" :key="food.name">
@@ -62,7 +62,7 @@ export default {
     },
     async add() {
       try {
-        const res = await AxiosService.post('/add/', {
+        const res = await AxiosService.post('/food/', {
           name: this.name,
           price: this.price,
           description: this.description
@@ -77,10 +77,10 @@ export default {
         console.log(err)
       }
     }
-    }, 
-    async mounted() {
-      const res = await AxiosService.get('/food')
-      this.foods = res.data.foods
-    }, 
+  }, 
+  async mounted() {
+    const res = await AxiosService.get('/food')
+    this.foods = res.data.foods
+  }
 }
 </script>
