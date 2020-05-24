@@ -1,8 +1,14 @@
 @charset "UTF-8";
-
 body.login {
-  background-color: pink;
+    background-color: pink;
 }
+
 body.admin {
-  background-color: powderblue;
+    background-color: powderblue;
+}
+
+body.user {
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    line-height: 1.6;
 }
