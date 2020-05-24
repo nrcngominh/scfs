@@ -2,13 +2,20 @@ import FoodModel from '../models/food-model'
 
 export default {
   async add(name, price, description) {
-    return await FoodModel.create({
+    const response = await FoodModel.create({
       name: name,
       price: price,
       description: description
     })
+    return response._id || false
   },
   async getAll() {
-    return await FoodModel.find().select('-_id name price description')
+    console.log('Getting food')
+    return await FoodModel.find().select(' name price description')
+  },
+  async delete(id) {
+      return await FoodModel.deleteOne({
+          _id: id
+      })
   }
 }

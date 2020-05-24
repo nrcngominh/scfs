@@ -48,6 +48,7 @@ export default {
     return {
         menu: "ManagerPage",
         foods: [],
+        id: "",
         name: "",
         price: 0,
         description: ""
@@ -62,15 +63,16 @@ export default {
     },
     async add() {
       try {
-        console.log("Adding food")
-        const res = await AxiosService.post('/food', {
+        const newFood = {
           name: this.name,
           price: this.price,
           description: this.description
-        })
+        }
+        const res = await AxiosService.post('/food', newFood)
         console.log(res.data)
         if (res.data.status == 'success') {
-          alert('success')
+          newFood.id = res.data.id
+          this.foods.push(newFood)
         } else {
           alert('failed')
         }
