@@ -40,7 +40,7 @@ export default {
         } else {
           alert('Login failed')
         }
-      } catch (err) {
+      } catch (err) { 
         console.log(err)
       }
     }

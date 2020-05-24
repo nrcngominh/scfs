@@ -4,17 +4,27 @@
     <div class="abc">
         <button @click="logout">Logout</button>
     </div>
+
+    <div class="food-container">
+        <div v-for="food in foods" :key="food.name">
+          <div>Tên: {{ food.name }}</div>
+          <div>Giá: {{ food.price }}</div>
+          <div>Mô tả: {{ food.description }}</div>
+          <br />
+        </div>
     </div>
+  </div>
 </template>
 
 <script>
-//import AxiosService from '../services/axios-service'
+import AxiosService from '../services/axios-service'
 
 export default {
   name: "ManagerPage",
   data() {
     return {
-        menu: "ManagerPage"
+        menu: "ManagerPage",
+        foods: []
     }
   },
   beforeCreate() {
@@ -24,6 +34,10 @@ export default {
     logout() {
       this.$router.push('/')
     }
+  },
+  async mounted() {
+    const res = await AxiosService.get('/food')
+    this.foods = res.data.foods
   }
 }
 </script>
