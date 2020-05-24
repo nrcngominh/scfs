@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
-body {
-  background-color: paleturquoise;
+body.login {
+  background-color: pink;
+}
+body.admin {
+  background-color: powderblue;
 }
