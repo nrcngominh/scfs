@@ -1,16 +1,12 @@
 import Router from 'express'
-import LoginModel from '../models/login-model'
+import LoginService from '../../services/login-service'
 
 const LoginRouter = Router()
 
-LoginRouter.post('/login', (req, res) => {
-  // LoginModel.create({
-  //   username: req.body.username,
-  //   passwrod: req.body.username
-  // })
-  console.log(req.body)
+LoginRouter.post('/', async (req, res) => {
+  const isSuccess = await LoginService.login(req.body.email, req.body.password)
   res.send({
-    status: 'Ngoc'
+    status: isSuccess ? 'success' : 'failed'
   })
 })
 
