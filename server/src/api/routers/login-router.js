@@ -5,6 +5,7 @@ const LoginRouter = Router()
 
 LoginRouter.post('/', async (req, res) => {
   const isSuccess = await LoginService.login(req.body.email, req.body.password)
+  console.log(req.body)
   res.send({
     status: isSuccess ? 'success' : 'failed'
   })

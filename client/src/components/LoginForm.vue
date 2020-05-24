@@ -7,7 +7,7 @@
       <label for="password">Password</label>
       <input id="password" v-model="password" placeholder="Enter your password" />
       
-      <button class="login-button" :click="login">Login</button>
+      <button class="login-button" @click="login">Login</button>
     </div>
   </div>
 </template>
@@ -29,6 +29,7 @@ export default {
   methods: {
     async login() {
       try {
+        console.log('Logging in...')
         const res = await AxiosService.post('/login/', {
           email: this.email,
           password: this.password
