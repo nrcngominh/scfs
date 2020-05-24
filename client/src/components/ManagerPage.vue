@@ -32,7 +32,7 @@
           <div>Tên: {{ food.name }}</div>
           <div>Giá: {{ food.price }}</div>
           <div>Mô tả: {{ food.description }}</div>
-          <button class="btn btn-danger" @click="remove">Remove</button>
+          <button class="btn btn-danger" @click="remove(food._id)">Remove</button>
 
           <br />
         </div>
@@ -50,7 +50,6 @@ export default {
     return {
         menu: "ManagerPage",
         foods: [],
-        id: "",
         name: "",
         price: 0,
         description: ""
@@ -73,13 +72,30 @@ export default {
         const res = await AxiosService.post('/food', newFood)
         console.log(res.data)
         if (res.data.status == 'success') {
-          newFood.id = res.data.id
+          newFood._id = res.data._id
           this.foods.push(newFood)
         } else {
           alert('failed')
         }
       } catch (err) { 
         console.log(err)
+      }
+    },
+    async remove(id) {
+      console.log(id)
+      const res = await AxiosService.delete('/food', {
+        data: {
+          _id: id
+        }
+      })
+      if (res.data.status == 'success') {
+        this.foods = this.foods.filter(food => {
+          console.log(food)
+          console.log(id)
+          return food._id != id
+        })
+      } else {
+        alert('failed')
       }
     }
   }, 

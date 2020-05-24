@@ -26,8 +26,8 @@ FoodRouter.get('/', async (req, res) => {
 })
 
 FoodRouter.delete('/', async (req, res) => {
-  console.log(req.body.id)
-  const isSuccess = await FoodService.delete(req.body.id)
+  console.log(req.body)
+  const isSuccess = await FoodService.delete(req.body._id)
   res.send({
     status: isSuccess ? 'success' : 'failed'
   })
