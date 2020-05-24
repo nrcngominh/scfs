@@ -24,7 +24,7 @@
         </div>
         <input type="text" class="form-control" v-model="description" aria-label="Description" aria-describedby="inputGroup-sizing-sm">
       </div>
-      <button type="submit" class="btn btn-primary" @click="add">Add</button>
+      <button class="btn btn-primary" @click="add">Add</button>
     </div>
 
     <div class="food-container">
@@ -62,7 +62,8 @@ export default {
     },
     async add() {
       try {
-        const res = await AxiosService.post('/food/', {
+        console.log("Adding food")
+        const res = await AxiosService.post('/food', {
           name: this.name,
           price: this.price,
           description: this.description
