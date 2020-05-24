@@ -1,0 +1,23 @@
+{
+  "name": "scfs",
+  "description": "Smart Food Court System",
+  "version": "1.0.0",
+  "engines": {
+    "node": "14.3.x",
+    "npm": "6.x"
+  },
+  "scripts": {
+      "start": "cd server && npm start",
+      "heroku-postbuild": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nrcngominh/scfs.git"
+  },
+  "author": "NRC && HNT",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nrcngominh/scfs/issues"
+  },
+  "homepage": "https://github.com/nrcngominh/scfs#readme"
+}
