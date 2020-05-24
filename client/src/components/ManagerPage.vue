@@ -4,32 +4,27 @@
     <div class="abc">
         <button @click="logout">Logout</button>
     </div>
-    <div id="app">
-    <ul class="collection">
-        <li v-for="item in foods" :key="item.name">
-          <ul>{{item.name}}</ul>
-        </li>    
-    </ul>
-</div>
+
+    <div class="food-container">
+        <div v-for="food in foods" :key="food.name">
+          <div>Tên: {{ food.name }}</div>
+          <div>Giá: {{ food.price }}</div>
+          <div>Mô tả: {{ food.description }}</div>
+          <br />
+        </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import axios from '../services/axios-service';
-new Vue({
-  el: '#v-for-object',
-  data: {
-    object: {
-      title: 'How to do lists in Vue',
-      author: 'Jane Doe',
-      publishedAt: '2016-04-10'
-    }
-  }
-})
+import AxiosService from '../services/axios-service'
+
 export default {
   name: "ManagerPage",
   data() {
     return {
-        menu: "ManagerPage"
+        menu: "ManagerPage",
+        foods: []
     }
   },
   beforeCreate() {
@@ -38,14 +33,11 @@ export default {
   methods: {
     logout() {
       this.$router.push('/')
-    },
+    }
   },
-  mounted() { 
-      axios.get('/food')
-      .then((res) => {
-        console.log(res.data);  
-        this.foods = res.data;
-      })
+  async mounted() {
+    const res = await AxiosService.get('/food')
+    this.foods = res.data.foods
   }
 }
 </script>
