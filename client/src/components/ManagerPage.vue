@@ -1,9 +1,31 @@
 <template>
   <div class="container">
     <h1>{{menu}}</h1>
-    <div class="abc">
+    <div class="mb-3">
         <button @click="logout">Logout</button>
     </div>
+
+    <form>
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">Name</span>
+        </div>
+        <input type="text" class="form-control" v-model="name" aria-label="Name" aria-describedby="inputGroup-sizing-sm">
+      </div>
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">Price</span>
+        </div>
+        <input type="text" class="form-control" v-model="price" aria-label="Price" aria-describedby="inputGroup-sizing-sm">
+      </div>
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">Description</span>
+        </div>
+        <input type="text" class="form-control" v-model="description" aria-label="Description" aria-describedby="inputGroup-sizing-sm">
+      </div>
+      <button type="submit" class="btn btn-primary" :click="add">Add</button>
+    </form>
 
     <div class="food-container">
         <div v-for="food in foods" :key="food.name">
@@ -13,6 +35,7 @@
           <br />
         </div>
     </div>
+
   </div>
 </template>
 
@@ -24,7 +47,10 @@ export default {
   data() {
     return {
         menu: "ManagerPage",
-        foods: []
+        foods: [],
+        name: "",
+        price: 0,
+        description: ""
     }
   },
   beforeCreate() {
@@ -33,11 +59,28 @@ export default {
   methods: {
     logout() {
       this.$router.push('/')
+    },
+    async add() {
+      try {
+        const res = await AxiosService.post('/add/', {
+          name: this.name,
+          price: this.price,
+          description: this.description
+        })
+        console.log(res.data)
+        if (res.data.status == 'success') {
+          alert('success')
+        } else {
+          alert('failed')
+        }
+      } catch (err) { 
+        console.log(err)
+      }
     }
-  },
-  async mounted() {
-    const res = await AxiosService.get('/food')
-    this.foods = res.data.foods
-  }
+    }, 
+    async mounted() {
+      const res = await AxiosService.get('/food')
+      this.foods = res.data.foods
+    }, 
 }
 </script>
