@@ -6,8 +6,8 @@
     "node": "14.3.x"
   },
   "scripts": {
-      "start": "npm --prefix client run build && npm --prefix server run build && npm --prefix server start",
-      "heroku-postbuild": "npm --prefix client install && npm --prefix server install"
+    "start": "npm --prefix client run build && npm --prefix server run build && npm --prefix server start",
+    "heroku-postbuild": "npm --prefix client install && npm --prefix server install"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/nrcngominh/scfs/issues"
   },
-  "homepage": "https://github.com/nrcngominh/scfs#readme"
+  "homepage": "https://github.com/nrcngominh/scfs#readme",
+  "dependencies": {
+    "vue-meta": "^2.3.3"
+  }
 }
