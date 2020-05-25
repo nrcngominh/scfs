@@ -36,7 +36,11 @@ export default {
         })
         console.log(res.data)
         if (res.data.status == 'success') {
-          this.$router.push('admin')
+            if (res.data.type === 'customer') {
+                this.$router.push('user')
+            } else if (res.data.type === 'admin') {
+                this.$router.push('admin')
+            }
         } else {
           alert('Login failed')
         }

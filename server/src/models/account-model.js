@@ -4,7 +4,8 @@ const AccountSchema = mongoose.Schema({
   email: String,
   password: String,
   name: String,
-  phone_number: String
+  phone_number: String,
+  type: String
 })
 const AccountModel = mongoose.model('Account', AccountSchema, 'account')
 
