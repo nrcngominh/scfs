@@ -3,13 +3,11 @@
   "description": "Smart Food Court System",
   "version": "1.0.0",
   "engines": {
-    "node": "14.3.x",
-    "npm": "6.x"
+    "node": "14.3.x"
   },
   "scripts": {
-      "start": "cd server && npm start",
-      "build": "cd client && npm run build && cd ../server && npm run build && cd ..",
-      "heroku-postbuild": "cd client && npm i && npm run build && cd ../server && npm i && npm run build"
+      "start": "npm --prefix client run build && npm --prefix server run build && npm --prefix server start",
+      "heroku-postbuild": "npm --prefix client install && npm --prefix server install"
   },
   "repository": {
     "type": "git",
