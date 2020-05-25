@@ -42,12 +42,7 @@
                             <div class="form">
                                 <div class="form__field">
                                     <label for="email" class="form__label">Email</label>
-                                    <input v-model="email" @keyup.enter="nextInput1" class="form__input"/>
-                                    <p class="form__input-error"></p>
-                                </div>
-                                <div class="form__field">
-                                    <label for="user" class="form__label">Username</label>
-                                    <input id="username" v-model="user" @keyup.enter="nextInput2" class="form__input"/>
+                                    <input v-model="email" @keyup.enter="nextInput" class="form__input"/>
                                     <p class="form__input-error"></p>
                                 </div>
                                 <div class="form__field">
@@ -112,14 +107,11 @@ export default {
       }
     },
     async submit() {
-      this.login();
+      this.register();
     },
-    nextInput1() {
-      document.getElementById('username').focus();
-    },
-    nextInput2() {
+    nextInput() {
       document.getElementById('password').focus();
-    },
+    }
   }
 }
 </script>
