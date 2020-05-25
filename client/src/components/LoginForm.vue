@@ -16,7 +16,7 @@
                             <img src="" alt="">
                         </a>
                         <p class="u-txt-right f12">
-                            Don't have an account yet? <a href="">Sign up here</a>
+                            Don't have an account yet? <a href="/register">Sign up here</a>
                         </p>
                       </div>
                     </nav>
@@ -26,20 +26,24 @@
                     <section>
                       <h1 class="sessions__title">Log in</h1>
 
-                      <div>
+                      <div class="form__field">
                         <label for="email" class="form__label">Email or username</label>
                         <input v-model="email" @keyup.enter="nextInput" class="form__input"/>
                       </div>
-                      <div>
+                      <div class="form__field">
                         <label for="password" class="form__label">Password</label>
                         <div class="form__input-icon">
                             <input id="password" v-model="password" @keyup.enter="submit" class="form__input" type="password"/>
                         </div>
                         <a class="form__link" href="">Forgot password?</a>
                       </div>
-
-                      <div>
-                          <button @click="login"  class="button isRed u-width--100">Log in</button>
+                      <div class="tabs__foo">
+                        <div class="grid mt-4">
+                          <div class="grid-cell grid-cell--col12 u-mt16 u-mb16 u-p0">
+                              <button @click="login"  class="button isRed u-width--100">Log in</button>
+                              <div class="grid-cell grid-cell--col1--desktop-l desktop-l"></div>
+                          </div>
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -234,30 +238,14 @@ input {
     }
 }
 
-
 .grid-cell--col1 {
     flex: 0 0 8.33333%;
     max-width: 8.33333%
 }
 
-.grid-cell--col2 {
-    flex: 0 0 16.66667%;
-    max-width: 16.66667%
-}
-
-.grid-cell--col3 {
-    flex: 0 0 25%;
-    max-width: 25%
-}
-
 .grid-cell--col10 {
     flex: 0 0 83.33333%;
     max-width: 83.33333%
-}
-
-.grid-cell--col11 {
-    flex: 0 0 91.66667%;
-    max-width: 91.66667%
 }
 
 .grid-cell--col12 {
@@ -301,7 +289,10 @@ input {
     text-align: center;
     white-space: nowrap;
     position: relative;
-    overflow: hidden
+    overflow: hidden;
+    padding-right: 16px;
+    padding-left: 16px;
+    border-radius: 4px;
 }
 
 .button:before {
@@ -363,7 +354,12 @@ input {
 .form__input {
     width: 100%
 }
-
+.form__field {
+    position: relative;
+    width: 100%;
+    margin-top: 24px;
+    line-height: 20px
+}
 .form__label {
     display: -ms-flexbox;
     display: flex;
@@ -430,13 +426,24 @@ input {
 .u-width--100 {
     width: 100%
 }
-
-.u-mt8 {
-    margin-top: 8px
+.u-p0 {
+    padding: 0;
 }
-
-.desktop-s {
-    display: block
+.u-mt8 {
+    margin-top: 8px;
+}
+.u-mt16 {
+    margin-top: 16px;
+}
+.u-mb16 {
+    margin-bottom: 16px;
+}
+.tabs__footer {
+    padding-top: 32px;
+    width: 100%
+}
+.desktop-s, .desktop-l {
+    display: block;
 }
 
 @media (max-width: 800px) {
@@ -444,7 +451,12 @@ input {
         display: none
     }
 }
-
+@media (min-width: 1632px) {
+    .grid-cell--col1--desktop-l {
+        flex: 0 0 8.33333%;
+        max-width: 8.33333%;
+    }
+}
 .u-align-center {
     -ms-flex-align: center;
     align-items: center
@@ -522,11 +534,14 @@ input {
     }
 }
 
-@media (min-width: 801px) and (max-width: 1223px) {
+@media (min-width: 800px) and (max-width: 1223px) {
     .button {
-        padding-right: 16px;
-        padding-left: 16px;
-        border-radius: 4px
+        padding-top: 12px;
+        padding-bottom: 12px;
+        font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 16px
     }
 }
 
@@ -596,11 +611,6 @@ input {
     min-height: 100vh;
     background-color: #162945;
     background-size: cover
-}
-
-.Sessions a,
-.Sessions button {
-    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif
 }
 
 </style>
