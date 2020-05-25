@@ -69,7 +69,7 @@ export default {
           price: this.price,
           description: this.description
         }
-        const res = await AxiosService.post('/food', newFood)
+        const res = await AxiosService.post('/api/food', newFood)
         console.log(res.data)
         if (res.data.status == 'success') {
           newFood._id = res.data._id
@@ -83,7 +83,7 @@ export default {
     },
     async remove(id) {
       console.log(id)
-      const res = await AxiosService.delete('/food', {
+      const res = await AxiosService.delete('/api/food', {
         data: {
           _id: id
         }
@@ -100,7 +100,7 @@ export default {
     }
   }, 
   async mounted() {
-    const res = await AxiosService.get('/food')
+    const res = await AxiosService.get('/api/food')
     this.foods = res.data.foods
   }
 }
