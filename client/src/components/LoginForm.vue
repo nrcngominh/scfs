@@ -28,18 +28,18 @@
 
                       <div>
                         <label for="email" class="form__label">Email or username</label>
-                        <input v-model="email" class="form__input"/>
+                        <input v-model="email" @keyup.enter="nextInput" class="form__input"/>
                       </div>
                       <div>
                         <label for="password" class="form__label">Password</label>
                         <div class="form__input-icon">
-                            <input v-model="password" class="form__input" type="password"/>
+                            <input id="password" v-model="password" @keyup.enter="submit" class="form__input" type="password"/>
                         </div>
                         <a class="form__link" href="">Forgot password?</a>
                       </div>
 
                       <div>
-                          <button @click="login" class="button isRed u-width--100">Log in</button>
+                          <button @click="login"  class="button isRed u-width--100">Log in</button>
                       </div>
                     </section>
                   </div>
@@ -85,6 +85,12 @@ export default {
       } catch (err) { 
         console.log(err)
       }
+    },
+    async submit() {
+      this.login();
+    },
+    nextInput() {
+      document.getElementById('password').focus();
     }
   }
 }
