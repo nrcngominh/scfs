@@ -16,7 +16,7 @@
                                 <img src="" alt="">
                             </a>
                             <p class="u-txt-right f12">
-                                Already have an account? <a @click="backwardPage" href="">Log in</a>
+                                Already have an account? <a id="_lg" @click="backwardPage">Log in</a>
                             </p>
                         </div>
                         </nav>
@@ -122,14 +122,13 @@ export default {
 <style scoped>
 
 
-a {
+#_lg {
     color: #EB1510;
-    text-decoration: none
+    text-decoration: underline;
 }
 
-a:hover {
-    text-decoration: underline;
-    color: #EB1510;
+#_lg:hover {
+    cursor: pointer;
 }
 
 button {
@@ -509,7 +508,7 @@ input {
 @media (min-width: 1224px) {
     .tabs__title {
         display: inline;
-        margin-left: 2px
+        margin-left: 10px
     }
 }
 

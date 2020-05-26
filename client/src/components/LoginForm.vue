@@ -16,7 +16,7 @@
                             <img src="" alt="">
                         </a>
                         <p class="u-txt-right f12">
-                            Don't have an account yet? <a @click="forwardPage" href="">Sign up here</a>
+                            Don't have an account yet? <a id="_suh" @click="forwardPage">Sign up here</a>
                         </p>
                       </div>
                     </nav>
@@ -107,13 +107,10 @@ export default {
 section {
     display: block
 }
-a {
-    color: #EB1510;
-    text-decoration: none
-}
 
-a:hover {
-    text-decoration: underline
+#_suh:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 button {
@@ -461,7 +458,7 @@ input {
 
 @media (max-width: 800px) {
     .sessions__background--mobile {
-        background-color: #172845;
+        background-color: #11a2b8;
         background-position: center;
         background-size: cover;
         height: 100vh;
