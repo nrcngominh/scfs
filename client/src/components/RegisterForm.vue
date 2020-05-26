@@ -16,7 +16,7 @@
                                 <img src="" alt="">
                             </a>
                             <p class="u-txt-right f12">
-                                Already have an account? <a href="/">Log in</a>
+                                Already have an account? <a href="/">Log innn</a>
                             </p>
                         </div>
                         </nav>
