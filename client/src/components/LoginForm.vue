@@ -2,7 +2,7 @@
   <div class="container">
     <div class="login-form">
       <label for="email">Email</label>
-      <input id="email" v-model="email" placeholder="Enter your email" />
+      <input id="email" v-model="email" placeholder="Enter your email here" />
 
       <label for="password">Password</label>
       <input id="password" v-model="password" placeholder="Enter your password" />
