@@ -1,5 +1,6 @@
 @charset "UTF-8";
-body.login {
+body.login,
+body.register {
     margin: 0;
     padding: 0;
     border: 0;
@@ -7,7 +8,6 @@ body.login {
     vertical-align: baseline;
     line-height: 1;
     height: 100%;
-    color: #ffffff;
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 20px;
     line-height: 32px;
@@ -18,21 +18,11 @@ body.login {
 }
 
 body.register {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    vertical-align: baseline;
-    line-height: 1;
-    height: 100%;
     color: #162945;
-    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 20px;
-    line-height: 32px;
-    -webkit-font-smoothing: antialiased;
-    -webkit-text-rendering: optimizeLegibility;
-    text-rendering: optimizeLegibility;
-    box-sizing: border-box;
+}
+
+body.login {
+    color: #ffffff;
 }
 
 body.admin {
@@ -43,4 +33,39 @@ body.user {
     font-family: 'Montserrat', sans-serif;
     color: #333;
     line-height: 1.6;
+}
+
+html,
+div,
+span,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+label {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline
+}
+
+ol,
+ul {
+    list-style: none
+}
+
+* {
+    box-sizing: border-box
+}
+
+html,
+body {
+    height: 100%
 }

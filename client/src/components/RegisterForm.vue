@@ -16,7 +16,7 @@
                                 <img src="" alt="">
                             </a>
                             <p class="u-txt-right f12">
-                                Already have an account? <a href="/">Log innn</a>
+                                Already have an account? <a @click="backwardPage" href="">Log in</a>
                             </p>
                         </div>
                         </nav>
@@ -74,7 +74,7 @@
 import AxiosService from '../services/axios-service'
 
 export default {
-  name: "LoginForm",
+  name: "RegisterForm",
   data() {
     return {
       email: "",
@@ -111,54 +111,25 @@ export default {
     },
     nextInput() {
       document.getElementById('password').focus();
+    },
+    backwardPage() {
+        this.$router.push('/')
     }
   }
 }
 </script>
 
 <style scoped>
-html,
-div,
-span,
-ul,
-li,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-a,
-label {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    vertical-align: baseline
-}
 
-section {
-    display: block
-}
 
-* {
-    box-sizing: border-box
-}
-
-html{
-    height: 100%
-}
-ul {
-    list-style: none
-}
 a {
     color: #EB1510;
     text-decoration: none
 }
 
 a:hover {
-    text-decoration: underline
+    text-decoration: underline;
+    color: #EB1510;
 }
 
 button {
@@ -169,101 +140,13 @@ button {
     outline: none
 }
 
-img {
-    max-width: 100%;
-    vertical-align: bottom
-}
-
 input {
-    outline: none;
-}
-.tabs {
-    display: -ms-flexbox;
-    display: flex;
-    margin-top: 24px;
-}
-.tabs__item {
-    font-size: 16px;
-}
-.tabs__item:not(:last-child) {
-    margin-right: 16px;
-}
-.tabs__item.is-active .tabs__number {
-    background-color: #11a2b8
+    outline: none
 }
 
-.tabs__item.is-active .tabs__title {
-    display: inline
-}
-
-.tabs__item.is-active~.tabs__item .tabs__number {
-    background-color: rgba(130, 138, 143, 0.3)
-}
-.tabs__number {
-    display: inline-block;
-    width: 1.5em;
-    height: 1.5em;
-    border-radius: 50%;
-    background-color: #162945;
-    color: #FFF;
-    line-height: 1.5;
-    text-align: center
-}
-
-.tabs__title {
-    display: none;
-    margin-left: 8px
-}
-@media (min-width: 1224px) {
-    .tabs__title {
-        display: inline;
-        margin-left: 10px
-    }
-}
 @media (min-width: 801px) {
-    .tabs {
-        margin-top: 16px
-    }
-    .tabs__item {
-        font-size: 12px
-    }
-    .tabs__item:not(:last-child) {
-        padding-bottom: 0
-    }
-    .tabs__content {
-        padding-bottom: 0
-    }
-}
-.signup__circleMap {
-    position: absolute;
-    top: 50%;
-    overflow: hidden;
-    transform: translateY(-50%);
-    border-radius: 50%;
-    background-color: #162945;
-    background-image: linear-gradient(160deg, rgba(22, 41, 69, 0) 0%, #162945 85%), url(/assets/backgrounds/signup-a24f239290c3a2fff00736fb0f86a9584f38fcf7c1175a2c23c76f48f79c27a3.svg);
-    background-repeat: no-repeat;
-    background-position: right center;
-    background-size: auto
-}
-@media (min-width: 1632px) {
-    .tabs {
-        margin-top: 28px;
-    }
-}
-@media (min-width: 1632px) {
-    .signup__circleMap {
-        left: -1300px;
-    }
-}
-@media (min-width: 1224px) {
-    .signup__circleMap {
-        left: -1400px;
-    }
-}
-@media (min-width: 801px) {
-    .form__label, h1 {
-        color: #162945;
+    body {
+        color: #162945
     }
 }
 
@@ -272,11 +155,15 @@ input {
     line-height: 16px;
     letter-spacing: 0px
 }
-
 .text {
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 400;
     letter-spacing: 0px
+}
+
+.title {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600
 }
 
 .container {
@@ -340,14 +227,29 @@ input {
     }
 }
 
+.grid {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex: 1;
+    flex: 1
+}
+
+.grid.grid--column {
+    -ms-flex-direction: column;
+    flex-direction: column
+}
 .grid-cell--col1 {
     flex: 0 0 8.33333%;
     max-width: 8.33333%
 }
+
 .grid-cell--col5 {
     flex: 0 0 41.66667%;
     max-width: 41.66667%
 }
+
 .grid-cell--col10 {
     flex: 0 0 83.33333%;
     max-width: 83.33333%
@@ -357,7 +259,41 @@ input {
     flex: 0 0 100%;
     max-width: 100%
 }
+@media (max-width: 1224px) {
+    .container {
+        max-width: 960px
+    }
+    .grid-cell {
+        padding-right: 12px;
+        padding-left: 12px
+    }
+}
 
+@media (max-width: 600px) {
+    .grid-cell {
+        padding-right: 4px;
+        padding-left: 4px
+    }
+}
+@media (min-width: 1224px) {
+    .container {
+        max-width: 1224px
+    }
+    .grid-cell {
+        padding-right: 12px;
+        padding-left: 12px
+    }
+}
+
+@media (min-width: 1632px) {
+    .container {
+        max-width: 1632px
+    }
+    .grid-cell {
+        padding-right: 16px;
+        padding-left: 16px
+    }
+}
 @media (max-width: 1224px) {
     .grid-cell--col5--desktop-s {
         flex: 0 0 41.66667%;
@@ -375,7 +311,6 @@ input {
         max-width: 100%
     }
 }
-
 @media (min-width: 1224px) {
     .grid-cell--col2--desktop {
         flex: 0 0 16.66667%;
@@ -386,7 +321,6 @@ input {
         max-width: 41.66667%
     }
 }
-
 @media (min-width: 1632px) {
     .grid-cell--col3--desktop-l {
         flex: 0 0 25%;
@@ -397,7 +331,6 @@ input {
         max-width: 33.33333%;
     }
 }
-
 .button {
     display: inline-block;
     border-radius: 8px;
@@ -406,10 +339,11 @@ input {
     text-align: center;
     white-space: nowrap;
     position: relative;
-    overflow: hidden;
-    padding-right: 16px;
-    padding-left: 16px;
-    border-radius: 4px;
+    overflow: hidden
+}
+
+.button.is-outline {
+    padding: 14px 22px
 }
 
 .button:before {
@@ -446,39 +380,23 @@ input {
     text-decoration: none
 }
 
-.button:hover span:before,
-.button:focus span:before {
-    transform: translateX(0)
-}
-
-.button>span {
-    position: relative
-}
-
 .button.isRed {
     background-color: #eb1510;
     color: #ffffff
 }
-.signup__form {
-    width: 100%
-}
-.form__link {
-    color: #ffffff;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 16px
-}
 
-.form__label,
-.form__input {
-    width: 100%
-}
 .form__field {
     position: relative;
     width: 100%;
     margin-top: 24px;
     line-height: 20px
 }
+
+.form__label,
+.form__input {
+    width: 100%
+}
+
 .form__label {
     display: -ms-flexbox;
     display: flex;
@@ -511,13 +429,6 @@ input {
     box-shadow: inset 0 0 0 1px #11a2b8
 }
 
-.form__input-info {
-    margin-top: 4px;
-    color: #828a8f;
-    font-size: 12px;
-    line-height: 16px
-}
-
 .form__input-icon {
     position: relative
 }
@@ -541,37 +452,112 @@ input {
         align-items: flex-start
     }
 }
+
+.tabs {
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 24px
+}
+
+.tabs__item {
+    font-size: 16px
+}
+
+.tabs__item:not(:last-child) {
+    margin-right: 16px
+}
+
+.tabs__number {
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    background-color: #162945;
+    color: #FFF;
+    line-height: 1.5;
+    text-align: center
+}
+
+.tabs__title {
+    display: none;
+    margin-left: 8px
+}
+
+.tabs__item.is-active .tabs__number {
+    background-color: #11a2b8
+}
+
+.tabs__item.is-active .tabs__title {
+    display: inline
+}
+
+.tabs__item.is-active~.tabs__item .tabs__number {
+    background-color: rgba(130, 138, 143, 0.3)
+}
+
 @media (min-width: 801px) {
-    .signup__wrapper {
-        background-color: #ffffff
+    .tabs {
+        margin-top: 16px
     }
-    .signup__circleMap {
-        left: -1400px;
-        width: 2000px;
-        height: 2000px;
+    .tabs__item {
+        font-size: 12px
+    }
+    .tabs__item:not(:last-child) {
+        padding-bottom: 0
     }
 }
-.u-width--100 {
-    width: 100%
+
+@media (min-width: 1224px) {
+    .tabs__title {
+        display: inline;
+        margin-left: 2px
+    }
 }
-.u-p0 {
-    padding: 0;
+
+@media (min-width: 1632px) {
+    .tabs {
+        margin-top: 28px
+    }
 }
+
 .u-mt8 {
-    margin-top: 8px;
+    margin-top: 8px
 }
+
 .u-mt16 {
-    margin-top: 16px;
+    margin-top: 16px
 }
+
 .u-mb16 {
-    margin-bottom: 16px;
+    margin-bottom: 16px
 }
-.tabs__footer {
-    padding-top: 32px;
-    width: 100%
+
+.u-p0 {
+    padding: 0
 }
-.desktop-s, .desktop-l {
-    display: block;
+
+.mobile {
+    display: none
+}
+
+@media (max-width: 600px) {
+    .mobile {
+        display: block
+    }
+}
+
+.tablet {
+    display: none
+}
+
+@media (max-width: 800px) {
+    .tablet {
+        display: block
+    }
+}
+
+.desktop-s {
+    display: block
 }
 
 @media (max-width: 800px) {
@@ -579,12 +565,27 @@ input {
         display: none
     }
 }
-@media (min-width: 1632px) {
-    .grid-cell--col1--desktop-l {
-        flex: 0 0 8.33333%;
-        max-width: 8.33333%;
+
+.desktop {
+    display: block
+}
+
+@media (max-width: 1224px) {
+    .desktop {
+        display: none
     }
 }
+
+.desktop-l {
+    display: block
+}
+
+@media (max-width: 1632px) {
+    .desktop-l {
+        display: none
+    }
+}
+
 .u-align-center {
     -ms-flex-align: center;
     align-items: center
@@ -593,6 +594,10 @@ input {
 .u-justify-space {
     -ms-flex-pack: justify;
     justify-content: space-between
+}
+
+.u-width--100 {
+    width: 100%
 }
 
 .sessions__background {
@@ -620,6 +625,10 @@ input {
         background-size: cover;
         height: 100vh;
         overflow: auto;
+        color: #FFF;
+    }
+    .a:hover {
+        color: EB1510;
     }
 }
 
@@ -632,17 +641,8 @@ input {
     .sessions__navbar {
         padding-bottom: 40px
     }
-    .sessions__content {
-        margin-top: 100px
-    }
     .sessions__title {
         font-size: 24px
-    }
-}
-
-@media (min-width: 1224px) {
-    .sessions__content {
-        margin-top: 80px
     }
 }
 
@@ -653,23 +653,114 @@ input {
     .sessions__navbar {
         padding-bottom: 96px
     }
-    .sessions__content {
-        margin-top: 12px
-    }
     .sessions__title {
         font-size: 36px;
         line-height: 44px
     }
 }
 
-@media (min-width: 800px) and (max-width: 1223px) {
-    .button {
+.signup {
+    position: relative;
+    z-index: 1
+}
+
+.signup__circleMap {
+    position: absolute;
+    top: 50%;
+    overflow: hidden;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background-color: #162945;
+    background-image: linear-gradient(160deg, rgba(22, 41, 69, 0) 0%, #162945 85%), url(/assets/backgrounds/signup-a24f239290c3a2fff00736fb0f86a9584f38fcf7c1175a2c23c76f48f79c27a3.svg);
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: auto
+}
+
+.signup__info {
+    position: relative;
+    color: #ffffff
+}
+
+.signup__info a {
+    color: #ffffff;
+    text-decoration: underline
+}
+
+.signup__form {
+    width: 100%
+}
+
+@media (min-width: 801px) {
+    .signup__wrapper {
+        background-color: #ffffff
+    }
+    .signup__circleMap {
+        left: -1550px;
+        width: 2000px;
+        height: 2000px
+    }
+}
+
+@media (min-width: 801px) and (max-width: 1223px) {
+    .button,
+    .button--back {
         padding-top: 12px;
         padding-bottom: 12px;
         font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-size: 12px;
         font-weight: 600;
         line-height: 16px
+    }
+    .button {
+        padding-right: 16px;
+        padding-left: 16px;
+        border-radius: 4px;
+    }
+}
+
+@media (min-width: 1224px) {
+    .signup__circleMap {
+        left: -1400px
+    }
+    .info__wrapper--plan {
+        padding: 48px
+    }
+    .info__title--plan {
+        font-size: 20px;
+        line-height: 32px
+    }
+    .info__description--plan {
+        margin-top: 24px
+    }
+    .info__list-title {
+        margin-top: 24px
+    }
+    .info__item {
+        font-size: 16px;
+        line-height: 24px
+    }
+    .info__item::before {
+        background-size: 16px
+    }
+}
+
+@media (min-width: 1632px) {
+    .signup__circleMap {
+        left: -1300px
+    }
+    .info__title--plan {
+        font-size: 24px;
+        line-height: 36px
+    }
+    .info__description--plan {
+        font-size: 20px;
+        line-height: 32px
+    }
+    .info__title--student,
+    .info__description--student {
+        font-size: 16px;
+        line-height: 24px
     }
 }
 
@@ -699,16 +790,6 @@ input {
     background-size: auto 250px
 }
 
-.login__form {
-    width: 100%;
-    margin-top: 60px
-}
-
-.login__info {
-    position: relative;
-    color: #ffffff
-}
-
 @media (min-width: 801px) {
     .login__wrapper {
         background-color: #ffffff
@@ -726,6 +807,67 @@ input {
     }
 }
 
+@media (min-width: 1632px) {
+    .login__circleMap {
+        right: -1200px
+    }
+}
+
+@font-face {
+    font-family: "Open Sans";
+    src: url(/assets/OpenSans-Regular-31b6b855254621325884ebeee8f42134e48c68bde9c41552e8f701d483d47cba.eot);
+    src: url(/assets/OpenSans-Regular-31b6b855254621325884ebeee8f42134e48c68bde9c41552e8f701d483d47cba.eot?#iefix) format("embedded-opentype"), url(/assets/OpenSans-Regular-e64e508b2aa2880f907e470c4550980ec4c0694d103a43f36150ac3f93189bee.ttf) format("truetype");
+    font-weight: 400;
+    font-style: normal
+}
+
+@font-face {
+    font-family: "Open Sans";
+    src: url(/assets/OpenSans-Light-b448a4cfed238e77ca88a2ff4ee399065e6b0ccc1a8fbf846620249f6c79e145.eot);
+    src: url(/assets/OpenSans-Light-b448a4cfed238e77ca88a2ff4ee399065e6b0ccc1a8fbf846620249f6c79e145.eot?#iefix) format("embedded-opentype"), url(/assets/OpenSans-Light-cf5f5184c1441a1660aa52526328e9d5c2793e77b6d8d3a3ad654bdb07ab8424.ttf) format("truetype");
+    font-weight: 300;
+    font-style: normal
+}
+
+@font-face {
+    font-family: "Open Sans";
+    src: url(/assets/OpenSans-Semibold-b132fd47c96da989d9a505f882ab62fde74e7c0863192adb4f0d4c4b749b9a9e.eot);
+    src: url(/assets/OpenSans-Semibold-b132fd47c96da989d9a505f882ab62fde74e7c0863192adb4f0d4c4b749b9a9e.eot?#iefix) format("embedded-opentype"), url(/assets/OpenSans-Semibold-aa3b0ef53db12e3d45094030cac0e69d384e44cc5978643dd4390041cad546e2.ttf) format("truetype");
+    font-weight: 600;
+    font-style: normal
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url(/assets/montserrat-regular-webfont-cc730bc36272778104deb3754725004417689f984ca24f0a85ceacb9d2c102b1.eot);
+    src: url(/assets/montserrat-regular-webfont-cc730bc36272778104deb3754725004417689f984ca24f0a85ceacb9d2c102b1.eot?#iefix) format("embedded-opentype"), url(/assets/montserrat-regular-webfont-2689fd5fa69e3427496f977d75de982466aebdef78ab9b97a510f1e7fe75feec.ttf) format("truetype");
+    font-weight: 400;
+    font-style: normal
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url(/assets/montserrat-semibold-webfont-664d7873aa23a7dee18fb9563f80a70f21b2144e60f9275558dce19a2990dd9f.eot);
+    src: url(/assets/montserrat-semibold-webfont-664d7873aa23a7dee18fb9563f80a70f21b2144e60f9275558dce19a2990dd9f.eot?#iefix) format("embedded-opentype"), url(/assets/montserrat-semibold-webfont-0563c10d1602f0e8bb1813e2473232f418952c5545a4d6d812e1964984fc29f0.ttf) format("truetype");
+    font-weight: 600;
+    font-style: normal
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url(/assets/montserrat-bold-webfont-dd5428974e2cd8cbcf9e5ab65d7340997047a04e70a9d9619ceff74e158f3f6b.eot);
+    src: url(/assets/montserrat-bold-webfont-dd5428974e2cd8cbcf9e5ab65d7340997047a04e70a9d9619ceff74e158f3f6b.eot?#iefix) format("embedded-opentype"), url(/assets/montserrat-bold-webfont-e0a627c9b8df39918fbd511d05bd460fab87e1c133daa03ac8a912d3433fbcb8.ttf) format("truetype");
+    font-weight: bold;
+    font-style: normal
+}
+
+@font-face {
+    font-family: "Roboto Medium";
+    src: url(/assets/Roboto-Medium-0c743a880dc0cfd9028f74d7b23db7131ff230f0927129418de147be4f556031.woff) format("woff");
+    font-weight: 500;
+    font-style: normal
+}
+
 .Sessions {
     display: -webkit-box;
     display: -moz-box;
@@ -739,6 +881,11 @@ input {
     min-height: 100vh;
     background-color: #162945;
     background-size: cover
+}
+
+.Sessions a,
+.Sessions button {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif
 }
 
 </style>

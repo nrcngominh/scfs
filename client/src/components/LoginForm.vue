@@ -16,7 +16,7 @@
                             <img src="" alt="">
                         </a>
                         <p class="u-txt-right f12">
-                            Don't have an account yet? <a href="/register">Sign up here</a>
+                            Don't have an account yet? <a @click="forwardPage" href="">Sign up here</a>
                         </p>
                       </div>
                     </nav>
@@ -95,44 +95,18 @@ export default {
     },
     nextInput() {
       document.getElementById('password').focus();
+    },
+    async forwardPage() {
+        this.$router.push('register')
     }
   }
 }
 </script>
 
 <style scoped>
-html,
-div,
-span,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-a,
-label {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    vertical-align: baseline
-}
-
 section {
     display: block
 }
-
-* {
-    box-sizing: border-box
-}
-
-html{
-    height: 100%
-}
-
-
 a {
     color: #EB1510;
     text-decoration: none
