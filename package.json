@@ -6,17 +6,24 @@
     "node": "14.3.x"
   },
   "scripts": {
-      "start": "npm --prefix client run build && npm --prefix server run build && npm --prefix server start",
-      "heroku-postbuild": "npm --prefix client install && npm --prefix server install"
+    "start": "npm --prefix client run build && npm --prefix server run build && npm --prefix server start",
+    "heroku-postbuild": "npm --prefix client install && npm --prefix server install"
   },
+  "cacheDirectories": [
+      "client/node_modules",
+      "server/node_modules"
+  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nrcngominh/scfs.git"
+    "url": "git+https://github.com/nrcngominh/sfcs.git"
   },
   "author": "NRC && HNT",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nrcngominh/scfs/issues"
+    "url": "https://github.com/nrcngominh/sfcs/issues"
   },
-  "homepage": "https://github.com/nrcngominh/scfs#readme"
+  "homepage": "https://github.com/nrcngominh/sfcs#readme",
+  "dependencies": {
+    "vue-meta": "^2.3.3"
+  }
 }
