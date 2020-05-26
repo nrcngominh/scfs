@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import LoginForm from '../components/LoginForm'
+import RegisterForm from '../components/RegisterForm'
 import ErrorPage from '../components/ErrorPage'
 import ManagerPage from '../components/ManagerPage'
 import CustomerPage from '../components/CustomerPage'
@@ -13,6 +14,11 @@ const router = new VueRouter({
             path: '/',
             name: 'LoginForm',
             component: LoginForm
+        },
+        {
+            path: '/register',
+            name: 'RegisterForm',
+            component: RegisterForm
         },
         {
             path: '/error',
@@ -28,7 +34,7 @@ const router = new VueRouter({
             path: '/user',
             name: 'CustomerPage',
             component: CustomerPage
-        }
+        },
     ]
 })
 
