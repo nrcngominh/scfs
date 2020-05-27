@@ -9,14 +9,14 @@
                 <div class="grid-cell grid-cell--col1"></div>
 
                 <div class="grid-cell grid-cell--col10 grid">
-                  <div class="grid-cell grid-cell--col12 u-mt8">
+                  <div class="grid-cell grid-cell--col12 mt-2">
                     <nav class="sessions__navbar login__navbar grid">
                       <div class="grid u-justify-space u-align-center">
                         <a class="" href="/">
                             <img src="" alt="">
                         </a>
-                        <p class="u-txt-right f12">
-                            Don't have an account yet? <a id="_suh" @click="forwardPage">Sign up here</a>
+                        <p class="f12">
+                            Don't have an account yet? <a id="_signup" @click="forwardPage">Sign up here</a>
                         </p>
                       </div>
                     </nav>
@@ -37,10 +37,10 @@
                         </div>
                         <a class="form__link" href="">Forgot password?</a>
                       </div>
-                      <div class="tabs__foo">
+                      <div>
                         <div class="grid mt-4">
-                          <div class="grid-cell grid-cell--col12 u-mt16 u-mb16 u-p0">
-                              <button @click="login"  class="button isRed u-width--100">Log in</button>
+                          <div class="grid-cell grid-cell--col12 mt-4 p-0">
+                              <button @click="login"  class="button isRed w-100">Log in</button>
                               <div class="grid-cell grid-cell--col1--desktop-l desktop-l"></div>
                           </div>
                         </div>
@@ -104,72 +104,16 @@ export default {
 </script>
 
 <style scoped>
-section {
-    display: block
-}
 
-#_suh:hover {
+#_signup:hover {
     text-decoration: underline;
     cursor: pointer;
-}
-
-button {
-    border: 0;
-    cursor: pointer;
-    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    margin: 0;
-    outline: none
-}
-
-img {
-    max-width: 100%;
-    vertical-align: bottom
-}
-
-input {
-    outline: none
 }
 
 @media (min-width: 801px) {
     .form__label, h1 {
         color: #162945
     }
-}
-
-.f12 {
-    font-size: 12px;
-    line-height: 16px;
-    letter-spacing: 0px
-}
-
-.text {
-    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 400;
-    letter-spacing: 0px
-}
-
-.container {
-    max-width: 960px;
-    margin: 0 auto
-}
-
-.grid-cell {
-    padding-right: 12px;
-    padding-left: 12px
-}
-
-.grid {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -ms-flex: 1;
-    flex: 1
-}
-
-.grid.grid--column {
-    -ms-flex-direction: column;
-    flex-direction: column
 }
 
 @media (max-width: 1224px) {
@@ -209,21 +153,6 @@ input {
     }
 }
 
-.grid-cell--col1 {
-    flex: 0 0 8.33333%;
-    max-width: 8.33333%
-}
-
-.grid-cell--col10 {
-    flex: 0 0 83.33333%;
-    max-width: 83.33333%
-}
-
-.grid-cell--col12 {
-    flex: 0 0 100%;
-    max-width: 100%
-}
-
 @media (max-width: 1224px) {
     .grid-cell--col5--desktop-s {
         flex: 0 0 41.66667%;
@@ -252,128 +181,6 @@ input {
     }
 }
 
-.button {
-    display: inline-block;
-    border-radius: 8px;
-    font: 600 16px/24px "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    padding: 16px 24px;
-    text-align: center;
-    white-space: nowrap;
-    position: relative;
-    overflow: hidden;
-    padding-right: 16px;
-    padding-left: 16px;
-    border-radius: 4px;
-}
-
-.button:before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background-color: transparent;
-    transition: background-color 0.1s linear
-}
-
-.button span {
-    position: relative;
-    display: inline-flex;
-    overflow: hidden
-}
-
-.button span:before {
-    content: '';
-    position: absolute;
-    transition: transform .3s ease;
-    left: -1px;
-    bottom: 0;
-    width: 100%;
-    height: 2px;
-    background: currentColor;
-    transform: translateX(-100%)
-}
-
-.button:hover,
-.button:focus {
-    text-decoration: none
-}
-
-.button:hover span:before,
-.button:focus span:before {
-    transform: translateX(0)
-}
-
-.button>span {
-    position: relative
-}
-
-.button.isRed {
-    background-color: #eb1510;
-    color: #ffffff
-}
-
-.form__link {
-    color: #ffffff;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 16px
-}
-
-.form__label,
-.form__input {
-    width: 100%
-}
-.form__field {
-    position: relative;
-    width: 100%;
-    margin-top: 24px;
-    line-height: 20px
-}
-.form__label {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-align: center;
-    align-items: center;
-    margin-bottom: 8px;
-    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 16px
-}
-
-.form__input {
-    height: 48px;
-    padding: 12px;
-    border: 1px solid #828a8f;
-    border-radius: 4px;
-    background-color: #162945;
-    color: #ffffff;
-    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    line-height: 24px;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    appearance: none
-}
-
-.form__input:focus {
-    border-color: #11a2b8;
-    box-shadow: inset 0 0 0 1px #11a2b8
-}
-
-.form__input-info {
-    margin-top: 4px;
-    color: #828a8f;
-    font-size: 12px;
-    line-height: 16px
-}
-
-.form__input-icon {
-    position: relative
-}
-
 @media (min-width: 801px) {
     .form__link {
         color: #eb1510
@@ -394,29 +201,6 @@ input {
     }
 }
 
-.u-width--100 {
-    width: 100%
-}
-.u-p0 {
-    padding: 0;
-}
-.u-mt8 {
-    margin-top: 8px;
-}
-.u-mt16 {
-    margin-top: 16px;
-}
-.u-mb16 {
-    margin-bottom: 16px;
-}
-.tabs__footer {
-    padding-top: 32px;
-    width: 100%
-}
-.desktop-s, .desktop-l {
-    display: block;
-}
-
 @media (max-width: 800px) {
     .desktop-s {
         display: none
@@ -427,33 +211,6 @@ input {
         flex: 0 0 8.33333%;
         max-width: 8.33333%;
     }
-}
-.u-align-center {
-    -ms-flex-align: center;
-    align-items: center
-}
-
-.u-justify-space {
-    -ms-flex-pack: justify;
-    justify-content: space-between
-}
-
-.sessions__background {
-    min-height: 100%;
-    background: #f2f6f9
-}
-
-.sessions__navbar {
-    position: relative;
-    z-index: 1;
-    padding: 16px 0 32px
-}
-
-.sessions__title {
-    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 36px;
-    font-weight: 600;
-    line-height: 40px
 }
 
 @media (max-width: 800px) {
@@ -475,17 +232,8 @@ input {
     .sessions__navbar {
         padding-bottom: 40px
     }
-    .sessions__content {
-        margin-top: 100px
-    }
     .sessions__title {
         font-size: 24px
-    }
-}
-
-@media (min-width: 1224px) {
-    .sessions__content {
-        margin-top: 80px
     }
 }
 
@@ -495,9 +243,6 @@ input {
     }
     .sessions__navbar {
         padding-bottom: 96px
-    }
-    .sessions__content {
-        margin-top: 12px
     }
     .sessions__title {
         font-size: 36px;
@@ -568,20 +313,4 @@ input {
         right: -1400px
     }
 }
-
-.Sessions {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-direction: column;
-    -moz-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    min-height: 100vh;
-    background-color: #162945;
-    background-size: cover
-}
-
 </style>

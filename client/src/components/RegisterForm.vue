@@ -9,14 +9,14 @@
                 <div class="grid-cell grid-cell--col1"></div>
 
                 <div class="grid-cell grid-cell--col10 grid">
-                    <div class="grid-cell grid-cell--col12 u-mt8">
+                    <div class="grid-cell grid-cell--col12 mt-2">
                         <nav class="sessions__navbar grid">
                         <div class="grid u-justify-space u-align-center">
                             <a class="" href="/">
                                 <img src="" alt="">
                             </a>
-                            <p class="u-txt-right f12">
-                                Already have an account? <a id="_lg" @click="backwardPage">Log in</a>
+                            <p class="f12">
+                                Already have an account? <a id="_login" @click="backwardPage">Log in</a>
                             </p>
                         </div>
                         </nav>
@@ -49,13 +49,13 @@
                                     <label for="password" class="form__label">Password</label>
                                     <div class="form__input-icon">
                                         <input id="password" v-model="password" @keyup.enter="submit" class="form__input" type="password"/>
-                                        <p class="form__input-error"></p>
+                                        <p class="form__input-info">Your password must include at least 8 characters</p>
                                     </div>
                                 </div>
                                 <div class="tabs__foo">
                                     <div class="grid mt-4">
-                                    <div class="grid-cell grid-cell--col12 u-mt16 u-mb16 u-p0">
-                                        <button @click="register"  class="button isRed u-width--100">Next</button>
+                                    <div class="grid-cell grid-cell--col12 mt-4 p-0">
+                                        <button @click="register"  class="button isRed w-100">Next</button>
                                         <div class="grid-cell grid-cell--col1--desktop-l desktop-l"></div>
                                     </div>
                                     </div>
@@ -120,27 +120,13 @@ export default {
 </script>
 
 <style scoped>
-
-
-#_lg {
+#_login {
     color: #EB1510;
     text-decoration: underline;
 }
 
-#_lg:hover {
+#_login:hover {
     cursor: pointer;
-}
-
-button {
-    border: 0;
-    cursor: pointer;
-    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    margin: 0;
-    outline: none
-}
-
-input {
-    outline: none
 }
 
 @media (min-width: 801px) {
@@ -149,115 +135,6 @@ input {
     }
 }
 
-.f12 {
-    font-size: 12px;
-    line-height: 16px;
-    letter-spacing: 0px
-}
-.text {
-    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 400;
-    letter-spacing: 0px
-}
-
-.title {
-    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 600
-}
-
-.container {
-    max-width: 960px;
-    margin: 0 auto
-}
-
-.grid-cell {
-    padding-right: 12px;
-    padding-left: 12px
-}
-
-.grid {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -ms-flex: 1;
-    flex: 1
-}
-
-.grid.grid--column {
-    -ms-flex-direction: column;
-    flex-direction: column
-}
-
-@media (max-width: 1224px) {
-    .container {
-        max-width: 960px
-    }
-    .grid-cell {
-        padding-right: 12px;
-        padding-left: 12px
-    }
-}
-
-@media (max-width: 600px) {
-    .grid-cell {
-        padding-right: 4px;
-        padding-left: 4px
-    }
-}
-
-@media (min-width: 1224px) {
-    .container {
-        max-width: 1224px
-    }
-    .grid-cell {
-        padding-right: 12px;
-        padding-left: 12px
-    }
-}
-
-@media (min-width: 1632px) {
-    .container {
-        max-width: 1632px
-    }
-    .grid-cell {
-        padding-right: 16px;
-        padding-left: 16px
-    }
-}
-
-.grid {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -ms-flex: 1;
-    flex: 1
-}
-
-.grid.grid--column {
-    -ms-flex-direction: column;
-    flex-direction: column
-}
-.grid-cell--col1 {
-    flex: 0 0 8.33333%;
-    max-width: 8.33333%
-}
-
-.grid-cell--col5 {
-    flex: 0 0 41.66667%;
-    max-width: 41.66667%
-}
-
-.grid-cell--col10 {
-    flex: 0 0 83.33333%;
-    max-width: 83.33333%
-}
-
-.grid-cell--col12 {
-    flex: 0 0 100%;
-    max-width: 100%
-}
 @media (max-width: 1224px) {
     .container {
         max-width: 960px
@@ -330,112 +207,8 @@ input {
         max-width: 33.33333%;
     }
 }
-.button {
-    display: inline-block;
-    border-radius: 8px;
-    font: 600 16px/24px "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    padding: 16px 24px;
-    text-align: center;
-    white-space: nowrap;
-    position: relative;
-    overflow: hidden
-}
-
-.button.is-outline {
-    padding: 14px 22px
-}
-
-.button:before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background-color: transparent;
-    transition: background-color 0.1s linear
-}
-
-.button span {
-    position: relative;
-    display: inline-flex;
-    overflow: hidden
-}
-
-.button span:before {
-    content: '';
-    position: absolute;
-    transition: transform .3s ease;
-    left: -1px;
-    bottom: 0;
-    width: 100%;
-    height: 2px;
-    background: currentColor;
-    transform: translateX(-100%)
-}
-
-.button:hover,
-.button:focus {
-    text-decoration: none
-}
-
-.button.isRed {
-    background-color: #eb1510;
-    color: #ffffff
-}
-
-.form__field {
-    position: relative;
-    width: 100%;
-    margin-top: 24px;
-    line-height: 20px
-}
-
-.form__label,
-.form__input {
-    width: 100%
-}
-
-.form__label {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-align: center;
-    align-items: center;
-    margin-bottom: 8px;
-    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 16px
-}
-
-.form__input {
-    height: 48px;
-    padding: 12px;
-    border: 1px solid #828a8f;
-    border-radius: 4px;
-    background-color: #162945;
-    color: #ffffff;
-    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    line-height: 24px;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    appearance: none
-}
-
-.form__input:focus {
-    border-color: #11a2b8;
-    box-shadow: inset 0 0 0 1px #11a2b8
-}
-
-.form__input-icon {
-    position: relative
-}
 
 @media (min-width: 801px) {
-    .form__link {
-        color: #eb1510
-    }
     .form__input {
         background-color: transparent;
         color: #162945
@@ -519,54 +292,10 @@ input {
     }
 }
 
-.u-mt8 {
-    margin-top: 8px
-}
-
-.u-mt16 {
-    margin-top: 16px
-}
-
-.u-mb16 {
-    margin-bottom: 16px
-}
-
-.u-p0 {
-    padding: 0
-}
-
-.mobile {
-    display: none
-}
-
-@media (max-width: 600px) {
-    .mobile {
-        display: block
-    }
-}
-
-.tablet {
-    display: none
-}
-
-@media (max-width: 800px) {
-    .tablet {
-        display: block
-    }
-}
-
-.desktop-s {
-    display: block
-}
-
 @media (max-width: 800px) {
     .desktop-s {
         display: none
     }
-}
-
-.desktop {
-    display: block
 }
 
 @media (max-width: 1224px) {
@@ -575,46 +304,10 @@ input {
     }
 }
 
-.desktop-l {
-    display: block
-}
-
 @media (max-width: 1632px) {
     .desktop-l {
         display: none
     }
-}
-
-.u-align-center {
-    -ms-flex-align: center;
-    align-items: center
-}
-
-.u-justify-space {
-    -ms-flex-pack: justify;
-    justify-content: space-between
-}
-
-.u-width--100 {
-    width: 100%
-}
-
-.sessions__background {
-    min-height: 100%;
-    background: #f2f6f9
-}
-
-.sessions__navbar {
-    position: relative;
-    z-index: 1;
-    padding: 16px 0 32px
-}
-
-.sessions__title {
-    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 36px;
-    font-weight: 600;
-    line-height: 40px
 }
 
 @media (max-width: 800px) {
@@ -722,93 +415,11 @@ input {
     .signup__circleMap {
         left: -1400px
     }
-    .info__wrapper--plan {
-        padding: 48px
-    }
-    .info__title--plan {
-        font-size: 20px;
-        line-height: 32px
-    }
-    .info__description--plan {
-        margin-top: 24px
-    }
-    .info__list-title {
-        margin-top: 24px
-    }
-    .info__item {
-        font-size: 16px;
-        line-height: 24px
-    }
-    .info__item::before {
-        background-size: 16px
-    }
 }
 
 @media (min-width: 1632px) {
     .signup__circleMap {
         left: -1300px
-    }
-    .info__title--plan {
-        font-size: 24px;
-        line-height: 36px
-    }
-    .info__description--plan {
-        font-size: 20px;
-        line-height: 32px
-    }
-    .info__title--student,
-    .info__description--student {
-        font-size: 16px;
-        line-height: 24px
-    }
-}
-
-.login {
-    position: relative;
-    z-index: 1
-}
-
-.login__navbar {
-    color: #ffffff
-}
-
-.login__navbar a {
-    color: #ffffff;
-    text-decoration: underline
-}
-
-.login__circleMap {
-    position: absolute;
-    top: 50%;
-    overflow: hidden;
-    transform: translateY(-50%);
-    border-radius: 50%;
-    background-color: #11a2b8;
-    background-repeat: no-repeat;
-    background-position: -88px 60%;
-    background-size: auto 250px
-}
-
-@media (min-width: 801px) {
-    .login__wrapper {
-        background-color: #ffffff
-    }
-    .login__circleMap {
-        right: -1550px;
-        width: 2000px;
-        height: 2000px
-    }
-}
-
-@media (min-width: 1224px) {
-    .login__circleMap {
-        right: -1400px
-    }
-}
-
-@media (min-width: 1632px) {
-    .login__circleMap {
-        right: -1200px
     }
 }
 
@@ -866,25 +477,4 @@ input {
     font-weight: 500;
     font-style: normal
 }
-
-.Sessions {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-direction: column;
-    -moz-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    min-height: 100vh;
-    background-color: #162945;
-    background-size: cover
-}
-
-.Sessions a,
-.Sessions button {
-    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif
-}
-
 </style>
