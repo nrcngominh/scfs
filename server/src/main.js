@@ -5,7 +5,7 @@ import BaseRouter from './api/routers'
 import path from 'path'
 import history from 'connect-history-api-fallback'
 
-// Connect to MongoDB
+// Setup MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
