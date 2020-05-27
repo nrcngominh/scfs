@@ -12,6 +12,7 @@
 
 <style scoped>
 .wrapper {
-    background-color: lightblue;
+    background-color: red;
+    height: 100px;
 }
 </style>

@@ -56,6 +56,7 @@
 
 <script>
 import AxiosService from '../services/axios-service'
+import '../assets/global.css'
 
 export default {
   name: "LoginForm",

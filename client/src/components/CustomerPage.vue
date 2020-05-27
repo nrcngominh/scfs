@@ -10,8 +10,7 @@
    </div>
 
   <div class="container">
-    
-
+    <fa-icon icon="coffee" />
     <div class="row">
         <div class="tab-content col-xl-12" id="myTabContent">
             <div class="tab-pane fade active show" id="dinner" role="tabpanel" aria-labelledby="dinner-tab">
