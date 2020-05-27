@@ -1,10 +1,16 @@
 <template>
-  <div class="container">
+  <div>
+  
+  <div>
+      <Header />
+  </div>
 
-    <h1>{{menu}}</h1>
-    <div class="mb-3 mt-3">
-        <button @click="logout">Logout</button>
-    </div>
+  <div>
+        <IntroSlide />
+   </div>
+
+  <div class="container">
+    
 
     <div class="row">
         <div class="tab-content col-xl-12" id="myTabContent">
@@ -23,16 +29,25 @@
             </div>
         </div>
     </div>
-
   </div>
+
+  <div>
+      <Footer />
+  </div>
+</div>
 </template>
 
 <script>
-
 import AxiosService from '../services/axios-service'
+import Footer from './Footer.vue';
+import Header from './Header.vue';
+import IntroSlide from './IntroSlide.vue';
 
 export default {
   name: "CustomerPage",
+  components: {
+    Header, IntroSlide, Footer
+  },
   data() {
     return {
         menu: "CustomerPage",
