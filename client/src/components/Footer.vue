@@ -49,7 +49,7 @@
 
           <div class="col-md-4 col-sm-6 col-xs-12">
             <ul class="social-icons">
-              <li><a class="facebook" href="#"><font-awesome-icon :icon="['fab', 'facebook-f']" /></a></li>
+              <li><a class="facebook" href="https://www.facebook.com/mngoc99"><font-awesome-icon :icon="['fab', 'facebook-f']" /></a></li>
               <li><a class="twitter" href="#"><font-awesome-icon :icon="['fab', 'twitter']" /></a></li>
               <li><a class="github" href="#"><font-awesome-icon :icon="['fab', 'github']" /></a></li>
               <li><a class="linkedin" href="#"><font-awesome-icon :icon="['fab', 'linkedin']" /></a></li> 

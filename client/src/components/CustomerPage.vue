@@ -12,6 +12,7 @@
                               <div class="menu_content" >
                                   <h4>{{ food.name }}  <span>{{ food.price }}</span></h4>
                                   <p>{{ food.description }}</p>
+                                  <button>Buy</button>
                               </div>
                           </div>
                       </div>
@@ -84,7 +85,15 @@ export default {
 }
 </script>
 <style>
-
+.menu_content button{
+    text-transform: none;
+    margin-left: 305px;
+    top: 58px;
+    position: absolute;
+}
+.menu_content p{
+    position: relative;
+}
 #myTabContent {
 	margin-top: 50px;
 }
