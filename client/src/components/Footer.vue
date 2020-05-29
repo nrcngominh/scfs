@@ -5,30 +5,35 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-12 col-md-6">
-            <h6>About</h6>
-            <p class="text-justify">Scanfcode.com <i>CODE WANTS TO BE SIMPLE </i> is an initiative  to help the upcoming programmers with the code. Scanfcode focuses on providing the most efficient code or snippets as the code wants to be simple. We will help programmers build up concepts in different programming languages that include C, C++, Java, HTML, CSS, Bootstrap, JavaScript, PHP, Android, SQL and Algorithm.</p>
+            <h6>Description</h6>
+            <p class="text-justify">
+              The university is currently has one food court located in its Ly Thuong Kiet campus and is going to build another
+              one in Di An campus.All food courts consist of a number of vendors at food stalls or service counters. Meals are
+              ordered at one of the vendors and then carried to a common area for consumption. The food may also be ordered
+              to take-away.
+              <br/>
+              <a href="https://www.freepik.com/free-photos-vectors/food">Food psd created by freepik - www.freepik.com</a>
+            </p>
           </div>
 
           <div class="col-xs-6 col-md-3">
-            <h6>Categories</h6>
+            <h6>Platform</h6>
             <ul class="footer-links">
-              <li><a href="http://scanfcode.com/category/c-language/">C</a></li>
-              <li><a href="http://scanfcode.com/category/front-end-development/">UI Design</a></li>
-              <li><a href="http://scanfcode.com/category/back-end-development/">PHP</a></li>
-              <li><a href="http://scanfcode.com/category/java-programming-language/">Java</a></li>
-              <li><a href="http://scanfcode.com/category/android/">Android</a></li>
-              <li><a href="http://scanfcode.com/category/templates/">Templates</a></li>
+              <li><a>Nodejs</a></li>
+              <li><a>Vuejs</a></li>
+              <li><a>Express</a></li>
+              <li><a>Webpack</a></li>
             </ul>
           </div>
 
           <div class="col-xs-6 col-md-3">
-            <h6>Quick Links</h6>
+            <h6>About Us</h6>
             <ul class="footer-links">
-              <li><a href="http://scanfcode.com/about/">About Us</a></li>
-              <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
-              <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
-              <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
-              <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
+              <li><a href="">Team</a></li>
+              <li><a href="">Partners</a></li>
+              <li><a href="">Terms of Service</a></li>
+              <li><a href="">Privacy Notice</a></li>
+              <li><a href="">Sitemap</a></li>
             </ul>
           </div>
         </div>
@@ -37,17 +42,17 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8 col-sm-6 col-xs-12">
-            <p class="copyright-text">Copyright &copy; 2017 All Rights Reserved by 
-         <a href="#">Scanfcode</a>.
+            <p class="copyright-text">Copyright &copy; 2020 All Rights Reserved by 
+         <a href="#">BKTeam</a>.
             </p>
           </div>
 
           <div class="col-md-4 col-sm-6 col-xs-12">
             <ul class="social-icons">
-              <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-              <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
-              <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>   
+              <li><a class="facebook" href="#"><font-awesome-icon :icon="['fab', 'facebook-f']" /></a></li>
+              <li><a class="twitter" href="#"><font-awesome-icon :icon="['fab', 'twitter']" /></a></li>
+              <li><a class="github" href="#"><font-awesome-icon :icon="['fab', 'github']" /></a></li>
+              <li><a class="linkedin" href="#"><font-awesome-icon :icon="['fab', 'linkedin']" /></a></li> 
             </ul>
           </div>
         </div>
@@ -213,9 +218,9 @@ export default{
 {
   background-color:#007bb6
 }
-.social-icons a.dribbble:hover
+.social-icons a.github:hover
 {
-  background-color:#ea4c89
+  background-color:#180A07;
 }
 @media (max-width:767px)
 {

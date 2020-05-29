@@ -4,14 +4,15 @@ import router from './router'
 
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
-//import '../assets/css/fontawesome.css';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { faFacebookF, faTwitter, faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faCoffee)
+// Add the specific imported icons
+library.add(faFacebookF, faTwitter, faGithub, faLinkedin)
 
-Vue.component('fa-icon', FontAwesomeIcon)
+// Enable the FontAwesomeIcon component globally
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.config.productionTip = false;
 
 new Vue({
