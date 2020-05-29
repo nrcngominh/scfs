@@ -1,35 +1,25 @@
 <template>
   <div>
-  
-  <div>
       <Header />
-  </div>
-
-  <div>
-        <IntroSlide />
-   </div>
-
-  <div class="container">
-    
-
-    <div class="row">
-        <div class="tab-content col-xl-12" id="myTabContent">
-            <div class="tab-pane fade active show" id="dinner" role="tabpanel" aria-labelledby="dinner-tab">
-                <div class="row" >
-                    <div class="col-md-6" v-for="food in foods" :key="food.name">
-                        <div class="single_menu_list">
-                            <img src="https://images.foody.vn/res/g10/98048/prof/s576x330/foody-upload-api-foody-mobile-com-190311132057.jpg" alt="">
-                            <div class="menu_content" >
-                                <h4>{{ food.name }}  <span>{{ food.price }}</span></h4>
-                                <p>{{ food.description }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="container">
+      <div class="row">
+          <div class="tab-content col-xl-12" id="myTabContent">
+              <div class="tab-pane fade active show" id="dinner" role="tabpanel" aria-labelledby="dinner-tab">
+                  <div class="row" >
+                      <div class="col-md-6" v-for="food in foods" :key="food.name">
+                          <div class="single_menu_list">
+                              <img src="https://images.foody.vn/res/g10/98048/prof/s576x330/foody-upload-api-foody-mobile-com-190311132057.jpg" alt="">
+                              <div class="menu_content" >
+                                  <h4>{{ food.name }}  <span>{{ food.price }}</span></h4>
+                                  <p>{{ food.description }}</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
     </div>
-  </div>
 
   <div>
       <Footer />
@@ -41,12 +31,12 @@
 import AxiosService from '../services/axios-service'
 import Footer from './Footer.vue';
 import Header from './Header.vue';
-import IntroSlide from './IntroSlide.vue';
+//import IntroSlide from './IntroSlide.vue';
 
 export default {
   name: "CustomerPage",
   components: {
-    Header, IntroSlide, Footer
+    Header, Footer
   },
   data() {
     return {
