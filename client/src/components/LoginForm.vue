@@ -12,8 +12,8 @@
                   <div class="grid-cell grid-cell--col12 mt-2">
                     <nav class="sessions__navbar login__navbar grid">
                       <div class="grid u-justify-space u-align-center">
-                        <a class="" href="/">
-                            <img src="" alt="">
+                        <a class="bklogo" href="/user">
+                            <img src="@/assets/bklogo.png" alt="">
                         </a>
                         <p class="f12">
                             Don't have an account yet? <a id="_signup" @click="forwardPage">Sign up here</a>

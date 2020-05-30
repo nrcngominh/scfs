@@ -1,6 +1,6 @@
 <template>
   <div>
-      <Header />
+    <Header />
     <div class="container">
       <div class="row">
           <div class="tab-content col-xl-12" id="myTabContent">

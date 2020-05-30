@@ -70,6 +70,10 @@ body {
     height: 100%
 }
 
+.bklogo img {
+    width: 100px;
+}
+
 .f12 {
     font-size: 12px;
     line-height: 16px;

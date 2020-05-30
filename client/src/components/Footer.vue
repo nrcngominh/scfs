@@ -1,63 +1,60 @@
 <template>
     <div>
           <!-- Site footer -->
-    <footer class="site-footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12 col-md-6">
-            <h6>Description</h6>
-            <p class="text-justify">
-              The university is currently has one food court located in its Ly Thuong Kiet campus and is going to build another
-              one in Di An campus.All food courts consist of a number of vendors at food stalls or service counters. Meals are
-              ordered at one of the vendors and then carried to a common area for consumption. The food may also be ordered
-              to take-away.
-              <br/>
-              <a href="https://www.freepik.com/free-photos-vectors/food">Food psd created by freepik - www.freepik.com</a>
-            </p>
-          </div>
+      <footer class="site-footer container">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+              <h6>Description</h6>
+              <p class="text-justify">
+                The university is currently has one food court located in its Ly Thuong Kiet campus and is going to build another
+                one in Di An campus.All food courts consist of a number of vendors at food stalls or service counters. Meals are
+                ordered at one of the vendors and then carried to a common area for consumption.
+                <br/>
+                <a href="https://www.freepik.com/free-photos-vectors/food">Food psd created by freepik - www.freepik.com</a>
+              </p>
+            </div>
+            <div class="col-xs-6 col-md-2"></div>
+            <div class="col-xs-6 col-md-2">
+              <h6>Platform</h6>
+              <ul class="footer-links">
+                <li><a>Nodejs</a></li>
+                <li><a>Vuejs</a></li>
+                <li><a>Express</a></li>
+              </ul>
+            </div>
 
-          <div class="col-xs-6 col-md-3">
-            <h6>Platform</h6>
-            <ul class="footer-links">
-              <li><a>Nodejs</a></li>
-              <li><a>Vuejs</a></li>
-              <li><a>Express</a></li>
-              <li><a>Webpack</a></li>
-            </ul>
+            <div class="col-xs-6 col-md-2">
+              <h6>About Us</h6>
+              <ul class="footer-links">
+                <li><a href="">Team</a></li>
+                <li><a href="">Terms of Service</a></li>
+                <li><a href="">Privacy Notice</a></li>
+                <li><a href="">Sitemap</a></li>
+              </ul>
+            </div>
           </div>
+          <hr>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 col-sm-6 col-xs-12">
+              <p class="copyright-text">Copyright &copy; 2020 All Rights Reserved by 
+          <a href="#">BKTeam</a>.
+              </p>
+            </div>
 
-          <div class="col-xs-6 col-md-3">
-            <h6>About Us</h6>
-            <ul class="footer-links">
-              <li><a href="">Team</a></li>
-              <li><a href="">Partners</a></li>
-              <li><a href="">Terms of Service</a></li>
-              <li><a href="">Privacy Notice</a></li>
-              <li><a href="">Sitemap</a></li>
-            </ul>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <ul class="social-icons">
+                <li><a class="facebook" href="https://www.facebook.com/mngoc99"><font-awesome-icon :icon="['fab', 'facebook-f']" /></a></li>
+                <li><a class="twitter" href="#"><font-awesome-icon :icon="['fab', 'twitter']" /></a></li>
+                <li><a class="github" href="#"><font-awesome-icon :icon="['fab', 'github']" /></a></li>
+                <li><a class="linkedin" href="#"><font-awesome-icon :icon="['fab', 'linkedin']" /></a></li> 
+              </ul>
+            </div>
           </div>
         </div>
-        <hr>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8 col-sm-6 col-xs-12">
-            <p class="copyright-text">Copyright &copy; 2020 All Rights Reserved by 
-         <a href="#">BKTeam</a>.
-            </p>
-          </div>
-
-          <div class="col-md-4 col-sm-6 col-xs-12">
-            <ul class="social-icons">
-              <li><a class="facebook" href="https://www.facebook.com/mngoc99"><font-awesome-icon :icon="['fab', 'facebook-f']" /></a></li>
-              <li><a class="twitter" href="#"><font-awesome-icon :icon="['fab', 'twitter']" /></a></li>
-              <li><a class="github" href="#"><font-awesome-icon :icon="['fab', 'github']" /></a></li>
-              <li><a class="linkedin" href="#"><font-awesome-icon :icon="['fab', 'linkedin']" /></a></li> 
-            </ul>
-          </div>
-        </div>
-      </div>
-</footer>
+      </footer>
     </div>
 </template>
 
@@ -68,13 +65,18 @@ export default{
 </script>
 
 <style scoped>
+@media (min-width: 1200px){}
+.container{
+    max-width: 1224px;
+}
 .site-footer
 {
-  background-color:#26272b;
+  background-color:#fff;
   padding:45px 0 20px;
   font-size:15px;
   line-height:24px;
   color:#737373;
+  box-shadow: 0px 7px 8px 6px #888888;
 }
 .site-footer hr
 {
@@ -87,7 +89,7 @@ export default{
 }
 .site-footer h6
 {
-  color:#fff;
+  color:black;
   font-size:16px;
   text-transform:uppercase;
   margin-top:5px;
