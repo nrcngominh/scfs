@@ -121,7 +121,7 @@
   position: fixed;
   top: 0px;
   width: 100%;
-  background-color: #d3d2d2f2;
+  background-color: #d3d2d2;
   border-bottom: solid 2px orange;
 }
 .jUp {
