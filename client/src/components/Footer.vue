@@ -12,6 +12,7 @@
                 ordered at one of the vendors and then carried to a common area for consumption.
                 <br/>
                 <a href="https://www.freepik.com/free-photos-vectors/food">Food psd created by freepik - www.freepik.com</a>
+                Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
               </p>
             </div>
             <div class="col-xs-6 col-md-2"></div>

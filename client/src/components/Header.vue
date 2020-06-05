@@ -1,13 +1,13 @@
 <template>
     <div class=container>
        <header id=header class="section intro u-pr">
-                <div class=navbar>
-                    <nav class="Navbar">
-                        <div class="container grid u-justify-center">
-                            <div class="Navbar-inner Navbar-height--44 grid-cell grid-cell--col10">
+                <div  class="navbar">
+                    <nav  class="Navbar">
+                        <div id="navbar" class="container grid u-justify-center">
+                            <div  class="Navbar-inner Navbar-height--44 grid-cell grid-cell--col10">
                                 <div class=Navbar-header>
                                     <a class="Logo" href="/user">
-                                        <img src="@/assets/bklogo.png" alt="">
+                                        <img id="bkLogo" src="@/assets/bklogo.png" alt="">
                                     </a>
                                     <div class=tablet--flex>
                                         <div class="Navbar-buttonMenu"> <span></span> <span></span> <span></span> <span></span> </div>
@@ -42,19 +42,19 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="NavbarMobile">
+                        <div class="NavbarMobile js-Navbar js-Navbar-mobile">
                             <ul class="NavbarMobile-collapse Navbar--scroll--vertical">
                                 <li class=Navbar-item>
-                                    <a href="#" class="Navbar-link"> <span class="title">PLATFORM</span> </a>
+                                    <a href="#" class="Navbar-link js-Action--NAVmobile"> <span class="title">PLATFORM</span> </a>
                                 </li>
                                 <li class="Navbar-item NavbarMobile-list">
                                     <ul>
-                                        <li class=Navbar-subitem> <a href="/platform/data-ingestion-management/" class=Navbar-link><span class="text is-small is-txtWhite">Data Ingestion & Management</span></a> </li>
+                                        <li class=Navbar-subitem> <a href="/platform/data-ingestion-management/" class=Navbar-link><span class="text is-small is-txtWhite js-Action--NAVmobile">Data Ingestion & Management</span></a> </li>
                                     </ul>
                                 </li>
 
                                 <li class=Navbar-item>
-                                    <a href="#" class="Navbar-link"> <span class="title">Pricing</span> </a>
+                                    <a href="#" class="Navbar-link js-Action--NAVmobile"> <span class="title">Pricing</span> </a>
                                 </li>
                                 <li class=Navbar-item>
                                     <a href="#" class="Navbar-link"> <span class="title">Blog</span> </a>
@@ -65,7 +65,7 @@
                 </div>
                 <div class="grid u-mt72 u-mt32--tablet">
                     <div class="grid-cell grid-cell--col1"></div>
-                    <div class="grid-cell grid-cell--col6 grid-cell--col10--tablet">
+                    <div id="jsUp" class="grid-cell grid-cell--col6 grid-cell--col10--tablet">
                         <div class="title f48 f64--desktop-l f36--tablet is-txtWhite u-mb40 u-pr"></div>
                         <p class="text f20 is-txtWhite u-mb40 u-mb24--tablet">Smart food court system
                             <br/>make the university more smart.</p>
@@ -73,8 +73,8 @@
                     <div class="grid-cell--col5 grid-cell--col1--tablet"></div>
                     <div class=grid-cell--col1></div>
                     <div class="grid-cell grid-cell--col10 u-mb120 u-mb48--tablet">
-                        <a href="/" class="button is-White button--arrow  u-mr24 u-mb24"><span>ORDER NOW</span></a>
-                        <a href="/register" class="button is-White u-mr24 u-mb24"><span>Try for free</span></a>
+                        <a @click="forwardLogin" class="button is-White button--arrow  u-mr24 u-mb24"><span>ORDER NOW</span></a>
+                        <a @click="forwardRes" class="button is-White u-mr24 u-mb24"><span>Try for free</span></a>
                     </div>
                     
                 </div>
@@ -84,13 +84,48 @@
 
 <script>
     export default{
-        name: "Header"
+        name: "Header",
+        
+        mounted() {
+            let navbar = document.getElementById("navbar");
+            let jsUp = document.getElementById("jsUp");
+            let sticky = navbar.offsetTop;
+            window.onscroll = () => {
+                if (window.pageYOffset >= sticky) {
+                    navbar.classList.add("sticky");
+                    jsUp.classList.add("jUp");
+                  
+                } else {
+                    navbar.classList.remove("sticky");
+                    jsUp.classList.remove("jUp");
+                }
+            };
+        },
+        methods: {
+            async forwardLogin() {
+            this.$router.push('/')
+            },
+            async forwardRes() {
+                this.$router.push('/register')
+            }
+        }
     }
 </script>
 
 <style scoped>
 * {
     box-sizing: border-box
+}
+
+.sticky {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  background-color: #d3d2d2f2;
+  border-bottom: solid 2px orange;
+}
+.jUp {
+    margin-top: 83px;
 }
 body,
 html {
@@ -114,7 +149,8 @@ p.text.f20.is-txtWhite.u-mb40.u-mb24--tablet{
     font-weight: 800;
 }
 header#header{
-    box-shadow: 1px 0px 8px 6px #888888;
+    /* box-shadow: 1px 0px 8px 6px #888888; */
+    box-shadow: 0px 30px 38px 0px rgba(104, 104, 104, 0.14);
 }
 a {
     color: #1785fb;
@@ -331,6 +367,9 @@ ul {
     .grid-cell {
         padding-right: 12px;
         padding-left: 12px
+    }
+    header#header {
+        min-height: 696.8px;
     }
 }
 
