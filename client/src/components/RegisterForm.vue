@@ -12,8 +12,8 @@
                     <div class="grid-cell grid-cell--col12 mt-2">
                         <nav class="sessions__navbar grid">
                         <div class="grid u-justify-space u-align-center">
-                            <a class="" href="/">
-                                <img src="" alt="">
+                            <a class="bklogo" @click="forwardUser">
+                                <img src="@/assets/bklogo.png" alt="">
                             </a>
                             <p class="f12">
                                 Already have an account? <a id="_login" @click="backwardPage">Log in</a>
@@ -114,6 +114,9 @@ export default {
     },
     backwardPage() {
         this.$router.push('/')
+    },
+    forwardUser() {
+        this.$router.push('user')
     }
   }
 }
@@ -126,6 +129,9 @@ export default {
 }
 
 #_login:hover {
+    cursor: pointer;
+}
+.grid.u-justify-space.u-align-center a {
     cursor: pointer;
 }
 

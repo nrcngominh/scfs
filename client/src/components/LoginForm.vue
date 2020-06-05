@@ -12,8 +12,8 @@
                   <div class="grid-cell grid-cell--col12 mt-2">
                     <nav class="sessions__navbar login__navbar grid">
                       <div class="grid u-justify-space u-align-center">
-                        <a class="" href="/">
-                            <img src="" alt="">
+                        <a class="bklogo" @click="forwardUser">
+                            <img src="@/assets/bklogo.png" alt="">
                         </a>
                         <p class="f12">
                             Don't have an account yet? <a id="_signup" @click="forwardPage">Sign up here</a>
@@ -56,6 +56,7 @@
 
 <script>
 import AxiosService from '../services/axios-service'
+import '../assets/global.css'
 
 export default {
   name: "LoginForm",
@@ -96,8 +97,11 @@ export default {
     nextInput() {
       document.getElementById('password').focus();
     },
-    async forwardPage() {
+    forwardPage() {
         this.$router.push('register')
+    },
+    forwardUser() {
+        this.$router.push('user')
     }
   }
 }
@@ -109,7 +113,9 @@ export default {
     text-decoration: underline;
     cursor: pointer;
 }
-
+.grid.u-justify-space.u-align-center a {
+    cursor: pointer;
+}
 @media (min-width: 801px) {
     .form__label, h1 {
         color: #162945
