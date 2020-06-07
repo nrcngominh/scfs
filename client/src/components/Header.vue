@@ -89,12 +89,13 @@
         mounted() {
             let navbar = document.getElementById("navbar");
             let jsUp = document.getElementById("jsUp");
+            let logo = document.getElementById("bklogo");
             let sticky = navbar.offsetTop;
             window.onscroll = () => {
                 if (window.pageYOffset >= sticky) {
                     navbar.classList.add("sticky");
                     jsUp.classList.add("jUp");
-                  
+                    logo.src = "./assets/logo.png"
                 } else {
                     navbar.classList.remove("sticky");
                     jsUp.classList.remove("jUp");
@@ -149,8 +150,8 @@ p.text.f20.is-txtWhite.u-mb40.u-mb24--tablet{
     font-weight: 800;
 }
 header#header{
-    /* box-shadow: 1px 0px 8px 6px #888888; */
-    box-shadow: 0px 30px 38px 0px rgba(104, 104, 104, 0.14);
+    box-shadow: 1px 0px 8px 6px #888888;
+    /* box-shadow: 0px 30px 38px 0px rgba(104, 104, 104, 0.14); */
 }
 a {
     color: #1785fb;
@@ -314,7 +315,7 @@ ul {
 }
 
 .intro {
-    background-image: url('../assets/bg8.png');
+    background-image: url('../assets/bklast.png');
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
