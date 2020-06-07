@@ -3,7 +3,28 @@
     <!--start header -->
     <Header />
     <!-- end header -->
-
+    <div class="wrap_menu">
+      <div class="container mt-1">
+        <div class="row">
+            <div class="tab-content col-xl-12" id="myTabContent">
+                <div class="tab-pane active show" id="dinner" role="tabpanel" aria-labelledby="dinner-tab">
+                    <div class="row" >
+                        <div class="col-md-6" v-for="food in foods" :key="food.name">
+                            <div class="single_menu_list">
+                                <img src="https://images.foody.vn/res/g10/98048/prof/s576x330/foody-upload-api-foody-mobile-com-190311132057.jpg" alt="">
+                                <div class="menu_content" >
+                                    <h4>{{ food.name }}  <span>{{ food.price }}</span></h4>
+                                    <p>{{ food.description }}</p>
+                                    <button>Buy</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
     <!-- start about -->
     <div class="wrap_about">
       <div class="about_bk mt-4">
@@ -41,28 +62,7 @@
     </div>
     <!-- end qt -->
     <!-- start menu -->
-    <div class="wrap_menu">
-      <div class="container mt-1">
-        <div class="row">
-            <div class="tab-content col-xl-12" id="myTabContent">
-                <div class="tab-pane active show" id="dinner" role="tabpanel" aria-labelledby="dinner-tab">
-                    <div class="row" >
-                        <div class="col-md-6" v-for="food in foods" :key="food.name">
-                            <div class="single_menu_list">
-                                <img src="https://images.foody.vn/res/g10/98048/prof/s576x330/foody-upload-api-foody-mobile-com-190311132057.jpg" alt="">
-                                <div class="menu_content" >
-                                    <h4>{{ food.name }}  <span>{{ food.price }}</span></h4>
-                                    <p>{{ food.description }}</p>
-                                    <button>Buy</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </div>
-    </div>
+    
   <a href="#top" title="back to top" class="to-top"></a>
   <!-- start footer -->
   <div class="mt-3">
@@ -138,7 +138,6 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 .bg_flat {
-  background-image: url('../assets/healthyfood.svg');
   background-size: contain;
 }
 .to-top {

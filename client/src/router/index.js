@@ -13,12 +13,18 @@ const router = new VueRouter({
     routes: [{
             path: '/',
             name: 'LoginForm',
-            component: LoginForm
+            component: LoginForm,
+            meta: {
+                title: 'BK Food | Login'
+            }
         },
         {
             path: '/register',
             name: 'RegisterForm',
-            component: RegisterForm
+            component: RegisterForm,
+            meta: {
+                title: 'BK Food | Register'
+            }
         },
         {
             path: '/error',
@@ -33,9 +39,15 @@ const router = new VueRouter({
         {
             path: '/user',
             name: 'CustomerPage',
-            component: CustomerPage
+            component: CustomerPage,
+            meta: {
+                title: 'BK Food | Home'
+            }
         },
     ]
 })
-
+router.beforeEach((to, from, next) => {
+    document.title = to.meta.title
+    next()
+})
 export default router;
