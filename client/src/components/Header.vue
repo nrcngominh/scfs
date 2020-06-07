@@ -1,13 +1,13 @@
 <template>
-    <div class=container>
-       <header id=header class="section intro u-pr">
+    <div>
+       <header id=header class="section u-pr">
                 <div  class="navbar">
                     <nav  class="Navbar">
                         <div id="navbar" class="container grid u-justify-center">
                             <div  class="Navbar-inner Navbar-height--44 grid-cell grid-cell--col10">
                                 <div class=Navbar-header>
                                     <a class="Logo" href="/user">
-                                        <img id="bkLogo" src="@/assets/bklogo.png" alt="">
+                                        <img id="bkLogo" src="@/assets/logobk1.png" alt="">
                                     </a>
                                     <div class=tablet--flex>
                                         <div class="Navbar-buttonMenu"> <span></span> <span></span> <span></span> <span></span> </div>
@@ -16,8 +16,8 @@
                                 <div class="Navbar-collapse">
                                     <ul class="Navbar-list">
                                         <li class="Navbar-item Dropdown">
-                                            <a href="#" class="Navbar-link title f12"> <span> Platform </span> </a>
-                                            <div class="Dropdown-inner Dropdown--center Dropdown--new Dropdown--platform">
+                                            <a href="#" class="Navbar-link title f12"> <span> Home </span> </a>
+                                            <!-- <div class="Dropdown-inner Dropdown--center Dropdown--new Dropdown--platform">
                                                 <ul class="grid">
                                                     <li class="Dropdown-item grid-cell--col12 u-flex u-mb24">
                                                         <a href="#" class="Dropdown-link u-flex u-align-center">
@@ -28,7 +28,7 @@
                                                         </a>
                                                     </li>
                                                 </ul>
-                                            </div>
+                                            </div> -->
                                         </li>
 
                                         <li class=Navbar-item>
@@ -63,7 +63,7 @@
                         </div>
                     </nav>
                 </div>
-                <div class="grid u-mt72 u-mt32--tablet">
+                <!-- <div class="grid u-mt72 u-mt32--tablet">
                     <div class="grid-cell grid-cell--col1"></div>
                     <div id="jsUp" class="grid-cell grid-cell--col6 grid-cell--col10--tablet">
                         <div class="title f48 f64--desktop-l f36--tablet is-txtWhite u-mb40 u-pr"></div>
@@ -77,7 +77,7 @@
                         <a @click="forwardRes" class="button is-White u-mr24 u-mb24"><span>Try for free</span></a>
                     </div>
                     
-                </div>
+                </div> -->
             </header>     
     </div>
 </template>
@@ -86,22 +86,22 @@
     export default{
         name: "Header",
         
-        mounted() {
-            let navbar = document.getElementById("navbar");
-            let jsUp = document.getElementById("jsUp");
-            let logo = document.getElementById("bklogo");
-            let sticky = navbar.offsetTop;
-            window.onscroll = () => {
-                if (window.pageYOffset >= sticky) {
-                    navbar.classList.add("sticky");
-                    jsUp.classList.add("jUp");
-                    logo.src = "./assets/logo.png"
-                } else {
-                    navbar.classList.remove("sticky");
-                    jsUp.classList.remove("jUp");
-                }
-            };
-        },
+        // mounted() {
+        //     let navbar = document.getElementById("navbar");
+        //     let jsUp = document.getElementById("jsUp");
+        //     let logo = document.getElementById("bklogo");
+        //     let sticky = navbar.offsetTop;
+        //     window.onscroll = () => {
+        //         if (window.pageYOffset >= sticky) {
+        //             navbar.classList.add("sticky");
+        //             jsUp.classList.add("jUp");
+        //             logo.src = "../assets/logo.png"
+        //         } else {
+        //             navbar.classList.remove("sticky");
+        //             jsUp.classList.remove("jUp");
+        //         }
+        //     };
+        // },
         methods: {
             async forwardLogin() {
             this.$router.push('/')
@@ -117,13 +117,16 @@
 * {
     box-sizing: border-box
 }
-
+nav.Navbar {
+    border-bottom: 2px solid orange;
+    /* box-shadow: 0 3px 6px rgba(28,28,28,.1); */
+    /* position: fixed;
+    top: 0; */
+}
 .sticky {
   position: fixed;
   top: 0px;
   width: 100%;
-  background-color: #d3d2d2;
-  border-bottom: solid 2px orange;
 }
 .jUp {
     margin-top: 83px;
@@ -150,11 +153,12 @@ p.text.f20.is-txtWhite.u-mb40.u-mb24--tablet{
     font-weight: 800;
 }
 header#header{
-    box-shadow: 1px 0px 8px 6px #888888;
+    /* box-shadow: 1px 0px 8px 6px #888888; */
     /* box-shadow: 0px 30px 38px 0px rgba(104, 104, 104, 0.14); */
+    background-color: #fff;
 }
 a {
-    color: #1785fb;
+    color: #066a9b;
     text-decoration: none
 }
 a.button.u-mr24.u-mb24 {
@@ -182,8 +186,8 @@ img {
     vertical-align: bottom
 }
 .Logo img {
-    width: 120px;
-    margin-bottom: 84%;
+    width: 200px;
+    margin-bottom: 39%;
 }
 
 input {
@@ -369,9 +373,9 @@ ul {
         padding-right: 12px;
         padding-left: 12px
     }
-    header#header {
+    /* header#header {
         min-height: 696.8px;
-    }
+    } */
 }
 
 @media (min-width:1632px) {
@@ -742,7 +746,7 @@ ul {
     list-style: none
 }
 .Navbar-list span{
-    color: #249cd3;
+    color: #066a9b;
 }
 .Navbar-item {
     margin-right: 40px;
@@ -1088,8 +1092,8 @@ ul {
 }
 
 .Navbar-height--44 {
-    height: 44px;
-    margin-left: 3%;
+    height: 20px;
+    margin-left: 0%;
     margin-top: 39px;
     
 }
