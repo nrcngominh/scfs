@@ -1125,9 +1125,7 @@ ul {
 }
 
 @media (max-width:800px) {
-    .u-mb24--tablet {
-        margin-bottom: 24px
-    }
+    xzc
     .u-mt32--tablet {
         margin-top: 32px
     }
