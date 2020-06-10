@@ -48,7 +48,7 @@
     </div>
     <!-- end about -->
     <!-- start qt -->
-    <div class="qt-box mt-1">
+    <!-- <div class="qt-box mt-1">
         <div class="parallax" data-paralax="scroll" data-z-index="1">
           <div class="container">
             <div class="row">
@@ -61,7 +61,7 @@
             </div>
           </div>
         </div>
-    </div>
+    </div> -->
     <!-- end qt -->
     <!-- start menu -->
     
@@ -143,6 +143,9 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 .bg_flat {
   background-size: contain;
+}
+body {
+  padding: 0 !important;
 }
 .to-top {
   position: fixed;

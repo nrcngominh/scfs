@@ -118,7 +118,7 @@
     box-sizing: border-box
 }
 nav.Navbar {
-    border-bottom: 2px solid orange;
+    /* border-bottom: 2px solid orange; */
     /* box-shadow: 0 3px 6px rgba(28,28,28,.1); */
     /* position: fixed;
     top: 0; */
@@ -154,7 +154,7 @@ p.text.f20.is-txtWhite.u-mb40.u-mb24--tablet{
 }
 header#header{
     /* box-shadow: 1px 0px 8px 6px #888888; */
-    /* box-shadow: 0px 30px 38px 0px rgba(104, 104, 104, 0.14); */
+    box-shadow: 0px 30px 38px 0px rgba(104, 104, 104, 0.14);
     background-color: #fff;
 }
 a {
@@ -434,7 +434,7 @@ ul {
 
 @media (max-width:800px) {
     .Logo img {
-        width: 86px;
+        width: 111px;
     }
     .grid-cell--col1--tablet {
         flex: 0 0 8.3333333333%;
@@ -1125,9 +1125,7 @@ ul {
 }
 
 @media (max-width:800px) {
-    .u-mb24--tablet {
-        margin-bottom: 24px
-    }
+    xzc
     .u-mt32--tablet {
         margin-top: 32px
     }
@@ -1221,9 +1219,5 @@ ul {
 
 .u-align-center {
     align-items: center
-}
-
-.u-justify-center {
-    justify-content: center
 }
 </style>
