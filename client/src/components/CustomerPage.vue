@@ -1,8 +1,10 @@
 <template>
   <div>
+    
     <!--start header -->
     <Header />
     <!-- end header -->
+    <IntroSlide />
     <div class="wrap_menu">
       <div class="container mt-1">
         <div class="row">
@@ -46,7 +48,7 @@
     </div>
     <!-- end about -->
     <!-- start qt -->
-    <div class="qt-box mt-1">
+    <!-- <div class="qt-box mt-1">
         <div class="parallax" data-paralax="scroll" data-z-index="1">
           <div class="container">
             <div class="row">
@@ -59,7 +61,7 @@
             </div>
           </div>
         </div>
-    </div>
+    </div> -->
     <!-- end qt -->
     <!-- start menu -->
     
@@ -76,6 +78,8 @@
 import AxiosService from '../services/axios-service'
 import Footer from './Footer.vue';
 import Header from './Header.vue';
+import IntroSlide from './IntroSlide.vue';
+
 import $ from 'jquery';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -86,7 +90,7 @@ AOS.init({
 export default {
   name: "CustomerPage",
   components: {
-    Header, Footer
+    Header, Footer, IntroSlide
   },
   data() {
     return {
@@ -140,6 +144,9 @@ export default {
 .bg_flat {
   background-size: contain;
 }
+body {
+  padding: 0 !important;
+}
 .to-top {
   position: fixed;
   width: 40px;
@@ -171,7 +178,6 @@ export default {
     padding: 40px;
 }
 .parallax {
-  background: url('../assets/2882855.jpg') no-repeat center;
   background-size: cover;
   background-attachment: fixed;
   padding: 150px 0;

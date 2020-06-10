@@ -34,6 +34,7 @@ body.user {
     line-height: 1.6;
     background-color: rgba(251, 251, 251, 1);
     scroll-behavior: smooth;
+    padding: 0 !important;
 }
 
 html,
@@ -50,10 +51,8 @@ h6,
 p,
 a,
 label {
-    margin: 0;
     padding: 0;
     border: 0;
-    font-size: 100%;
     vertical-align: baseline;
     scroll-behavior: smooth;
 }
@@ -101,10 +100,11 @@ input {
     font-weight: 600
 }
 
-.container {
+
+/* .container {
     max-width: 960px;
     margin: 0 auto
-}
+} */
 
 .button {
     cursor: pointer;

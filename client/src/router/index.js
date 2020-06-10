@@ -44,6 +44,7 @@ const router = new VueRouter({
                 title: 'BK Food | Home'
             }
         },
+
     ]
 })
 router.beforeEach((to, from, next) => {
