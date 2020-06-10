@@ -6,8 +6,9 @@
         "node": "14.3.x"
     },
     "scripts": {
-        "start": "npm --prefix client run build && npm --prefix server run build && npm --prefix server start",
-        "heroku-postbuild": "npm --prefix client install && npm --prefix server install"
+        "start": "npm --prefix server start",
+        "build": "npm --prefix client run build && npm --prefix server run build",
+        "heroku-postbuild": "npm --prefix client install && npm --prefix server install && npm run build"
     },
     "cacheDirectories": [
         "client/node_modules",
