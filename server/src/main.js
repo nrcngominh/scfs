@@ -1,7 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
-import { BaseRouter, ImageRouter } from './api/routers'
+import BaseRouter from './api/routers'
 
 // Setup MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
@@ -18,9 +18,6 @@ server.use(express.json())
 
 // Routing for API
 server.use('/api', BaseRouter)
-
-// Routing for images
-server.use('/img', ImageRouter)
 
 // Start server
 const app = server.listen(process.env.PORT || 3000, () => {
