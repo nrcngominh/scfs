@@ -3,5 +3,5 @@
     "src",
     ".env"
   ],
-  "exec": "babel-node src/main.js -r dotenv/config"
+  "exec": "babel-node src/main.js -r dotenv/config dotenv_config_path=.env.local"
 }
