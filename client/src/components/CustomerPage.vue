@@ -18,7 +18,7 @@
                     <div class="row" >
                         <div class="col-md-6" v-for="food in foods" :key="food.name">
                             <div class="single_menu_list">
-                                <img src="https://images.foody.vn/res/g10/98048/prof/s576x330/foody-upload-api-foody-mobile-com-190311132057.jpg" alt="">
+                                <img v-bind:src="'http://localhost/images/' + food.img">
                                 <div class="menu_content" >
                                     <h4>{{ food.name }}  <span>{{ food.price }}</span></h4>
                                     <p>{{ food.description }}</p>
