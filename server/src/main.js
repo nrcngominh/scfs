@@ -2,6 +2,7 @@ import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
 import BaseRouter from './api/routers'
+import BaseSocket from './sockets'
 
 // Setup MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
@@ -12,14 +13,18 @@ mongoose.connect(process.env.MONGODB_URI, {
 console.log(process.env.MONGODB_URI)
 
 // Setup server
-const server = express()
-server.use(cors())
-server.use(express.json())
+const app = express()
+app.use(cors())
+app.use(express.json())
 
-// Routing for API
-server.use('/api', BaseRouter)
 
 // Start server
-const app = server.listen(process.env.PORT || 3000, () => {
-    console.log('Server is running on port', app.address().port)
+const server = app.listen(process.env.PORT || 3000, () => {
+    console.log('Server is running on port', server.address().port)
 })
+
+// Create socket for server
+BaseSocket.listen(server)
+
+// Routing for API
+app.use('/api', BaseRouter)

@@ -31,13 +31,18 @@ const getPhoneNumberPrefix = () => {
 }
 
 // Fake customer and payment
-const performFakeCustomerPayment = () => {
+const performFakeCustomerPayment = (billId, amount) => {
     const customerNumber = getPhoneNumberPrefix() + randomNumber(7)
+    const momoTransId = getRandomTransId()
 
     const clientServerOptions = {
         uri: 'http://127.0.0.1:3000/api/momo',
         body: JSON.stringify({
-            customerNumber: customerNumber 
+            customerNumber: customerNumber,
+            billId: billId,
+            momoTransId: momoTransId,
+            amount: amount,
+            status: 'success'
         }),
         method: 'POST',
         headers: {
@@ -51,18 +56,16 @@ const performFakeCustomerPayment = () => {
 }
 
 app.post('/test', async (req, res) => {
-    // Send back Momo Id to request server
-    const momoTransId = getRandomTransId()
     res.send({
-        momoTransId: momoTransId
+        status: 'success'
     })
 
     // Sleep
-    const sleepTimeInSeconds = 5
+    const sleepTimeInSeconds = 15
     await new Promise(r => setTimeout(r, sleepTimeInSeconds * 1000))
 
     // Fake a customer to complete payment, then response to server
-    performFakeCustomerPayment()
+    performFakeCustomerPayment(req.body.billId, req.body.amount)
 })
 
 app.listen(4000, () => {
