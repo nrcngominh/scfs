@@ -4,7 +4,12 @@
     <!--start header -->
     <Header />
     <!-- end header -->
-    <IntroSlide />
+    <!-- start introslide -->
+    <div>
+      <IntroSlide />
+    </div>
+    <!-- end introslide -->
+    <!-- start menu -->
     <div class="wrap_menu">
       <div class="container mt-1">
         <div class="row">
@@ -27,6 +32,7 @@
         </div>
       </div>
     </div>
+    <!-- end menu -->
     <!-- start about -->
     <div class="wrap_about">
       <div class="about_bk mt-4">

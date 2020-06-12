@@ -16,7 +16,7 @@
                                 <div class="Navbar-collapse">
                                     <ul class="Navbar-list">
                                         <li class="Navbar-item Dropdown">
-                                            <a href="#" class="Navbar-link title f12"> <span> Home </span> </a>
+                                            <a href="#" class="Navbar-link title f12 active"> <span> Home </span> </a>
                                             <!-- <div class="Dropdown-inner Dropdown--center Dropdown--new Dropdown--platform">
                                                 <ul class="grid">
                                                     <li class="Dropdown-item grid-cell--col12 u-flex u-mb24">
@@ -154,7 +154,7 @@ p.text.f20.is-txtWhite.u-mb40.u-mb24--tablet{
 }
 header#header{
     /* box-shadow: 1px 0px 8px 6px #888888; */
-    box-shadow: 0px 30px 38px 0px rgba(104, 104, 104, 0.14);
+    box-shadow: 0 1px 6px 0 rgba(32,33,36,.28);
     background-color: #fff;
 }
 a {
@@ -216,15 +216,9 @@ li,
 menu,
 nav,
 p,
-pre,
-q,
-s,
-samp,
 section,
 span,
 table,
-td,
-u,
 ul{
     margin: 0;
     padding: 0;
@@ -245,11 +239,12 @@ body {
     line-height: 1
 }
 
-ol,
 ul {
     list-style: none
 }
-
+.active {
+  border-bottom: 3px solid #249cd3;
+}
 .Navbar-item a {
   text-transform: uppercase;
   text-decoration: none;
@@ -257,7 +252,7 @@ ul {
   padding: 11px 3px;
   position: relative;
 }
-.Navbar-item a:after {    
+.Navbar-item:nth-child(n + 2) a:after {    
   background: none repeat scroll 0 0 transparent;
   bottom: 0;
   content: "";
