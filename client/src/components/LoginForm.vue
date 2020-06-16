@@ -80,7 +80,7 @@ export default {
         console.log(res.data)
         if (res.data.status == 'success') {
             if (res.data.type === 'customer') {
-                this.$router.push('user')
+                this.$router.push('/')
             } else if (res.data.type === 'admin') {
                 this.$router.push('admin')
             }

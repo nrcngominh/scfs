@@ -37,47 +37,27 @@
                                         <li class=Navbar-item>
                                             <a href="#" class="Navbar-link title f12 "> <span>About us</span> </a>
                                         </li>
-                                    </ul>
-                                    
+                                    </ul>  
                                 </div>
+                                
                             </div>
-                        </div>
-                        <div class="NavbarMobile js-Navbar js-Navbar-mobile">
-                            <ul class="NavbarMobile-collapse Navbar--scroll--vertical">
-                                <li class=Navbar-item>
-                                    <a href="#" class="Navbar-link js-Action--NAVmobile"> <span class="title">PLATFORM</span> </a>
-                                </li>
-                                <li class="Navbar-item NavbarMobile-list">
+                                <div>
                                     <ul>
-                                        <li class=Navbar-subitem> <a href="/platform/data-ingestion-management/" class=Navbar-link><span class="text is-small is-txtWhite js-Action--NAVmobile">Data Ingestion & Management</span></a> </li>
+                                        <li>
+                                            <a href="/login" class="button-small is-blue"><span>Login</span></a>
+                                        </li>
                                     </ul>
-                                </li>
-
-                                <li class=Navbar-item>
-                                    <a href="#" class="Navbar-link js-Action--NAVmobile"> <span class="title">Pricing</span> </a>
-                                </li>
-                                <li class=Navbar-item>
-                                    <a href="#" class="Navbar-link"> <span class="title">Blog</span> </a>
-                                </li>
-                            </ul>
+                                </div>
+                                <div>
+                                    <ul>
+                                        <li>
+                                            <a href="/register" class="button-small is-blued"><span>Sign up</span></a>
+                                        </li>
+                                    </ul>
+                            </div>
                         </div>
                     </nav>
                 </div>
-                <!-- <div class="grid u-mt72 u-mt32--tablet">
-                    <div class="grid-cell grid-cell--col1"></div>
-                    <div id="jsUp" class="grid-cell grid-cell--col6 grid-cell--col10--tablet">
-                        <div class="title f48 f64--desktop-l f36--tablet is-txtWhite u-mb40 u-pr"></div>
-                        <p class="text f20 is-txtWhite u-mb40 u-mb24--tablet">Smart food court system
-                            <br/>make the university more smart.</p>
-                    </div>
-                    <div class="grid-cell--col5 grid-cell--col1--tablet"></div>
-                    <div class=grid-cell--col1></div>
-                    <div class="grid-cell grid-cell--col10 u-mb120 u-mb48--tablet">
-                        <a @click="forwardLogin" class="button is-White button--arrow  u-mr24 u-mb24"><span>ORDER NOW</span></a>
-                        <a @click="forwardRes" class="button is-White u-mr24 u-mb24"><span>Try for free</span></a>
-                    </div>
-                    
-                </div> -->
             </header>     
     </div>
 </template>
@@ -163,6 +143,24 @@ a {
 }
 a.button.u-mr24.u-mb24 {
     background-color: orangered;
+}
+a.button-small {
+ 
+    display: inline-block;
+    border-radius: 8px;
+    font: 600 16px/24px Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding: 6px 16px;
+    text-align: center;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+}
+.is-blue {
+    background: #066a9b;
+}
+.is-blued {
+    background: #15b7d2;
 }
 a.Navbar-link.title.f12 {
     font-size: 18px;
@@ -560,7 +558,11 @@ ul {
     display: block;
     overflow: hidden
 }
-
+.button-small span {
+    position: relative;
+    display: block;
+    overflow: hidden
+}
 .button span:before {
     content: '';
     position: absolute;
@@ -572,12 +574,28 @@ ul {
     background: currentColor;
     transform: translateX(-100%)
 }
+.button-small span:before {
+    content: '';
+    position: absolute;
+    transition: transform .3s ease;
+    left: -1px;
+    bottom: 0;
+    width: 100%;
+    height: 1.5px;
+    background: currentColor;
+    transform: translateX(-100%)
+}
 
 .button:hover {
     text-decoration: none
 }
-
+.button-small:hover {
+    text-decoration: none
+}
 .button:hover span:before {
+    transform: translateX(0)
+}
+.button-small:hover span:before {
     transform: translateX(0)
 }
 
