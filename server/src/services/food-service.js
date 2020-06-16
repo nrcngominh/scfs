@@ -11,7 +11,7 @@ export default {
   },
   async getAll() {
     console.log('Getting food')
-    return await FoodModel.find().select(' name price description')
+    return await FoodModel.find().select(' name price description img')
   },
   async delete(id) {
       return await FoodModel.deleteOne({
