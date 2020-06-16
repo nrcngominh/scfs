@@ -10,7 +10,7 @@
     </div>
     <!-- end introslide -->
     <!-- start menu -->
-    <div class="wrap_menu">
+    <!-- <div class="wrap_menu">
       <div class="container mt-1">
         <div class="row">
             <div class="tab-content col-xl-12" id="myTabContent">
@@ -29,6 +29,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+      </div>
+    </div> -->
+    <div class="wrap_menu">
+      <div class="container mt-3">
+        <div class="row">
+              <div class="col-md-3 mt-4" v-for="food in foods" :key="food.name">
+                <div class="card">
+                  <div class="zoom">
+                  <img class="card-img-top" v-bind:src="'http://localhost/images/' + food.img">
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">{{ food.name }}</h5>
+                    <h6 class="card-title money">{{ food.price }}</h6>
+                    <p class="card-text">{{ food.description }}</p>
+                    <a href="#" class="btn btn-success mr-3">Buy</a>
+                    <a href="#" class="btn btn-primary">Add to cart</a>
+                  </div>
+                </div>
+              </div>
         </div>
       </div>
     </div>
@@ -70,7 +90,6 @@
     </div> -->
     <!-- end qt -->
     <!-- start menu -->
-    
   <a href="#top" title="back to top" class="to-top"></a>
   <!-- start footer -->
   <div class="mt-3">
@@ -80,6 +99,8 @@
 </div>
 </template>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="//code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="simple.money.format.js"></script>
 <script>
 import AxiosService from '../services/axios-service'
 import Footer from './Footer.vue';
@@ -89,12 +110,47 @@ import IntroSlide from './IntroSlide.vue';
 import $ from 'jquery';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+
 AOS.init({
   offset: 300,
   duration: 1000
 });
 export default {
   name: "CustomerPage",
+  mounted() {
+    function format_number(pnumber,decimals)
+{
+    if (isNaN(pnumber)) { return 0};
+    if (pnumber=='') { return 0};
+    var snum = new String(pnumber);
+    var sec = snum.split('.');
+    var whole = parseFloat(sec[0]);
+    var result = '';
+    
+    if(sec.length > 1){
+        var dec = new String(sec[1]);
+        dec = String(parseFloat(sec[1])/Math.pow(10,(dec.length - decimals)));
+        dec = String(whole + Math.round(parseFloat(dec))/Math.pow(10,decimals));
+        var dot = dec.indexOf('.');
+        if(dot == -1){
+            dec += '.';
+            dot = dec.indexOf('.');
+        }
+        while(dec.length <= dot + decimals) { dec += '0'; }
+        result = dec;
+    } else{
+        var dot;
+        var dec = new String(whole);
+        if(decimals){
+            dec += '.';
+            dot = dec.indexOf('.');       
+            while(dec.length <= dot + decimals) { dec += '0'; }
+        }
+        result = dec;
+    }
+    return result;
+}
+  },
   components: {
     Header, Footer, IntroSlide
   },
@@ -140,15 +196,53 @@ export default {
   async mounted() {
     const res = await AxiosService.get('/api/food')
     this.foods = res.data.foods;
+    
   }
 }
 </script>
-<style>
+<style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+.card {
+  width: 250px;
+}
+h5.card-title {
+    font-weight: bold;
+}
+h6.card-title:after {
+  content: 'đ';
+}
+p.card-text {
+    color: #666;
+}
+.row {
+  padding-bottom: 20px;
+}
+.card {
+  box-shadow: 0 0 20px 7px rgba(0,0,0,0.1);
+}
+
 .bg_flat {
   background-size: contain;
+}
+img {
+  height: 210px;
+}
+.zoom {
+  position: relative;
+  overflow: hidden;
+}
+
+.zoom:hover img{
+  transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+}
+.zoom img{
+  transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
 }
 body {
   padding: 0 !important;
