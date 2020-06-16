@@ -6,7 +6,7 @@
                         <div id="navbar" class="container grid u-justify-center">
                             <div  class="Navbar-inner Navbar-height--44 grid-cell grid-cell--col10">
                                 <div class=Navbar-header>
-                                    <a class="Logo" href="/user">
+                                    <a class="Logo" href="/">
                                         <img id="bkLogo" src="@/assets/logobk1.png" alt="">
                                     </a>
                                     <div class=tablet--flex>

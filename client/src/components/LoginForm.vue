@@ -101,7 +101,7 @@ export default {
         this.$router.push('register')
     },
     forwardUser() {
-        this.$router.push('user')
+        this.$router.push('/')
     }
   }
 }
