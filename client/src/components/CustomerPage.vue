@@ -91,6 +91,7 @@
     <!-- end qt -->
     <!-- start menu -->
   <a href="#top" title="back to top" class="to-top"></a>
+  <a href="https://meet.google.com/linkredirect?authuser=1&dest=https%3A%2F%2Fwww.messenger.com%2Ft%2FCMNViet" title="" class="mess"></a>
   <!-- start footer -->
   <div class="mt-3">
       <Footer />
@@ -260,6 +261,19 @@ body {
   text-align: center;
   line-height: 50px;
   background-image: url('../assets/up-arrow.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.mess {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  right: 1%;
+  bottom: 10%;
+  text-decoration: none;
+  text-align: center;
+  line-height: 50px;
+  background-image: url('../assets/mess.png');
   background-size: contain;
   background-repeat: no-repeat;
 }

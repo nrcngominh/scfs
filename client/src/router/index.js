@@ -12,6 +12,13 @@ const router = new VueRouter({
     mode: 'history',
     routes: [{
             path: '/',
+            name: 'CustomerPage',
+            component: CustomerPage,
+            meta: {
+                title: 'BK Food | Home'
+            }
+        }, {
+            path: '/login',
             name: 'LoginForm',
             component: LoginForm,
             meta: {
@@ -36,14 +43,7 @@ const router = new VueRouter({
             name: 'ManagerPage',
             component: ManagerPage
         },
-        {
-            path: '/user',
-            name: 'CustomerPage',
-            component: CustomerPage,
-            meta: {
-                title: 'BK Food | Home'
-            }
-        },
+
 
     ]
 })
