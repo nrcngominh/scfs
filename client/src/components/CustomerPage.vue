@@ -38,7 +38,7 @@
               <div class="col-md-3 mt-4" v-for="food in foods" :key="food.name">
                 <div class="card">
                   <div class="zoom">
-                  <img class="card-img-top" v-bind:src="'http://localhost/images/' + food.img">
+                  <img class="card-img-top" v-bind:src="getImageUrl(food.img)">
                   </div>
                   <div class="card-body">
                     <h5 class="card-title">{{ food.name }}</h5>
@@ -169,6 +169,9 @@ export default {
   methods: {
     logout() {
       this.$router.push('/')
+    },
+    getImageUrl(path) {
+      return AxiosService.defaults.baseURL + '/images/' + path
     },
     async add() {
       try {
