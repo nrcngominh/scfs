@@ -61,7 +61,7 @@
                                     </li>    
                                     <li :class = "{hidden: logined}">
                                         <div id="avatar">
-                                            <img src="@/assets/account.png" alt="">
+                                            <img src="@/assets/account.png" alt="">         
                                         </div>
                                     </li>                   
                                 </ul>
