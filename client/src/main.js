@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import VueCookies from 'vue-cookies'
 import App from './App.vue'
 import router from './router'
 //Add boostrap
@@ -20,6 +21,9 @@ library.add(faFacebookF, faTwitter, faGithub, faLinkedin)
 // Enable the FontAwesomeIcon component globally
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.config.productionTip = false;
+
+Vue.use(VueCookies)
+Vue.$cookies.config('1d')
 
 new Vue({
     router,
