@@ -41,13 +41,8 @@
                     <h5 class="card-title">{{ food.name }}</h5>
                     <h6 class="card-title money">{{ food.price }}</h6>
                     <p class="card-text">{{ food.description }}</p>
-<<<<<<< HEAD
-                    <a href="#" class="btn btn-success mr-3">Buy</a>
-                    <a href="#" class="btn btn-primary">Add to Cart</a>
-=======
                     <button @click="buy" class="btn btn-success mr-3">Buy</button>
                     <button @click="addToCart" class="btn btn-primary">Add to cart</button>
->>>>>>> master
                   </div>
                 </div>
               </div>
@@ -198,7 +193,6 @@ export default {
   async mounted() {
     const res = await AxiosService.get('/api/food')
     this.foods = res.data.foods;
-<<<<<<< HEAD
     let navbar = document.getElementById("nav");
     //let sticky = navbar.offsetTop;
     window.onscroll = () => {
@@ -210,7 +204,6 @@ export default {
             navbar.classList.remove("hidden");
         }
     };
-=======
 
     const accessToken = this.$cookies.get("accessToken")
     if (accessToken) {
@@ -224,7 +217,6 @@ export default {
         }
     }
     
->>>>>>> master
   }
 }
 </script>
