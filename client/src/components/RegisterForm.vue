@@ -113,10 +113,10 @@ export default {
       document.getElementById('password').focus();
     },
     backwardPage() {
-        this.$router.push('/')
+        this.$router.push('/login')
     },
     forwardUser() {
-        this.$router.push('user')
+        this.$router.push('/')
     }
   }
 }

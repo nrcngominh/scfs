@@ -2,33 +2,50 @@
   <div>
     
     <!--start header -->
-    <Header />
+    <div class="sticky" id="nav">
+      <Header />
+    </div>
     <!-- end header -->
     <!-- start introslide -->
-    <div>
+    <div id="intro">
       <IntroSlide />
     </div>
     <!-- end introslide -->
     <!-- start menu -->
+    
     <div class="wrap_menu">
-      <div class="container mt-1">
+      <nav class="subnav">
+      <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Active</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+    </ul>
+    </nav>
+      <div class="container mt-3">
         <div class="row">
-            <div class="tab-content col-xl-12" id="myTabContent">
-                <div class="tab-pane active show" id="dinner" role="tabpanel" aria-labelledby="dinner-tab">
-                    <div class="row" >
-                        <div class="col-md-6" v-for="food in foods" :key="food.name">
-                            <div class="single_menu_list">
-                                <img v-bind:src="'http://localhost/images/' + food.img">
-                                <div class="menu_content" >
-                                    <h4>{{ food.name }}  <span>{{ food.price }}</span></h4>
-                                    <p>{{ food.description }}</p>
-                                    <button>Buy</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+              <div class="col-md-3 mt-4" v-for="food in foods" :key="food.name">
+                <div class="card">
+                  <div class="zoom">
+                  <img class="card-img-top" v-bind:src="getImageUrl(food.img)">
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">{{ food.name }}</h5>
+                    <h6 class="card-title money">{{ food.price }}</h6>
+                    <p class="card-text">{{ food.description }}</p>
+                    <button @click="buy" class="btn btn-success mr-3">Buy</button>
+                    <button @click="addToCart" class="btn btn-primary">Add to cart</button>
+                  </div>
                 </div>
-            </div>
+              </div>
         </div>
       </div>
     </div>
@@ -70,8 +87,8 @@
     </div> -->
     <!-- end qt -->
     <!-- start menu -->
-    
   <a href="#top" title="back to top" class="to-top"></a>
+  <a href="https://meet.google.com/linkredirect?authuser=1&dest=https%3A%2F%2Fwww.messenger.com%2Ft%2FCMNViet" title="" class="mess"></a>
   <!-- start footer -->
   <div class="mt-3">
       <Footer />
@@ -80,6 +97,8 @@
 </div>
 </template>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="//code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="simple.money.format.js"></script>
 <script>
 import AxiosService from '../services/axios-service'
 import Footer from './Footer.vue';
@@ -89,6 +108,7 @@ import IntroSlide from './IntroSlide.vue';
 import $ from 'jquery';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+
 AOS.init({
   offset: 300,
   duration: 1000
@@ -111,8 +131,41 @@ export default {
     document.body.className = "user";
   },
   methods: {
+    async addToCart() {
+        const accessToken = this.$cookies.get("accessToken")
+        if (accessToken) {
+            console.log(accessToken)
+            const res = await AxiosService.post('/api/auth', {
+                accessToken: accessToken
+            })
+            console.log(res)
+            if (res.data.status !== 'Success') {
+                this.$router.push('/login')
+            }
+        } else {
+            this.$router.push('/login')
+        }
+    },
+    async buy() {
+        const accessToken = this.$cookies.get("accessToken")
+        if (accessToken) {
+            console.log(accessToken)
+            const res = await AxiosService.post('/api/auth', {
+                accessToken: accessToken
+            })
+            console.log(res)
+            if (res.data.status !== 'Success') {
+                this.$router.push('/login')
+            }
+        } else {
+            this.$router.push('/login')
+        }
+    },
     logout() {
       this.$router.push('/')
+    },
+    getImageUrl(path) {
+      return AxiosService.defaults.baseURL + '/images/' + path
     },
     async add() {
       try {
@@ -140,15 +193,96 @@ export default {
   async mounted() {
     const res = await AxiosService.get('/api/food')
     this.foods = res.data.foods;
+    let navbar = document.getElementById("nav");
+    //let sticky = navbar.offsetTop;
+    window.onscroll = () => {
+        if (window.pageYOffset >= 150) {
+            //navbar.classList.add("sticky");
+            navbar.classList.add("hidden");
+        } else {
+            //navbar.classList.remove("sticky");
+            navbar.classList.remove("hidden");
+        }
+    };
+
+    const accessToken = this.$cookies.get("accessToken")
+    if (accessToken) {
+        console.log(accessToken)
+        const res = await AxiosService.post('/api/auth', {
+            accessToken: accessToken
+        })
+        console.log(res)
+        if (res.data.status === 'Success') {
+            console.log(res.data.account.email)
+        }
+    }
+    
   }
 }
 </script>
-<style>
+<style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+.card {
+  width: 250px;
+}
+#intro {
+  margin-top: 100px;
+}
+#nav {
+  transition: .25s ease .1s
+}
+.hidden {
+    transform: translateY(-100%);
+    transition: .25s ease .1s
+}
+.hidden1 {
+    transform: translateY(0%);
+    transition: .25s ease .1s
+}
+.sticky {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 3;
+}
+h5.card-title {
+    font-weight: bold;
+}
+h6.card-title:after {
+  content: 'đ';
+}
+p.card-text {
+    color: #666;
+}
+.row {
+  padding-bottom: 20px;
+}
+.card {
+  box-shadow: 0 0 20px 7px rgba(0,0,0,0.1);
+}
+
 .bg_flat {
   background-size: contain;
+}
+img {
+  height: 210px;
+}
+.zoom {
+  position: relative;
+  overflow: hidden;
+}
+
+.zoom:hover img{
+  transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+}
+.zoom img{
+  transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
 }
 body {
   padding: 0 !important;
@@ -162,9 +296,24 @@ body {
   text-decoration: none;
   text-align: center;
   line-height: 50px;
-  background-image: url('../assets/up-arrow.png');
+  background-image: url('../assets/scroll.png');
   background-size: contain;
   background-repeat: no-repeat;
+  text-decoration: none;
+}
+.mess {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  right: 1%;
+  bottom: 10%;
+  text-decoration: none;
+  text-align: center;
+  line-height: 50px;
+  background-image: url('../assets/messenger.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  text-decoration: none;
 }
 .fade {
   opacity: 1;
