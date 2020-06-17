@@ -43,41 +43,69 @@
                             </div>
                             <div class="Navbar-element">
                                 <ul>
-                                    <li>
+                                    <li :class = "{hidden: isActive}">
                                         <a @click="forwardLogin" class="button-small is-blue"><span>Login</span></a>
                                     </li>
-                                    <li>
+                                    <li :class = "{hidden: isActive}">
                                         <a @click="forwardRegister" class="button-small is-blued"><span>Sign up</span></a>
-                                    </li>
+                                    </li> 
+                                    <li :class = "{hidden: logined}">
+                                        <div id="avatar">
+                                            <img src="@/assets/alarm.png" alt="">
+                                        </div>
+                                    </li> 
+                                    <li :class = "{hidden: logined}">
+                                        <div id="avatar">
+                                            <img src="@/assets/cart.png" alt="">
+                                        </div>
+                                    </li>    
+                                    <li :class = "{hidden: logined}">
+                                        <div id="avatar">
+                                            <img src="@/assets/account.png" alt="">
+                                        </div>
+                                    </li>                   
                                 </ul>
                             </div>
                         </div>
                     </nav>
                 </div>
-            </header>     
+        </header>     
     </div>
 </template>
 
 <script>
+import AxiosService from '../services/axios-service'
     export default{
         name: "Header",
-        // mounted() {
-        //     let navbar = document.getElementById("nav");
-        //     let sticky = navbar.offsetTop;
-        //     window.onscroll = () => {
-        //         if (window.pageYOffset >= sticky) {
-        //             navbar.classList.add("sticky");
-        //         } else {
-        //             navbar.classList.remove("sticky");
-        //         }
-        //     };
-        // },
+        data() {
+            return {
+                email: "",
+                isActive: false,
+                logined: true
+            }
+        },
         methods: {
             async forwardLogin() {
             this.$router.push('/login')
             },
             async forwardRegister() {
                 this.$router.push('/register')
+            }
+        },
+        async mounted() {
+            const accessToken = this.$cookies.get("accessToken")
+            if (accessToken) {
+                console.log(accessToken)
+                const res = await AxiosService.post('/api/auth', {
+                    accessToken: accessToken
+                })
+                console.log(res)
+                if (res.data.status === 'Success') {
+                    console.log(res.data.account.email)
+                    // this.email = res.data.account.email
+                    this.isActive = true;
+                    this.logined = false;
+                }
             }
         }
     }
@@ -86,6 +114,14 @@
 <style scoped>
 * {
     box-sizing: border-box
+}
+#avatar img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+.hidden {
+    display: none;
 }
 .Navbar-element li{
     float: left;

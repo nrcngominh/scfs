@@ -204,19 +204,6 @@ export default {
             navbar.classList.remove("hidden");
         }
     };
-
-    const accessToken = this.$cookies.get("accessToken")
-    if (accessToken) {
-        console.log(accessToken)
-        const res = await AxiosService.post('/api/auth', {
-            accessToken: accessToken
-        })
-        console.log(res)
-        if (res.data.status === 'Success') {
-            console.log(res.data.account.email)
-        }
-    }
-    
   }
 }
 </script>
