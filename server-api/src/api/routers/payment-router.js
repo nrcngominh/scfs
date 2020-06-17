@@ -7,8 +7,8 @@ PaymentRouter.post('/', async (req, res) => {
   console.log(req.body);
   const bill = PaymentService.createBill(req.body.amount)
   res.send({
-      billId: bill.billId,
-      momoQrCode: bill.momoQrCode
+    billId: bill.billId,
+    momoQrCode: bill.momoQrCode
   })
 })
 
