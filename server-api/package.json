@@ -27,7 +27,7 @@
   },
   "scripts": {
     "build": "babel src -d dist",
-    "start": "NODE_ENV=production && node -r dotenv/config dist/main.js dotenv_config_path=.env.local",
+    "start": "node -r dotenv/config dist/main.js dotenv_config_path=.env.local",
     "dev": "nodemon",
     "debug": "nodemon --inspect"
   },
