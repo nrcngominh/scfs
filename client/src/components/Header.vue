@@ -1,12 +1,12 @@
 <template>
     <div>
        <header id=header class="section u-pr">
-                <div  class="navbar">
+                <div id="nav"  class="navbar">
                     <nav  class="Navbar">
                         <div id="navbar" class="container grid u-justify-center">
                             <div  class="Navbar-inner Navbar-height--44 grid-cell grid-cell--col10">
                                 <div class=Navbar-header>
-                                    <a class="Logo" href="/">
+                                    <a class="Logo" @click="forwardLogin">
                                         <img id="bkLogo" src="@/assets/logobk1.png" alt="">
                                     </a>
                                     <div class=tablet--flex>
@@ -41,19 +41,15 @@
                                 </div>
                                 
                             </div>
-                                <div>
-                                    <ul>
-                                        <li>
-                                            <a href="/login" class="button-small is-blue"><span>Login</span></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <ul>
-                                        <li>
-                                            <a href="/register" class="button-small is-blued"><span>Sign up</span></a>
-                                        </li>
-                                    </ul>
+                            <div class="Navbar-element">
+                                <ul>
+                                    <li>
+                                        <a @click="forwardLogin" class="button-small is-blue"><span>Login</span></a>
+                                    </li>
+                                    <li>
+                                        <a @click="forwardRegister" class="button-small is-blued"><span>Sign up</span></a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </nav>
@@ -65,28 +61,22 @@
 <script>
     export default{
         name: "Header",
-        
         // mounted() {
-        //     let navbar = document.getElementById("navbar");
-        //     let jsUp = document.getElementById("jsUp");
-        //     let logo = document.getElementById("bklogo");
+        //     let navbar = document.getElementById("nav");
         //     let sticky = navbar.offsetTop;
         //     window.onscroll = () => {
         //         if (window.pageYOffset >= sticky) {
         //             navbar.classList.add("sticky");
-        //             jsUp.classList.add("jUp");
-        //             logo.src = "../assets/logo.png"
         //         } else {
         //             navbar.classList.remove("sticky");
-        //             jsUp.classList.remove("jUp");
         //         }
         //     };
         // },
         methods: {
             async forwardLogin() {
-            this.$router.push('/')
+            this.$router.push('/login')
             },
-            async forwardRes() {
+            async forwardRegister() {
                 this.$router.push('/register')
             }
         }
@@ -97,11 +87,19 @@
 * {
     box-sizing: border-box
 }
-nav.Navbar {
-    /* border-bottom: 2px solid orange; */
-    /* box-shadow: 0 3px 6px rgba(28,28,28,.1); */
-    /* position: fixed;
-    top: 0; */
+.Navbar-element li{
+    float: left;
+    margin-left: 16px;
+}
+.Navbar-element a {
+    cursor: pointer;
+}
+.Navbar-element a:hover {
+    color: #fff;
+}
+.Navbar-element ul {
+    overflow: hidden;
+    width: 100%;
 }
 .sticky {
   position: fixed;
@@ -125,7 +123,10 @@ body {
     -webkit-text-rendering: optimizeLegibility;
     text-rendering: optimizeLegibility
 }
-
+#nav {
+    background-color: #fff;
+    box-shadow: 0 1px 6px 0 rgba(32,33,36,.28);
+}
 p.text.f20.is-txtWhite.u-mb40.u-mb24--tablet{
     margin-top: 30%;
     color: #f6b91e;
@@ -135,7 +136,7 @@ p.text.f20.is-txtWhite.u-mb40.u-mb24--tablet{
 header#header{
     /* box-shadow: 1px 0px 8px 6px #888888; */
     box-shadow: 0 1px 6px 0 rgba(32,33,36,.28);
-    background-color: #fff;
+    /* background-color: #fff; */
 }
 a {
     color: #066a9b;

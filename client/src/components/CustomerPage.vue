@@ -2,37 +2,34 @@
   <div>
     
     <!--start header -->
-    <Header />
+    <div class="sticky" id="nav">
+      <Header />
+    </div>
     <!-- end header -->
     <!-- start introslide -->
-    <div>
+    <div id="intro">
       <IntroSlide />
     </div>
     <!-- end introslide -->
     <!-- start menu -->
-    <!-- <div class="wrap_menu">
-      <div class="container mt-1">
-        <div class="row">
-            <div class="tab-content col-xl-12" id="myTabContent">
-                <div class="tab-pane active show" id="dinner" role="tabpanel" aria-labelledby="dinner-tab">
-                    <div class="row" >
-                        <div class="col-md-6" v-for="food in foods" :key="food.name">
-                            <div class="single_menu_list">
-                                <img v-bind:src="'http://localhost/images/' + food.img">
-                                <div class="menu_content" >
-                                    <h4>{{ food.name }}  <span>{{ food.price }}</span></h4>
-                                    <p>{{ food.description }}</p>
-                                    <button>Buy</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </div>
-    </div> -->
+    
     <div class="wrap_menu">
+      <nav class="subnav">
+      <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Active</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+    </ul>
+    </nav>
       <div class="container mt-3">
         <div class="row">
               <div class="col-md-3 mt-4" v-for="food in foods" :key="food.name">
@@ -45,7 +42,7 @@
                     <h6 class="card-title money">{{ food.price }}</h6>
                     <p class="card-text">{{ food.description }}</p>
                     <a href="#" class="btn btn-success mr-3">Buy</a>
-                    <a href="#" class="btn btn-primary">Add to cart</a>
+                    <a href="#" class="btn btn-primary">Add to Cart</a>
                   </div>
                 </div>
               </div>
@@ -118,40 +115,6 @@ AOS.init({
 });
 export default {
   name: "CustomerPage",
-  mounted() {
-    function format_number(pnumber,decimals)
-{
-    if (isNaN(pnumber)) { return 0};
-    if (pnumber=='') { return 0};
-    var snum = new String(pnumber);
-    var sec = snum.split('.');
-    var whole = parseFloat(sec[0]);
-    var result = '';
-    
-    if(sec.length > 1){
-        var dec = new String(sec[1]);
-        dec = String(parseFloat(sec[1])/Math.pow(10,(dec.length - decimals)));
-        dec = String(whole + Math.round(parseFloat(dec))/Math.pow(10,decimals));
-        var dot = dec.indexOf('.');
-        if(dot == -1){
-            dec += '.';
-            dot = dec.indexOf('.');
-        }
-        while(dec.length <= dot + decimals) { dec += '0'; }
-        result = dec;
-    } else{
-        var dot;
-        var dec = new String(whole);
-        if(decimals){
-            dec += '.';
-            dot = dec.indexOf('.');       
-            while(dec.length <= dot + decimals) { dec += '0'; }
-        }
-        result = dec;
-    }
-    return result;
-}
-  },
   components: {
     Header, Footer, IntroSlide
   },
@@ -200,7 +163,17 @@ export default {
   async mounted() {
     const res = await AxiosService.get('/api/food')
     this.foods = res.data.foods;
-    
+    let navbar = document.getElementById("nav");
+    //let sticky = navbar.offsetTop;
+    window.onscroll = () => {
+        if (window.pageYOffset >= 150) {
+            //navbar.classList.add("sticky");
+            navbar.classList.add("hidden");
+        } else {
+            //navbar.classList.remove("sticky");
+            navbar.classList.remove("hidden");
+        }
+    };
   }
 }
 </script>
@@ -210,6 +183,26 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 .card {
   width: 250px;
+}
+#intro {
+  margin-top: 100px;
+}
+#nav {
+  transition: .25s ease .1s
+}
+.hidden {
+    transform: translateY(-100%);
+    transition: .25s ease .1s
+}
+.hidden1 {
+    transform: translateY(0%);
+    transition: .25s ease .1s
+}
+.sticky {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 3;
 }
 h5.card-title {
     font-weight: bold;
@@ -260,9 +253,10 @@ body {
   text-decoration: none;
   text-align: center;
   line-height: 50px;
-  background-image: url('../assets/up-arrow.png');
+  background-image: url('../assets/scroll.png');
   background-size: contain;
   background-repeat: no-repeat;
+  text-decoration: none;
 }
 .mess {
   position: fixed;
@@ -273,9 +267,10 @@ body {
   text-decoration: none;
   text-align: center;
   line-height: 50px;
-  background-image: url('../assets/mess.png');
+  background-image: url('../assets/messenger.png');
   background-size: contain;
   background-repeat: no-repeat;
+  text-decoration: none;
 }
 .fade {
   opacity: 1;

@@ -12,7 +12,7 @@
                     <div class="grid-cell--col5 grid-cell--col1--tablet"></div>
                     <div class=grid-cell--col1></div>
                     <div class="grid-cell grid-cell--col10 u-mb120 u-mb48--tablet">
-                        <a @click="forwardLogin" class="button is-White button--arrow  u-mr24 u-mb24"><span>ORDER NOW</span></a>
+                        <a href="#" class="button is-White button--arrow  u-mr24 u-mb24"><span>ORDER NOW</span></a>
                     </div>
                     
                 </div>
