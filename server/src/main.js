@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 import BaseRouter from './api/routers'
 import BaseSocket from './sockets'
+import cookieParser from 'cookie-parser'
 
 // Setup MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
@@ -16,7 +17,7 @@ console.log(process.env.MONGODB_URI)
 const app = express()
 app.use(cors())
 app.use(express.json())
-
+app.use(cookieParser())
 
 // Start server
 const server = app.listen(process.env.PORT || 3000, () => {

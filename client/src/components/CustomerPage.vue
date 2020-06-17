@@ -44,8 +44,8 @@
                     <h5 class="card-title">{{ food.name }}</h5>
                     <h6 class="card-title money">{{ food.price }}</h6>
                     <p class="card-text">{{ food.description }}</p>
-                    <a href="#" class="btn btn-success mr-3">Buy</a>
-                    <a href="#" class="btn btn-primary">Add to cart</a>
+                    <button @click="buy" class="btn btn-success mr-3">Buy</button>
+                    <button @click="addToCart" class="btn btn-primary">Add to cart</button>
                   </div>
                 </div>
               </div>
@@ -168,6 +168,36 @@ export default {
     document.body.className = "user";
   },
   methods: {
+    async addToCart() {
+        const accessToken = this.$cookies.get("accessToken")
+        if (accessToken) {
+            console.log(accessToken)
+            const res = await AxiosService.post('/api/auth', {
+                accessToken: accessToken
+            })
+            console.log(res)
+            if (res.data.status !== 'Success') {
+                this.$router.push('/login')
+            }
+        } else {
+            this.$router.push('/login')
+        }
+    },
+    async buy() {
+        const accessToken = this.$cookies.get("accessToken")
+        if (accessToken) {
+            console.log(accessToken)
+            const res = await AxiosService.post('/api/auth', {
+                accessToken: accessToken
+            })
+            console.log(res)
+            if (res.data.status !== 'Success') {
+                this.$router.push('/login')
+            }
+        } else {
+            this.$router.push('/login')
+        }
+    },
     logout() {
       this.$router.push('/')
     },
@@ -200,6 +230,18 @@ export default {
   async mounted() {
     const res = await AxiosService.get('/api/food')
     this.foods = res.data.foods;
+
+    const accessToken = this.$cookies.get("accessToken")
+    if (accessToken) {
+        console.log(accessToken)
+        const res = await AxiosService.post('/api/auth', {
+            accessToken: accessToken
+        })
+        console.log(res)
+        if (res.data.status === 'Success') {
+            console.log(res.data.account.email)
+        }
+    }
     
   }
 }
