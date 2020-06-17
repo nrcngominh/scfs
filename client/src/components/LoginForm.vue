@@ -66,7 +66,18 @@ export default {
       password: ""
     }
   },
-  beforeCreate() {
+  async beforeCreate() {
+    const accessToken = this.$cookies.get("accessToken")
+    if (accessToken) {
+        console.log(accessToken)
+        const res = await AxiosService.post('/api/auth', {
+            accessToken: accessToken
+        })
+        console.log(res)
+        if (res.data.status === 'Success') {
+            this.$router.push('/')
+        }
+    }
     document.body.className = "login";
   },
   methods: {
@@ -78,12 +89,9 @@ export default {
           password: this.password
         })
         console.log(res.data)
-        if (res.data.status == 'success') {
-            if (res.data.type === 'customer') {
-                this.$router.push('user')
-            } else if (res.data.type === 'admin') {
-                this.$router.push('admin')
-            }
+        this.$cookies.set('accessToken', res.data.accessToken)
+        if (res.data.status == 'Success') {
+            this.$router.push('/')
         } else {
           alert('Login failed')
         }
@@ -101,7 +109,7 @@ export default {
         this.$router.push('register')
     },
     forwardUser() {
-        this.$router.push('user')
+        this.$router.push('/')
     }
   }
 }

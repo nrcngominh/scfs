@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"sfcs.account"}],"uuid":"3e93aa573aba46ac933ac8f28c942e31"}

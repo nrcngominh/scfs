@@ -12,7 +12,7 @@
                     <div class="grid-cell--col5 grid-cell--col1--tablet"></div>
                     <div class=grid-cell--col1></div>
                     <div class="grid-cell grid-cell--col10 u-mb120 u-mb48--tablet">
-                        <a @click="forwardLogin" class="button is-White button--arrow  u-mr24 u-mb24"><span>ORDER NOW</span></a>
+                        <a href="#" class="button is-White button--arrow  u-mr24 u-mb24"><span>ORDER NOW</span></a>
                     </div>
                     
                 </div>
@@ -49,7 +49,8 @@ p.text.f20.is-txtWhite.u-mb40.u-mb24--tablet{
     width: 100%;
     display: table;
     /* box-shadow: 0px 4px 38px 0px rgba(104, 104, 104, 0.14); */
-    box-shadow: 0px 6px 8px 6px #dacece;
+    /* box-shadow: 0px 6px 8px 6px #dacece; */
+    box-shadow: 0px 30px 38px 0px rgba(104, 104, 104, 0.14);
     background-size: cover;
 }
 @media (max-width: 1223px) and (min-width: 800px)

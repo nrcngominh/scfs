@@ -1,12 +1,12 @@
 <template>
     <div>
        <header id=header class="section u-pr">
-                <div  class="navbar">
+                <div id="nav"  class="navbar">
                     <nav  class="Navbar">
                         <div id="navbar" class="container grid u-justify-center">
                             <div  class="Navbar-inner Navbar-height--44 grid-cell grid-cell--col10">
                                 <div class=Navbar-header>
-                                    <a class="Logo" href="/user">
+                                    <a class="Logo" @click="forwardLogin">
                                         <img id="bkLogo" src="@/assets/logobk1.png" alt="">
                                     </a>
                                     <div class=tablet--flex>
@@ -37,47 +37,23 @@
                                         <li class=Navbar-item>
                                             <a href="#" class="Navbar-link title f12 "> <span>About us</span> </a>
                                         </li>
-                                    </ul>
-                                    
+                                    </ul>  
                                 </div>
+                                
                             </div>
-                        </div>
-                        <div class="NavbarMobile js-Navbar js-Navbar-mobile">
-                            <ul class="NavbarMobile-collapse Navbar--scroll--vertical">
-                                <li class=Navbar-item>
-                                    <a href="#" class="Navbar-link js-Action--NAVmobile"> <span class="title">PLATFORM</span> </a>
-                                </li>
-                                <li class="Navbar-item NavbarMobile-list">
-                                    <ul>
-                                        <li class=Navbar-subitem> <a href="/platform/data-ingestion-management/" class=Navbar-link><span class="text is-small is-txtWhite js-Action--NAVmobile">Data Ingestion & Management</span></a> </li>
-                                    </ul>
-                                </li>
-
-                                <li class=Navbar-item>
-                                    <a href="#" class="Navbar-link js-Action--NAVmobile"> <span class="title">Pricing</span> </a>
-                                </li>
-                                <li class=Navbar-item>
-                                    <a href="#" class="Navbar-link"> <span class="title">Blog</span> </a>
-                                </li>
-                            </ul>
+                            <div class="Navbar-element">
+                                <ul>
+                                    <li>
+                                        <a @click="forwardLogin" class="button-small is-blue"><span>Login</span></a>
+                                    </li>
+                                    <li>
+                                        <a @click="forwardRegister" class="button-small is-blued"><span>Sign up</span></a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </nav>
                 </div>
-                <!-- <div class="grid u-mt72 u-mt32--tablet">
-                    <div class="grid-cell grid-cell--col1"></div>
-                    <div id="jsUp" class="grid-cell grid-cell--col6 grid-cell--col10--tablet">
-                        <div class="title f48 f64--desktop-l f36--tablet is-txtWhite u-mb40 u-pr"></div>
-                        <p class="text f20 is-txtWhite u-mb40 u-mb24--tablet">Smart food court system
-                            <br/>make the university more smart.</p>
-                    </div>
-                    <div class="grid-cell--col5 grid-cell--col1--tablet"></div>
-                    <div class=grid-cell--col1></div>
-                    <div class="grid-cell grid-cell--col10 u-mb120 u-mb48--tablet">
-                        <a @click="forwardLogin" class="button is-White button--arrow  u-mr24 u-mb24"><span>ORDER NOW</span></a>
-                        <a @click="forwardRes" class="button is-White u-mr24 u-mb24"><span>Try for free</span></a>
-                    </div>
-                    
-                </div> -->
             </header>     
     </div>
 </template>
@@ -85,28 +61,22 @@
 <script>
     export default{
         name: "Header",
-        
         // mounted() {
-        //     let navbar = document.getElementById("navbar");
-        //     let jsUp = document.getElementById("jsUp");
-        //     let logo = document.getElementById("bklogo");
+        //     let navbar = document.getElementById("nav");
         //     let sticky = navbar.offsetTop;
         //     window.onscroll = () => {
         //         if (window.pageYOffset >= sticky) {
         //             navbar.classList.add("sticky");
-        //             jsUp.classList.add("jUp");
-        //             logo.src = "../assets/logo.png"
         //         } else {
         //             navbar.classList.remove("sticky");
-        //             jsUp.classList.remove("jUp");
         //         }
         //     };
         // },
         methods: {
             async forwardLogin() {
-            this.$router.push('/')
+            this.$router.push('/login')
             },
-            async forwardRes() {
+            async forwardRegister() {
                 this.$router.push('/register')
             }
         }
@@ -117,11 +87,19 @@
 * {
     box-sizing: border-box
 }
-nav.Navbar {
-    /* border-bottom: 2px solid orange; */
-    /* box-shadow: 0 3px 6px rgba(28,28,28,.1); */
-    /* position: fixed;
-    top: 0; */
+.Navbar-element li{
+    float: left;
+    margin-left: 16px;
+}
+.Navbar-element a {
+    cursor: pointer;
+}
+.Navbar-element a:hover {
+    color: #fff;
+}
+.Navbar-element ul {
+    overflow: hidden;
+    width: 100%;
 }
 .sticky {
   position: fixed;
@@ -145,7 +123,10 @@ body {
     -webkit-text-rendering: optimizeLegibility;
     text-rendering: optimizeLegibility
 }
-
+#nav {
+    background-color: #fff;
+    box-shadow: 0 1px 6px 0 rgba(32,33,36,.28);
+}
 p.text.f20.is-txtWhite.u-mb40.u-mb24--tablet{
     margin-top: 30%;
     color: #f6b91e;
@@ -155,7 +136,7 @@ p.text.f20.is-txtWhite.u-mb40.u-mb24--tablet{
 header#header{
     /* box-shadow: 1px 0px 8px 6px #888888; */
     box-shadow: 0 1px 6px 0 rgba(32,33,36,.28);
-    background-color: #fff;
+    /* background-color: #fff; */
 }
 a {
     color: #066a9b;
@@ -163,6 +144,24 @@ a {
 }
 a.button.u-mr24.u-mb24 {
     background-color: orangered;
+}
+a.button-small {
+ 
+    display: inline-block;
+    border-radius: 8px;
+    font: 600 16px/24px Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding: 6px 16px;
+    text-align: center;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+}
+.is-blue {
+    background: #066a9b;
+}
+.is-blued {
+    background: #15b7d2;
 }
 a.Navbar-link.title.f12 {
     font-size: 18px;
@@ -560,7 +559,11 @@ ul {
     display: block;
     overflow: hidden
 }
-
+.button-small span {
+    position: relative;
+    display: block;
+    overflow: hidden
+}
 .button span:before {
     content: '';
     position: absolute;
@@ -572,12 +575,28 @@ ul {
     background: currentColor;
     transform: translateX(-100%)
 }
+.button-small span:before {
+    content: '';
+    position: absolute;
+    transition: transform .3s ease;
+    left: -1px;
+    bottom: 0;
+    width: 100%;
+    height: 1.5px;
+    background: currentColor;
+    transform: translateX(-100%)
+}
 
 .button:hover {
     text-decoration: none
 }
-
+.button-small:hover {
+    text-decoration: none
+}
 .button:hover span:before {
+    transform: translateX(0)
+}
+.button-small:hover span:before {
     transform: translateX(0)
 }
 

@@ -77,7 +77,8 @@ export default{
   font-size:15px;
   line-height:24px;
   color:#737373;
-  box-shadow: 0px 7px 8px 6px #888888;
+  box-shadow: 0px 30px 38px 0px rgba(104, 104, 104, 0.14);
+  /* box-shadow: 0px 7px 8px 6px #888888; */
 }
 .site-footer hr
 {
