@@ -11,8 +11,6 @@ mongoose.connect(process.env.MONGODB_URI, {
   useUnifiedTopology: true
 })
 
-console.log(process.env.MONGODB_URI)
-
 // Setup server
 const app = express()
 app.use(cors())

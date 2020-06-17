@@ -7,9 +7,7 @@ export default {
   async listen(server) {
     io = socket_io.listen(server)
     io.sockets.on("connection", (socket) => {
-      console.log("Client connected")
       socket.on("send_order", (amount) => {
-        console.log(amount)
         const bill = PaymentService.createBill(amount)
         socket.emit("send_bill", bill)
       })
@@ -19,7 +17,7 @@ export default {
       })
 
       socket.on("disconnect", () => {
-        console.log("Client disconnected")
+
       })
     })
   },

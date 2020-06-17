@@ -4,7 +4,6 @@ import BaseSocket from '../../sockets'
 const MomoRouter = Router()
 
 MomoRouter.post('/', async (req, res) => {
-  console.log(req.body);
   res.send({
     status: 'success',
   })
