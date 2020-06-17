@@ -1,7 +1,7 @@
 cd "$(dirname "$0")"
 
 # Restore ENV file
-cp .env.local ../server/
+cp .env.local ../api-server/
 
 # Restore MongoDB database
 mongorestore -d sfcs localdb/sfcs
