@@ -12,7 +12,7 @@ const loginWithType = (email, password, type) => {
         && account.type === type) {
         return resolve(account)
       }
-      reject('Invalid email or password')
+      reject('Authentication failed')
     } catch (error) {
       reject(error)
     }

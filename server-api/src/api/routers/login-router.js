@@ -8,20 +8,26 @@ const LoginRouter = Router()
 
 // Login with handler
 const login = async (req, res, type) => {
-  const account = await loginWithType(req.body.email, req.body.password, type)
-  if (!account) {
+  try {
+    const account = await loginWithType(req.body.email, req.body.password, type)
+    if (!account) {
+      res.status(401).send({
+        message: 'Unauthorized'
+      })
+    } else {
+      const token = await generateToken({
+        email: account.email,
+        type: account.type
+      }, accessTokenSecret, '15m')
+
+      res.status(200).send({
+        message: 'Success',
+        accessToken: token
+      })
+    }
+  } catch (error) {
     res.status(401).send({
       message: 'Unauthorized'
-    })
-  } else {
-    const token = await generateToken({
-      email: account.email,
-      type: account.type
-    }, accessTokenSecret, '15m')
-
-    res.status(200).send({
-      message: 'Success',
-      accessToken: token
     })
   }
 }
