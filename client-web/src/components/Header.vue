@@ -116,6 +116,7 @@ export default{
         async logout() {
             this.$cookies.remove('accessToken')
             this.isLogined = true;
+            this.isActive = false;
         }
     },
     async mounted() {
