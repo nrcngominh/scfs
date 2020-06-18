@@ -68,35 +68,26 @@ export default {
   },
   async beforeCreate() {
     const accessToken = this.$cookies.get("accessToken")
-    if (accessToken) {
-        console.log(accessToken)
-        const res = await AxiosService.post('/api/auth', {
-            accessToken: accessToken
-        })
-        console.log(res)
-        if (res.data.status === 'Success') {
-            this.$router.push('/')
-        }
+    try {
+      await AxiosService.post('/api/auth', {
+        accessToken: accessToken
+      })
+    } catch (error) {
+      this.$router.push('/login')
     }
     document.body.className = "login";
   },
   methods: {
     async login() {
       try {
-        console.log('Logging in...')
         const res = await AxiosService.post('/api/login/', {
           email: this.email,
           password: this.password
         })
-        console.log(res.data)
         this.$cookies.set('accessToken', res.data.accessToken)
-        if (res.data.status == 'Success') {
-            this.$router.push('/')
-        } else {
-          alert('Login failed')
-        }
+        this.$router.push('/')
       } catch (err) { 
-        console.log(err)
+        alert('Login failed')
       }
     },
     async submit() {
