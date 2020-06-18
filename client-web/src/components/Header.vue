@@ -114,31 +114,17 @@ export default{
             this.$router.push('/register')
         },
         async logout() {
-            const accessToken = this.$cookies.get("accessToken")
-            console.log(accessToken)
-            const res = await AxiosService.post('/api/auth', {
-                accessToken: accessToken
-            })
-            console.log(res)
-            res.clearCookie('accessToken');
-            this.$router.push('/register')
+            this.$cookies.remove('accessToken')
+            this.isLogined = true;
         }
     },
     async mounted() {
         const accessToken = this.$cookies.get("accessToken")
-        if (accessToken) {
-            console.log(accessToken)
-            const res = await AxiosService.post('/api/auth', {
-                accessToken: accessToken
-            })
-            console.log(res)
-            if (res.data.status === 'Success') {
-                console.log(res.data.account.email)
-                // this.email = res.data.account.email
-                this.isActive = true;
-                this.isLogined = false;
-            }
-        }
+        await AxiosService.post('/api/auth', {
+          accessToken: accessToken
+        })
+        this.isActive = true;
+        this.isLogined = false;
     },
 
 }
