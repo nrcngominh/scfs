@@ -13,24 +13,29 @@
     <!-- end introslide -->
     <!-- start menu -->
     
-    <div class="wrap_menu">
-      <nav class="subnav">
-      <ul class="nav justify-content-center">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">Active</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
-        </li>
-    </ul>
-    </nav>
-      <div class="container mt-3">
+    <div class="wrap_menu mt-3">
+      <div class="subnav-menu pt-4">
+          <nav class="subnav container">
+            <ul class="nav justify-content-center">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">BREAKFAST</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">RICE</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">VEGETARIAN DISHES</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">NOODLE</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">DRINK</a>
+              </li>
+            </ul>
+        </nav>
+      </div>
+      <div id="metu_main" class="container mt-3">
         <div class="row">
               <div class="col-md-3 mt-4" v-for="food in foods" :key="food.name">
                 <div class="card">
@@ -161,9 +166,6 @@ export default {
             this.$router.push('/login')
         }
     },
-    logout() {
-      this.$router.push('/')
-    },
     getImageUrl(path) {
       return AxiosService.defaults.baseURL + '/images/' + path
     },
@@ -211,6 +213,21 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;600&display=swap');
+nav.subnav {
+    width: 1100px;
+    background-color: #ebedee;
+    font-family: Kanit, Helvetica, Arial, sans-serif;
+    box-shadow: 1px 8px 20px rgba(0,0,0,.05);
+
+}
+li.nav-item {
+  letter-spacing: 1.5px;
+}
+li.nav-item a:hover {
+    background-color: black;
+    color: white;
+}
 .card {
   width: 250px;
 }

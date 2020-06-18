@@ -2,10 +2,8 @@ import jwt from 'jsonwebtoken'
 
 const generateToken = (account, secretKey, tokenLife) => {
     return new Promise((resolve, reject) => {
-        jwt.sign(
-            { data: account },
-            secretKey,
-            {
+        jwt.sign({ data: account },
+            secretKey, {
                 algorithm: "HS256",
                 expiresIn: tokenLife
             },
@@ -32,5 +30,5 @@ const verifyToken = (token, secretKey) => {
 
 export {
     generateToken,
-    verifyToken
+    verifyToken,
 }
