@@ -1,29 +1,42 @@
 import Router from 'express'
-import LoginService from '../../services/login-service'
+import { loginWithType } from '../../services/account-service'
 import { generateToken } from '../../services/jwt-service'
+
+const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET
 
 const LoginRouter = Router()
 
-const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET
-const tokenLife = '1h'
-
-LoginRouter.post('/', async (req, res) => {
-  const account = await LoginService.login(req.body.email, req.body.password)
+// Login with handler
+const login = async (req, res, type) => {
+  const account = await loginWithType(req.body.email, req.body.password, type)
   if (!account) {
-    res.send({
-      status: 'failed'
+    res.status(401).send({
+      message: 'Unauthorized'
     })
   } else {
-    const accountData = {
+    const token = await generateToken({
       email: account.email,
-    }
-    const token = await generateToken(accountData, accessTokenSecret, tokenLife)
+      type: account.type
+    }, accessTokenSecret, '15m')
 
-    res.send({
-      status: 'Success',
+    res.status(200).send({
+      message: 'Success',
       accessToken: token
     })
   }
+}
+/*
+ * Handle customer login
+ */
+LoginRouter.post('/', async (req, res) => {
+  login(req, res, 'customer')
+})
+
+/*
+ * Handle admin login
+ */
+LoginRouter.post('/admin', async (req, res) => {
+  login(req, res, 'admin')
 })
 
 export default LoginRouter

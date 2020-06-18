@@ -1,6 +1,6 @@
 import socket_io from 'socket.io'
 import PaymentService from '../services/payment-service'
-import FoodService from '../services/food-service'
+import FoodRepo from '../repositories/food-repository'
 
 let io
 export default {
@@ -13,7 +13,7 @@ export default {
       })
 
       socket.on("get_menu", async () => {
-        socket.emit("send_food", await FoodService.getAll())
+        socket.emit("send_food", await FoodRepo.getAll())
       })
 
       socket.on("disconnect", () => {
