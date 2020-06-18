@@ -54,10 +54,12 @@
                                             <img src="@/assets/alarm.png" alt="">
                                         </div>
                                     </li> 
-                                    <li :class = "{hidden: isLogined}">
+                                    <li id="cart" :class = "{hidden: isLogined}">
                                         <div id="avatar">
                                             <img src="@/assets/cart.png" alt="">
+                                            <span id="count-cart">{{count}}</span> 
                                         </div>
+                                        
                                     </li>    
                                     <li :class = "{hidden: isLogined}">
                                         <div class="dropdown" id="avatar">
@@ -95,12 +97,13 @@
 import AxiosService from '../services/axios-service'
 
 export default{
+    props: ["count"],
     name: "Header",
     data() {
         return {
             email: "",
             isActive: false,
-            isLogined: true
+            isLogined: true,
         }
     },
     methods: {
@@ -515,7 +518,7 @@ ul {
 
 .grid-cell--col10 {
     flex: 0 0 83.3333333333%;
-    max-width: 83.3333333333%
+    max-width: 70.3333333333%
 }
 
 .grid-cell--col12 {
@@ -1218,9 +1221,9 @@ ul {
 }
 
 .Navbar-height--44 {
-    height: 20px;
+    height: 43px;
     margin-left: 0%;
-    margin-top: 39px;
+    margin-top: 18px;
     
 }
 
