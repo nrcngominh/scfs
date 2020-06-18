@@ -67,15 +67,12 @@ export default {
     }
   },
   async beforeCreate() {
-    const accessToken = this.$cookies.get("accessToken")
-    try {
-      await AxiosService.post('/api/auth', {
-        accessToken: accessToken
-      })
-    } catch (error) {
-      this.$router.push('/login')
-    }
     document.body.className = "login";
+    const accessToken = this.$cookies.get("accessToken")
+    await AxiosService.post('/api/auth', {
+      accessToken: accessToken
+    })
+    this.$router.push('/')
   },
   methods: {
     async login() {
