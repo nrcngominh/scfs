@@ -3,11 +3,7 @@
     
     <!--start header -->
     <div class="sticky" id="nav">
-<<<<<<< HEAD:client-web/src/components/CustomerPage.vue
-       <Header></Header>
-=======
       <Header :count = 0></Header>
->>>>>>> 6049ceef7454d952a0ccefc30ad8983840d4e37e:client-web/src/pages/HomePage.vue
     </div>
     <!-- end header -->
 
