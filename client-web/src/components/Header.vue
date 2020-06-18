@@ -54,7 +54,11 @@
                                             <img src="@/assets/alarm.png" alt="">
                                         </div>
                                     </li> 
+<<<<<<< HEAD
                                     <li id="cart" :class = "{hidden: isLogined}">
+=======
+                                    <li :class = "{hidden: isLogined}">
+>>>>>>> 28b295dc1e360ea77fb1fb32ec3c0cf5d44c2f20
                                         <div id="avatar">
                                             <img src="@/assets/cart.png" alt="">
                                             <span id="count-cart">{{count}}</span> 
@@ -97,13 +101,20 @@
 import AxiosService from '../services/axios-service'
 
 export default{
+<<<<<<< HEAD
     props: ["count"],
+=======
+>>>>>>> 28b295dc1e360ea77fb1fb32ec3c0cf5d44c2f20
     name: "Header",
     data() {
         return {
             email: "",
             isActive: false,
+<<<<<<< HEAD
             isLogined: true,
+=======
+            isLogined: true
+>>>>>>> 28b295dc1e360ea77fb1fb32ec3c0cf5d44c2f20
         }
     },
     methods: {
