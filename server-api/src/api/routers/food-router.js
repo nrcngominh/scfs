@@ -1,35 +1,43 @@
 import Router from 'express'
-import FoodService from '../../services/food-service'
+import FoodRepo from '../../repositories/food-repository'
 
 const FoodRouter = Router()
 
+/*
+ * Handle create new food
+ */
 FoodRouter.post('/', async (req, res) => {
-  console.log(req.body)
-  const newId = await FoodService.add(req.body.name, req.body.price, req.body.description)
-  if (newId) {
-    res.send({
-      status: 'success',
-      _id: newId
+  try {
+    const newFood = await FoodRepo.create(req.body.name, req.body.price, req.body.description)
+    res.status(201).send({
+      message: 'Success',
+      _id: newFood._id
     })
-  } else {
-    res.send({
-      status: 'failed'
+  } catch (error) {
+    res.status(409).send({
+      message: 'Failed'
     })
   }
 })
 
+/*
+ * Handle get all foods
+ */
 FoodRouter.get('/', async (req, res) => {
-  const response = await FoodService.getAll()
-  res.send({
-    foods: response
+  const foods = await FoodRepo.findAll()
+  res.status(200).send({
+    foods: foods
   })
 })
 
+
+/*
+ * Handle delete food by id
+ */
 FoodRouter.delete('/', async (req, res) => {
-  console.log(req.body)
-  const isSuccess = await FoodService.delete(req.body._id)
-  res.send({
-    status: isSuccess ? 'success' : 'failed'
+  await FoodRepo.removeById(req.body.id)
+  res.status(204).send({
+    message: 'Sucess'
   })
 })
 

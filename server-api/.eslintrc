@@ -1,8 +1,13 @@
 {
-    "parserOptions": {
-      "ecmaVersion": 6,
-      "sourceType": "module",
-      "parser": "babel-eslint"
-    },
-    "rules": {}
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module",
+    "parser": "babel-eslint"
+  },
+  "rules": {
+    "indent": [
+      "error",
+      2
+    ]
+  }
 }

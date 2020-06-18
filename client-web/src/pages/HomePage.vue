@@ -3,7 +3,11 @@
     
     <!--start header -->
     <div class="sticky" id="nav">
+<<<<<<< HEAD:client-web/src/components/CustomerPage.vue
        <Header></Header>
+=======
+      <Header :count = 0></Header>
+>>>>>>> 6049ceef7454d952a0ccefc30ad8983840d4e37e:client-web/src/pages/HomePage.vue
     </div>
     <!-- end header -->
 
@@ -109,9 +113,9 @@
 <script src="simple.money.format.js"></script>
 <script>
 import AxiosService from '../services/axios-service'
-import Footer from './Footer.vue';
-import Header from './Header.vue';
-import IntroSlide from './IntroSlide.vue';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
+import IntroSlide from '../components/IntroSlide';
 
 import $ from 'jquery';
 import AOS from 'aos';
@@ -122,13 +126,13 @@ AOS.init({
   duration: 1000
 });
 export default {
-  name: "CustomerPage",
+  name: "HomePage",
   components: {
     Header, Footer, IntroSlide
   },
   data() {
     return {
-        menu: "CustomerPage",
+        menu: "HomePage",
         foods: [],
         name: "",
         price: 0,
@@ -140,64 +144,34 @@ export default {
   },
   methods: {
     async addToCart() {
-        const accessToken = this.$cookies.get("accessToken")
-        if (accessToken) {
-            console.log(accessToken)
-            const res = await AxiosService.post('/api/auth', {
-                accessToken: accessToken
-            })
-            console.log(res)
-            if (res.data.status !== 'Success') {
-                this.$router.push('/login')
-            }
-        } else {
-            this.$router.push('/login')
-        }
+      const accessToken = this.$cookies.get("accessToken")
+      try {
+        const res = await AxiosService.post('/api/auth', {
+          accessToken: accessToken
+        })
+      } catch (error) {
+        this.$router.push('/login')
+      }
     },
     async buy() {
-        const accessToken = this.$cookies.get("accessToken")
-        if (accessToken) {
-            console.log(accessToken)
-            const res = await AxiosService.post('/api/auth', {
-                accessToken: accessToken
-            })
-            console.log(res)
-            if (res.data.status !== 'Success') {
-                this.$router.push('/login')
-            }
-        } else {
-            this.$router.push('/login')
-        }
+      const accessToken = this.$cookies.get("accessToken")
+      try {
+        const res = await AxiosService.post('/api/auth', {
+          accessToken: accessToken
+        })
+      } catch (error) {
+        this.$router.push('/login')
+      }
     },
     getImageUrl(path) {
       return AxiosService.defaults.baseURL + '/images/' + path
-    },
-    async add() {
-      try {
-        const newFood = {
-          name: this.name,
-          price: this.price,
-          description: this.description
-        }
-        const res = await AxiosService.post('/api/food', newFood)
-        console.log(res.data)
-        if (res.data.status == 'success') {
-          newFood._id = res.data._id
-          this.foods.push(newFood)
-        } else {
-          alert('failed')
-        }
-      } catch (err) { 
-        console.log(err)
-      }
-    },
-    async order() {
-
     }
   }, 
   async mounted() {
     const res = await AxiosService.get('/api/food')
-    this.foods = res.data.foods;
+    if (res.status == 200) {
+      this.foods = res.data.foods;
+    }
     let navbar = document.getElementById("nav");
     //let sticky = navbar.offsetTop;
     window.onscroll = () => {

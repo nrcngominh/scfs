@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div><p>Something's wrong</p></div>
+    <div><p>404 Not Found</p></div>
   </div>
 </template>
 

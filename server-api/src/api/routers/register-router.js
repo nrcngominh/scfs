@@ -1,13 +1,13 @@
 import Router from 'express'
-import RegisterService from '../../services/register-service'
+import { registerCustomer } from '../../services/account-service'
 
 const RegisterRouter = Router()
 
-RegisterRouter.post('/', async(req, res) => {
-    const isSuccess = await RegisterService.register(req.body.email, req.body.password)
-    res.send({
-        status: isSuccess ? 'success' : 'failed'
-    })
+RegisterRouter.post('/', async (req, res) => {
+  const newAccount = await registerCustomer(req.body.email, req.body.password)
+  res.status(201).send({
+    message: 'Success'
+  })
 })
 
 export default RegisterRouter

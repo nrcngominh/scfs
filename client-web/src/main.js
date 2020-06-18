@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueCookies from 'vue-cookies'
-import App from './App.vue'
+import App from './App'
 import router from './router'
 //Add boostrap
 import "bootstrap";

@@ -51,7 +51,7 @@ const performFakeCustomerPayment = (billId, amount) => {
     }
 
     request(clientServerOptions, function (error, response) {
-        console.log(error, response.body);
+        
     });
 }
 
@@ -68,6 +68,6 @@ app.post('/test', async (req, res) => {
     performFakeCustomerPayment(req.body.billId, req.body.amount)
 })
 
-app.listen(4000, () => {
-    console.log('MOMO server is running on port 4000');
+const server = app.listen(4000, () => {
+    console.log('Server is running on port', server.address().port);
 })

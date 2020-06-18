@@ -3,14 +3,16 @@ import AuthMiddleware from '../middlewares/auth-middleware'
 
 const AuthRouter = Router()
 
-AuthRouter.post('/', AuthMiddleware)
-AuthRouter.post('/', (req, res) => {
-    const accountData = req.jwtDecoded
-    console.log(accountData);
-    res.send({
-        status: 'Success',
-        account: accountData.data
-    })
+AuthRouter.post(['/', '/admin'], AuthMiddleware)
+
+/*
+ * Authentication for both customer and admin
+ */
+AuthRouter.post(['/', '/admin'], (req, res) => {
+  res.status(200).send({
+    message: 'Success',
+    account: req.jwtDecodedData
+  })
 })
 
 export default AuthRouter

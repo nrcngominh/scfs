@@ -1,10 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import LoginForm from '../components/LoginForm'
-import RegisterForm from '../components/RegisterForm'
-import ErrorPage from '../components/ErrorPage'
-import ManagerPage from '../components/ManagerPage'
-import CustomerPage from '../components/CustomerPage'
+import LoginPage from '../pages/LoginPage'
+import RegisterPage from '../pages/RegisterPage'
+import ErrorPage from '../pages/ErrorPage'
+import HomePage from '../pages/HomePage'
 
 Vue.use(VueRouter)
 
@@ -12,23 +11,23 @@ const router = new VueRouter({
     mode: 'history',
     routes: [{
             path: '/',
-            name: 'CustomerPage',
-            component: CustomerPage,
+            name: 'HomePage',
+            component: HomePage,
             meta: {
                 title: 'BK Food | Home'
             }
         }, {
             path: '/login',
-            name: 'LoginForm',
-            component: LoginForm,
+            name: 'LoginPage',
+            component: LoginPage,
             meta: {
                 title: 'BK Food | Login'
             }
         },
         {
             path: '/register',
-            name: 'RegisterForm',
-            component: RegisterForm,
+            name: 'RegisterPage',
+            component: RegisterPage,
             meta: {
                 title: 'BK Food | Register'
             }
@@ -37,14 +36,7 @@ const router = new VueRouter({
             path: '/error',
             name: 'ErrorPage',
             component: ErrorPage
-        },
-        {
-            path: '/admin',
-            name: 'ManagerPage',
-            component: ManagerPage
-        },
-
-
+        }
     ]
 })
 router.beforeEach((to, from, next) => {
