@@ -3,7 +3,7 @@
     
     <!--start header -->
     <div class="sticky" id="nav">
-      <Header />
+       <Header></Header>
     </div>
     <!-- end header -->
 
