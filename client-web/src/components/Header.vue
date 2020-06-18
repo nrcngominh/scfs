@@ -105,18 +105,20 @@ export default{
     },
     methods: {
         async forwardLogin() {
-        this.$router.push('/login')
+            this.$router.push('/login')
         },
         async forwardRegister() {
             this.$router.push('/register')
         },
         async logout() {
             const accessToken = this.$cookies.get("accessToken")
-            const res = await AxiosService.post('api/logout', {
+            console.log(accessToken)
+            const res = await AxiosService.post('/api/auth', {
                 accessToken: accessToken
             })
             console.log(res)
-            this.$router.push('/')
+            res.clearCookie('accessToken');
+            this.$router.push('/register')
         }
     },
     async mounted() {

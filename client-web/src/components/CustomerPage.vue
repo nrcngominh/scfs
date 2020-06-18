@@ -6,13 +6,14 @@
       <Header />
     </div>
     <!-- end header -->
+
     <!-- start introslide -->
     <div id="intro">
       <IntroSlide />
     </div>
     <!-- end introslide -->
-    <!-- start menu -->
-    
+
+    <!-- start menu --> 
     <div class="wrap_menu mt-3">
       <div class="subnav-menu pt-4">
           <nav class="subnav container">
@@ -35,6 +36,7 @@
             </ul>
         </nav>
       </div>
+
       <div id="metu_main" class="container mt-3">
         <div class="row">
               <div class="col-md-3 mt-4" v-for="food in foods" :key="food.name">
@@ -55,6 +57,7 @@
       </div>
     </div>
     <!-- end menu -->
+
     <!-- start about -->
     <div class="wrap_about">
       <div class="about_bk mt-4">
@@ -62,9 +65,8 @@
           <div class="row">
               <div class="col-lg-6 col-md-6 col-sm-12 text-center">
                 <div class="inner-column">
-                  <h1 data-aos="fade-up">Welcome to <span> BK Food Court</span></h1>
+                  <h3 data-aos="fade-up">Welcome to <span> BK Food Court</span></h3>
                   <p class="mt-4" data-aos="fade-up">The university is currently has one food court located in its Ly Thuong Kiet campus and is going to build another one in Di An campus.All food courts consist of a number of vendors at food stalls or service counters. Meals are ordered at one of the vendors and then carried to a common area for consumption.</p>
-                  <!-- <img id="healthy_food" src="../assets/healthyfood.svg" alt=""> -->
                 </div>
               </div>
               <div data-aos="fade-up" id="img_bk" class="col-lg-6 col-md-6 col-sm-12 text-center">
@@ -75,6 +77,7 @@
       </div>
     </div>
     <!-- end about -->
+    
     <!-- start qt -->
     <!-- <div class="qt-box mt-1">
         <div class="parallax" data-paralax="scroll" data-z-index="1">
@@ -330,8 +333,18 @@ body {
   margin: auto;
   width: 80.4%;
 }
-.inner-column h1 span {
+.inner-column h3 span {
     color: #d65106;
+}
+.inner-column h3 {
+  color: #162945;
+  font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: 600;
+}
+.inner-column p {
+  color: #162945;
+  font-family: "Open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: 400;
 }
 .about_bk.mt-4 {
     padding: 40px;
@@ -342,14 +355,15 @@ body {
   padding: 150px 0;
 }
 #img_bk {
-  box-shadow: 20px 20px 0px #35649c;
   padding: 0;
 }
 
 .img-fluid1 {
-    max-width: 100%;
-    height: auto;
-    width: 100%;
+  max-width: 100%;
+  height: auto;
+  width: 100%;
+  border-radius: 6px 0 0 6px;
+  box-shadow: 0 16px 20px 4px rgba(22,41,69,.24);
 }
 .inner-column h3 {
   font-family: 'Montserrat', sans-serif;
