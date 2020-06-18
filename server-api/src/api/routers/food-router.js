@@ -9,12 +9,10 @@ const FoodRouter = Router()
 FoodRouter.post('/', async (req, res) => {
   try {
     const newFood = await FoodRepo.create(req.body.name, req.body.price, req.body.description)
-    if (newFood) {
-      res.status(201).send({
-        message: 'Success',
-        _id: newFood._id
-      })
-    }    
+    res.status(201).send({
+      message: 'Success',
+      _id: newFood._id
+    })
   } catch (error) {
     res.status(409).send({
       message: 'Failed'

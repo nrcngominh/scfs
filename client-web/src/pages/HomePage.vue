@@ -3,34 +3,41 @@
     
     <!--start header -->
     <div class="sticky" id="nav">
-      <Header />
+      <Header :count = 0></Header>
     </div>
     <!-- end header -->
+
     <!-- start introslide -->
     <div id="intro">
       <IntroSlide />
     </div>
     <!-- end introslide -->
-    <!-- start menu -->
-    
-    <div class="wrap_menu">
-      <nav class="subnav">
-      <ul class="nav justify-content-center">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">Active</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
-        </li>
-    </ul>
-    </nav>
-      <div class="container mt-3">
+
+    <!-- start menu --> 
+    <div class="wrap_menu mt-3">
+      <div class="subnav-menu pt-4">
+          <nav class="subnav container">
+            <ul class="nav justify-content-center">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">BREAKFAST</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">RICE</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">VEGETARIAN DISHES</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">NOODLE</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">DRINK</a>
+              </li>
+            </ul>
+        </nav>
+      </div>
+
+      <div id="metu_main" class="container mt-3">
         <div class="row">
               <div class="col-md-3 mt-4" v-for="food in foods" :key="food.name">
                 <div class="card">
@@ -50,6 +57,7 @@
       </div>
     </div>
     <!-- end menu -->
+
     <!-- start about -->
     <div class="wrap_about">
       <div class="about_bk mt-4">
@@ -57,9 +65,8 @@
           <div class="row">
               <div class="col-lg-6 col-md-6 col-sm-12 text-center">
                 <div class="inner-column">
-                  <h1 data-aos="fade-up">Welcome to <span> BK Food Court</span></h1>
+                  <h3 data-aos="fade-up">Welcome to <span> BK Food Court</span></h3>
                   <p class="mt-4" data-aos="fade-up">The university is currently has one food court located in its Ly Thuong Kiet campus and is going to build another one in Di An campus.All food courts consist of a number of vendors at food stalls or service counters. Meals are ordered at one of the vendors and then carried to a common area for consumption.</p>
-                  <!-- <img id="healthy_food" src="../assets/healthyfood.svg" alt=""> -->
                 </div>
               </div>
               <div data-aos="fade-up" id="img_bk" class="col-lg-6 col-md-6 col-sm-12 text-center">
@@ -70,6 +77,7 @@
       </div>
     </div>
     <!-- end about -->
+    
     <!-- start qt -->
     <!-- <div class="qt-box mt-1">
         <div class="parallax" data-paralax="scroll" data-z-index="1">
@@ -101,9 +109,9 @@
 <script src="simple.money.format.js"></script>
 <script>
 import AxiosService from '../services/axios-service'
-import Footer from './Footer.vue';
-import Header from './Header.vue';
-import IntroSlide from './IntroSlide.vue';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
+import IntroSlide from '../components/IntroSlide';
 
 import $ from 'jquery';
 import AOS from 'aos';
@@ -114,13 +122,13 @@ AOS.init({
   duration: 1000
 });
 export default {
-  name: "CustomerPage",
+  name: "HomePage",
   components: {
     Header, Footer, IntroSlide
   },
   data() {
     return {
-        menu: "CustomerPage",
+        menu: "HomePage",
         foods: [],
         name: "",
         price: 0,
@@ -132,67 +140,34 @@ export default {
   },
   methods: {
     async addToCart() {
-        const accessToken = this.$cookies.get("accessToken")
-        if (accessToken) {
-            console.log(accessToken)
-            const res = await AxiosService.post('/api/auth', {
-                accessToken: accessToken
-            })
-            console.log(res)
-            if (res.data.status !== 'Success') {
-                this.$router.push('/login')
-            }
-        } else {
-            this.$router.push('/login')
-        }
+      const accessToken = this.$cookies.get("accessToken")
+      try {
+        const res = await AxiosService.post('/api/auth', {
+          accessToken: accessToken
+        })
+      } catch (error) {
+        this.$router.push('/login')
+      }
     },
     async buy() {
-        const accessToken = this.$cookies.get("accessToken")
-        if (accessToken) {
-            console.log(accessToken)
-            const res = await AxiosService.post('/api/auth', {
-                accessToken: accessToken
-            })
-            console.log(res)
-            if (res.data.status !== 'Success') {
-                this.$router.push('/login')
-            }
-        } else {
-            this.$router.push('/login')
-        }
-    },
-    logout() {
-      this.$router.push('/')
+      const accessToken = this.$cookies.get("accessToken")
+      try {
+        const res = await AxiosService.post('/api/auth', {
+          accessToken: accessToken
+        })
+      } catch (error) {
+        this.$router.push('/login')
+      }
     },
     getImageUrl(path) {
       return AxiosService.defaults.baseURL + '/images/' + path
-    },
-    async add() {
-      try {
-        const newFood = {
-          name: this.name,
-          price: this.price,
-          description: this.description
-        }
-        const res = await AxiosService.post('/api/food', newFood)
-        console.log(res.data)
-        if (res.data.status == 'success') {
-          newFood._id = res.data._id
-          this.foods.push(newFood)
-        } else {
-          alert('failed')
-        }
-      } catch (err) { 
-        console.log(err)
-      }
-    },
-    async order() {
-
     }
   }, 
   async mounted() {
     const res = await AxiosService.get('/api/food')
-    this.foods = res.data.foods;
+    if (res.status == 200) {
+      this.foods = res.data.foods;
+    }
     let navbar = document.getElementById("nav");
     //let sticky = navbar.offsetTop;
     window.onscroll = () => {
@@ -211,6 +186,21 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;600&display=swap');
+nav.subnav {
+    width: 1100px;
+    background-color: #ebedee;
+    font-family: Kanit, Helvetica, Arial, sans-serif;
+    box-shadow: 1px 8px 20px rgba(0,0,0,.05);
+
+}
+li.nav-item {
+  letter-spacing: 1.5px;
+}
+li.nav-item a:hover {
+    background-color: black;
+    color: white;
+}
 .card {
   width: 250px;
 }
@@ -313,8 +303,18 @@ body {
   margin: auto;
   width: 80.4%;
 }
-.inner-column h1 span {
+.inner-column h3 span {
     color: #d65106;
+}
+.inner-column h3 {
+  color: #162945;
+  font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: 600;
+}
+.inner-column p {
+  color: #162945;
+  font-family: "Open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: 400;
 }
 .about_bk.mt-4 {
     padding: 40px;
@@ -325,14 +325,15 @@ body {
   padding: 150px 0;
 }
 #img_bk {
-  box-shadow: 20px 20px 0px #35649c;
   padding: 0;
 }
 
 .img-fluid1 {
-    max-width: 100%;
-    height: auto;
-    width: 100%;
+  max-width: 100%;
+  height: auto;
+  width: 100%;
+  border-radius: 6px 0 0 6px;
+  box-shadow: 0 16px 20px 4px rgba(22,41,69,.24);
 }
 .inner-column h3 {
   font-family: 'Montserrat', sans-serif;

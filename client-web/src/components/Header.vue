@@ -42,29 +42,49 @@
                                 
                             </div>
                             <div class="Navbar-element">
-                                <ul>
+                                <ul id="nav_">
                                     <li :class = "{hidden: isActive}">
                                         <a @click="forwardLogin" class="button-small is-blue"><span>Login</span></a>
                                     </li>
                                     <li :class = "{hidden: isActive}">
                                         <a @click="forwardRegister" class="button-small is-blued"><span>Sign up</span></a>
                                     </li> 
-                                    <li :class = "{hidden: logined}">
+                                    <li :class = "{hidden: isLogined}">
                                         <div id="avatar">
                                             <img src="@/assets/alarm.png" alt="">
                                         </div>
                                     </li> 
-                                    <li :class = "{hidden: logined}">
+                                    <li id="cart" :class = "{hidden: isLogined}">
                                         <div id="avatar">
                                             <img src="@/assets/cart.png" alt="">
+                                            <span id="count-cart">{{count}}</span> 
                                         </div>
+                                        
                                     </li>    
-                                    <li :class = "{hidden: logined}">
-                                        <div id="avatar">
-                                            <img src="@/assets/account.png" alt="">
+                                    <li :class = "{hidden: isLogined}">
+                                        <div class="dropdown" id="avatar">
+                                            <img src="@/assets/account.png" alt=""> 
+                                            <div class="dropdown-content">
+                                                <a href="#">Account</a>
+                                                <a href="#">Setting</a>
+                                                <a @click="logout">Log out</a>
+                                            </div>
                                         </div>
                                     </li>                   
                                 </ul>
+                                        <!-- <div id="avatar">
+                                            <img src="@/assets/account.png" alt=""> 
+                                        </div>
+                                        <div class="navbar-dropdown">
+                                            <ul class="navbar-dropdown-container">
+                                                <li class="navbar-dropdown-iconLink">
+                                                    <a href="">link1</a>
+                                                </li>
+                                                <li class="navbar-dropdown-iconLink">
+                                                    <a href="">link2</a>
+                                                </li>
+                                            </ul>
+                                        </div> -->
                             </div>
                         </div>
                     </nav>
@@ -75,45 +95,95 @@
 
 <script>
 import AxiosService from '../services/axios-service'
-    export default{
-        name: "Header",
-        data() {
-            return {
-                email: "",
-                isActive: false,
-                logined: true
-            }
-        },
-        methods: {
-            async forwardLogin() {
-            this.$router.push('/login')
-            },
-            async forwardRegister() {
-                this.$router.push('/register')
-            }
-        },
-        async mounted() {
-            const accessToken = this.$cookies.get("accessToken")
-            if (accessToken) {
-                console.log(accessToken)
-                const res = await AxiosService.post('/api/auth', {
-                    accessToken: accessToken
-                })
-                console.log(res)
-                if (res.data.status === 'Success') {
-                    console.log(res.data.account.email)
-                    // this.email = res.data.account.email
-                    this.isActive = true;
-                    this.logined = false;
-                }
-            }
+
+export default{
+    props: ["count"],
+    name: "Header",
+    data() {
+        return {
+            email: "",
+            isActive: false,
+            isLogined: true,
         }
-    }
+    },
+    methods: {
+        async forwardLogin() {
+            this.$router.push('/login')
+        },
+        async forwardRegister() {
+            this.$router.push('/register')
+        },
+        async logout() {
+            this.$cookies.remove('accessToken')
+            this.isLogined = true;
+        }
+    },
+    async mounted() {
+        const accessToken = this.$cookies.get("accessToken")
+        await AxiosService.post('/api/auth', {
+          accessToken: accessToken
+        })
+        this.isActive = true;
+        this.isLogined = false;
+    },
+
+}
 </script>
 
 <style scoped>
+.dropdown {
+  float: left;
+}
+
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+  text-decoration: none;
+   color: #000;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+ 
+}
 * {
     box-sizing: border-box
+}
+.navbar-dropdown {
+    position: absolute;
+    right: 0;
+    visibility: visible;
+    width: 360px;
+    margin-top: 18px;
+    opacity: 1;
+    pointer-events: none;
+}
+.navbar-dropdown-container {
+    position: relative;
+    padding: 28px 24px 36px;
+    background-color: #fff;
+}
+.navbar-dropdown-iconLink {
+    display: flex;
+    margin-bottom: 20px;
 }
 #avatar img {
     width: 30px;
@@ -134,7 +204,6 @@ import AxiosService from '../services/axios-service'
     color: #fff;
 }
 .Navbar-element ul {
-    overflow: hidden;
     width: 100%;
 }
 .sticky {
@@ -435,7 +504,7 @@ ul {
 
 .grid-cell--col10 {
     flex: 0 0 83.3333333333%;
-    max-width: 83.3333333333%
+    max-width: 70.3333333333%
 }
 
 .grid-cell--col12 {
@@ -558,10 +627,6 @@ ul {
         flex: 0 0 100%;
         max-width: 100%
     }
-}
-
-.section {
-    overflow: hidden
 }
 
 .button {
@@ -1142,9 +1207,9 @@ ul {
 }
 
 .Navbar-height--44 {
-    height: 20px;
+    height: 43px;
     margin-left: 0%;
-    margin-top: 39px;
+    margin-top: 18px;
     
 }
 
