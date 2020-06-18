@@ -110,9 +110,12 @@ export default{
         async forwardRegister() {
             this.$router.push('/register')
         },
-        logout() {
-            //const accessToken = this.$cookies.get("accessToken")
-            this.session.destroy()
+        async logout() {
+            const accessToken = this.$cookies.get("accessToken")
+            const res = await AxiosService.post('api/logout', {
+                accessToken: accessToken
+            })
+            console.log(res)
             this.$router.push('/')
         }
     },
