@@ -107,9 +107,9 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
 import AxiosService from '../services/axios-service'
-import Footer from './Footer.vue';
-import Header from './Header.vue';
-import IntroSlide from './IntroSlide.vue';
+import Footer from '../components/Footer';
+import Header from '../components/Header.vue';
+import IntroSlide from '../components/IntroSlide.vue';
 
 
 

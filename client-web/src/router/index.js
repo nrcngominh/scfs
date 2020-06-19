@@ -4,6 +4,7 @@ import LoginPage from '../pages/LoginPage'
 import RegisterPage from '../pages/RegisterPage'
 import ErrorPage from '../pages/ErrorPage'
 import HomePage from '../pages/HomePage'
+import CheckoutPage from '../pages/CheckoutPage.vue'
 
 Vue.use(VueRouter)
 
