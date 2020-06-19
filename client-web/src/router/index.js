@@ -5,7 +5,7 @@ import RegisterForm from '../components/RegisterForm'
 import ErrorPage from '../components/ErrorPage'
 import ManagerPage from '../components/ManagerPage'
 import CustomerPage from '../components/CustomerPage'
-
+import CheckoutPage from '../components/CheckoutPage'
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -17,7 +17,16 @@ const router = new VueRouter({
             meta: {
                 title: 'BK Food | Home'
             }
-        }, {
+        },
+        {
+            path: '/checkout',
+            name: 'CheckoutPage',
+            component: CheckoutPage,
+            meta: {
+                title: 'BK Food | Checkout'
+            }
+        },
+        {
             path: '/login',
             name: 'LoginForm',
             component: LoginForm,
