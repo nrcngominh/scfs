@@ -4,7 +4,7 @@ import { registerCustomer } from '../../services/account-service'
 const RegisterRouter = Router()
 
 RegisterRouter.post('/', async (req, res) => {
-  const newAccount = await registerCustomer(req.body.email, req.body.password)
+  await registerCustomer(req.body.email, req.body.password)
   res.status(201).send({
     message: 'Success'
   })

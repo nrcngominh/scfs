@@ -13,7 +13,8 @@ FoodRouter.post('/', async (req, res) => {
       message: 'Success',
       _id: newFood._id
     })
-  } catch (error) {
+  }
+  catch (error) {
     res.status(409).send({
       message: 'Failed'
     })

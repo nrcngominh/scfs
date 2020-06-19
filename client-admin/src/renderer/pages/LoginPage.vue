@@ -16,7 +16,7 @@
 
         <md-field md-has-password>
           <label>Password</label>
-          <md-input v-model="password" type="password"></md-input>
+          <md-input v-model="password" @keyup.enter="performLogin" type="password"></md-input>
         </md-field>
       </div>
 
@@ -24,15 +24,15 @@
 
       <div class="actions md-layout md-alignment-center-space-between">
         <a href="#">Reset password</a>
-        <md-button class="md-raised md-primary" @click="auth">Log in</md-button>
+        <md-button class="md-raised md-primary" @click="performLogin">Log in</md-button>
       </div>
     </md-content>
   </div>
 </template>
 
 <script>
-import AxiosService from "../services/axios-service";
-const { ipcRenderer } = window.require('electron');
+import AccountService from "../services/account-service";
+
 export default {
   name: "LoginPage",
   data() {
@@ -51,16 +51,13 @@ export default {
     }
   },
   methods: {
-    async auth() {
+    async performLogin() {
       try {
-        const res = await AxiosService.post("/api/login/admin", {
-          email: this.email,
-          password: this.password
-        })
-        ipcRenderer.send("req-save-access-token", res.data.accessToken);
+        await AccountService.login(this.email, this.password)
         this.$router.push('/')
       } catch (error) {
         if (!error.response) {
+          console.log(error)
           this.status = 'Cannot connect to server'
         }
         else if (error.response.status == 401) {
