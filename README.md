@@ -10,4 +10,4 @@
 
 ## Setup development enviroment
 
-Run ``backup/setup-environment.sh``
+Run ``backup/restore.sh``

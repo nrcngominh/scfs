@@ -22,6 +22,7 @@
                 <li><a>Nodejs</a></li>
                 <li><a>Vuejs</a></li>
                 <li><a>Express</a></li>
+                <li><a>Nginx</a></li>
               </ul>
             </div>
 

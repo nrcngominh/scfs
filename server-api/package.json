@@ -29,7 +29,8 @@
     "build": "babel src -d dist",
     "start": "node -r dotenv/config dist/main.js dotenv_config_path=.env.local",
     "dev": "nodemon",
-    "debug": "nodemon --inspect"
+    "debug": "nodemon --inspect",
+    "lint": "eslint src"
   },
   "author": "NRC",
   "license": "ISC"

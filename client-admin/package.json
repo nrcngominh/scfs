@@ -1,10 +1,86 @@
 {
-  "name": "admin-dashboard",
-  "version": "1.0.0",
-  "description": "Dashboard for admin",
-  "main": "src/main.js",
+  "name": "client-admin",
+  "version": "0.1.0",
+  "description": "Dash board for admin",
+  "main": "src/main/index.js",
   "scripts": {
-    "start": "node src/main.js"
+    "serve": "vue-cli-service serve src/renderer/main.js  --port 9090",
+    "build": "vue-cli-service build src/renderer/main.js",
+    "start": "electron-forge start",
+    "dev": "ELECTRON_NODE_ENV=development nodemon --watch src/main/index.js --exec \"electron-forge start\"",
+    "make": "electron-forge package && electron-forge make",
+    "publish": "electron-forge publish"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "core-js": "^3.6.5",
+    "electron-serve": "^1.0.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "electron-store": "^5.2.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^8.0.2",
+    "vue": "^2.6.11",
+    "vue-material": "^1.0.0-beta-14",
+    "vue-router": "^3.3.4",
+    "vuex": "^3.4.0"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.51",
+    "@electron-forge/maker-deb": "^6.0.0-beta.51",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.51",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.51",
+    "@electron-forge/maker-zip": "^6.0.0-beta.51",
+    "@vue/cli-plugin-babel": "~4.4.0",
+    "@vue/cli-plugin-eslint": "~4.4.0",
+    "@vue/cli-service": "~4.4.0",
+    "babel-eslint": "^10.1.0",
+    "electron": "9.0.4",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "nodemon": "^2.0.4",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "client_admin"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        }
+      ]
+    }
   },
   "author": "NRC",
   "license": "ISC"

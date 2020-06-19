@@ -4,7 +4,7 @@ import RegisterRouter from './register-router'
 import FoodRouter from './food-router'
 import MomoRouter from './momo-router'
 import PaymentRouter from './payment-router'
-import AuthRouter from './auth-router' 
+import AuthRouter from './auth-router'
 
 const BaseRouter = Router()
 
