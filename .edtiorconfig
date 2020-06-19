@@ -1,6 +1,6 @@
 root=true
 
-[*.{js,json,eslintrc,babelrc}]
+[*.{css,js,json,vue,eslintrc,babelrc}]
 indent_style = space
 indent_size = 2
 end_of_line = lf

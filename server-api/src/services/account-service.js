@@ -13,7 +13,8 @@ const loginWithType = (email, password, type) => {
         return resolve(account)
       }
       reject('Authentication failed')
-    } catch (error) {
+    }
+    catch (error) {
       reject(error)
     }
   })
@@ -31,7 +32,8 @@ const registerCustomer = (email, password) => {
         return reject('Email exists')
       }
       resolve(account)
-    } catch (error) {
+    }
+    catch (error) {
       reject(error)
     }
   })

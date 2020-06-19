@@ -1,29 +1,42 @@
-import AxiosService from "../services/axios-service";
-const { ipcRenderer } = window.require('electron');
+import AxiosService from './axios-service'
+import store from '../store'
+import native from '../native'
+
+const login = async (email, password) => {
+  const res = await AxiosService.post("/api/login/admin", {
+    email: email,
+    password: password
+  })
+  store.commit('login', {
+    email: email,
+    accessToken: res.data.accessToken,
+  })
+  native.login() 
+  return res
+}
+
+const auth = async () => {
+  const token = store.state.accessToken
+  if (token) {
+    try {
+      await AxiosService.post("/api/auth/admin", {
+        accessToken: token
+      })
+      return true
+    } catch (error) {
+      return false
+    }
+  } else {
+    return false
+  }
+}
+
+const logout = async () => {
+  native.logout()
+}
 
 export default {
-  auth: async () => {
-    return new Promise((resolve, reject) => {
-      ipcRenderer.on("res-get-access-token", async (event, arg) => {
-        if (!arg) {
-          return reject('Token not found')
-        }
-        try {
-          const res = await AxiosService.post("/api/auth/admin", {
-            accessToken: arg
-          })
-          return resolve(res.data.account.email)
-        } catch (error) {
-          return reject(error)
-        }
-      })
-      ipcRenderer.send("req-get-access-token");
-    })
-  },
-  logout: async(callback) => {
-    ipcRenderer.on("res-delete-access-token", async () => {
-      callback() 
-    })
-    ipcRenderer.send("req-delete-access-token");
-  }
+  login,
+  auth,
+  logout
 }

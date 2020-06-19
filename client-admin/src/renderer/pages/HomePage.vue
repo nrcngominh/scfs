@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <div>{{ email }}</div>
     <md-button class="md-raised md-primary" @click="logout">Log out</md-button>
   </div>
 </template>
@@ -12,22 +11,13 @@ export default {
   name: 'HomePage',
   data() {
     return {
-      email: ''
     }
   },
   methods: {
     async logout() {
-      AccountService.logout(() => {
-        this.$router.push('/login')
-      })
-    }
-  },
-  async beforeCreate() {
-    try {
-      this.email = await AccountService.auth()
-    } catch (error) {
-      console.log(error)
+      this.$store.commit('logout', null)
       this.$router.push('/login')
+      AccountService.logout()
     }
   }
 }
