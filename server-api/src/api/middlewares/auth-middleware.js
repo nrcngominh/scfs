@@ -14,7 +14,8 @@ const authWithType = async (req, res, next, type) => {
       if (decoded.data.type === type) {
         req.jwtDecodedData = decoded.data
         next()
-      } else {
+      }
+      else {
         return res.status(403).send({
           message: "Forbidden"
         })
@@ -25,7 +26,8 @@ const authWithType = async (req, res, next, type) => {
         message: "Failed"
       })
     }
-  } else {
+  }
+  else {
     return res.status(403).send({
       message: "No token provided"
     })

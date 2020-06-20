@@ -3,11 +3,13 @@ import FoodModel from '../models/food-model'
 /*
  * Create new food in databse
  */
-const create = async (name, price, description) => {
+const create = async (name, price, description, category, img) => {
   return FoodModel.create({
     name: name,
     price: price,
-    description: description
+    description: description,
+    category: category,
+    img: img
   })
 }
 
@@ -16,7 +18,7 @@ const create = async (name, price, description) => {
  */
 const findAll = async () => {
   return FoodModel.find()
-    .select(' name price description img')
+    .select(' name price description category img')
 }
 
 /*

@@ -5,7 +5,7 @@ const MomoRouter = Router()
 
 MomoRouter.post('/', async (req, res) => {
   res.status(200).send({
-    message: 'Success',
+    message: 'Success'
   })
   BaseSocket.getIo().emit('payment_success', null)
 })

@@ -3,7 +3,7 @@ const serve = require('electron-serve')
 const path = require('path');
 
 const loadUrlForSPA = serve({
-  directory: path.join(__dirname, '../dist')
+  directory: path.join(__dirname, '../../dist')
 })
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -16,12 +16,15 @@ const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
+    minWidth: 800,
+    minHeight:600,
     webPreferences: {
       nodeIntegration: true,
     }
   });
-  // Hide menu bar
-  mainWindow.setMenuBarVisibility(false)
+  // Disable default menu bar
+  mainWindow.setMenu(null)
+
   // Set title
   mainWindow.webContents.on('did-finish-load', () => {
     mainWindow.setTitle("Smart Food Court System Management")
@@ -72,5 +75,3 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
-
-const eventListener = require('./event-listener')

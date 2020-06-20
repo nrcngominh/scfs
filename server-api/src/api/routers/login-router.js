@@ -14,7 +14,8 @@ const login = async (req, res, type) => {
       res.status(401).send({
         message: 'Unauthorized'
       })
-    } else {
+    }
+    else {
       const token = await generateToken({
         email: account.email,
         type: account.type
@@ -25,7 +26,8 @@ const login = async (req, res, type) => {
         accessToken: token
       })
     }
-  } catch (error) {
+  }
+  catch (error) {
     res.status(401).send({
       message: 'Unauthorized'
     })
