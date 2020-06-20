@@ -28,9 +28,8 @@
             <img v-bind:src="getImageUrl(food.img,food.category)" alt="Placholder Image 2" class="product-frame">
           </div>
           <div class="product-details">
-            <h1><span class="item-quantity">1 chiếc </span>{{food.name}} </h1>
-            <!-- <p><strong>Navy, Size 10</strong></p> -->
-            <p><em>{{food.description}}</em></p>
+            <h1><span class="item-name"></span><strong>{{food.name}}</strong></h1>
+            
           </div>
         </div>
         <div class="price">{{food.price}}</div>
@@ -96,10 +95,6 @@
   <!-- end footer -->
 </div>
 </template>
-
-
-
-
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="//code.jquery.com/jquery-3.2.1.slim.min.js"></script>
