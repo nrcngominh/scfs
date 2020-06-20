@@ -135,28 +135,23 @@ export default {
       categories: [
         {
           label: "BREAKFAST",
-          id: "breakfast",
-          active: true
+          id: "breakfast"
         },
         {
           label: "RICE",
-          id: "rice",
-          active: false
+          id: "rice"
         },
         {
           label: "VEGETARIAN DISHES",
-          id: "vegetarian-dishes",
-          active: false
+          id: "vegetarian-dishes"
         },
         {
           label: "NOODLE",
-          id: "noodle",
-          active: false
+          id: "noodle"
         },
         {
           label: "DRINK",
-          id: "drink",
-          active: false
+          id: "drink"
         }
       ],
       menu: "HomePage",
