@@ -13,51 +13,39 @@
       <div class="basket-labels">
         <ul>
           <li class="item item-heading">Item</li>
-          <li class="price">Price</li>
+          <li class="price1">Price</li>
           <li class="quantity">Quantity</li>
-          <li class="subtotal">Subtotal</li>
+          <li class="subtotal1">Subtotal</li>
         </ul>
       </div>
-      <div class="basket-product">
+
+
+
+      
+      <div class="basket-product" v-for="food in foods" :key="food.name" >
         <div class="item">
           <div class="product-image">
-            <img src="http://placehold.it/120x166" alt="Placholder Image 2" class="product-frame">
+            <img v-bind:src="getImageUrl(food.img,food.category)" alt="Placholder Image 2" class="product-frame">
           </div>
           <div class="product-details">
-            <h1><strong><span class="item-quantity">4</span> x Eliza J</strong> Lace Sleeve Cuff Dress</h1>
-            <p><strong>Navy, Size 18</strong></p>
-            <p>Product Code - 232321939</p>
+            <h1><span class="item-name"></span><strong>{{food.name}}</strong></h1>
           </div>
         </div>
-        <div class="price">26.00</div>
+        <div class="price">{{food.price}}</div>
         <div class="quantity">
-          <input type="number" value="4" min="1" class="quantity-field">
+          <input type="number" v-bind:value="sthNumber" v-on:input = "sthNumber = $event.target.value" min="1" class="quantity-field">
         </div>
-        <div class="subtotal">104.00</div>
+        <div class="subtotal">{{subtotal}}</div>
         <div class="remove">
           <button>Remove</button>
         </div>
-      </div>
-      <div class="basket-product">
-        <div class="item">
-          <div class="product-image">
-            <img src="http://placehold.it/120x166" alt="Placholder Image 2" class="product-frame">
-          </div>
-          <div class="product-details">
-            <h1><strong><span class="item-quantity">1</span> x Whistles</strong> Amella Lace Midi Dress</h1>
-            <p><strong>Navy, Size 10</strong></p>
-            <p>Product Code - 232321939</p>
-          </div>
-        </div>
-        <div class="price">26.00</div>
-        <div class="quantity">
-          <input type="number" value="1" min="1" class="quantity-field">
-        </div>
-        <div class="subtotal">26.00</div>
-        <div class="remove">
-          <button>Remove</button>
-        </div>
-      </div>
+  </div>
+
+
+
+
+
+
     </div>
     <aside>
       <div class="summary">
@@ -71,6 +59,17 @@
           </div>
         </div>
         
+
+
+
+
+
+
+
+
+
+
+
         <div class="summary-promotional">
           <label for="promo-code">Enter a promotional code</label>
           <input id="promo-code" type="text" name="promo-code" maxlength="5" class="promo-code-field">
@@ -96,79 +95,82 @@
 </div>
 </template>
 
-
-
-
-
-
-
-
-
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="//code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="simple.money.format.js"></script>
 <script>
 import AxiosService from '../services/axios-service'
 import Footer from '../components/Footer';
-import Header from '../components/Header.vue';
-import IntroSlide from '../components/IntroSlide.vue';
-
-
-
-
+import Header from '../components/Header';
+import IntroSlide from '../components/IntroSlide';
 
 import $ from 'jquery';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+
 AOS.init({
   offset: 300,
   duration: 1000
 });
 export default {
-  name: "CustomerPage",
+  name: "HomePage",
   components: {
     Header, Footer, IntroSlide
   },
   data() {
     return {
-        menu: "CustomerPage",
+        menu: "HomePage",
         foods: [],
         name: "",
         price: 0,
-        description: ""
+        description: "",
+        subtotal: 0,
     }
   },
   beforeCreate() {
     document.body.className = "user";
   },
   methods: {
-    logout() {
-      this.$router.push('/')
-    },
-    async add() {
+    async addToCart() {
+      const accessToken = this.$cookies.get("accessToken")
       try {
-        const newFood = {
-          name: this.name,
-          price: this.price,
-          description: this.description
-        }
-        const res = await AxiosService.post('/api/food', newFood)
-        console.log(res.data)
-        if (res.data.status == 'success') {
-          newFood._id = res.data._id
-          this.foods.push(newFood)
-        } else {
-          alert('failed')
-        }
-      } catch (err) { 
-        console.log(err)
+        const res = await AxiosService.post('/api/auth', {
+          accessToken: accessToken
+        })
+      } catch (error) {
+        this.$router.push('/login')
       }
     },
-    async order() {
-
+    async buy() {
+      const accessToken = this.$cookies.get("accessToken")
+      try {
+        const res = await AxiosService.post('/api/auth', {
+          accessToken: accessToken
+        })
+      } catch (error) {
+        this.$router.push('/login')
+      }
+    },
+    getImageUrl(path,category) {
+      return `${AxiosService.defaults.baseURL}images/${category}/${path}`;
     }
   }, 
   async mounted() {
     const res = await AxiosService.get('/api/food')
-    this.foods = res.data.foods;
+    if (res.status == 200) {
+      this.foods = res.data.foods;
+    }
+    let navbar = document.getElementById("nav");
+    //let sticky = navbar.offsetTop;
+    window.onscroll = () => {
+        if (window.pageYOffset >= 150) {
+            //navbar.classList.add("sticky");
+            navbar.classList.add("hidden");
+        } else {
+            //navbar.classList.remove("sticky");
+            navbar.classList.remove("hidden");
+        }
+    };
   }
 }
 </script>
@@ -178,7 +180,7 @@ export default {
 
 <style scoped>
 .body {
-  background-color: #fff;
+  background-color: rgba(251, 251, 251, 1);
   color: #666;
   font-family: 'Open Sans', sans-serif;
   font-size: 62.5%;
@@ -235,6 +237,8 @@ button,
 .basket-labels,
 .item,
 .price,
+.price1,
+.subtotal1,
 .quantity,
 .subtotal,
 .basket-product,
@@ -242,13 +246,18 @@ button,
 .product-details {
   float: left;
 }
+/* .price1,
+.subtotal1{
+    width: 33%;
+    float: left;
+} */
 
-.price:before,
-.subtotal:before,
-.subtotal-value:before,
-.total-value:before,
-.promo-value:before {
-  content: '£';
+.price:after,
+.subtotal:after,
+.subtotal-value:after,
+.total-value:after,
+.promo-value:after {
+  content: 'VND';
 }
 
 .hide {
@@ -258,10 +267,10 @@ button,
 main {
   clear: both;
   font-size: 0.75rem;
-  margin: 0 auto;
   overflow: hidden;
+  margin-left: 147px;
   padding: 1rem 0;
-  width: 960px;
+  width: 91%;
 }
 
 .basket,
@@ -326,7 +335,10 @@ li {
   display: inline-block;
   padding: 0.625rem 0;
 }
-
+li.subtotal1 {
+    float: right;
+    text-align: right;
+}
 li.price:before,
 li.subtotal:before {
   content: '';
@@ -337,6 +349,8 @@ li.subtotal:before {
 }
 
 .price,
+.price1,
+.subtotal1,
 .quantity,
 .subtotal {
   width: 15%;
@@ -411,7 +425,7 @@ aside {
 }
 
 .summary {
-  margin-left: 155px;
+  margin-left: -6px;
   background-color: aliceblue;
   border: 1px solid #aaa;
   padding: 1rem;
@@ -530,6 +544,8 @@ aside {
     width: 60%;
   }
   .price,
+  .price1,
+  .subtotal1,
   .subtotal {
     width: 33%;
   }
