@@ -238,6 +238,10 @@ li.nav-item a:hover {
   background-color: black;
   color: white;
 }
+li.nav-item a.category-active {
+  background-color: #808080;
+  color: white;
+}
 .card {
   width: 250px;
 }
