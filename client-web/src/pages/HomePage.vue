@@ -239,7 +239,7 @@ li.nav-item a:hover {
   color: white;
 }
 li.nav-item a.category-active {
-  background-color: #808080;
+  background-color: black;
   color: white;
 }
 .card {
