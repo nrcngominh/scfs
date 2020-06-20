@@ -18,8 +18,11 @@
         <nav class="subnav container">
           <ul class="nav justify-content-center">
             <li class="nav-item" v-for="category in categories" :key="category.id">
-              <a class="nav-link" v-bind:class="{active: category.active}"
-                @click="changeCategory(category.id)">{{ category.label }}</a>
+              <a
+                class="nav-link"
+                v-bind:class="{'category-active': selectedCategory == category.id}"
+                @click="changeCategory(category.id)"
+              >{{ category.label }}</a>
             </li>
           </ul>
         </nav>
@@ -154,7 +157,7 @@ export default {
           label: "DRINK",
           id: "drink",
           active: false
-        },
+        }
       ],
       menu: "HomePage",
       foodOfCategory: [],
@@ -179,13 +182,15 @@ export default {
       }
     },
     changeCategory(category) {
-      this.selectedCategory = category
-      this.showFoodOfCategory()
+      this.selectedCategory = category;
+      this.showFoodOfCategory();
     },
     showFoodOfCategory() {
-      console.log(this.selectedCategory)
-      this.foodOfCategory = this.foods.filter(food => food.category == this.selectedCategory)
-      console.log(this.foodOfCategory)
+      console.log(this.selectedCategory);
+      this.foodOfCategory = this.foods.filter(
+        food => food.category == this.selectedCategory
+      );
+      console.log(this.foodOfCategory);
     },
     async buy() {
       const accessToken = this.$cookies.get("accessToken");
@@ -205,7 +210,7 @@ export default {
     const res = await AxiosService.get("/api/food");
     if (res.status == 200) {
       this.foods = res.data.foods;
-      this.showFoodOfCategory()
+      this.showFoodOfCategory();
     }
     let navbar = document.getElementById("nav");
     //let sticky = navbar.offsetTop;
@@ -442,6 +447,11 @@ p.aos-init {
   background-color: #ff5e18;
   border-color: #ff5e18;
 }
+li.nav-item a.category-active {
+  background-color: #808080;
+  color: white;
+}
+
 .single_menu_list {
   position: relative;
   padding-left: 190px;
