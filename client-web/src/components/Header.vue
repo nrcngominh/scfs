@@ -17,18 +17,6 @@
                                     <ul class="Navbar-list">
                                         <li class="Navbar-item Dropdown">
                                             <a href="#" class="Navbar-link title f12 active"> <span> Home </span> </a>
-                                            <!-- <div class="Dropdown-inner Dropdown--center Dropdown--new Dropdown--platform">
-                                                <ul class="grid">
-                                                    <li class="Dropdown-item grid-cell--col12 u-flex u-mb24">
-                                                        <a href="#" class="Dropdown-link u-flex u-align-center">
-                                                            <div class="u-ml12">
-                                                                <p class="text is-caption is-semibold Dropdown-link-platform">Data Ingestion & Management</p>
-                                                                <p class="text is-small"></p>
-                                                            </div>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div> -->
                                         </li>
 
                                         <li class=Navbar-item>
