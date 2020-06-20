@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="dashboard">
     <md-button class="md-raised md-primary" @click="logout">Log out</md-button>
   </div>
 </template>
@@ -8,7 +8,7 @@
 import AccountService from '../services/account-service'
 
 export default {
-  name: 'HomePage',
+  name: 'Dashboard',
   data() {
     return {
     }
@@ -22,8 +22,3 @@ export default {
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-</style>

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import LoginPage from '../pages/LoginPage'
-import HomePage from '../pages/HomePage'
+import Dashboard from '../pages/Dashboard'
 import AccountService from '../services/account-service'
 
 Vue.use(VueRouter)
@@ -11,8 +11,8 @@ const router = new VueRouter({
   routes: [
     {
       path: '/',
-      name: 'HomePage',
-      component: HomePage,
+      name: 'Dashboard',
+      component: Dashboard,
       beforeEnter: async (to, from, next) => {
         await AccountService.auth() ? next() : next('/login')
       }
