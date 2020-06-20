@@ -29,7 +29,6 @@
           </div>
           <div class="product-details">
             <h1><span class="item-name"></span><strong>{{food.name}}</strong></h1>
-            
           </div>
         </div>
         <div class="price">{{food.price}}</div>
