@@ -62,11 +62,10 @@
                 </h3>
                 <p
                   class="mt-4"
-                  data-aos="fade-up"
                 >The university is currently has one food court located in its Ly Thuong Kiet campus and is going to build another one in Di An campus.All food courts consist of a number of vendors at food stalls or service counters. Meals are ordered at one of the vendors and then carried to a common area for consumption.</p>
               </div>
             </div>
-            <div data-aos="fade-up" id="img_bk" class="col-lg-6 col-md-6 col-sm-12 text-center">
+            <div id="img_bk" class="col-lg-6 col-md-6 col-sm-12 text-center">
               <img src="@/assets/bkfood.jpg" alt class="img-fluid1" />
             </div>
           </div>
@@ -441,10 +440,6 @@ p.aos-init {
   color: white;
   background-color: #ff5e18;
   border-color: #ff5e18;
-}
-li.nav-item a.category-active {
-  background-color: #808080;
-  color: white;
 }
 
 .single_menu_list {
