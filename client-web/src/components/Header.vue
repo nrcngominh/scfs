@@ -45,7 +45,7 @@
                                     <li id="cart" :class = "{hidden: isLogined}">
                                         <div id="avatar">
                                             <img src="@/assets/cart.png" alt="">
-                                            <span id="count-cart">{{count}}</span> 
+                                            <span id="count-cart">{{$store.state.cart.items.length}}</span> 
                                         </div>
                                         
                                     </li>    
@@ -72,7 +72,6 @@
 import AxiosService from '../services/axios-service'
 
 export default{
-    props: ["count"],
     name: "Header",
     data() {
         return {

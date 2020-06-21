@@ -22,22 +22,22 @@
 
 
       
-      <div class="basket-product" v-for="food in foods" :key="food.name" >
+      <div class="basket-product" v-for="item in $store.state.cart.items" :key="item.food._id" >
         <div class="item">
           <div class="product-image">
-            <img v-bind:src="food.img" alt="Placholder Image 2" class="product-frame">
+            <img v-bind:src="item.food.img" alt="Placholder Image 2" class="product-frame">
           </div>
           <div class="product-details">
-            <h1><span class="item-name"></span><strong>{{food.name}}</strong></h1>
+            <h1><span class="item-name"></span><strong>{{item.food.name}}</strong></h1>
           </div>
         </div>
-        <div class="price">{{food.price}}</div>
+        <div class="price">{{item.food.price}}</div>
         <div class="quantity">
-          <input type="number" v-bind:value="sthNumber" v-on:input = "sthNumber = $event.target.value" min="1" class="quantity-field">
+          <input type="number" v-bind:value="item.quantity" v-on:input = "updateQuantity(item.food._id, $event.target.value)" min="1" class="quantity-field">
         </div>
-        <div class="subtotal">{{subtotal}}</div>
+        <div class="subtotal">{{item.food.price * item.quantity}}</div>
         <div class="remove">
-          <button>Remove</button>
+          <button @click="$store.commit('removeItem', item.food._id)">Remove</button>
         </div>
   </div>
 
@@ -52,7 +52,7 @@
         <div class="summary-total-items"><span class="total-items"></span> Items in your Bag</div>
         <div class="summary-subtotal">
           <div class="subtotal-title">Subtotal</div>
-          <div class="subtotal-value final-value" id="basket-subtotal">{{total}}</div>
+          <div class="subtotal-value final-value" id="basket-subtotal">{{totalMoney}}</div>
           <div class="summary-promo hide">
             <div class="promo-title">Promotion</div>
             <div class="promo-value final-value" id="basket-promo"></div>
@@ -72,15 +72,15 @@
 
         <div class="summary-promotional">
           <label for="promo-code">Enter a promotional code</label>
-          <input id="promo-code" type="text" name="promo-code" maxlength="5" class="promo-code-field">
-          <button class="promo-code-cta">Apply</button>        
+          <input id="promo-code" v-model="promoCode" type="text" name="promo-code" maxlength="5" class="promo-code-field">
+          <button class="promo-code-cta" @click="applyPromotionCode()">Apply</button>        
         </div>
         <div class="summary-total">
           <div class="total-title">Total</div>
-          <div class="total-value final-value" id="basket-total">{{total}}</div>
+          <div class="total-value final-value" id="basket-total">{{totalMoneyAfterDiscount()}}</div>
         </div>
         <div class="summary-checkout">
-          <button class="checkout-cta">Confirm Order</button>
+          <button class="checkout-cta" @click="$router.push('/payment')">Confirm Order</button>
         </div>
       </div>
 
@@ -120,11 +120,18 @@ export default {
   data() {
     return {
         menu: "HomePage",
-        foods: [],
-        name: "",
-        price: 0,
-        description: "",
-        subtotal: 0,
+        promoCode: "",
+        realPromoCode: ""
+    }
+  },
+  computed: {
+    totalMoney() {
+      const items = this.$store.state.cart.items
+      let sum = 0
+      for (let i = 0; i < items.length; i++) {
+        sum += items[i].quantity * items[i].food.price
+      }
+      return sum
     }
   },
   beforeCreate() {
@@ -150,13 +157,25 @@ export default {
       } catch (error) {
         this.$router.push('/login')
       }
+    },
+    updateQuantity(foodId, newQuantity) {
+      this.$store.commit('updateQuantity', {
+        foodId: foodId,
+        newQuantity: newQuantity
+      })
+    },
+    applyPromotionCode() {
+      this.realPromoCode = this.promoCode
+    },
+    totalMoneyAfterDiscount() {
+      const totalMoneyAfterDiscount = this.realPromoCode == "BKU18" ? 
+        this.totalMoney * 0.85 : this.totalMoney
+      this.$store.commit('updateTotalMoney', totalMoneyAfterDiscount)
+      return totalMoneyAfterDiscount
     }
   }, 
   async mounted() {
-    const res = await AxiosService.get('/api/food')
-    if (res.status == 200) {
-      this.foods = res.data.foods;
-    }
+    
     let navbar = document.getElementById("nav");
     //let sticky = navbar.offsetTop;
     window.onscroll = () => {
