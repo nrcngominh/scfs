@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueCookies from 'vue-cookies'
 import App from './App'
 import router from './router'
+import store from './store'
 //Add boostrap
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
@@ -26,6 +27,7 @@ Vue.use(VueCookies)
 Vue.$cookies.config('1d')
 
 new Vue({
+    store,
     router,
     render: h => h(App),
 }).$mount('#app')

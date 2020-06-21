@@ -39,8 +39,8 @@
                 <h5 class="card-title">{{ food.name }}</h5>
                 <h6 class="card-title money">{{ food.price }}</h6>
                 <p class="card-text">{{ food.description }}</p>
-                <button @click="buy" class="btn btn-success mr-3">Buy</button>
-                <button @click="addToCart" class="btn btn-primary">Add to cart</button>
+                <button @click="buy(food)" class="btn btn-success mr-3">Buy</button>
+                <button @click="addToCart(food)" class="btn btn-primary">Add to cart</button>
               </div>
             </div>
           </div>
@@ -144,15 +144,22 @@ export default {
     document.body.className = "user";
   },
   methods: {
-    async addToCart() {
-      const accessToken = this.$cookies.get("accessToken");
-      try {
-        const res = await AxiosService.post("/api/auth", {
-          accessToken: accessToken
-        });
-      } catch (error) {
-        this.$router.push("/login");
-      }
+    async addToCart(food) {
+      // Authencicated
+        this.$store.commit('addToCart', {
+          food: food
+        })
+      // const accessToken = this.$cookies.get("accessToken");
+      // try {
+      //   const res = await AxiosService.post("/api/auth", {
+      //     accessToken: accessToken
+      //   });
+
+        
+
+      // } catch (error) {
+      //   this.$router.push("/login");
+      // }
     },
     changeCategory(category) {
       this.selectedCategory = category;
@@ -162,7 +169,8 @@ export default {
       this.foods = this.responseArr.find(obj => 
         obj.category == this.selectedCategory).foods
     },
-    async buy() {
+    async buy(food) {
+      this.$router.push("/checkout");
       const accessToken = this.$cookies.get("accessToken");
       try {
         const res = await AxiosService.post("/api/auth", {
