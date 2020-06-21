@@ -84,6 +84,9 @@
     vertical-align: middle;
     display: block;
   }
+  .no-notification{
+    visibility: hidden;
+  }
 
   .navbar-nav {
     > li > .dropdown-menu{

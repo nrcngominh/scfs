@@ -25,7 +25,7 @@
       <div class="basket-product" v-for="food in foods" :key="food.name" >
         <div class="item">
           <div class="product-image">
-            <img v-bind:src="getImageUrl(food.img,food.category)" alt="Placholder Image 2" class="product-frame">
+            <img v-bind:src="food.img" alt="Placholder Image 2" class="product-frame">
           </div>
           <div class="product-details">
             <h1><span class="item-name"></span><strong>{{food.name}}</strong></h1>
@@ -52,7 +52,7 @@
         <div class="summary-total-items"><span class="total-items"></span> Items in your Bag</div>
         <div class="summary-subtotal">
           <div class="subtotal-title">Subtotal</div>
-          <div class="subtotal-value final-value" id="basket-subtotal">130.00</div>
+          <div class="subtotal-value final-value" id="basket-subtotal">{{total}}</div>
           <div class="summary-promo hide">
             <div class="promo-title">Promotion</div>
             <div class="promo-value final-value" id="basket-promo"></div>
@@ -77,7 +77,7 @@
         </div>
         <div class="summary-total">
           <div class="total-title">Total</div>
-          <div class="total-value final-value" id="basket-total">130.00</div>
+          <div class="total-value final-value" id="basket-total">{{total}}</div>
         </div>
         <div class="summary-checkout">
           <button class="checkout-cta">Confirm Order</button>
@@ -150,9 +150,6 @@ export default {
       } catch (error) {
         this.$router.push('/login')
       }
-    },
-    getImageUrl(path,category) {
-      return `${AxiosService.defaults.baseURL}images/${category}/${path}`;
     }
   }, 
   async mounted() {
@@ -201,7 +198,7 @@ p {
 }
 
 h1 {
-  font-size: 0.75rem;
+  font-size: 15px;
   font-weight: normal;
   margin: 0;
   padding: 0;
@@ -266,13 +263,15 @@ button,
 
 main {
   clear: both;
-  font-size: 0.75rem;
+  font-size: 15px;
   overflow: hidden;
   margin-left: 147px;
   padding: 1rem 0;
   width: 91%;
 }
-
+.item-name{
+  font-size: 15px;
+}
 .basket,
 aside {
   padding: 0 1rem;
@@ -299,7 +298,7 @@ label {
   padding: 0.5rem;
   text-transform: uppercase;
   transition: all 0.2s linear;
-  width: 48%;
+  width: 66%;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
   -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
   -o-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
@@ -313,9 +312,9 @@ label {
 
 .promo-code-cta {
   border-radius: 4px;
-  font-size: 0.625rem;
-  margin-left: 2.5rem;
-  padding: 0.6875rem 1.25rem 0.625rem;
+  font-size: 0.675rem;
+  margin-left: 5px;
+  padding: 0.95rem 1.25rem 0.625rem;
 }
 
 .basket-labels {
@@ -391,7 +390,7 @@ li.subtotal:before {
 }
 
 .product-image {
-  width: 35%;
+  width: 30%;
 }
 
 .product-details {
@@ -510,7 +509,7 @@ aside {
   width: 100%;
 }
 
-.summary-delivery-selection {
+/* .summary-delivery-selection {
   background-color: #ccc;
   border: 1px solid #aaa;
   border-radius: 4px;
@@ -518,7 +517,7 @@ aside {
   font-size: 0.625rem;
   height: 34px;
   width: 100%;
-}
+} */
 
 @media screen and (max-width: 640px) {
   aside,

@@ -30,32 +30,46 @@
                         <section class="signup__form">
                             <h1 class="sessions__title">Create your account</h1>
                             <ul class="tabs">
-                                <li class="tabs__item js-step1 is-active">
-                                    <span class="tabs__number">1</span>
+                                <li class="tabs__item is-active">
+                                    <span :class = "[setup]">1</span>
                                     <span class="tabs__title">Account Setup</span>
                                 </li>
-                                <li class="tabs__item js-step2">
-                                    <span class="tabs__number">2</span>
+                                <li class="tabs__item">
+                                    <span :class = "[info]">2</span>
                                     <span class="tabs__title">Personal Info</span>
                                 </li>
                             </ul>
                             <div class="form">
-                                <div class="form__field">
+                                <div :class = "{hidden: is_setup}" class="form__field">
                                     <label for="email" class="form__label">Email</label>
                                     <input v-model="email" @keyup.enter="nextInput" class="form__input"/>
                                     <p class="form__input-error"></p>
                                 </div>
-                                <div class="form__field">
+                                
+                                <div :class = "{hidden: is_setup}" class="form__field">
                                     <label for="password" class="form__label">Password</label>
                                     <div class="form__input-icon">
                                         <input id="password" v-model="password" @keyup.enter="submit" class="form__input" type="password"/>
                                         <p class="form__input-info">Your password must include at least 8 characters</p>
                                     </div>
                                 </div>
+                                <div :class = "{hidden: setup_success}" class="form__field">
+                                    <label for="" class="form__label">Full Name</label>
+                                    <input @keyup.enter="nextInput" class="form__input"/>
+                                    <p class="form__input-error"></p>
+                                </div>
+                                <div :class = "{hidden: setup_success}" class="form__field">
+                                    <label for="" class="form__label">Phone number</label>
+                                    <input @keyup.enter="nextInput" class="form__input"/>
+                                    <p class="form__input-error"></p>
+                                </div>
+                                <div id="back" :class = "{hidden: setup_success}">
+                                    <a @click = "back"><span>Back</span></a>
+                                </div>
                                 <div class="tabs__foo">
                                     <div class="grid mt-4">
                                     <div class="grid-cell grid-cell--col12 mt-4 p-0">
-                                        <button @click="register"  class="button isRed w-100">Next</button>
+                                        <button @click="next" class="button isRed w-100">{{msg}}</button>
                                         <div class="grid-cell grid-cell--col1--desktop-l desktop-l"></div>
                                     </div>
                                     </div>
@@ -78,7 +92,12 @@ export default {
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      msg: "Next",
+      setup: 'tabs__number_is_active',
+      info: 'tabs__number_is_notactive',
+      is_setup: false,
+      setup_success: true
     }
   },
   beforeCreate() {
@@ -109,6 +128,20 @@ export default {
     async submit() {
       this.register();
     },
+    async next() {
+        this.setup = 'tabs__number_is_notactive';
+        this.info = 'tabs__number_is_active';
+        this.is_setup = true;
+        this.setup_success = false;
+        this.msg = "Register"
+    },
+    async back() {
+        this.setup = 'tabs__number_is_active';
+        this.info = 'tabs__number_is_notactive';
+        this.is_setup = false;
+        this.setup_success = true;
+        this.msg = "Next"
+    },
     nextInput() {
       document.getElementById('password').focus();
     },
@@ -123,11 +156,20 @@ export default {
 </script>
 
 <style scoped>
+#back a{
+    color: #828a8f;
+    cursor: pointer;
+}
+#back a:hover{
+    text-decoration: underline;
+}
 #_login {
     color: #EB1510;
     text-decoration: underline;
 }
-
+.hidden {
+    display: none;
+}
 #_login:hover {
     cursor: pointer;
 }
@@ -245,7 +287,8 @@ export default {
     margin-right: 16px
 }
 
-.tabs__number {
+.tabs__number_is_active,
+.tabs__number_is_notactive {
     display: inline-block;
     width: 1.5em;
     height: 1.5em;
@@ -260,8 +303,10 @@ export default {
     display: none;
     margin-left: 8px
 }
-
-.tabs__item.is-active .tabs__number {
+.tabs__number_is_active {
+    background-color: #11a2b8;
+}
+/* .tabs__item.is-active .tabs__number {
     background-color: #11a2b8
 }
 
@@ -271,8 +316,10 @@ export default {
 
 .tabs__item.is-active~.tabs__item .tabs__number {
     background-color: rgba(130, 138, 143, 0.3)
+} */
+.tabs__number_is_notactive {
+    background-color: rgba(130, 138, 143, 0.3);
 }
-
 @media (min-width: 801px) {
     .tabs {
         margin-top: 16px

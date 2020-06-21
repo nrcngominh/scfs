@@ -60,19 +60,6 @@
                                         </div>
                                     </li>                   
                                 </ul>
-                                        <!-- <div id="avatar">
-                                            <img src="@/assets/account.png" alt=""> 
-                                        </div>
-                                        <div class="navbar-dropdown">
-                                            <ul class="navbar-dropdown-container">
-                                                <li class="navbar-dropdown-iconLink">
-                                                    <a href="">link1</a>
-                                                </li>
-                                                <li class="navbar-dropdown-iconLink">
-                                                    <a href="">link2</a>
-                                                </li>
-                                            </ul>
-                                        </div> -->
                             </div>
                         </div>
                     </nav>

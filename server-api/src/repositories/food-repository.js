@@ -18,7 +18,18 @@ const create = async (name, price, description, category, img) => {
  */
 const findAll = async () => {
   return FoodModel.find()
-    .select(' name price description category img')
+    .select(' name price description categoryId img')
+}
+
+/*
+ * Update
+ */
+const update = async (food) => {
+  return FoodModel.findOneAndUpdate({_id: food._id }, {
+    name: food.name,
+    price: food.price,
+    description: food.description
+  })
 }
 
 /*
@@ -33,5 +44,6 @@ const removeById = async (id) => {
 export default {
   create,
   findAll,
+  update,
   removeById
 }

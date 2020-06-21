@@ -1,11 +1,17 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-import LoginPage from "@/pages/LoginPage";
+import "@/pages";
 import DashboardLayout from "@/layouts/DashboardLayout";
-import Dashboard from "@/pages/Dashboard";
 
 import { AccountService } from "@/services";
+import {
+  Dashboard,
+  ProfilePage,
+  AboutPage,
+  NotificationPage,
+  LoginPage
+} from "../pages";
 
 Vue.use(VueRouter);
 
@@ -22,6 +28,21 @@ const routes = [
         path: "dashboard",
         name: "Dashboard",
         component: Dashboard
+      },
+      {
+        path: "profile",
+        name: "Profile",
+        component: ProfilePage
+      },
+      {
+        path: "notification",
+        name: "Notification",
+        component: NotificationPage
+      },
+      {
+        path: "about",
+        name: "About",
+        component: AboutPage
       }
     ]
   },

@@ -20,6 +20,7 @@ import App from "./App";
 
 import routes from "./routes";
 import store from "./store";
+import "material-design-icons/iconfont/material-icons.css";
 import MaterialDashboard from "./material-dashboard";
 import "@/assets/scss/index.scss";
 
