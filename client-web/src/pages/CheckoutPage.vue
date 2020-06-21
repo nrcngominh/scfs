@@ -25,7 +25,7 @@
       <div class="basket-product" v-for="food in foods" :key="food.name" >
         <div class="item">
           <div class="product-image">
-            <img v-bind:src="getImageUrl(food.img,food.category)" alt="Placholder Image 2" class="product-frame">
+            <img v-bind:src="food.img" alt="Placholder Image 2" class="product-frame">
           </div>
           <div class="product-details">
             <h1><span class="item-name"></span><strong>{{food.name}}</strong></h1>
@@ -150,9 +150,6 @@ export default {
       } catch (error) {
         this.$router.push('/login')
       }
-    },
-    getImageUrl(path,category) {
-      return `${AxiosService.defaults.baseURL}images/${category}/${path}`;
     }
   }, 
   async mounted() {
