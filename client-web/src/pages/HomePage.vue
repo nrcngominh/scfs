@@ -33,7 +33,7 @@
           <div class="col-md-3 mt-4" v-for="food in foodOfCategory" :key="food.name">
             <div class="card">
               <div class="zoom">
-                <img class="card-img-top" v-bind:src="getImageUrl(food.img,food.category)" />
+                <img class="card-img-top" v-bind:src="food.img" />
               </div>
               <div class="card-body">
                 <h5 class="card-title">{{ food.name }}</h5>
@@ -196,9 +196,6 @@ export default {
       } catch (error) {
         this.$router.push("/login");
       }
-    },
-    getImageUrl(path, category) {
-      return `${AxiosService.defaults.baseURL}images/${category}/${path}`;
     }
   },
   async mounted() {
