@@ -18,7 +18,7 @@ const create = async (name, price, description, category, img) => {
  */
 const findAll = async () => {
   return FoodModel.find()
-    .select(' name price description category img')
+    .select(' name price description categoryId img')
 }
 
 /*

@@ -1,6 +1,5 @@
 import Router from 'express'
-import FoodRepo from '../../repositories/food-repository'
-import url from 'url'
+import FoodService from '../../services/food-service'
 
 const FoodRouter = Router()
 
@@ -9,7 +8,7 @@ const FoodRouter = Router()
  */
 FoodRouter.post('/', async (req, res) => {
   try {
-    const newFood = await FoodRepo.create(req.body.name, req.body.price, req.body.description)
+    const newFood = await FoodService.create(req.body.name, req.body.price, req.body.description)
     res.status(201).send({
       message: 'Success',
       _id: newFood._id
@@ -26,13 +25,8 @@ FoodRouter.post('/', async (req, res) => {
  * Handle get all foods
  */
 FoodRouter.get('/', async (req, res) => {
-  const foods = await FoodRepo.findAll()
-  foods.forEach(food => {
-    food.img = url.resolve(process.env.DOMAIN, food.img)
-  })
-  res.status(200).send({
-    foods: foods
-  })
+  const foods = await FoodService.getAllAndGroupByCategory()
+  res.status(200).send(foods)
 })
 
 
@@ -40,7 +34,7 @@ FoodRouter.get('/', async (req, res) => {
  * Handle delete food by id
  */
 FoodRouter.delete('/', async (req, res) => {
-  await FoodRepo.removeById(req.body.id)
+  await FoodService.removeById(req.body.id)
   res.status(204).send({
     message: 'Sucess'
   })

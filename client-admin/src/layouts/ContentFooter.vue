@@ -10,8 +10,8 @@
       </nav>
       <div class="copyright text-center">
         &copy; {{ new Date().getFullYear() }}
-        <a href="#" target="_blank">HCMUT</a>, made by Electron.js, Vue.js and
-        Material Design
+        <a href="#" target="_blank">HCMUT</a>, made by Electron, Vue, Material
+        Design
       </div>
     </div>
   </footer>
