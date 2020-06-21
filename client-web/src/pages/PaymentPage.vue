@@ -13,7 +13,6 @@
 <div class = "all-payment-method">
   <h3 class="title">1. Please select a payment method for your order</h3>
     <ul class="list"><li class="styles__StyledMethod-sc-1u5r3pb-1 fTvtIP">
-     
         </li>
         <li class="styles__StyledMethod-sc-1u5r3pb-1 fTvtIP">
           <label class="RadioCheckout__StyledRadio-bkaeis-0 bqACGT">
@@ -47,6 +46,70 @@
 <div class = "notice">
   <em><p>Please check your order carefully befor click "Confirm Order"</p></em> 
   
+
+<div class="OrderSummary__StyledOrderSummary-ue7sy3-0 UHbjr">
+  <div class="title">
+    <span>Order</span>
+    <a href="/checkout" class = "fix-button"><button>Sửa</button></a>
+  </div>
+      <div class = "basket-product" v-for="food in foods" :key = "food.name" >
+
+  <div class="cart">
+    <div class="product">
+      <div class="OrderSummary__StyledItem-ue7sy3-1 iylcMU">
+        <div class="info">
+          <strong class="qty">{{quantity}}</strong>
+          <a class="product-name">{{food.name}}</a>
+        </div>
+        <div class="price">{{food.price}}VND</div>
+      </div>
+    </div>
+    <div class="price-summary">
+      <div class="OrderSummary__StyledPriceInfo-ue7sy3-2 ifcYED">
+        <div class="inner">
+          <div class="name">Tạm tính</div>
+          <div class="value">3.588.900đ</div>
+        </div>
+      </div>
+      <div class="OrderSummary__StyledPriceInfo-ue7sy3-2 ifcYED">
+        <div class="inner">
+          <div class="name">
+            Phí vận chuyển<span class="sponsor__link">Chi tiết</span>
+          </div>
+          <div class="value">0đ</div>
+        </div>
+        <div class="OrderSummary__StyledSponsorFee-ue7sy3-4 byenE">
+          <ul class="sponsor__items">
+            <li class="sponsor__item">
+              <span class="sponsor__name">Phí ban đầu</span>
+              <span class="sponsor__prices sponsor__prices--null">19.000đ</span>
+            </li>
+            <li class="sponsor__item">
+              <span class="sponsor__name">Tiki hỗ trợ</span>
+              <span class="sponsor__prices sponsor__prices--positive">
+                -19.000đ
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="total">
+        <div class="name">Thành tiền:</div>
+        <div class="value">
+          3.588.900 ₫<i>(Đã bao gồm VAT nếu có)</i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>;
+
+</div>
+
+
+
+
+
+
 </div>
   <div class="mt-3">
       <Footer />
