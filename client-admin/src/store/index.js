@@ -7,8 +7,7 @@ const store = new Vuex.Store({
   state: {
     accessToken: null,
     email: null,
-    sidebarBackground: require("@/assets/img/sidebar-2.jpg"),
-    sidebarColor: null
+    numOfNotifications: 0
   },
   mutations: {
     login(state, payload) {
@@ -16,9 +15,6 @@ const store = new Vuex.Store({
     },
     logout(state) {
       (state.accessToken = null), (state.email = null);
-    },
-    setSidebarBackground(state, image) {
-      state.sidebarBackground = image;
     }
   }
 });

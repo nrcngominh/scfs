@@ -2,53 +2,27 @@
   <div class="wrapper" :class="{ 'nav-open': $sidebar.showSidebar }">
     <notifications></notifications>
 
-    <side-bar
-      :sidebar-item-color="sidebarBackground"
-      :sidebar-background-image="$store.state.sidebarBackground"
-    >
-      <mobile-menu slot="content"></mobile-menu>
+    <side-bar>
       <sidebar-link to="/dashboard">
         <md-icon>dashboard</md-icon>
         <p>Dashboard</p>
       </sidebar-link>
-      <sidebar-link to="/user">
-        <md-icon>person</md-icon>
-        <p>User Profile</p>
-      </sidebar-link>
-      <sidebar-link to="/table">
-        <md-icon>content_paste</md-icon>
-        <p>Table list</p>
-      </sidebar-link>
-      <sidebar-link to="/typography">
-        <md-icon>library_books</md-icon>
-        <p>Typography</p>
-      </sidebar-link>
-      <sidebar-link to="/icons">
-        <md-icon>bubble_chart</md-icon>
-        <p>Icons</p>
-      </sidebar-link>
-      <sidebar-link to="/maps">
-        <md-icon>location_on</md-icon>
-        <p>Maps</p>
-      </sidebar-link>
-      <sidebar-link to="/notifications">
+      <sidebar-link to="/notification">
         <md-icon>notifications</md-icon>
-        <p>Notifications</p>
+        <p>Notification</p>
       </sidebar-link>
-      <sidebar-link to="/upgrade" class="active-pro">
-        <md-icon>unarchive</md-icon>
-        <p>Upgrade to PRO</p>
+      <sidebar-link to="/profile">
+        <md-icon>person</md-icon>
+        <p>Profile</p>
+      </sidebar-link>
+      <sidebar-link to="/about">
+        <md-icon>info</md-icon>
+        <p>About</p>
       </sidebar-link>
     </side-bar>
 
     <div class="main-panel">
       <top-navbar></top-navbar>
-
-      <fixed-plugin
-        :color.sync="sidebarBackground"
-        :image.sync="sidebarBackgroundImage"
-      >
-      </fixed-plugin>
 
       <dashboard-content> </dashboard-content>
 
@@ -61,22 +35,12 @@
 import TopNavbar from "./TopNavbar.vue";
 import ContentFooter from "./ContentFooter.vue";
 import DashboardContent from "./Content.vue";
-import MobileMenu from "./MobileMenu.vue";
-import FixedPlugin from "./extra/FixedPlugin.vue";
 
 export default {
   components: {
     TopNavbar,
     DashboardContent,
-    ContentFooter,
-    MobileMenu,
-    FixedPlugin
-  },
-  data() {
-    return {
-      sidebarBackground: "green",
-      sidebarBackgroundImage: require("@/assets/img/sidebar-2.jpg")
-    };
+    ContentFooter
   }
 };
 </script>
