@@ -32,15 +32,23 @@ const getAllAndGroupByCategory = async () => {
 }
 
 /*
- * Delete food by id
+ * Update
  */
 
-const deleteById = async (id) => {
+const update = async(food) => {
+  await FoodRepo.update(food)
+}
+
+/*
+ * Delete food by id
+ */
+const removeById = async (id) => {
   await FoodRepo.removeById(id)
 }
 
 export default {
   create,
   getAllAndGroupByCategory,
-  deleteById
+  update,
+  removeById
 }

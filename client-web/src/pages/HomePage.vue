@@ -17,12 +17,12 @@
       <div class="subnav-menu pt-4">
         <nav class="subnav container">
           <ul class="nav justify-content-center">
-            <li class="nav-item" v-for="category in categories" :key="category.id">
+            <li class="nav-item" v-for="category in categories" :key="category">
               <a
                 class="nav-link"
-                v-bind:class="{'category-active': selectedCategory == category.id}"
-                @click="changeCategory(category.id)"
-              >{{ category.label }}</a>
+                v-bind:class="{'category-active': selectedCategory == category}"
+                @click="changeCategory(category)"
+              >{{ category.toUpperCase() }}</a>
             </li>
           </ul>
         </nav>
@@ -30,7 +30,7 @@
 
       <div id="metu_main" class="container mt-3">
         <div class="row">
-          <div class="col-md-3 mt-4" v-for="food in foodOfCategory" :key="food.name">
+          <div class="col-md-3 mt-4" v-for="food in foods" :key="food.name">
             <div class="card">
               <div class="zoom">
                 <img class="card-img-top" v-bind:src="food.img" />
@@ -130,31 +130,10 @@ export default {
   },
   data() {
     return {
-      selectedCategory: "breakfast",
-      categories: [
-        {
-          label: "BREAKFAST",
-          id: "breakfast"
-        },
-        {
-          label: "RICE",
-          id: "rice"
-        },
-        {
-          label: "VEGETARIAN DISHES",
-          id: "vegetarian-dishes"
-        },
-        {
-          label: "NOODLE",
-          id: "noodle"
-        },
-        {
-          label: "DRINK",
-          id: "drink"
-        }
-      ],
+      responseArr: [],
+      selectedCategory: "",
+      categories: [],
       menu: "HomePage",
-      foodOfCategory: [],
       foods: [],
       name: "",
       price: 0,
@@ -180,11 +159,8 @@ export default {
       this.showFoodOfCategory();
     },
     showFoodOfCategory() {
-      console.log(this.selectedCategory);
-      this.foodOfCategory = this.foods.filter(
-        food => food.category == this.selectedCategory
-      );
-      console.log(this.foodOfCategory);
+      this.foods = this.responseArr.find(obj => 
+        obj.category == this.selectedCategory).foods
     },
     async buy() {
       const accessToken = this.$cookies.get("accessToken");
@@ -200,8 +176,9 @@ export default {
   async mounted() {
     const res = await AxiosService.get("/api/food");
     if (res.status == 200) {
-      this.foods = res.data.foods;
-      this.showFoodOfCategory();
+      this.responseArr = res.data
+      this.categories = this.responseArr.map(obj => obj.category)
+      this.changeCategory(this.categories[0])
     }
     let navbar = document.getElementById("nav");
     //let sticky = navbar.offsetTop;
@@ -232,6 +209,7 @@ li.nav-item {
   letter-spacing: 1.5px;
 }
 li.nav-item a:hover {
+  cursor: pointer;
   background-color: black;
   color: white;
 }

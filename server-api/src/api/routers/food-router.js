@@ -29,12 +29,25 @@ FoodRouter.get('/', async (req, res) => {
   res.status(200).send(foods)
 })
 
+/*
+ * Handle update food
+ */
+FoodRouter.put('/', async (req, res) => {
+  const foods = await FoodService.update({
+    _id: req.body._id,
+    name: req.body.name,
+    price: req.body.price,
+    description: req.body.description
+  })
+  res.status(202).send(foods)
+})
 
 /*
  * Handle delete food by id
  */
 FoodRouter.delete('/', async (req, res) => {
-  await FoodService.removeById(req.body.id)
+  console.log(req.body)
+  await FoodService.removeById(req.body._id)
   res.status(204).send({
     message: 'Sucess'
   })
