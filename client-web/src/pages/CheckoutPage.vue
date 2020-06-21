@@ -201,7 +201,7 @@ p {
 }
 
 h1 {
-  font-size: 0.75rem;
+  font-size: 15px;
   font-weight: normal;
   margin: 0;
   padding: 0;
@@ -266,13 +266,15 @@ button,
 
 main {
   clear: both;
-  font-size: 0.75rem;
+  font-size: 15px;
   overflow: hidden;
   margin-left: 147px;
   padding: 1rem 0;
   width: 91%;
 }
-
+.item-name{
+  font-size: 15px;
+}
 .basket,
 aside {
   padding: 0 1rem;
@@ -299,7 +301,7 @@ label {
   padding: 0.5rem;
   text-transform: uppercase;
   transition: all 0.2s linear;
-  width: 48%;
+  width: 66%;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
   -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
   -o-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
@@ -313,9 +315,9 @@ label {
 
 .promo-code-cta {
   border-radius: 4px;
-  font-size: 0.625rem;
-  margin-left: 2.5rem;
-  padding: 0.6875rem 1.25rem 0.625rem;
+  font-size: 0.675rem;
+  margin-left: 5px;
+  padding: 0.95rem 1.25rem 0.625rem;
 }
 
 .basket-labels {
@@ -391,7 +393,7 @@ li.subtotal:before {
 }
 
 .product-image {
-  width: 35%;
+  width: 30%;
 }
 
 .product-details {
