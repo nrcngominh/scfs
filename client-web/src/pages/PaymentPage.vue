@@ -11,6 +11,7 @@
 
 
 <div class = "all-payment-method">
+  <div>{{$store.state.totalMoneyAfterDiscount}}</div>
   <h3 class="title">1. Please select a payment method for your order</h3>
     <ul class="list"><li class="styles__StyledMethod-sc-1u5r3pb-1 fTvtIP">
         </li>
