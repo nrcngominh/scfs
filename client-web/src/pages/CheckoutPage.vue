@@ -52,7 +52,7 @@
         <div class="summary-total-items"><span class="total-items"></span> Items in your Bag</div>
         <div class="summary-subtotal">
           <div class="subtotal-title">Subtotal</div>
-          <div class="subtotal-value final-value" id="basket-subtotal">130.00</div>
+          <div class="subtotal-value final-value" id="basket-subtotal">{{total}}</div>
           <div class="summary-promo hide">
             <div class="promo-title">Promotion</div>
             <div class="promo-value final-value" id="basket-promo"></div>
@@ -77,7 +77,7 @@
         </div>
         <div class="summary-total">
           <div class="total-title">Total</div>
-          <div class="total-value final-value" id="basket-total">130.00</div>
+          <div class="total-value final-value" id="basket-total">{{total}}</div>
         </div>
         <div class="summary-checkout">
           <button class="checkout-cta">Confirm Order</button>
@@ -512,7 +512,7 @@ aside {
   width: 100%;
 }
 
-.summary-delivery-selection {
+/* .summary-delivery-selection {
   background-color: #ccc;
   border: 1px solid #aaa;
   border-radius: 4px;
@@ -520,7 +520,7 @@ aside {
   font-size: 0.625rem;
   height: 34px;
   width: 100%;
-}
+} */
 
 @media screen and (max-width: 640px) {
   aside,
