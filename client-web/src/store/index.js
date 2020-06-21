@@ -8,6 +8,7 @@ const store = new Vuex.Store({
     cart: {
         items: []
     },
+    totalMoneyAfterDiscount: 0
   },
   mutations: {
     addToCart(state, payload) {
@@ -34,6 +35,9 @@ const store = new Vuex.Store({
     },
     removeItem(state, foodId) {
       state.cart.items = state.cart.items.filter(item => item.food._id != foodId)
+    },
+    updateTotalMoney(state, value) {
+      state.totalMoneyAfterDiscount = value
     }
   }
 });
