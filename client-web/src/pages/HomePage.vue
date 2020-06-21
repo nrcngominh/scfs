@@ -30,7 +30,7 @@
 
       <div id="metu_main" class="container mt-3">
         <div class="row">
-          <div class="col-md-3 mt-4" v-for="food in foodOfCategory" :key="food.name">
+          <div class="col-lg-3 col-md-4 col-sm-5 mt-4" v-for="food in foodOfCategory" :key="food.name">
             <div class="card">
               <div class="zoom">
                 <img class="card-img-top" v-bind:src="getImageUrl(food.img,food.category)" />
