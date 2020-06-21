@@ -1,42 +1,42 @@
-import AxiosService from './axios-service'
-import store from '../store'
-import native from '../native'
+import AxiosService from "./axios-service";
+import store from "../store";
+import native from "../native";
 
 const login = async (email, password) => {
   const res = await AxiosService.post("/api/login/admin", {
     email: email,
     password: password
-  })
-  store.commit('login', {
+  });
+  store.commit("login", {
     email: email,
-    accessToken: res.data.accessToken,
-  })
-  native.login() 
-  return res
-}
+    accessToken: res.data.accessToken
+  });
+  native.login();
+  return res;
+};
 
 const auth = async () => {
-  const token = store.state.accessToken
+  const token = store.state.accessToken;
   if (token) {
     try {
       await AxiosService.post("/api/auth/admin", {
         accessToken: token
-      })
-      return true
+      });
+      return true;
     } catch (error) {
-      return false
+      return false;
     }
   } else {
-    return false
+    return false;
   }
-}
+};
 
 const logout = async () => {
-  native.logout()
-}
+  native.logout();
+};
 
 export default {
   login,
   auth,
   logout
-}
+};

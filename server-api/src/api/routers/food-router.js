@@ -1,5 +1,6 @@
 import Router from 'express'
 import FoodRepo from '../../repositories/food-repository'
+import url from 'url'
 
 const FoodRouter = Router()
 
@@ -26,6 +27,9 @@ FoodRouter.post('/', async (req, res) => {
  */
 FoodRouter.get('/', async (req, res) => {
   const foods = await FoodRepo.findAll()
+  foods.forEach(food => {
+    food.img = url.resolve(process.env.DOMAIN, food.img)
+  })
   res.status(200).send({
     foods: foods
   })

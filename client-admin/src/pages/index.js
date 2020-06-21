@@ -1,7 +1,7 @@
-// Cards
-import UserCard from "../pages/UserProfile/UserCard.vue";
+import LoginPage from "../pages/LoginPage";
+import Dashboard from "../pages/Dashboard.vue";
+import ProfilePage from "../pages/ProfilePage.vue";
+import NotificationPage from "../pages/NotificationPage.vue";
+import AboutPage from "../pages/AboutPage.vue";
 
-// Forms
-import EditProfileForm from "../pages/UserProfile/EditProfileForm.vue";
-
-export { UserCard, EditProfileForm };
+export { LoginPage, Dashboard, ProfilePage, NotificationPage, AboutPage };
