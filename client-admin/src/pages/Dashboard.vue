@@ -130,7 +130,6 @@ export default {
           obj.hasFood = false;
         }
       });
-      console.log(this.responseArr);
       return this.responseArr;
     }
   },
@@ -143,9 +142,7 @@ export default {
     try {
       const res = await FoodService.getAll();
       this.responseArr = res.data;
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   }
 };
 </script>
