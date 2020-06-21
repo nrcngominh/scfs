@@ -62,7 +62,6 @@ export default {
         this.$router.push("/");
       } catch (error) {
         if (!error.response) {
-          console.log(error);
           this.status = "Cannot connect to server";
         } else if (error.response.status == 401) {
           this.status = "Wrong email or password";

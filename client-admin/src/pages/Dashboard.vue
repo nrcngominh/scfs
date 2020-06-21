@@ -44,7 +44,7 @@
 
             <div class="food-action-container">
               <md-button @click="editFood(food)">Edit</md-button>
-              <md-button>Remove</md-button>
+              <md-button @click="removeFood(food)">Remove</md-button>
             </div>
           </div>
         </md-card>
@@ -60,21 +60,21 @@
             <div class="tab-content">
               <md-field>
                 <label>Name</label>
-                <md-input v-model="updatedFood.name"></md-input>
+                <md-input v-model="selectedFood.name"></md-input>
               </md-field>
 
               <md-field>
                 <label>Price</label>
-                <md-input v-model="updatedFood.price"></md-input>
+                <md-input v-model="selectedFood.price"></md-input>
               </md-field>
 
               <md-field>
                 <label>Description</label>
-                <md-input v-model="updatedFood.descriptioin"></md-input>
+                <md-input v-model="selectedFood.description"></md-input>
               </md-field>
             </div>
             <div class="edit-button-wrapper">
-              <md-button>Save</md-button>
+              <md-button @click="submitEdit()">Submit</md-button>
               <md-button @click="showEditDialog = false">Cancel</md-button>
             </div>
           </md-tab>
@@ -104,9 +104,10 @@ export default {
       filterName: "",
       filterCategory: "",
       showEditDialog: false,
-      updatedFood: {
+      selectedFood: {
+        _id: "",
         name: "",
-        price: null,
+        price: "",
         description: ""
       }
     };
@@ -135,7 +136,29 @@ export default {
   },
   methods: {
     async editFood(food) {
+      this.selectedFood._id = food._id
+      this.selectedFood.name = food.name;
+      this.selectedFood.price = food.price;
+      this.selectedFood.description = food.description;
       this.showEditDialog = true;
+    },
+    async submitEdit() {
+      try {
+        FoodService.update(this.selectedFood)
+      } catch (error) {
+      console.log(error)
+      }
+    },
+    async removeFood(food) {
+      this.selectedFood._id = food._id
+      this.selectedFood.name = food.name;
+      this.selectedFood.price = food.price;
+      this.selectedFood.description = food.description;
+      try {
+        FoodService.removeById(this.selectedFood._id)
+      } catch (error) {
+        console.log(error)
+      }
     }
   },
   async mounted() {
