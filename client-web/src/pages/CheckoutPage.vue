@@ -7,7 +7,7 @@
   <!-- start footer -->
   <body>
     <main>
-<div class="basket">
+<div class="basket content-wrapper">
       <div class="basket-module">
       </div>
       <div class="basket-labels">
@@ -195,6 +195,9 @@ export default {
 
 
 <style scoped>
+.content-wrapper {
+  min-height: 400px;
+}
 .body {
   background-color: rgba(251, 251, 251, 1);
   color: #666;
