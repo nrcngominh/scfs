@@ -52,7 +52,7 @@
     </div>
 
     <div>
-      <md-dialog class="edit-dialog" :md-active.sync="showEditDialog">
+      <md-dialog class="edit-dialog" :md-active.sync="editDialogActive">
         <md-dialog-title>Edit food</md-dialog-title>
 
         <md-tabs md-dynamic-height>
@@ -75,26 +75,86 @@
             </div>
             <div class="edit-button-wrapper">
               <md-button @click="submitEdit()">Submit</md-button>
-              <md-button @click="showEditDialog = false">Cancel</md-button>
+              <md-button @click="editDialogActive = false">Cancel</md-button>
             </div>
           </md-tab>
 
           <md-tab md-label="Image">
-            <div class="tab-content"></div>
+            <div class="tab-content">
+              <div class="file-upload">
+                <md-field>
+                  <label>Chooose image to upload</label>
+                  <md-input v-model="imagePath"></md-input>
+                </md-field>
+                <div class="browse-button-wrapper">
+                  <md-button class="md-raised md-primary" @click="selectFile"
+                    >Browse</md-button
+                  >
+                </div>
+              </div>
+            </div>
 
             <div class="edit-button-wrapper">
-              <md-button>Upload</md-button>
-              <md-button @click="showEditDialog = false">Cancel</md-button>
+              <md-button @click="uploadImage">Upload</md-button>
+              <md-button @click="editDialogActive = false">Cancel</md-button>
             </div>
           </md-tab>
         </md-tabs>
       </md-dialog>
     </div>
+
+    <div class="edit-food-confirm">
+      <md-dialog-confirm
+        :md-active.sync="editConfirmActive"
+        md-title="Update food?"
+        md-content="Are you sure to update the food?"
+        md-confirm-text="Confirm"
+        md-cancel-text="Cancel"
+        @md-cancel="editConfirmActive = false"
+        @md-confirm="confirmEdit"
+      />
+    </div>
+
+    <div class="remove-food-confirm">
+      <md-dialog-confirm
+        :md-active.sync="removeConfirmActive"
+        md-title="Remove food?"
+        md-content="Are you sure to remove the food?"
+        md-confirm-text="Confirm"
+        md-cancel-text="Cancel"
+        @md-cancel="removeConfirmActive = false"
+        @md-confirm="confirmRemove"
+      />
+    </div>
+
+    <div class="upload-image-confirm">
+      <md-dialog-confirm
+        :md-active.sync="uploadImageConfirm"
+        md-title="Upload new image?"
+        md-content="Are you sure to upload new image for the food?"
+        md-confirm-text="Confirm"
+        md-cancel-text="Cancel"
+        @md-cancel="uploadImageConfirm = false"
+        @md-confirm="confirmUpload"
+      />
+    </div>
+
+    <md-dialog-alert
+      :md-active.sync="successAlertActive"
+      md-title="Success!"
+      md-content="Your changes has been saved."
+    />
+    <md-dialog-alert
+      :md-active.sync="failedAlertActive"
+      md-title="Failed!"
+      md-content="Your changes has not been saved."
+    />
   </div>
 </template>
 
 <script>
 import FoodService from "../services/food-service";
+import FileService from "../services/file-service";
 
 export default {
   name: "Dashboard",
@@ -103,13 +163,20 @@ export default {
       responseArr: [],
       filterName: "",
       filterCategory: "",
-      showEditDialog: false,
+      editDialogActive: false,
+      editConfirmActive: false,
+      uploadImageConfirm: false,
+      removeConfirmActive: false,
+      successAlertActive: false,
+      failedAlertActive: false,
+      selectedFoodRef: null,
       selectedFood: {
         _id: "",
         name: "",
         price: "",
         description: ""
-      }
+      },
+      imagePath: ""
     };
   },
   computed: {
@@ -120,7 +187,7 @@ export default {
         if (!this.filterCategory || regexMatchCategory.test(obj.category)) {
           obj.hasFood = false;
           obj.foods.forEach(food => {
-            if (!this.filterName || regexMatchName.test(food.name)) {
+            if (!this.filterName || (food.name && regexMatchName.test(food.name))) {
               food.active = true;
               obj.hasFood = true;
             } else {
@@ -135,29 +202,60 @@ export default {
     }
   },
   methods: {
-    async editFood(food) {
-      this.selectedFood._id = food._id
+    selectFood(food) {
+      this.selectedFoodRef = food;
+      this.selectedFood._id = food._id;
       this.selectedFood.name = food.name;
       this.selectedFood.price = food.price;
       this.selectedFood.description = food.description;
-      this.showEditDialog = true;
+      this.selectFood.img = food.img
     },
-    async submitEdit() {
+    editFood(food) {
+      this.selectFood(food)
+      this.imagePath = ""
+      this.editDialogActive = true;
+    },
+    submitEdit() {
+      this.editConfirmActive = true;
+    },
+    async confirmEdit() {
       try {
-        FoodService.update(this.selectedFood)
+        await FoodService.update(this.selectedFood);
+        this.successAlertActive = true;
+        this.selectedFoodRef.name = this.selectedFood.name
+        this.selectedFoodRef.price = this.selectedFood.price
+        this.selectedFoodRef.description = this.selectedFood.description
       } catch (error) {
-      console.log(error)
+        this.failedAlertActive = true;
       }
     },
-    async removeFood(food) {
-      this.selectedFood._id = food._id
-      this.selectedFood.name = food.name;
-      this.selectedFood.price = food.price;
-      this.selectedFood.description = food.description;
+    removeFood(food) {
+      this.selectFood(food)
+      this.removeConfirmActive = true;
+    },
+    async confirmRemove() {
       try {
-        FoodService.removeById(this.selectedFood._id)
+        await FoodService.removeById(this.selectedFood._id);
+        this.successAlertActive = true;
+        this.selectedFoodRef.active = false
+        this.selectedFoodRef.name = null
       } catch (error) {
-        console.log(error)
+        this.failedAlertActive = true;
+      }
+    },
+    async selectFile() {
+      this.imagePath = await FileService.openFileDialog();
+    },
+    uploadImage() {
+      this.uploadImageConfirm = true
+    },
+    async confirmUpload() {
+      try {
+        const data = await FoodService.uploadImage(this.selectedFood._id, this.imagePath)
+        this.successAlertActive = true;
+        this.selectedFoodRef.img = data.img;
+      } catch (error) {
+        this.failedAlertActive = true;
       }
     }
   },
