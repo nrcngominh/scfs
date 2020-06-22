@@ -55,7 +55,6 @@
 </template>
 
 <script>
-import AxiosService from '../services/axios-service'
 import '../assets/global.css'
 
 export default {
@@ -70,7 +69,7 @@ export default {
     document.body.className = "login";
     const accessToken = this.$cookies.get("accessToken")
     try {
-        await AxiosService.post('/api/auth', {
+        await this.$http.post('/api/auth', {
         accessToken: accessToken
         })
         this.$router.push('/')
@@ -81,7 +80,7 @@ export default {
   methods: {
     async login() {
       try {
-        const res = await AxiosService.post('/api/login/', {
+        const res = await this.$http.post('/api/login/', {
           email: this.email,
           password: this.password
         })

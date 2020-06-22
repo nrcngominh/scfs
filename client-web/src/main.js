@@ -3,6 +3,7 @@ import VueCookies from 'vue-cookies'
 import App from './App'
 import router from './router'
 import store from './store'
+import axios from 'axios'
 //Add boostrap
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
@@ -25,6 +26,11 @@ Vue.config.productionTip = false;
 
 Vue.use(VueCookies)
 Vue.$cookies.config('1d')
+
+const Axios = axios.create({
+    baseURL: process.env.VUE_APP_DOMAIN || 'http://localhost/'
+})
+Vue.prototype.$http = Axios
 
 new Vue({
     store,
