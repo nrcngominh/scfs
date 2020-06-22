@@ -29,6 +29,7 @@ UploadRouter.put('/food', upload.single("uploaded_image"), (async (req, res) => 
     })
   }
   catch (error) {
+    console.log(error)
     res.status(400).send({
       message: 'Failed'
     })
