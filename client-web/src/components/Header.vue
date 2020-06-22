@@ -58,7 +58,7 @@
                                         </div>
                                     </li> 
                                     <li id="cart" :class = "{hidden: isLogined}">
-                                        <div @click="checkout" id="avatar">
+                                        <div id="avatar">
                                             <img src="@/assets/cart.png" alt="">
                                             <span id="count-cart">{{$store.state.cart.items.length}}</span> 
                                         </div>
