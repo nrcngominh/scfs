@@ -358,24 +358,6 @@ ul {
   left: 0; 
 }
 
-.f48 {
-    font-size: 48px;
-    line-height: 56px;
-    letter-spacing: -.3px
-}
-
-.f36 {
-    font-size: 36px;
-    line-height: 44px;
-    letter-spacing: -.2px
-}
-
-.f16 {
-    font-size: 16px;
-    line-height: 24px;
-    letter-spacing: 0
-}
-
 .f12 {
     font-size: 12px;
     line-height: 16px;
