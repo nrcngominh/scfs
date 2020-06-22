@@ -5,7 +5,9 @@ import RegisterPage from '../pages/RegisterPage'
 import ErrorPage from '../pages/ErrorPage'
 import HomePage from '../pages/HomePage'
 import CheckoutPage from '../pages/CheckoutPage.vue'
+import VendorPage from '../pages/VendorPage.vue'
 import PaymentPage from '../pages/PaymentPage.vue'
+
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -16,6 +18,14 @@ const router = new VueRouter({
             component: HomePage,
             meta: {
                 title: 'BK Food | Home'
+            }
+        },
+        {
+            path: '/vendor',
+            name: 'VendorPage',
+            component: VendorPage,
+            meta: {
+                title: 'BK Food | Vendor'
             }
         },
         {

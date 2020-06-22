@@ -53,6 +53,13 @@
                                         <p class="form__input-info">Your password must include at least 8 characters</p>
                                     </div>
                                 </div>
+                                <div :class = "{hidden: is_setup}" class="form__field">
+                                    <label for="password" class="form__label">Confirm Password</label>
+                                    <div class="form__input-icon">
+                                        <input id="password" v-model="password" @keyup.enter="submit" class="form__input" type="password"/>
+                                        <p class="form__input-error"></p>
+                                    </div>
+                                </div>
                                 <div :class = "{hidden: setup_success}" class="form__field">
                                     <label for="" class="form__label">Full Name</label>
                                     <input @keyup.enter="nextInput" class="form__input"/>

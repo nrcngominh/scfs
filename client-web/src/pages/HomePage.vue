@@ -146,6 +146,7 @@ export default {
         this.$store.commit('addToCart', {
           food: food
         })
+        alert("Thêm vào giỏ hàng thành công")
       // const accessToken = this.$cookies.get("accessToken");
       // try {
       //   const res = await this.$http.post("/api/auth", {
