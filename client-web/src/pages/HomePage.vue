@@ -206,11 +206,12 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300;600&display=swap");
 nav.subnav {
-  width: 1100px;
+  width: 90%;
   background-color: #ebedee;
   font-family: Kanit, Helvetica, Arial, sans-serif;
   box-shadow: 1px 8px 20px rgba(0, 0, 0, 0.05);
 }
+
 li.nav-item {
   letter-spacing: 1.5px;
 }
