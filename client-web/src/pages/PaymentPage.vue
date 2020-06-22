@@ -60,7 +60,6 @@
 <script src="//code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="simple.money.format.js"></script>
 <script>
-import axios from '../services/axios-service'
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import IntroSlide from '../components/IntroSlide';
@@ -95,7 +94,7 @@ export default {
     async addToCart() {
       const accessToken = this.$cookies.get("accessToken")
       try {
-        const res = await axios.post('/api/auth', {
+        const res = await this.$http.post('/api/auth', {
           accessToken: accessToken
         })
       } catch (error) {
@@ -105,7 +104,7 @@ export default {
     async buy() {
       const accessToken = this.$cookies.get("accessToken")
       try {
-        const res = await axios.post('/api/auth', {
+        const res = await this.$http.post('/api/auth', {
           accessToken: accessToken
         })
       } catch (error) {
@@ -113,11 +112,11 @@ export default {
       }
     },
     getImageUrl(path,category) {
-      return `${axios.defaults.baseURL}images/${category}/${path}`;
+      return `${this.$http.defaults.baseURL}images/${category}/${path}`;
     }
   }, 
   async mounted() {
-    const res = await axios.get('/api/food')
+    const res = await this.$http.get('/api/food')
     if (res.status == 200) {
       this.foods = res.data.foods;
     }

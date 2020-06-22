@@ -71,8 +71,6 @@
 </template>
 
 <script>
-import axios from '../services/axios-service'
-
 export default {
   name: "RegisterForm",
   data() {
@@ -88,7 +86,7 @@ export default {
     async login() {
       try {
         console.log('Logging in...')
-        const res = await axios.post('/api/login/', {
+        const res = await this.$http.post('/api/login/', {
           email: this.email,
           password: this.password
         })

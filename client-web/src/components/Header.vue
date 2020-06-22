@@ -94,8 +94,6 @@
 </template>
 
 <script>
-import axios from '../services/axios-service'
-
 export default{
     name: "Header",
     data() {
@@ -120,7 +118,7 @@ export default{
     },
     async mounted() {
         const accessToken = this.$cookies.get("accessToken")
-        await axios.post('/api/auth', {
+        await this.$http.post('/api/auth', {
           accessToken: accessToken
         })
         this.isActive = true;
