@@ -16,6 +16,7 @@ ipcMain.on('upload-food-image', async (event, arg) => {
         })
         event.reply('upload-food-image-reply', res.data)
     } catch (error) {
+        console.log(error)
         event.reply('upload-food-image-error', error)
     }
 })
