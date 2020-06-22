@@ -56,11 +56,13 @@
 }
 
 .md-dialog.edit-dialog {
-    .md-dialog-container {
-    }
     .md-tab{
         width: 200px;
         padding: 10px 30px;
+    }
+    .md-button {
+        display: inline-block;
+        margin: 0;
     }
     .tab-content {
         height: 230px;
@@ -68,9 +70,17 @@
     .edit-button-wrapper {
         text-align: center;
     }
-    .md-button {
-        display: inline-block;
-        margin: 0;
+    .file-upload {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        column-gap: 20px;
+        .md-field {
+            margin: 0
+        }
+        .browse-button-wrapper {
+            display: flex;
+            align-items: flex-end;
+        }
     }
 }
 

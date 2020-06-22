@@ -33,13 +33,20 @@ FoodRouter.get('/', async (req, res) => {
  * Handle update food
  */
 FoodRouter.put('/', async (req, res) => {
-  const foods = await FoodService.update({
-    _id: req.body._id,
-    name: req.body.name,
-    price: req.body.price,
-    description: req.body.description
-  })
-  res.status(202).send(foods)
+  try {
+    const foods = await FoodService.update({
+      _id: req.body._id,
+      name: req.body.name,
+      price: req.body.price,
+      description: req.body.description
+    })
+    res.status(202).send(foods)
+  }
+  catch (error) {
+    res.status(400).send({
+      message: "Failed"
+    })
+  }
 })
 
 /*

@@ -34,6 +34,9 @@ const router = new VueRouter({
   linkExactActiveClass: "nav-item active"
 });
 
+import axios from 'axios'
+axios.defaults.baseURL = process.env.VUE_APP_DOMAIN || 'http://localhost/'
+
 /* eslint-disable no-new */
 new Vue({
   el: "#app",

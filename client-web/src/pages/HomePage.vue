@@ -2,7 +2,7 @@
   <div>
     <!--start header -->
     <div class="sticky" id="nav">
-      <Header :count="0"></Header>
+      <Header :count= 0></Header>
     </div>
     <!-- end header -->
 
@@ -30,7 +30,7 @@
 
       <div id="metu_main" class="container mt-3">
         <div class="row">
-          <div class="col-md-3 mt-4" v-for="food in foods" :key="food.name">
+          <div class="col-lg-3 col-md-4 col-sm-5 mt-4" v-for="food in foods" :key="food.name">
             <div class="card">
               <div class="zoom">
                 <img class="card-img-top" v-bind:src="food.img" />
@@ -60,13 +60,11 @@
                   Welcome to
                   <span>BK Food Court</span>
                 </h3>
-                <p
-                  class="mt-4"
-                >The university is currently has one food court located in its Ly Thuong Kiet campus and is going to build another one in Di An campus.All food courts consist of a number of vendors at food stalls or service counters. Meals are ordered at one of the vendors and then carried to a common area for consumption.</p>
+                <p data-aos="fade-up" class="mt-4">The university is currently has one food court located in its Ly Thuong Kiet campus and is going to build another one in Di An campus.All food courts consist of a number of vendors at food stalls or service counters. Meals are ordered at one of the vendors and then carried to a common area for consumption.</p>
               </div>
             </div>
             <div id="img_bk" class="col-lg-6 col-md-6 col-sm-12 text-center">
-              <img src="@/assets/bkfood.jpg" alt class="img-fluid1" />
+              <img data-aos="fade-up" src="@/assets/bkfood.jpg" alt class="img-fluid1" />
             </div>
           </div>
         </div>
@@ -108,7 +106,6 @@
 <script src="//code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="simple.money.format.js"></script>
 <script>
-import AxiosService from "../services/axios-service";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import IntroSlide from "../components/IntroSlide";
@@ -151,7 +148,7 @@ export default {
         })
       // const accessToken = this.$cookies.get("accessToken");
       // try {
-      //   const res = await AxiosService.post("/api/auth", {
+      //   const res = await this.$http.post("/api/auth", {
       //     accessToken: accessToken
       //   });
 
@@ -173,7 +170,7 @@ export default {
       this.$router.push("/checkout");
       const accessToken = this.$cookies.get("accessToken");
       try {
-        const res = await AxiosService.post("/api/auth", {
+        const res = await this.$http.post("/api/auth", {
           accessToken: accessToken
         });
       } catch (error) {
@@ -182,7 +179,7 @@ export default {
     }
   },
   async mounted() {
-    const res = await AxiosService.get("/api/food");
+    const res = await this.$http.get("/api/food");
     if (res.status == 200) {
       this.responseArr = res.data
       this.categories = this.responseArr.map(obj => obj.category)
@@ -208,11 +205,12 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300;600&display=swap");
 nav.subnav {
-  width: 1100px;
+  width: 90%;
   background-color: #ebedee;
   font-family: Kanit, Helvetica, Arial, sans-serif;
   box-shadow: 1px 8px 20px rgba(0, 0, 0, 0.05);
 }
+
 li.nav-item {
   letter-spacing: 1.5px;
 }

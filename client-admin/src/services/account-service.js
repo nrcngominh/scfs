@@ -1,9 +1,11 @@
-import AxiosService from "./axios-service";
+const {ipcRenderer} = window.require('electron')
+
+import axios from "axios";
 import store from "../store";
-import native from "../native";
+
 
 const login = async (email, password) => {
-  const res = await AxiosService.post("/api/login/admin", {
+  const res = await axios.post("/api/login/admin", {
     email: email,
     password: password
   });
@@ -11,15 +13,19 @@ const login = async (email, password) => {
     email: email,
     accessToken: res.data.accessToken
   });
-  native.login();
+  ipcRenderer.send('login')
   return res;
+};
+
+const logout = async () => {
+  ipcRenderer.send('logout')
 };
 
 const auth = async () => {
   const token = store.state.accessToken;
   if (token) {
     try {
-      await AxiosService.post("/api/auth/admin", {
+      await axios.post("/api/auth/admin", {
         accessToken: token
       });
       return true;
@@ -31,12 +37,8 @@ const auth = async () => {
   }
 };
 
-const logout = async () => {
-  native.logout();
-};
-
 export default {
   login,
-  auth,
-  logout
+  logout,
+  auth
 };
