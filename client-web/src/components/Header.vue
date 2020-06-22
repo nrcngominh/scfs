@@ -58,7 +58,7 @@
                                         </div>
                                     </li> 
                                     <li id="cart" :class = "{hidden: isLogined}">
-                                        <div id="avatar">
+                                        <div @click="checkout" id="avatar">
                                             <img src="@/assets/cart.png" alt="">
                                             <span id="count-cart">{{$store.state.cart.items.length}}</span> 
                                         </div>
@@ -549,61 +549,6 @@ ul {
 
 .Dropdown {
     position: relative
-}
-
-.Dropdown-inner {
-    display: none;
-    position: absolute;
-    top: 100%;
-    width: 224px;
-    right: -114px;
-    background: #fff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
-    border-radius: 4px;
-    transition: all .3s;
-    z-index: 30;
-    transition: all 2s ease;
-    padding: 24px
-}
-
-.Dropdown-inner:before {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 0;
-    left: 50%;
-    margin-left: -14px;
-    top: -15px;
-    border: 8px solid transparent;
-    border-bottom: 8px solid rgba(210, 210, 210, .2)
-}
-
-.Dropdown-inner:after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 0;
-    left: 50%;
-    margin-left: -12px;
-    top: -11px;
-    border: 6px solid transparent;
-    border-bottom: 6px solid #fff
-}
-
-.Dropdown-inner.Dropdown-inner--userMenu {
-    right: 0;
-    padding: 0;
-    top: 53px
-}
-
-.Dropdown-item {
-    line-height: 20px;
-    font-size: 13px;
-    margin-bottom: 8px
-}
-
-.Dropdown-item:last-child {
-    margin-bottom: 0
 }
 
 .Dropdown-link {
