@@ -7,7 +7,7 @@
     "serve": "vue-cli-service serve --port 9090",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "dev": "ELECTRON_NODE_ENV=development nodemon --watch src/main/index.js --exec \"electron-forge start\"",
+    "dev": "ELECTRON_NODE_ENV=development nodemon --watch src/main --exec \"electron-forge start\"",
     "make": "electron-forge package && electron-forge make",
     "publish": "electron-forge publish"
   },
@@ -18,6 +18,7 @@
     "electron-serve": "^1.0.0",
     "electron-squirrel-startup": "^1.0.0",
     "electron-store": "^5.2.0",
+    "form-data": "^3.0.0",
     "google-maps": "4.2.3",
     "material-design-icons": "^3.0.1",
     "vue": "2.6.11",

@@ -19,7 +19,7 @@ const getAllAndGroupByCategory = async () => {
   ]
 
   foods.forEach(food => {
-    food.img = url.resolve(process.env.DOMAIN, food.img)
+    food.img = url.resolve(process.env.DOMAIN, `images/${food.img}`)
   })
 
   return Array.from(categories, category => {
@@ -40,6 +40,14 @@ const update = async(food) => {
 }
 
 /*
+ * Update
+ */
+
+const updateImage = async(_id, img) => {
+  return await FoodRepo.updateImage(_id, img)
+}
+
+/*
  * Delete food by id
  */
 const removeById = async (id) => {
@@ -50,5 +58,6 @@ export default {
   create,
   getAllAndGroupByCategory,
   update,
+  updateImage,
   removeById
 }

@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import AxiosService from '../services/axios-service'
+import axios from '../services/axios-service'
 
 export default {
   name: "RegisterForm",
@@ -88,7 +88,7 @@ export default {
     async login() {
       try {
         console.log('Logging in...')
-        const res = await AxiosService.post('/api/login/', {
+        const res = await axios.post('/api/login/', {
           email: this.email,
           password: this.password
         })
