@@ -33,6 +33,17 @@ const update = async (food) => {
 }
 
 /*
+ * Update
+ */
+const updateImage = async (_id, img) => {
+  return FoodModel.findOneAndUpdate({_id: _id }, {
+    img: img
+  }, {
+    new: true
+  })
+}
+
+/*
  * Remove food by id in database
  */
 const removeById = async (id) => {
@@ -45,5 +56,6 @@ export default {
   create,
   findAll,
   update,
+  updateImage,
   removeById
 }
