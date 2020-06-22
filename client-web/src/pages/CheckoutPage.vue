@@ -7,7 +7,7 @@
   <!-- start footer -->
   <body>
     <main>
-<div class="basket">
+<div class="basket content-wrapper">
       <div class="basket-module">
       </div>
       <div class="basket-labels">
@@ -195,6 +195,9 @@ export default {
 
 
 <style scoped>
+.content-wrapper {
+  min-height: 400px;
+}
 .body {
   background-color: rgba(251, 251, 251, 1);
   color: #666;
@@ -409,7 +412,8 @@ li.subtotal:before {
 }
 
 .product-image {
-  width: 30%;
+  width: 25%;
+  height: 20%;
 }
 
 .product-details {
@@ -443,11 +447,12 @@ aside {
 }
 
 .summary {
+  margin-top: 6.5%;
   margin-left: -6px;
   background-color: aliceblue;
   border: 1px solid #aaa;
   padding: 1rem;
-  position: fixed;
+  position: auto;
   width: 250px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
