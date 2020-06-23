@@ -100,7 +100,7 @@ export default{
             email: "",
             isActive: false,
             isLogined: true,
-            home_active: true,
+            home_active: false,
             trans_active: false,
             about_active: false
         }
@@ -368,7 +368,7 @@ ul {
   position: relative;
   cursor: pointer;
 }
-.Navbar-item:nth-child(n + 2) a:after {    
+.Navbar-item a:after {    
   background: none repeat scroll 0 0 transparent;
   bottom: 0;
   content: "";
