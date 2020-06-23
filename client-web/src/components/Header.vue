@@ -6,7 +6,7 @@
                         <div id="navbar" class="container grid u-justify-center">
                             <div  class="Navbar-inner Navbar-height--44 grid-cell grid-cell--col10">
                                 <div class=Navbar-header>
-                                    <a class="Logo" @click="forwardLogin">
+                                    <a class="Logo" @click="home">
                                         <img id="bkLogo" src="@/assets/logobk1.png" alt="">
                                     </a>
                                     <div class=tablet--flex>
@@ -31,14 +31,14 @@
                                 <div class="Navbar-collapse">
                                     <ul class="Navbar-list">
                                         <li class="Navbar-item Dropdown">
-                                            <a href="#" class="Navbar-link title f12 active"> <span> Home </span> </a>
+                                            <a @click="home" :class = "{active: home_active}" class="Navbar-link title f12"> <span> Home </span> </a>
                                         </li>
 
                                         <li class=Navbar-item>
-                                            <a href="#" class="Navbar-link title f12 "> <span id="platform">Pricing</span> </a>
+                                            <a @click="gotrans" :class = "{active: trans_active}" class="Navbar-link title f12 "> <span id="platform">Transaction</span> </a>
                                         </li>
                                         <li class=Navbar-item>
-                                            <a href="#" class="Navbar-link title f12 "> <span>About Us</span> </a>
+                                            <a :class = "{active: about_active}" class="Navbar-link title f12 "> <span>About Us</span> </a>
                                         </li>
                                     </ul>  
                                 </div>
@@ -100,6 +100,9 @@ export default{
             email: "",
             isActive: false,
             isLogined: true,
+            home_active: true,
+            trans_active: false,
+            about_active: false
         }
     },
     methods: {
@@ -116,11 +119,18 @@ export default{
             this.isActive = false;
         },
         async trans() {
-            this.$router.push('/transaction')
+            this.$router.push('/transaction');
         },
         async checkout() {
             this.$router.push('/checkout')
+        },
+        gotrans() {
+
+        },
+        home() {
+            this.$router.push('/');
         }
+
     },
     async mounted() {
         const accessToken = this.$cookies.get("accessToken")
@@ -348,6 +358,7 @@ ul {
 }
 .active {
   border-bottom: 3px solid #249cd3;
+  text-decoration: none;
 }
 .Navbar-item a {
   text-transform: uppercase;
@@ -355,6 +366,7 @@ ul {
   display: inline-block;
   padding: 11px 3px;
   position: relative;
+  cursor: pointer;
 }
 .Navbar-item:nth-child(n + 2) a:after {    
   background: none repeat scroll 0 0 transparent;
@@ -529,7 +541,16 @@ ul {
     background: currentColor;
     transform: translateX(-100%)
 }
-
+span#count-cart {
+    border: 2px solid red;
+    border-radius: 50%;
+    padding-left: 4px;
+    padding-right: 4px;
+    font-size: 12px;
+    background-color: red;
+    color: white;
+    font-weight: 800;
+}
 .button:hover {
     text-decoration: none
 }
@@ -715,6 +736,7 @@ ul {
     align-items: center;
     margin-right: 40px;
     margin-top: 20px;
+    cursor: pointer;
 }
 
 @media (max-width:1224px) {

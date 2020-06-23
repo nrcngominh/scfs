@@ -2,12 +2,9 @@
   <div class="sessions">
     <div class="sessions__background sessions__background--mobile">
         <div class="sessions__wrapper signup__wrapper container">
-
             <div class="signup__circleMap desktop-s"></div>
-
             <div class="grid">
                 <div class="grid-cell grid-cell--col1"></div>
-
                 <div class="grid-cell grid-cell--col10 grid">
                     <div class="grid-cell grid-cell--col12 mt-2">
                         <nav class="sessions__navbar grid">
@@ -42,33 +39,36 @@
                             <div class="form">
                                 <div :class = "{hidden: is_setup}" class="form__field">
                                     <label for="email" class="form__label">Email</label>
-                                    <input v-model="email" @keyup.enter="nextInput" class="form__input"/>
-                                    <p class="form__input-error"></p>
+                                    <input id="email" v-model="email" @keyup.enter="nextPassword" class="form__input"/>
+                                    <p :class = "{hidden: error_email}" id="form__input-error">Bạn cần phải nhập email</p>
+                                    <p :class = "{hidden: error_email_format}" id="form__input-error">Email cần phải có @</p>
                                 </div>
                                 
                                 <div :class = "{hidden: is_setup}" class="form__field">
                                     <label for="password" class="form__label">Mật khẩu</label>
                                     <div class="form__input-icon">
-                                        <input id="password" v-model="password" @keyup.enter="submit" class="form__input" type="password"/>
-                                        <p class="form__input-info">Mật khẩu của bạn phải chứa tối thiểu 8 ký tự</p>
+                                        <input id="password" v-model="password" @keyup.enter="nextPasswordRetype" class="form__input" type="password"/>
+                                        <p :class = "{hidden: error_pass}" id="form__input-error">Bạn cần phải nhập password</p>
+                                        <p :class = "{hidden: error_pass_format}" id="form__input-error">Mật khẩu của bạn phải chứa tối thiểu 8 ký tự</p>
+                                        <p :class = "{hidden: pass_format}" class="form__input-info">Mật khẩu của bạn phải chứa tối thiểu 8 ký tự</p>
                                     </div>
                                 </div>
                                 <div :class = "{hidden: is_setup}" class="form__field">
                                     <label for="password" class="form__label">Xác nhận mật khẩu</label>
                                     <div class="form__input-icon">
-                                        <input id="password2" v-model="passwordRetype" @keyup.enter="submit" class="form__input" type="password"/>
-                                        <p class="form__input-error"></p>
+                                        <input id="passwordRetype" v-model="passwordRetype" @keyup.enter="next" class="form__input" type="password"/>
+                                        <p :class = "{hidden: error_repass}" id="form__input-error">Bạn cần phải nhập lại mật khẩu</p>
                                     </div>
                                 </div>
                                 <div :class = "{hidden: setup_success}" class="form__field">
                                     <label for="fullname" class="form__label">Họ và tên</label>
-                                    <input v-model="fullName" @keyup.enter="nextInput" class="form__input"/>
-                                    <p class="form__input-error"></p>
+                                    <input id="full-name" v-model="fullName" @keyup.enter="nextPhoneNumber" class="form__input"/>
+                                    <p :class = "{hidden: error_fullname}" id="form__input-error">Bạn cần phải nhập họ và tên</p>
                                 </div>
                                 <div :class = "{hidden: setup_success}" class="form__field">
                                     <label for="phonenumber" class="form__label">Số điện thoại</label>
-                                    <input v-model="phoneNumber" @keyup.enter="nextInput" class="form__input"/>
-                                    <p class="form__input-error"></p>
+                                    <input id="phone-number" v-model="phoneNumber" @keyup.enter="register" class="form__input"/>
+                                    <p :class = "{hidden: error_phone}" id="form__input-error">Bạn cần phải nhập số điện thoại</p>
                                 </div>
                                 <div id="back" :class = "{hidden: setup_success}">
                                     <a @click = "back"><span>Quay lại</span></a>
@@ -112,7 +112,15 @@ export default {
       setup: 'tabs__number_is_active',
       info: 'tabs__number_is_notactive',
       is_setup: false,
-      setup_success: true
+      setup_success: true,
+      error_email: true,
+      error_email_format: true,
+      error_pass: true,
+      pass_format: false,
+      error_pass_format: true,
+      error_repass: true,
+      error_fullname: true,
+      error_phone: true
     }
   },
   beforeCreate() {
@@ -123,6 +131,36 @@ export default {
       this.register();
     },
     async next() {
+        if (this.password == "" || this.email == "" || this.passwordRetype == "") {
+            
+            if(this.email == "") {
+                document.getElementById("email").style.border = "2px solid red";
+                this.error_email = false;
+                return;
+            }
+            if(this.password == "") {
+                document.getElementById("password").style.border = "2px solid red";
+                this.error_pass = false;
+                return;
+            }
+            if(this.passwordRetype == "") {
+                document.getElementById("passwordRetype").style.border = "2px solid red";
+                this.error_repass = false;
+                return;
+            }
+        }
+        let a = this.email.indexOf('@');
+        if(a < 1) {
+            document.getElementById("email").style.border = "2px solid red";
+            this.error_email_format = false;
+            return;
+        }
+        if(this.password.length < 8) {
+            document.getElementById("password").style.border = "2px solid red";
+            this.error_pass_format = false;
+            this.pass_format = true;
+            return;
+        }
         if (this.password != this.passwordRetype) {
             alert('Mật khẩu nhập lại không khớp')
             return;
@@ -131,13 +169,26 @@ export default {
             this.setup = 'tabs__number_is_notactive';
             this.info = 'tabs__number_is_active';
             this.is_setup = true;
-            this.setup_success = false;
+            this.setup_success = false; 
         } catch (err) {
             alert(err)
         }   
     },
     async register() {
-        console.log(this.password, this.passwordRetype, this.fullName, this.email)
+        
+        if (this.fullName == "" || this.phoneNumber == "") {
+            
+            if(this.fullName == "") {
+                document.getElementById("full-name").style.border = "2px solid red";
+                this.error_fullname = false;
+                return;
+            }
+            if(this.password == "") {
+                document.getElementById("phone-number").style.border = "2px solid red";
+                this.error_phone = false;
+                return;
+            }
+        }
         try {
             await this.$http.post('api/register/', {
                 email: this.email,
@@ -153,13 +204,32 @@ export default {
         }
     },
     async back() {
+        this.error_email = true;
+        this.error_email_format = true;
+        this.error_pass = true;
+        this.pass_format = false;
+        this.error_pass_format = true;
+        this.error_repass = true;
+        this.error_fullname = true;
+        this.error_phone = true;
         this.setup = 'tabs__number_is_active';
         this.info = 'tabs__number_is_notactive';
         this.is_setup = false;
         this.setup_success = true;
+        document.getElementById("email").style.border = null;
+        document.getElementById("password").style.border = null;
+        document.getElementById("passwordRetype").style.border = null;
+        document.getElementById("full-name").style.border = null;
+        document.getElementById("phone-number").style.border = null;
     },
-    nextInput() {
+    nextPassword() {
       document.getElementById('password').focus();
+    },
+    nextPasswordRetype() {
+      document.getElementById('passwordRetype').focus();
+    },
+    nextPhoneNumber() {
+      document.getElementById('phone-number').focus();
     },
     backwardPage() {
         this.$router.push('/login')
@@ -181,16 +251,17 @@ export default {
 }
 #_login {
     color: #EB1510;
-    text-decoration: underline;
 }
 .hidden {
     display: none;
 }
 #_login:hover {
     cursor: pointer;
+    text-decoration: underline;
 }
 .grid.u-justify-space.u-align-center a {
     cursor: pointer;
+    text-decoration: none;
 }
 
 @media (min-width: 801px) {
