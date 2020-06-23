@@ -11,8 +11,9 @@ CartRouter.all('/', AuthMiddleware)
  * Get cart info
  */
 CartRouter.get('/', async(req, res) => {
+  const account = await AccountRepo.findByEmail(req.jwtDecodedData.email)
   try {
-    const cart = await CartRepo.findById()
+    const cart = await CartRepo.findById(account._id)
     res.status(200).send(cart.items)
   }
   catch (error) {

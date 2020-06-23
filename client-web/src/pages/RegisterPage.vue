@@ -56,18 +56,18 @@
                                 <div :class = "{hidden: is_setup}" class="form__field">
                                     <label for="password" class="form__label">Xác nhận mật khẩu</label>
                                     <div class="form__input-icon">
-                                        <input id="password" v-model="password" @keyup.enter="submit" class="form__input" type="password"/>
+                                        <input id="password2" v-model="passwordRetype" @keyup.enter="submit" class="form__input" type="password"/>
                                         <p class="form__input-error"></p>
                                     </div>
                                 </div>
                                 <div :class = "{hidden: setup_success}" class="form__field">
                                     <label for="fullname" class="form__label">Họ và tên</label>
-                                    <input @keyup.enter="nextInput" class="form__input"/>
+                                    <input v-model="fullName" @keyup.enter="nextInput" class="form__input"/>
                                     <p class="form__input-error"></p>
                                 </div>
                                 <div :class = "{hidden: setup_success}" class="form__field">
                                     <label for="phonenumber" class="form__label">Số điện thoại</label>
-                                    <input @keyup.enter="nextInput" class="form__input"/>
+                                    <input v-model="phoneNumber" @keyup.enter="nextInput" class="form__input"/>
                                     <p class="form__input-error"></p>
                                 </div>
                                 <div id="back" :class = "{hidden: setup_success}">
@@ -106,8 +106,9 @@ export default {
     return {
       email: "",
       password: "",
-      fullname: "",
-      phonenumber: "",
+      passwordRetype: "",
+      fullName: "",
+      phoneNumber: "",
       setup: 'tabs__number_is_active',
       info: 'tabs__number_is_notactive',
       is_setup: false,
@@ -122,6 +123,10 @@ export default {
       this.register();
     },
     async next() {
+        if (this.password != this.passwordRetype) {
+            alert('Mật khẩu nhập lại không khớp')
+            return;
+        }
         try {
             this.setup = 'tabs__number_is_notactive';
             this.info = 'tabs__number_is_active';
@@ -132,15 +137,19 @@ export default {
         }   
     },
     async register() {
+        console.log(this.password, this.passwordRetype, this.fullName, this.email)
         try {
-            const res = await this.$http.post('api/register/', {
-                fullname: this.fullname,
-                phonenumber: this.phonenumber
+            await this.$http.post('api/register/', {
+                email: this.email,
+                password: this.password,
+                fullName: this.fullName,
+                phoneNumber: this.phoneNumber
             })
-            this.$http.defaults.headers['x-access-token'] = res.data.accessToken
-            this.$cookies.set('accessToken', res.data.accessToken)
+            alert('Đăng kí thành công')
+            this.$router.push('/login')
         } catch (err) {
-            alert(err)
+            console.log(err)
+            alert('Đăng kí không thành công')
         }
     },
     async back() {

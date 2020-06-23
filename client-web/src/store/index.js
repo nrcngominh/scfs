@@ -3,13 +3,18 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
+const randomNumber = (numOfDigits) => {
+  return Math.floor(Math.random() * Math.pow(10, numOfDigits)).toString().padStart(numOfDigits, '0')
+}
+
 const store = new Vuex.Store({
   state: {
     categories: [],
     foods: [],
     cart: [],
     totalMoneyAfterDiscount: 0,
-    isReadyToPay: false
+    isReadyToPay: false,
+    notifications: [],
   },
   mutations: {
     setCategories(state, categories) {
@@ -58,9 +63,14 @@ const store = new Vuex.Store({
     }
   },
   actions: {
-    SOCKET_PAYMENT_SUCCESS(state, arg) {
+    SOCKET_PAYMENT_SUCCESS(store, arg) {
       const json = JSON.parse(arg)
-      console.log(json)
+      console.log(json, store.state)
+      store.state.notifications.push({
+        id: randomNumber(5),
+        message: `Giao dịch ${json.billId} đã được thanh toán`,
+        url: `/detail-transaction/${json.billId}`
+      })
     }
   }
 });

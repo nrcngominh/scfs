@@ -3,10 +3,12 @@ import AccountModel from '../models/account-model'
 /*
  * Create new user in database
  */
-const create = async(email, hashedPassword) => {
+const create = async(email, hashedPassword, fullName, phoneNumber) => {
   return AccountModel.create({
     email: email,
     password: hashedPassword,
+    fullName: fullName,
+    phoneNumber: phoneNumber,
     type: 'customer'
   })
 }

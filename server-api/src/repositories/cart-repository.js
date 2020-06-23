@@ -3,8 +3,10 @@ import CartModel from '../models/cart-model'
 /*
  * Find all
  */
-const findById = async (id) => {
-  return (await CartModel.find())[0]
+const findById = async (accountId) => {
+  return CartModel.findOne({
+    customerId: accountId
+  })
 }
 
 /*
