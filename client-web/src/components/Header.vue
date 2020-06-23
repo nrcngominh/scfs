@@ -56,10 +56,7 @@
                                         <div class="dropdown" id="avatar">
                                             <img src="@/assets/alarm.png" alt="">
                                             <div class="dropdown-content">
-                                                <a href="#">Tài khoản</a>
-                                                <a @click="trans">Đơn hàng của tôi</a>
-                                                <a href="#">Cài đặt</a>
-                                                <a @click="logout">Đăng xuất</a>
+                                                <a href="#">Giao dịch thành công</a>
                                             </div>
                                         </div>
                                     </li> 
@@ -143,7 +140,7 @@ export default{
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 160px;
+  min-width: 200px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
@@ -160,7 +157,7 @@ export default{
 .dropdown-content a:hover {
   background-color: #ddd;
   text-decoration: none;
-   color: #000;
+  color: #000;
 }
 
 .dropdown:hover .dropdown-content {
