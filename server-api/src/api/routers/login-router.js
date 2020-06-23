@@ -19,7 +19,7 @@ const login = async (req, res, type) => {
       const token = await generateToken({
         email: account.email,
         type: account.type
-      }, accessTokenSecret, '15m')
+      }, accessTokenSecret, '1d')
 
       res.status(200).send({
         message: 'Success',

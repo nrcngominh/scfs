@@ -17,12 +17,12 @@
       <div class="subnav-menu pt-4">
         <nav class="subnav container">
           <ul class="nav justify-content-center">
-            <li class="nav-item" v-for="category in categories" :key="category">
+            <li class="nav-item" v-for="category in categories" :key="category._id">
               <a
                 class="nav-link"
                 v-bind:class="{'category-active': selectedCategory == category}"
-                @click="changeCategory(category)"
-              >{{ category.toUpperCase() }}</a>
+                @click="selectedCategory = category"
+              >{{ category.label.toUpperCase() }}</a>
             </li>
           </ul>
         </nav>
@@ -40,7 +40,7 @@
                 <h6 class="card-title money">{{ food.price }}</h6>
                 <p class="card-text">{{ food.description }}</p>
                 <button @click="buy(food)" class="btn btn-success mr-3">Buy</button>
-                <button @click="addToCart(food)" class="btn btn-primary">Add to cart</button>
+                <button @click="addToCart(food._id)" class="btn btn-primary">Add to cart</button>
               </div>
             </div>
           </div>
@@ -127,45 +127,43 @@ export default {
   },
   data() {
     return {
-      responseArr: [],
-      selectedCategory: "",
-      categories: [],
+      selectedCategory: null,
       menu: "HomePage",
-      foods: [],
       name: "",
       price: 0,
       description: ""
     };
   },
+  computed: {
+    foods() {
+      return this.$store.state.foods
+        .filter(food => food.categoryId == this.selectedCategory._id)
+    },
+    categories() {
+      this.selectedCategory = this.$store.state.categories[0]
+      return this.$store.state.categories
+    }
+  },
   beforeCreate() {
     document.body.className = "user";
   },
   methods: {
-    async addToCart(food) {
-      // Authencicated
-        this.$store.commit('addToCart', {
-          food: food
-        })
-        alert("Thêm vào giỏ hàng thành công")
+    async addToCart(foodId) {
+      try {
+        this.$store.commit('addToCart', foodId)
+        await this.$http.post('/api/cart', this.$store.state.cart)
+      } catch (error) {
+        console.log(error)
+      }
+
       // const accessToken = this.$cookies.get("accessToken");
       // try {
       //   const res = await this.$http.post("/api/auth", {
       //     accessToken: accessToken
       //   });
-
-        
-
       // } catch (error) {
       //   this.$router.push("/login");
       // }
-    },
-    changeCategory(category) {
-      this.selectedCategory = category;
-      this.showFoodOfCategory();
-    },
-    showFoodOfCategory() {
-      this.foods = this.responseArr.find(obj => 
-        obj.category == this.selectedCategory).foods
     },
     async buy(food) {
       this.$router.push("/checkout");
@@ -180,12 +178,6 @@ export default {
     }
   },
   async mounted() {
-    const res = await this.$http.get("/api/food");
-    if (res.status == 200) {
-      this.responseArr = res.data
-      this.categories = this.responseArr.map(obj => obj.category)
-      this.changeCategory(this.categories[0])
-    }
     let navbar = document.getElementById("nav");
     //let sticky = navbar.offsetTop;
     window.onscroll = () => {
