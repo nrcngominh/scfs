@@ -23,11 +23,12 @@ const loginWithType = (email, password, type) => {
 /*
  * Register for customer
  */
-const registerCustomer = (email, password) => {
+const registerCustomer = (email, password, fullName, phoneNumber) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const hashedPassword = bycript.hashSync(password, 10);
-      const account = await AccountRepo.create(email, hashedPassword)
+      console.log(email, password, fullName, phoneNumber)
+      const hashedPassword = bcrypt.hashSync(password, 10);
+      const account = await AccountRepo.create(email, hashedPassword, fullName, phoneNumber)
       if (!account) {
         return reject('Email exists')
       }
