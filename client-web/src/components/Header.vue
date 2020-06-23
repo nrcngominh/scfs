@@ -58,7 +58,7 @@
                                         </div>
                                     </li> 
                                     <li id="cart" :class = "{hidden: isLogined}">
-                                        <div id="avatar">
+                                        <div @click="checkout" id="avatar">
                                             <img src="@/assets/cart.png" alt="">
                                             <span id="count-cart">{{$store.state.cart.items.length}}</span> 
                                         </div>
@@ -104,6 +104,9 @@ export default{
             this.$cookies.remove('accessToken')
             this.isLogined = true;
             this.isActive = false;
+        },
+        async checkout() {
+            this.$router.push('/checkout')
         }
     },
     async mounted() {

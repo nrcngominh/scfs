@@ -3,13 +3,9 @@
     <!--start header -->
     <Header />
     <!-- end header -->
-    <!-- start introslide -->
-  <!-- start footer -->
   <body>
     <main>
 <div class="basket content-wrapper">
-      <div class="basket-module">
-      </div>
       <div class="basket-labels">
         <ul>
           <li class="item item-heading">Item</li>
@@ -21,9 +17,6 @@
       
       <div class="basket-product" v-for="item in $store.state.cart.items" :key="item.food._id" >
         <div class="item">
-          <div class="product-image">
-            <img v-bind:src="item.food.img" alt="Placholder Image 2" class="product-frame">
-          </div>
           <div class="product-details">
             <h1><span class="item-name"></span><strong>{{item.food.name}}</strong></h1>
           </div>
@@ -33,15 +26,7 @@
           <input type="number" v-bind:value="item.quantity" v-on:input = "updateQuantity(item.food._id, $event.target.value)" min="1" class="quantity-field">
         </div>
         <div class="subtotal">{{item.food.price * item.quantity}}</div>
-        <div class="remove">
-          <button @click="$store.commit('removeItem', item.food._id)">Remove</button>
-        </div>
   </div>
-
-
-
-
-
 
     </div>
     <aside>
