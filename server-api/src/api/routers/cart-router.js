@@ -1,5 +1,8 @@
 import Router from 'express'
 import CartRepo from '../../repositories/cart-repository'
+import BaseSocket from '../../sockets'
+
+const io = BaseSocket.getIO()
 
 const CartRouter = Router()
 
@@ -26,7 +29,9 @@ CartRouter.post('/', async (req, res) => {
     console.log(req.body)
     const customerId = "5ee0bf66dbc5342856486edc"
     await CartRepo.update(customerId, req.body)
-    res.status(201)
+    res.status(201).send({
+      message: "Success"
+    })
   }
   catch(error) {
     console.log(error)

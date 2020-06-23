@@ -7,7 +7,7 @@ const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET
 
 // Auth for user
 const authWithType = async (req, res, next, type) => {
-  const token = req.body.accessToken
+  const token = req.headers["x-access-token"]
   if (token) {
     try {
       const decoded = await verifyToken(token, accessTokenSecret)
