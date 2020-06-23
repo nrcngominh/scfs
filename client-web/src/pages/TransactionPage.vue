@@ -19,16 +19,16 @@
         </ul>
       </div>
       
-      <div class="basket-product">
-        <div class="item">
-          <div class="product-details">
-            <h1><span class="item-name"></span><a @click="view_detail" id="trans" href=""><strong>{{  }}</strong></a></h1>
+       <div class="basket-product" v-for="order in orders" :key="order.billId">
+          <div class="item">
+            <div class="product-details">
+              <h1><span class="item-name"></span><a @click="view_detail(order.billId)" id="trans"><strong>{{order.billId}}</strong></a></h1>
+            </div>
           </div>
-        </div>
-        <div class="price">{{  }}</div>
-        <div class="quantity1">{{ }}</div>
-        <div class="subtotal">Giao dịch thành công</div>
-  </div>
+          <div class="price">{{order.date}}</div>
+          <div class="quantity1">{{order.totalMoney}}</div>
+          <div class="subtotal">{{order.hasPaid ? 'Giao dịch thành công' : 'Đang chờ thanh toán'}}</div>
+    </div>
 
     </div>
 
@@ -68,6 +68,7 @@ export default {
   },
   data() {
     return {
+      orders: [],
         menu: "HomePage",
         promoCode: "",
         realPromoCode: ""
@@ -119,8 +120,8 @@ export default {
         this.$router.push('/login')
       }
     },
-    async view_detail() {
-      this.$router.push('/detail-transaction')
+    async view_detail(billId) {
+      this.$router.push('/detail-transaction/' + billId)
     },
     updateQuantity(foodId, newQuantity) {
       this.$store.commit('updateQuantity', {
@@ -139,7 +140,12 @@ export default {
     }
   }, 
   async mounted() {
-    
+    try {
+        const res = await this.$http.get('/api/transaction/')
+        this.orders = res.data
+    } catch (error) {
+      console.log(error)
+    }
     let navbar = document.getElementById("nav");
     //let sticky = navbar.offsetTop;
     window.onscroll = () => {

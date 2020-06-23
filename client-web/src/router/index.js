@@ -97,7 +97,7 @@ const router = new VueRouter({
             }
         },
         {
-            path: '/detail-transaction',
+            path: '/detail-transaction/:billId',
             name: 'DetailTransaction',
             component: DetailTransaction,
             meta: {

@@ -18,7 +18,8 @@ TransactionRouter.get('/', async(req, res) => {
       return {
         billId: order.billId,
         date: order.date.toLocaleDateString("de-AT").replace('.', '/').replace('.', '/'),
-        totalMoney: order.totalMoney
+        totalMoney: order.totalMoney,
+        hasPaid: order.hasPaid
       }
     }))
   }
@@ -35,8 +36,18 @@ TransactionRouter.get('/', async(req, res) => {
  */
 TransactionRouter.get('/:billId', async(req, res) => {
   try {
-    const bill = await OrderRepo.findByBillId(req.params.billId)
-    res.status(200).send(bill)
+    let bill = await OrderRepo.findByBillId(req.params.billId)
+    const date = bill.date.toLocaleDateString("de-AT").replace('.', '/').replace('.', '/')
+    res.status(200).send({
+      _id: bill._id,
+      billId: bill.billId,
+      momoTransId: bill.momoTransId,
+      accountId: bill.accountId,
+      date: date,
+      totalMoney: bill.totalMoney,
+      items: bill.items,
+      hasPaid: bill.hasPaid
+    })
   }
   catch (error) {
     console.log(error)
