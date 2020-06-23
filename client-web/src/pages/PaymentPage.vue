@@ -7,11 +7,8 @@
   <!-- start footer -->
 
 
-
-
 <div class="payment-method">
 <div class = "all-payment-method">
-  <div>{{$store.state.totalMoneyAfterDiscount}}</div>
   <h3 class="title">1. Phương thức thanh toán</h3>
     <ul class="list"><li class="styles__StyledMethod-sc-1u5r3pb-1 fTvtIP">
         </li>
@@ -38,7 +35,7 @@
   <button class = "fix-button"> Chỉnh sửa </button>
 </div>
   <div class= "basket">
-      <div class="basket-product" v-for="item in $store.state.cart.items" :key="item.food._id" >
+      <div class="basket-product" v-for="item in cart" :key="item.food._id" >
         <div class="item">
           <div class="product-details">
             <div class="item-name">{{item.food.name}}</div>
@@ -50,6 +47,9 @@
                   </div>
         <div class="subtotal">Tạm tính: {{item.food.price * item.quantity}}VND</div>
   </div>
+    <div class = "totalMoney">Tổng tiền:  {{$store.state.totalMoneyAfterDiscount}} VND
+ </div>
+
 </div>
 
 
@@ -139,6 +139,7 @@ export default {
     };
   }
 }
+ 
 </script>
 
 
