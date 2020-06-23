@@ -4,6 +4,6 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 
 public interface IMenuAPI {
-    @GET("api/food")
+    @GET("api/food/machine")
     Call<MenuResponse> getMenu();
 }

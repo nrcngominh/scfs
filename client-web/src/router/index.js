@@ -10,6 +10,7 @@ import CheckoutPage from '../pages/CheckoutPage.vue'
 import VendorPage from '../pages/VendorPage.vue'
 import PaymentPage from '../pages/PaymentPage.vue'
 import TransactionPage from '../pages/TransactionPage.vue'
+import MomoPage from '../pages/MomoPage.vue'
 
 
 axios.defaults.baseURL = process.env.VUE_APP_DOMAIN || 'http://localhost/'
@@ -47,6 +48,14 @@ const router = new VueRouter({
                         title: 'BK Food | Payment'
                     }
                 },
+                {
+                    path: 'transaction',
+                    name: 'TransactionPage',
+                    component: TransactionPage,
+                    meta: {
+                        title: 'BK Food | Transaction'
+                    }
+                }
             ]
         },
         {
@@ -79,11 +88,11 @@ const router = new VueRouter({
             }
         },
         {
-            path: '/transaction',
-            name: 'TransactionPage',
-            component: TransactionPage,
+            path: '/momo',
+            name: 'MomoPage',
+            component: MomoPage,
             meta: {
-                title: 'BK Food | Transaction'
+                title: 'MOMO Fake Server Dashboard'
             }
         }
     ]

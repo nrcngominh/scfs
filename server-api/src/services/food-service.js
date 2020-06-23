@@ -9,6 +9,10 @@ const create = async (name, price, description) => {
   return FoodRepo.create(name, price, description)
 }
 
+const getAll = () => {
+  return FoodRepo.findAll()
+}
+
 /*
  * Get all foods and group by category
  */
@@ -56,6 +60,7 @@ const removeById = async (id) => {
 
 export default {
   create,
+  getAll,
   getAllAndGroupByCategory,
   update,
   updateImage,

@@ -34,7 +34,7 @@ public class CheckoutService implements ICheckoutService {
                 Log.i("JSON", response.getMomoQrCode());
             }
         });
-        socket.emit("send_order", gson.toJson(new PaymentRequest(Integer.toString(amount))));
+        socket.emit("send_order", gson.toJson(new PaymentRequest(amount)));
         return "https://test-payment.momo.vn/pay/store/MOMOIQA420180417-storeid01?a=10000&b=B001221&s=601a7280711dd72bfae8c365801f5e257311a1ebd8779cf3bc4ac57c4002a978";
     }
 

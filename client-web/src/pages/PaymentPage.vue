@@ -107,7 +107,7 @@ export default {
           cart: this.$store.state.cart
         })
         this.billId = res.data.billId
-        this.qrCode = res.data.momoQRCode
+        this.qrCode = res.data.momoQrCode
         this.orderInfoHidden = false
         try {
           this.$store.commit('setCart', [])

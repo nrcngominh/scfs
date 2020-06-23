@@ -13,6 +13,12 @@ const create = async (name, price, description, category, img) => {
   })
 }
 
+const findByIds = async (ids) => {
+  return FoodModel.find()
+    .where('_id').in(ids)
+    .select(' name price description categoryId img')
+}
+
 /*
  * Find all foods in database
  */
@@ -54,6 +60,7 @@ const removeById = async (id) => {
 
 export default {
   create,
+  findByIds,
   findAll,
   update,
   updateImage,

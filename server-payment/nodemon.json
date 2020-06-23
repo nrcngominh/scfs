@@ -1,6 +1,7 @@
 {
   "watch": [
-    "src"
+    "src",
+    ".env.local"
   ],
-  "exec": "babel-node src/main.js"
+  "exec": "babel-node src/main.js -r dotenv/config dotenv_config_path=.env.local"
 }

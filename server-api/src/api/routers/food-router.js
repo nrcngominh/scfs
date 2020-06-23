@@ -60,4 +60,14 @@ FoodRouter.delete('/', async (req, res) => {
   })
 })
 
+/*
+ * Handle get all foods
+ */
+FoodRouter.get('/machine', async (req, res) => {
+  const foods = await FoodService.getAll()
+  res.status(200).send({
+    foods: foods
+  })
+})
+
 export default FoodRouter

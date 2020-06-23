@@ -1,10 +1,10 @@
 package com.example.sfcs_hcmut.api;
 
 public class PaymentRequest {
-    final String amount;
+    final int amount;
 
 
-    public PaymentRequest(String amount) {
+    public PaymentRequest(int amount) {
         this.amount = amount;
     }
 }

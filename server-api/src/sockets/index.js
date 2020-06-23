@@ -1,27 +1,18 @@
-// import PaymentService from '../services/payment-service'
-// import FoodRepo from '../repositories/food-repository'
+import { setMachineListener } from './machine-socket'
 
 let io = null
 
 const initial = async (_io) => {
   io = _io
   io.sockets.on("connection", (socket) => {
-    console.log('Client connected')
     socket.emit('ABCD', 'hello-world')
-    // console.log(io.handshake.headers["x-real-ip"],
-    //   'connected')
-    // socket.on("send_order", (amount) => {
-    //   const bill = PaymentService.createBill(amount)
-    //   socket.emit("send_bill", bill)
-    // })
+    console.log(socket.handshake.address, 'connected')
 
-    // socket.on("get_menu", async () => {
-    //   socket.emit("send_food", await FoodRepo.getAll())
-    // })
+    socket.on("disconnect", () => {
+      console.log(socket.handshake.address, 'disconnected')
+    })
 
-    // socket.on("disconnect", () => {
-
-    // })
+    setMachineListener(io, socket)
   })
 }
 const getIO = () => {
