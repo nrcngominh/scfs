@@ -8,10 +8,10 @@
 <div class="basket content-wrapper">
       <div class="basket-labels">
         <ul>
-          <li class="item item-heading">Item</li>
-          <li class="price1">Price</li>
-          <li class="quantity">Quantity</li>
-          <li class="subtotal1">Subtotal</li>
+          <li class="item item-heading">Vật phẩm</li>
+          <li class="price1">Gía</li>
+          <li class="quantity">Số lượng</li>
+          <li class="subtotal1">Thành tiền</li>
         </ul>
       </div>
       

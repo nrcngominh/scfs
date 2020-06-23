@@ -16,7 +16,7 @@
                                 <img src="@/assets/bklogo.png" alt="">
                             </a>
                             <p class="f12">
-                                Already have an account? <a id="_login" @click="backwardPage">Log in</a>
+                                Đã có tài khoản? <a id="_login" @click="backwardPage">Đăng nhập</a>
                             </p>
                         </div>
                         </nav>
@@ -28,15 +28,15 @@
                     <div class="grid-cell grid-cell--col2--desktop-s desktop-s grid-cell--col2--desktop grid-cell--col3--desktop-l"></div>
                     <div class="grid-cell grid-cell--col12--tablet grid-cell--col5--desktop-s grid-cell--col5--desktop grid-cell--col4--desktop-l">
                         <section class="signup__form">
-                            <h1 class="sessions__title">Create your account</h1>
+                            <h1 class="sessions__title">Tạo tài khoản</h1>
                             <ul class="tabs">
                                 <li class="tabs__item is-active">
                                     <span :class = "[setup]">1</span>
-                                    <span class="tabs__title">Account Setup</span>
+                                    <span class="tabs__title">Thiết lập tài khoản</span>
                                 </li>
                                 <li class="tabs__item">
                                     <span :class = "[info]">2</span>
-                                    <span class="tabs__title">Personal Info</span>
+                                    <span class="tabs__title">Thông tin cá nhân</span>
                                 </li>
                             </ul>
                             <div class="form">
@@ -50,33 +50,33 @@
                                     <label for="password" class="form__label">Password</label>
                                     <div class="form__input-icon">
                                         <input id="password" v-model="password" @keyup.enter="submit" class="form__input" type="password"/>
-                                        <p class="form__input-info">Your password must include at least 8 characters</p>
+                                        <p class="form__input-info">Mật khẩu của bạn phải chứa tối thiểu 8 ký tự</p>
                                     </div>
                                 </div>
                                 <div :class = "{hidden: is_setup}" class="form__field">
-                                    <label for="password" class="form__label">Confirm Password</label>
+                                    <label for="password" class="form__label">Xác nhận mật khẩu</label>
                                     <div class="form__input-icon">
                                         <input id="password" v-model="password" @keyup.enter="submit" class="form__input" type="password"/>
                                         <p class="form__input-error"></p>
                                     </div>
                                 </div>
                                 <div :class = "{hidden: setup_success}" class="form__field">
-                                    <label for="" class="form__label">Full Name</label>
+                                    <label for="" class="form__label">Họ và tên</label>
                                     <input @keyup.enter="nextInput" class="form__input"/>
                                     <p class="form__input-error"></p>
                                 </div>
                                 <div :class = "{hidden: setup_success}" class="form__field">
-                                    <label for="" class="form__label">Phone number</label>
+                                    <label for="" class="form__label">Số điện thoại</label>
                                     <input @keyup.enter="nextInput" class="form__input"/>
                                     <p class="form__input-error"></p>
                                 </div>
                                 <div id="back" :class = "{hidden: setup_success}">
-                                    <a @click = "back"><span>Back</span></a>
+                                    <a @click = "back"><span>Quay lại</span></a>
                                 </div>
                                 <div class="tabs__foo">
                                     <div class="grid mt-4">
                                     <div class="grid-cell grid-cell--col12 mt-4 p-0">
-                                        <button @click="next" class="button isRed w-100">{{msg}}</button>
+                                        <button @click="next" class="button isRed w-100">Tiếp tục</button>
                                         <div class="grid-cell grid-cell--col1--desktop-l desktop-l"></div>
                                     </div>
                                     </div>

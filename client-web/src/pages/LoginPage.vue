@@ -16,7 +16,7 @@
                             <img src="@/assets/bklogo.png" alt="">
                         </a>
                         <p class="f12">
-                            Don't have an account yet? <a id="_signup" @click="forwardPage">Sign up here</a>
+                            Bạn chưa có tài khoản BK Food? <a id="_signup" @click="forwardPage">Đăng ký tại đây</a>
                         </p>
                       </div>
                     </nav>
@@ -24,23 +24,23 @@
                   </div>
                   <div class="grid-cell grid-cell--col12--tablet grid-cell--col5--desktop-s grid-cell--col5--desktop grid-cell--col4--desktop-l">
                     <section>
-                      <h1 class="sessions__title">Log in</h1>
+                      <h1 class="sessions__title">Đăng nhập</h1>
 
                       <div class="form__field">
-                        <label for="email" class="form__label">Email or username</label>
+                        <label for="email" class="form__label">Email hoặc tên tài khoản</label>
                         <input v-model="email" @keyup.enter="nextInput" class="form__input"/>
                       </div>
                       <div class="form__field">
-                        <label for="password" class="form__label">Password</label>
+                        <label for="password" class="form__label">Mật khẩu</label>
                         <div class="form__input-icon">
                             <input id="password" v-model="password" @keyup.enter="submit" class="form__input" type="password"/>
                         </div>
-                        <a class="form__link" href="">Forgot password?</a>
+                        <a class="form__link" href="">Quên mật khẩu?</a>
                       </div>
                       <div>
                         <div class="grid mt-4">
                           <div class="grid-cell grid-cell--col12 mt-4 p-0">
-                              <button @click="login"  class="button isRed w-100">Log in</button>
+                              <button @click="login"  class="button isRed w-100">Đăng nhập</button>
                               <div class="grid-cell grid-cell--col1--desktop-l desktop-l"></div>
                           </div>
                         </div>
