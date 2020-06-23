@@ -39,7 +39,7 @@
                 <h5 class="card-title">{{ food.name }}</h5>
                 <h6 class="card-title money">{{ food.price }}</h6>
                 <p class="card-text">{{ food.description }}</p>
-                <button @click="buy(food)" class="btn btn-success mr-3">Buy</button>
+                <button @click="buy(food._id)" class="btn btn-success mr-3">Buy</button>
                 <button @click="addToCart(food._id)" class="btn btn-primary">Add to cart</button>
               </div>
             </div>
@@ -154,25 +154,16 @@ export default {
         await this.$http.post('/api/cart', this.$store.state.cart)
       } catch (error) {
         console.log(error)
+        this.$router.push("/login");
       }
-
-      // const accessToken = this.$cookies.get("accessToken");
-      // try {
-      //   const res = await this.$http.post("/api/auth", {
-      //     accessToken: accessToken
-      //   });
-      // } catch (error) {
-      //   this.$router.push("/login");
-      // }
     },
-    async buy(food) {
-      this.$router.push("/checkout");
-      const accessToken = this.$cookies.get("accessToken");
+    async buy(foodId) {
       try {
-        const res = await this.$http.post("/api/auth", {
-          accessToken: accessToken
-        });
+        this.$store.commit('addToCart', foodId)
+        await this.$http.post('/api/cart', this.$store.state.cart)
+        this.$router.push("/checkout")
       } catch (error) {
+        console.log(error)
         this.$router.push("/login");
       }
     }

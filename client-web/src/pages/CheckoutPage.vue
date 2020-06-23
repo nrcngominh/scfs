@@ -107,6 +107,8 @@ import $ from 'jquery';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+import {redirectIfAuthFailed} from '../services/auth-services'
+
 AOS.init({
   offset: 300,
   duration: 1000
@@ -144,8 +146,9 @@ export default {
       return sum
     }
   },
-  beforeCreate() {
+  async beforeCreate() {
     document.body.className = "user";
+    await redirectIfAuthFailed()
   },
   methods: {
     async updateQuantity(foodId, newQuantity) {
@@ -157,6 +160,8 @@ export default {
         await this.$http.post('/api/cart', this.$store.state.cart)
       } catch (error) {
         console.log(error)
+        this.$router.push("/login");
+
       }
     },
     async removeItem(foodId) {
@@ -165,6 +170,8 @@ export default {
         await this.$http.post('/api/cart', this.$store.state.cart)
       } catch (error) {
         console.log(error)
+        this.$router.push("/login");
+
       }
     },
     applyPromotionCode() {
