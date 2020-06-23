@@ -529,7 +529,16 @@ ul {
     background: currentColor;
     transform: translateX(-100%)
 }
-
+span#count-cart {
+    border: 2px solid red;
+    border-radius: 50%;
+    padding-left: 4px;
+    padding-right: 4px;
+    font-size: 12px;
+    background-color: red;
+    color: white;
+    font-weight: 800;
+}
 .button:hover {
     text-decoration: none
 }
