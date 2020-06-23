@@ -2,6 +2,7 @@ import Router from 'express'
 import AuthMiddleware from '../middlewares/auth-middleware'
 import AccountRepo from '../../repositories/account-repository'
 import OrderRepo from '../../repositories/order-repository'
+import FoodRepo from '../../repositories/food-repository'
 
 const TransactionRouter = Router()
 TransactionRouter.all('/', AuthMiddleware)
@@ -38,6 +39,14 @@ TransactionRouter.get('/:billId', async(req, res) => {
   try {
     let bill = await OrderRepo.findByBillId(req.params.billId)
     const date = bill.date.toLocaleDateString("de-AT").replace('.', '/').replace('.', '/')
+    const processedItems = await Promise.all(bill.items.map(async item => {
+      const food = await FoodRepo.findById(item.foodId)
+      return {
+        food: food,
+        quantity: item.quantity
+      }
+    }))
+    console.log(processedItems)
     res.status(200).send({
       _id: bill._id,
       billId: bill.billId,
@@ -45,7 +54,7 @@ TransactionRouter.get('/:billId', async(req, res) => {
       accountId: bill.accountId,
       date: date,
       totalMoney: bill.totalMoney,
-      items: bill.items,
+      items: processedItems,
       hasPaid: bill.hasPaid
     })
   }

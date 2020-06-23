@@ -14,9 +14,9 @@ const findAll = async () => {
   return TransactionModel.find()
 }
 
-const updatePaid = async (momoTransId) => {
+const updatePaid = async (billId) => {
   return TransactionModel.updateOne({
-    momoTransId: momoTransId
+    billId: billId
   }, {
     hasPaid: true
   })

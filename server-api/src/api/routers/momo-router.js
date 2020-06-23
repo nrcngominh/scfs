@@ -1,6 +1,7 @@
 import Router from 'express'
 import BaseSocket from '../../sockets'
 import axios from 'axios'
+import OrderRepo from '../../repositories/order-repository'
 
 const MomoRouter = Router()
 
@@ -8,11 +9,15 @@ const MomoRouter = Router()
 /*
  * Fake MOMO server use this endpoint to notify a pending transaction has been made
  */
-MomoRouter.post('/', async (req, res) => {
+MomoRouter.put('/', async (req, res) => {
+  const billId = req.body.billId
+  await OrderRepo.updatePaidByBillId(billId)
   res.status(200).send({
     message: 'Success'
   })
-  BaseSocket.getIO().emit('payment_success', null)
+  BaseSocket.getIO().emit('PAYMENT_SUCCESS', JSON.stringify({
+    billId: billId
+  }))
 })
 
 /*

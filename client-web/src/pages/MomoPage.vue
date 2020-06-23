@@ -23,7 +23,8 @@
         <td><div>{{ transaction.status }}</div></td>
         <td>
           <button type="button" class="btn btn-primary"
-            :class="{hidden: transaction.hasPaid}">Primary</button>
+            :class="{hidden: transaction.hasPaid}"
+            @click="commitPay(transaction)">Pay</button>
         </td>
       </tr>
     </tbody>
@@ -37,6 +38,18 @@ export default {
   data() {
     return {
       transactions: []
+    }
+  },
+  methods: {
+    async commitPay(transaction) {
+      try {
+        await this.$http.put('http://127.0.0.1:4000/api/transaction', {
+          billId: transaction.billId
+        })
+        transaction.hasPaid = true
+      } catch (error) {
+        console.log(error)
+      }
     }
   },
   async mounted() {

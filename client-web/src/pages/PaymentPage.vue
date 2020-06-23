@@ -12,18 +12,26 @@
 
 <div class = "all-payment-method">
   <h3 class="title">1. Phương thức thanh toán</h3>
-    <ul class="list"><li class="styles__StyledMethod-sc-1u5r3pb-1 fTvtIP">
+    <ul class="list">
+      <li class="styles__StyledMethod-sc-1u5r3pb-1 fTvtIP">
         </li>
           <label class="RadioCheckout__StyledRadio-bkaeis-0 bqACGT">
-            <input type="radio" readonly="" name="payment-methods" value="momo">
+            <input type="radio" readonly="" name="payment-methods" value="momo" checked = "checked">
                     <span class="radio-fake"></span>
-                    <span class="label"> MoMo wallet<a class="detail-discount-payment-checkout" target="_blank" href="https://momo.vn" data-placement="bottom" data-original-title="" title="" data-toggle="tooltip" data-title="Vui lòng tải ứng dụng MoMo để thanh toán">
+                    <span class="label"> MoMo wallet
+                    <a class="detail-discount-payment-checkout" target="_blank" href="https://momo.vn" data-placement="bottom" data-original-title="" title="" data-toggle="tooltip" data-title="Vui lòng tải ứng dụng MoMo để thanh toán">
                     </a>
-                    </span></label>
+                    </span>
+          </label>
                         <li class="styles__StyledMethod-sc-1u5r3pb-1 fTvtIP">
-                          
+                          <input type = "radio"> <span class= "label"> Thẻ ATM nội địa/Internet Banking </span> <em class = "notice">(Chưa khả dụng) </em>
                               </li>
-                              </ul></div>
+
+                        <li class="styles__StyledMethod-sc-1u5r3pb-1 fTvtIP">
+                          <input type = "radio"> <span class= "label"> Thẻ thanh toán quốc tế (visa, master card) </span><em class = "notice">(Chưa khả dụng) </em>
+                              </li>
+    </ul>
+</div>
 <div class = "notice">
   
     <div class = "totalMoney"><h3>
