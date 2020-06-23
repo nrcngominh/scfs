@@ -6,7 +6,7 @@
     <!-- start introslide -->
   <!-- start footer -->
 
-
+<div class = "allpaymentsite">
 <div class="payment-method">
   <div class="wrapper">
 
@@ -15,20 +15,22 @@
     <ul class="list">
       <li class="styles__StyledMethod-sc-1u5r3pb-1 fTvtIP">
         </li>
-          <label class="RadioCheckout__StyledRadio-bkaeis-0 bqACGT">
+          <label class="momo-payment-method">
             <input type="radio" readonly="" name="payment-methods" value="momo" checked = "checked">
                     <span class="radio-fake"></span>
-                    <span class="label"> MoMo wallet
+                    <span class="label"> Thanh toán bằng ví MoMo
                     <a class="detail-discount-payment-checkout" target="_blank" href="https://momo.vn" data-placement="bottom" data-original-title="" title="" data-toggle="tooltip" data-title="Vui lòng tải ứng dụng MoMo để thanh toán">
                     </a>
                     </span>
           </label>
                         <li class="styles__StyledMethod-sc-1u5r3pb-1 fTvtIP">
-                          <input type = "radio"> <span class= "label"> Thẻ ATM nội địa/Internet Banking </span> <em class = "notice">(Chưa khả dụng) </em>
+                          <input type = "radio"> <span class= "label"> Thanh toán bằng thẻ quốc tế Visa, Master, JCB </span> <em class = "notice">(Chưa khả dụng) </em>
                               </li>
-
                         <li class="styles__StyledMethod-sc-1u5r3pb-1 fTvtIP">
-                          <input type = "radio"> <span class= "label"> Thẻ thanh toán quốc tế (visa, master card) </span><em class = "notice">(Chưa khả dụng) </em>
+                          <input type = "radio"> <span class= "label"> Thẻ ATM nội địa/Internet Banking </span><em class = "notice">(Chưa khả dụng) </em>
+                              </li>
+                        <li class="styles__StyledMethod-sc-1u5r3pb-1 fTvtIP">
+                          <input type = "radio"> <span class= "label"> Thanh toán bằng ZaloPay </span><em class = "notice">(Chưa khả dụng) </em>
                               </li>
     </ul>
 </div>
@@ -61,6 +63,7 @@
 
 
 </div>
+</div>
 
   <div class="mt-3">
       <Footer />
@@ -68,6 +71,7 @@
   <!-- end footer -->
 </div>
 </template>
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="//code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -210,10 +214,18 @@ ul.list{
   width: 40%;
   margin: 50px 10%;
 }
+.wrapper[data-v-529c3441] {
+    width: 40%;
+    background-color: white;
+    margin: 59px 20.2%;
+}
 .payment-method {
   align-items: center;
   display: flex;
   justify-content: center;
+}
+.payment-method {
+    background-color: white;
 }
 .confirm-button {
   display: flex;
@@ -228,5 +240,8 @@ ul.list{
 .qrcode-wrapper {
   display: flex;
   justify-content: center;
+}
+label.momo-payment-method {
+  margin-bottom: -0.5rem;
 }
 </style>
