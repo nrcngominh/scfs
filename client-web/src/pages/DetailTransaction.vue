@@ -17,15 +17,15 @@
         </ul>
       </div>
       
-      <div class="basket-product" v-for="item_detail in order.items" :key="item_detail._id" >
+      <div class="basket-product" v-for="item in order.items" :key="item.food._id" >
         <div class="item">
           <div class="product-details">
-            <h1><span class="item-name"></span><strong>{{billId}}</strong></h1>
+            <h1><span class="item-name"></span><strong>{{item.food.name}}</strong></h1>
           </div>
         </div>
-        <div class="price">{{item_detail.totalMoney}}</div>
-        <div class="quantity">{{item_detail.quantity}}</div>
-        <div class="subtotal">{{item_detail.totalMoney}}</div>
+        <div class="price">{{item.food.price}}</div>
+        <div class="quantity">{{item.quantity}}</div>
+        <div class="subtotal">{{item.food.price * item.quantity}}</div>
       </div>
 
     </div>

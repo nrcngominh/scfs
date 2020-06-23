@@ -9,7 +9,8 @@ const store = new Vuex.Store({
     foods: [],
     cart: [],
     totalMoneyAfterDiscount: 0,
-    isReadyToPay: false
+    isReadyToPay: false,
+    notifications: [],
   },
   mutations: {
     setCategories(state, categories) {
@@ -60,7 +61,10 @@ const store = new Vuex.Store({
   actions: {
     SOCKET_PAYMENT_SUCCESS(state, arg) {
       const json = JSON.parse(arg)
-      console.log(json)
+      state.notifications.push({
+        message: `Giao dịch ${json.billId} đã được thanh toán`,
+        url: `/detail-transaction/${json.billId}`
+      })
     }
   }
 });
