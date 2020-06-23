@@ -5,6 +5,7 @@ import router from './router'
 import store from './store'
 import VueSocketIO from 'vue-socket.io'
 import SocketIO from 'socket.io-client'
+import VueQrCodeComponent from 'vue-qrcode-component';
 
 //Add boostrap
 import "bootstrap";
@@ -24,6 +25,7 @@ library.add(faFacebookF, faTwitter, faGithub, faLinkedin)
 
 // Enable the FontAwesomeIcon component globally
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+Vue.component('qr-code', VueQrCodeComponent)
 Vue.config.productionTip = false;
 
 Vue.use(VueCookies)
