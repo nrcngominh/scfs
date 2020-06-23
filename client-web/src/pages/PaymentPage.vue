@@ -74,6 +74,9 @@ import $ from 'jquery';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+import {redirectIfAuthFailed} from '../services/auth-services'
+
+
 AOS.init({
   offset: 300,
   duration: 1000
@@ -93,7 +96,8 @@ export default {
         subtotal: 0,
     }
   },
-  beforeCreate() {
+  async beforeCreate() {
+    await redirectIfAuthFailed()
     document.body.className = "user";
   },
   methods: {

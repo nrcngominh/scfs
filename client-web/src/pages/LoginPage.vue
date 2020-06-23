@@ -57,6 +57,8 @@
 <script>
 import '../assets/global.css'
 
+import {redirectIfAuthSuccess} from '../services/auth-services'
+
 export default {
   name: "LoginForm",
   data() {
@@ -67,15 +69,7 @@ export default {
   },
   async beforeCreate() {
     document.body.className = "login";
-    const accessToken = this.$http.defaults.headers['x-access-token']
-    try {
-        await this.$http.post('/api/auth', {
-            accessToken: accessToken
-        })
-        this.$router.push('/')
-    } catch (error) {
-        console.log(error)
-    }
+    await redirectIfAuthSuccess()
   },
   methods: {
     async login() {

@@ -102,6 +102,7 @@ export default{
         },
         async logout() {
             this.$cookies.remove('accessToken')
+            delete this.$http.defaults.headers['x-access-token']
             this.isLogined = true;
             this.isActive = false;
         },
@@ -111,6 +112,7 @@ export default{
     },
     async mounted() {
         const accessToken = this.$cookies.get("accessToken")
+        
         await this.$http.post('/api/auth', {
           accessToken: accessToken
         })

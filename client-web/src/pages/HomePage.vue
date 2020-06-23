@@ -149,35 +149,21 @@ export default {
   },
   methods: {
     async addToCart(foodId) {
-      const accessToken = this.$http.defaults.headers['x-access-token']
       try {
-        const res = await this.$http.post("/api/auth", {
-          accessToken: accessToken
-        });
-        try {
-          this.$store.commit('addToCart', foodId)
-          await this.$http.post('/api/cart', this.$store.state.cart)
-        } catch (error) {
-          console.log(error)
-        }
+        this.$store.commit('addToCart', foodId)
+        await this.$http.post('/api/cart', this.$store.state.cart)
       } catch (error) {
+        console.log(error)
         this.$router.push("/login");
       }
     },
     async buy(foodId) {
-      const accessToken = this.$http.defaults.headers['x-access-token']
       try {
-        const res = await this.$http.post("/api/auth", {
-          accessToken: accessToken
-        });
-        try {
-          this.$store.commit('addToCart', foodId)
-          await this.$http.post('/api/cart', this.$store.state.cart)
-          this.$router.push("/checkout")
-        } catch (error) {
-          console.log(error)
-        }
+        this.$store.commit('addToCart', foodId)
+        await this.$http.post('/api/cart', this.$store.state.cart)
+        this.$router.push("/checkout")
       } catch (error) {
+        console.log(error)
         this.$router.push("/login");
       }
     }
