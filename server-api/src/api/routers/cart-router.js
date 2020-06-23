@@ -10,12 +10,12 @@ CartRouter.all('/', AuthMiddleware)
 /*
  * Get cart info
  */
-CartRouter.get('/', async (req, res) => {
+CartRouter.get('/', async(req, res) => {
   try {
     const cart = await CartRepo.findById()
     res.status(200).send(cart.items)
   }
-  catch(error) {
+  catch (error) {
     res.status('404').send({
       message: "Failed"
     })

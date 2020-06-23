@@ -85,7 +85,7 @@ const router = new VueRouter({
             meta: {
                 title: 'BK Food | Transaction'
             }
-        },
+        }
     ]
 })
 router.beforeEach((to, from, next) => {
