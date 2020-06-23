@@ -155,15 +155,6 @@ export default {
       } catch (error) {
         console.log(error)
       }
-
-      // const accessToken = this.$cookies.get("accessToken");
-      // try {
-      //   const res = await this.$http.post("/api/auth", {
-      //     accessToken: accessToken
-      //   });
-      // } catch (error) {
-      //   this.$router.push("/login");
-      // }
     },
     async buy(food) {
       this.$router.push("/checkout");
