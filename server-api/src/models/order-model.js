@@ -12,6 +12,6 @@ const OrderSchema = mongoose.Schema({
     }
   ]
 })
-const AccountModel = mongoose.model('Order', orderSchema, 'order')
+const AccountModel = mongoose.model('Order', OrderSchema, 'order')
 
 export default AccountModel

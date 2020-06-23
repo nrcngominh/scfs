@@ -23,7 +23,7 @@
                               </li>
                               </ul></div>
 <div class = "confirm-button">
-  <button class = "button"><span class= "button-data">Xác nhận</span></button>
+  <button class = "button" @click="confirmPayment"><span class= "button-data">Xác nhận</span></button>
 </div>
 </div>
 
@@ -123,6 +123,16 @@ export default {
     },
     getImageUrl(path,category) {
       return `${this.$http.defaults.baseURL}images/${category}/${path}`;
+    },
+    async confirmPayment() {
+      try {
+        const res = await this.$http.post('/api/order', {
+          date: Date.now(),
+          cart: this.$store.state.cart
+        })
+      } catch (error) {
+        console.log(error)
+      }
     }
   }, 
   async mounted() {
