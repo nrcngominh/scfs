@@ -19,7 +19,7 @@
         </ul>
       </div>
       
-      <div class="basket-product" v-for=" in ": key="">
+      <div class="basket-product">
         <div class="item">
           <div class="product-details">
             <h1><span class="item-name"></span><a @click="view_detail" id="trans" href=""><strong>{{  }}</strong></a></h1>
