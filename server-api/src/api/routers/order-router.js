@@ -14,12 +14,12 @@ const randomNumber = (numOfDigits) => {
 /*
  * Get cart info
  */
-OrderRouter.get('/', async (req, res) => {
+OrderRouter.get('/', async(req, res) => {
   try {
-    const cart = await CartRepo.findById()
-    res.status(200).send(cart.items)
+    const order = await OrderRepo.findByBillId(req.params.billId)
+    res.status(200).send(order)
   }
-  catch(error) {
+  catch (error) {
     res.status('404').send({
       message: "Failed"
     })
