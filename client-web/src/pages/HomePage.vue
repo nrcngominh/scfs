@@ -163,7 +163,6 @@ export default {
       } catch (error) {
         this.$router.push("/login");
       }
-
     },
     async buy(foodId) {
       const accessToken = this.$http.defaults.headers['x-access-token']

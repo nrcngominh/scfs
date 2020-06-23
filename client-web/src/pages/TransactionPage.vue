@@ -8,10 +8,10 @@
 <div class="basket content-wrapper">
       <div class="basket-labels">
         <ul>
-          <li class="item item-heading">Item</li>
-          <li class="price1">Price</li>
-          <li class="quantity">Quantity</li>
-          <li class="subtotal1">Subtotal</li>
+          <li class="item item-heading">Mã đơn hàng</li>
+          <li class="price1">Ngày mua</li>
+          <li class="quantity">Tổng tiền</li>
+          <li class="subtotal1">Trạng thái đơn hàng</li>
         </ul>
       </div>
       
@@ -29,15 +29,7 @@
   </div>
 
     </div>
-    <aside>
-      <div class="summary">
-        <div class="summary-subtotal">
-          <div class="subtotal-title">Subtotal</div>
-          <div class="subtotal-value final-value" id="basket-subtotal">{{totalMoney}}</div>
-        </div>
-      </div>
 
-    </aside>
     </main>
     </body>
 
@@ -228,11 +220,6 @@ button,
 .product-details {
   float: left;
 }
-/* .price1,
-.subtotal1{
-    width: 33%;
-    float: left;
-} */
 
 .price:after,
 .subtotal:after,
@@ -337,7 +324,7 @@ li.subtotal:before {
 .subtotal1,
 .quantity,
 .subtotal {
-  width: 15%;
+  width: 21%;
 }
 
 .subtotal {
