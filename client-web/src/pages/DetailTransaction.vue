@@ -5,38 +5,32 @@
     <!-- end header -->
   <body>
     <main>
-    
-    <div class="basket content-wrapper">
-        <div>
-          <h5>Chi tiết đơn hàng</h5>
-        </div>
-        <div class="wrap_basket">
-        <div class="basket-labels">
-          <ul>
-            <li class="item item-heading">Mã đơn hàng</li>
-            <li class="price1">Ngày mua</li>
-            <li class="quantity">Tổng tiền</li>
-            <li class="subtotal1">Trạng thái đơn hàng</li>
-          </ul>
-        </div>
-      
-        <div class="basket-product">
-          <div class="item">
-            <div class="product-details">
-              <h1><span class="item-name"></span><a id="trans" href=""><strong>#123456789</strong></a></h1>
-            </div>
-          </div>
-          <div class="price">22/06/2020</div>
-          <div class="quantity1">120.000</div>
-          <div class="subtotal">Giao dịch thành công</div>
-        </div>
-        
+      <div class="basket content-wrapper">
+      <div class="basket-module">
       </div>
-        <button @click="backwardTrans" class="btn btn-danger">Back</button>
-    </div>
+      <div class="basket-labels">
+        <ul>
+          <li class="item item-heading">Vật phẩm</li>
+          <li class="price1">Giá</li>
+          <li class="quantity">Số lượng</li>
+          <li class="subtotal1">Tạm tính</li>
+        </ul>
+      </div>
       
+      <div class="basket-product" v-for="item_detail in order.items" :key="item_detail._id" >
+        <div class="item">
+          <div class="product-details">
+            <h1><span class="item-name"></span><strong>{{billId}}</strong></h1>
+          </div>
+        </div>
+        <div class="price">{{item_detail.totalMoney}}</div>
+        <div class="quantity">{{item_detail.quantity}}</div>
+        <div class="subtotal">{{item_detail.totalMoney}}</div>
+      </div>
+
+    </div>
+
     </main>
-    
     </body>
   <!-- start footer -->
   <div class="mt-3">
@@ -147,6 +141,7 @@ export default {
       const billId = this.$router.currentRoute.params.billId
       const res = await this.$http.get('/api/transaction/' + billId)
       this.order = res.data
+      console.log(billId)
     }
      catch (error) {
        console.log(error)
@@ -175,14 +170,6 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300;600&display=swap");
 
-#trans {
-  text-decoration: none;
-}
-.button-back {
-  margin-top: 9%;
-  cursor: pointer;
-  color: red;
-}
 .content-wrapper {
   min-height: 400px;
 }
@@ -246,7 +233,6 @@ button,
 .price,
 .price1,
 .subtotal1,
-.quantity1,
 .quantity,
 .subtotal,
 .basket-product,
@@ -254,8 +240,17 @@ button,
 .product-details {
   float: left;
 }
+/* .price1,
+.subtotal1{
+    width: 33%;
+    float: left;
+} */
 
-.quantity1:after {
+.price:after,
+.subtotal:after,
+.subtotal-value:after,
+.total-value:after,
+.promo-value:after {
   content: 'VND';
 }
 
@@ -284,7 +279,6 @@ aside {
 
 .basket {
   width: 70%;
-  min-height: 600px;
 }
 
 .basket-module {
@@ -301,7 +295,7 @@ label {
   padding: 0.5rem;
   text-transform: uppercase;
   transition: all 0.2s linear;
-  width: 66%;
+  width: 58%;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
   -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
   -o-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
@@ -323,12 +317,9 @@ label {
 .basket-labels {
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
-  margin-top: 0.625rem;
+  margin-top: 1.625rem;
 }
-h5 {
-  color:#162945;
-  font-family: "Montserrat", sans-serif;
-}
+
 ul {
   list-style: none;
   margin: 0;
@@ -341,7 +332,7 @@ li {
   padding: 0.625rem 0;
 }
 li.subtotal1 {
-    float: left;
+    float: right;
     text-align: right;
 }
 li.price:before,
@@ -350,20 +341,19 @@ li.subtotal:before {
 }
 
 .item {
-  width: 32%;
+  width: 55%;
 }
-.price1,
-.quantity,
+
 .price,
+.price1,
 .subtotal1,
+.quantity,
 .subtotal {
-  width: 20%;
+  width: 15%;
 }
-.quantity1 {
-  width: 25.6%;
-}
+
 .subtotal {
-  text-align: left;
+  text-align: right;
 }
 
 .remove {
@@ -397,7 +387,8 @@ li.subtotal:before {
 }
 
 .product-image {
-  width: 30%;
+  width: 25%;
+  height: 20%;
 }
 
 .product-details {
@@ -409,7 +400,7 @@ li.subtotal:before {
 }
 
 .product-details {
-  padding: 0 4.2rem;
+  padding: 0 1.5rem;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -424,12 +415,19 @@ li.subtotal:before {
   width: 3.75rem;
 }
 
+aside {
+  float: right;
+  position: relative;
+  width: 30%;
+}
+
 .summary {
+  margin-top: 6.5%;
   margin-left: -6px;
   background-color: aliceblue;
   border: 1px solid #aaa;
   padding: 1rem;
-  position: fixed;
+  position: auto;
   width: 250px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -549,8 +547,7 @@ li.subtotal:before {
   .subtotal {
     width: 33%;
   }
-  .quantity,
-  .quantity1 {
+  .quantity {
     text-align: center;
     width: 34%;
   }

@@ -172,6 +172,10 @@ export default {
 #trans {
   text-decoration: none;
 }
+a#trans {
+    color: rgb(0, 127, 240);
+    cursor: pointer;
+}
 .content-wrapper {
   min-height: 400px;
 }
@@ -245,7 +249,7 @@ button,
 }
 
 .quantity1:after {
-  content: 'VND';
+  content: 'đ';
 }
 
 .hide {
@@ -399,7 +403,7 @@ li.subtotal:before {
 }
 
 .product-details {
-  padding: 0 4.2rem;
+  padding: 0 4.3rem;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
