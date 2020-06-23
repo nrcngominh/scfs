@@ -247,6 +247,13 @@ input {
     line-height: 16px
 }
 
+#form__input-error {
+    margin-top: 4px;
+    color: red;
+    font-size: 12px;
+    line-height: 16px;
+}
+
 .form__input-icon {
     position: relative
 }
