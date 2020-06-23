@@ -12,10 +12,10 @@
       </div>
       <div class="basket-labels">
         <ul>
-          <li class="item item-heading">Item</li>
-          <li class="price1">Price</li>
-          <li class="quantity">Quantity</li>
-          <li class="subtotal1">Subtotal</li>
+          <li class="item item-heading">Vật phẩm</li>
+          <li class="price1">Giá</li>
+          <li class="quantity">Số lượng</li>
+          <li class="subtotal1">Thành tiền</li>
         </ul>
       </div>
       
@@ -46,12 +46,12 @@
     </div>
     <aside>
       <div class="summary">
-        <div class="summary-total-items"><span class="total-items"></span> Items in your Bag</div>
+        <div class="summary-total-items"><span class="total-items"></span>Giỏ hàng</div>
         <div class="summary-subtotal">
-          <div class="subtotal-title">Subtotal</div>
+          <div class="subtotal-title">Tạm tính</div>
           <div class="subtotal-value final-value" id="basket-subtotal">{{totalMoney}}</div>
           <div class="summary-promo hide">
-            <div class="promo-title">Promotion</div>
+            <div class="promo-title">Giảm giá</div>
             <div class="promo-value final-value" id="basket-promo"></div>
           </div>
         </div>
@@ -68,16 +68,16 @@
 
 
         <div class="summary-promotional">
-          <label for="promo-code">Enter a promotional code</label>
+          <label for="promo-code" class = "promoCodeFont">Nhập mã giảm giá</label>
           <input id="promo-code" v-model="promoCode" type="text" name="promo-code" maxlength="5" class="promo-code-field">
-          <button class="promo-code-cta" @click="applyPromotionCode()">Apply</button>        
+          <button class="promo-code-cta" @click="applyPromotionCode()">Xác nhận</button>        
         </div>
         <div class="summary-total">
-          <div class="total-title">Total</div>
+          <div class="total-title">Thành tiền</div>
           <div class="total-value final-value" id="basket-total">{{totalMoneyAfterDiscount()}}</div>
         </div>
         <div class="summary-checkout">
-          <button class="checkout-cta" @click="$router.push('/payment')">Confirm Order</button>
+          <button class="checkout-cta" @click="readyToPay()">Xác nhận đơn hàng</button>
         </div>
       </div>
 
@@ -104,6 +104,8 @@ import $ from 'jquery';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+import {redirectIfAuthFailed} from '../services/auth-services'
+
 AOS.init({
   offset: 300,
   duration: 1000
@@ -122,14 +124,12 @@ export default {
   },
   computed: {
     cart() {
-      const temp = this.$store.state.cart.map(item => {
+      return this.$store.state.cart.map(item => {
         return {
           food: this.$store.state.foods.find(food => food._id == item.foodId),
           quantity: item.quantity
         }
       })
-      console.log(temp)
-      return temp
     },
     totalMoney() {
       let sum = 0
@@ -141,8 +141,9 @@ export default {
       return sum
     }
   },
-  beforeCreate() {
+  async beforeCreate() {
     document.body.className = "user";
+    await redirectIfAuthFailed()
   },
   methods: {
     async updateQuantity(foodId, newQuantity) {
@@ -154,6 +155,8 @@ export default {
         await this.$http.post('/api/cart', this.$store.state.cart)
       } catch (error) {
         console.log(error)
+        this.$router.push("/login");
+
       }
     },
     async removeItem(foodId) {
@@ -162,16 +165,25 @@ export default {
         await this.$http.post('/api/cart', this.$store.state.cart)
       } catch (error) {
         console.log(error)
+        this.$router.push("/login");
+
       }
     },
     applyPromotionCode() {
       this.realPromoCode = this.promoCode
     },
     totalMoneyAfterDiscount() {
-      const totalMoneyAfterDiscount = this.realPromoCode == "BKU18" ? 
-        this.totalMoney * 0.85 : this.totalMoney
+      // const totalMoneyAfterDiscount = this.realPromoCode == "BKU18" ? 
+      //   this.totalMoney * 0.85 : this.totalMoney
+      const totalMoneyAfterDiscount = this.totalMoney
       this.$store.commit('updateTotalMoney', totalMoneyAfterDiscount)
       return totalMoneyAfterDiscount
+    },
+    readyToPay() {
+      if (this.totalMoney != 0) {
+        this.$store.commit('readyToPay')
+        this.$router.push('/payment')
+      }
     }
   }, 
   async mounted() {
@@ -319,7 +331,7 @@ label {
   padding: 0.5rem;
   text-transform: uppercase;
   transition: all 0.2s linear;
-  width: 66%;
+  width: 58%;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
   -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
   -o-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);

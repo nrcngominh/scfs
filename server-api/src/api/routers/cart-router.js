@@ -1,20 +1,21 @@
 import Router from 'express'
+import AuthMiddleware from '../middlewares/auth-middleware'
+import AccountRepo from '../../repositories/account-repository'
 import CartRepo from '../../repositories/cart-repository'
-import BaseSocket from '../../sockets'
-
-const io = BaseSocket.getIO()
 
 const CartRouter = Router()
+
+CartRouter.all('/', AuthMiddleware)
 
 /*
  * Get cart info
  */
-CartRouter.get('/', async (req, res) => {
+CartRouter.get('/', async(req, res) => {
   try {
     const cart = await CartRepo.findById()
     res.status(200).send(cart.items)
   }
-  catch(error) {
+  catch (error) {
     res.status('404').send({
       message: "Failed"
     })
@@ -26,9 +27,8 @@ CartRouter.get('/', async (req, res) => {
  */
 CartRouter.post('/', async (req, res) => {
   try {
-    console.log(req.body)
-    const customerId = "5ee0bf66dbc5342856486edc"
-    await CartRepo.update(customerId, req.body)
+    const account = await AccountRepo.findByEmail(req.jwtDecodedData.email)
+    await CartRepo.update(account._id, req.body)
     res.status(201).send({
       message: "Success"
     })

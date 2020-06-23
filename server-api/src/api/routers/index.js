@@ -8,24 +8,25 @@ import MomoRouter from './momo-router'
 import PaymentRouter from './payment-router'
 import AuthRouter from './auth-router'
 import CartRouter from './cart-router'
+import OrderRouter from './order-router'
 
 const BaseRouter = Router()
 
 BaseRouter.use((req, res, next) => {
-//   console.log()
-//   console.log(new Date().toISOString()
-//     .replace(/T/, ' ')
-//     .replace(/\..+/, '')
-//   )
-//   console.log(req.method, req.originalUrl)
-//   console.log('Headers:', req.headers)
-//   if (req.method == 'GET') {
-//     console.log('Params:', req.params)
-//   }
-//   else {
-//     console.log('Body:', req.body)
-//   }
-//   console.log()
+  // console.log()
+  // console.log(new Date().toISOString()
+  //   .replace(/T/, ' ')
+  //   .replace(/\..+/, '')
+  // )
+  // console.log(req.method, req.originalUrl)
+  // console.log('Headers:', req.headers)
+  // if (req.method == 'GET') {
+  //   console.log('Params:', req.params)
+  // }
+  // else {
+  //   console.log('Body:', req.body)
+  // }
+  // console.log()
   next()
 })
 
@@ -38,5 +39,6 @@ BaseRouter.use('/momo', MomoRouter)
 BaseRouter.use('/payment', PaymentRouter)
 BaseRouter.use('/auth', AuthRouter)
 BaseRouter.use('/cart', CartRouter)
+BaseRouter.use('/order', OrderRouter)
 
 export default BaseRouter

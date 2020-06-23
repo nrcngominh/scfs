@@ -7,11 +7,10 @@
   <!-- start footer -->
 
 
-
-
 <div class="payment-method">
+  <div class="wrapper">
+
 <div class = "all-payment-method">
-  <div>{{$store.state.totalMoneyAfterDiscount}}</div>
   <h3 class="title">1. Phương thức thanh toán</h3>
     <ul class="list"><li class="styles__StyledMethod-sc-1u5r3pb-1 fTvtIP">
         </li>
@@ -25,36 +24,36 @@
                           
                               </li>
                               </ul></div>
-<div class = "confirm-button">
-  <button class = "button"><span class= "button-data">Xác nhận</span></button>
-</div>
-</div>
-
-
 <div class = "notice">
-  <em><p>Vui lòng kiểm tra kỹ đơn hàng trước khi xác nhận</p></em> 
   
-<div class = "order-title">Đơn hàng
-  <button class = "fix-button"> Chỉnh sửa </button>
+    <div class = "totalMoney"><h3>
+      Tổng tiền:  {{$store.state.totalMoneyAfterDiscount}} VND
+ </h3></div>
+  <em><p>Vui lòng kiểm tra kỹ đơn hàng trước khi xác nhận</p></em> 
+<div class = "confirm-button">
+  <button class = "button" @click="confirmPayment"><span class= "button-data">Xác nhận</span></button>
 </div>
-  <div class= "basket">
-      <div class="basket-product" v-for="item in $store.state.cart.items" :key="item.food._id" >
-        <div class="item">
-          <div class="product-details">
-            <div class="item-name">{{item.food.name}}</div>
-          </div>
-        </div>
-        <div class="price">Giá: {{item.food.price}}VND</div>
-        <div class="quantity">Số lượng: 
-          {{item.quantity}}
-                  </div>
-        <div class="subtotal">Tạm tính: {{item.food.price * item.quantity}}VND</div>
+
+<div class="order-info" :class="{'order-info-hidden': orderInfoHidden}">
+  <div>
+    <h6>Mã đơn hàng: {{ billId }}</h6>
+  </div>
+  <div>
+    <h6>Mã QR:</h6>
+  </div>
+  <div class="qrcode-wrapper">
+      <qr-code  :text="qrCode"></qr-code>
   </div>
 </div>
 
+</div>
 
 
 </div>
+
+
+</div>
+
   <div class="mt-3">
       <Footer />
   </div>
@@ -74,6 +73,9 @@ import $ from 'jquery';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+import {redirectIfAuthFailed} from '../services/auth-services'
+
+
 AOS.init({
   offset: 300,
   duration: 1000
@@ -85,40 +87,37 @@ export default {
   },
   data() {
     return {
-        menu: "HomePage",
-        foods: [],
-        name: "",
-        price: 0,
-        description: "",
-        subtotal: 0,
+      orderInfoHidden: true,
+      billId: "",
+      qrCode: ""
     }
   },
-  beforeCreate() {
+  async beforeCreate() {
+    await redirectIfAuthFailed()
+    if (!this.$store.state.isReadyToPay) {
+      this.$router.push('/checkout')
+    }
     document.body.className = "user";
   },
   methods: {
-    async addToCart() {
-      const accessToken = this.$cookies.get("accessToken")
+    async confirmPayment() {
       try {
-        const res = await this.$http.post('/api/auth', {
-          accessToken: accessToken
+        const res = await this.$http.post('/api/order', {
+          date: Date.now(),
+          cart: this.$store.state.cart
         })
+        this.billId = res.data.billId
+        this.qrCode = res.data.momoQRCode
+        this.orderInfoHidden = false
+        try {
+          this.$store.commit('setCart', [])
+          await this.$http.post('/api/cart', this.$store.state.cart)
+        } catch (error) {
+          console.log(error)          
+        }
       } catch (error) {
-        this.$router.push('/login')
+        console.log(error)
       }
-    },
-    async buy() {
-      const accessToken = this.$cookies.get("accessToken")
-      try {
-        const res = await this.$http.post('/api/auth', {
-          accessToken: accessToken
-        })
-      } catch (error) {
-        this.$router.push('/login')
-      }
-    },
-    getImageUrl(path,category) {
-      return `${this.$http.defaults.baseURL}images/${category}/${path}`;
     }
   }, 
   async mounted() {
@@ -139,6 +138,7 @@ export default {
     };
   }
 }
+ 
 </script>
 
 
@@ -150,7 +150,6 @@ export default {
 }
 .all-payment-method{
   box-sizing: border-box;
-  margin-left: 10%;
   margin-top: 2.5%;
 }
 .list{
@@ -165,12 +164,10 @@ export default {
     border-image: initial;
 }
 ul.list{
-  width: 50%;
   padding-right: 100px;
 }
 .button{
   background-color: red;
-  margin-left: 10%;
   margin-top: 1px;
 }
 .button-data{
@@ -179,14 +176,12 @@ ul.list{
 .notice{
   font-size: 13px;
   font-style: align-self start;
-  margin-left: 10%;
   margin-top:2px;
 }
 .message{
   font-size:10px;
 }
 .basket{
-  width: 40%;
   box-sizing: border-box;
   padding: 15px 25px 10px 15px;
   border-radius: 5px;
@@ -203,7 +198,27 @@ ul.list{
   font-size: 20px;
   color: black;
 }
-.payment-method{
-  width: 50%;
+.wrapper {
+  width: 40%;
+  margin: 50px 10%;
+}
+.payment-method {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.confirm-button {
+  display: flex;
+  justify-content: center;
+}
+.order-info {
+  margin-top: 20px;
+}
+.order-info-hidden {
+  display: none;
+}
+.qrcode-wrapper {
+  display: flex;
+  justify-content: center;
 }
 </style>

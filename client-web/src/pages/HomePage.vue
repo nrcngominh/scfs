@@ -39,8 +39,8 @@
                 <h5 class="card-title">{{ food.name }}</h5>
                 <h6 class="card-title money">{{ food.price }}</h6>
                 <p class="card-text">{{ food.description }}</p>
-                <button @click="buy(food)" class="btn btn-success mr-3">Buy</button>
-                <button @click="addToCart(food._id)" class="btn btn-primary">Add to cart</button>
+                <button @click="buy(food._id)" class="btn btn-success mr-3">Mua</button>
+                <button @click="addToCart(food._id)" class="btn btn-primary">Thêm vào giỏ</button>
               </div>
             </div>
           </div>
@@ -57,10 +57,10 @@
             <div class="col-lg-6 col-md-6 col-sm-12 text-center">
               <div class="inner-column">
                 <h3 data-aos="fade-up">
-                  Welcome to
+                  Chào mừng đến với
                   <span>BK Food Court</span>
                 </h3>
-                <p data-aos="fade-up" class="mt-4">The university is currently has one food court located in its Ly Thuong Kiet campus and is going to build another one in Di An campus.All food courts consist of a number of vendors at food stalls or service counters. Meals are ordered at one of the vendors and then carried to a common area for consumption.</p>
+                <p data-aos="fade-up" class="mt-4">Để đáp ứng các nhu cầu của sinh viên, trường đại học Bách Khoa đã tiến hành xây dựng 1 một khu vực ăn uống đáp ứng được các tiêu chí: hiện đại, an toàn và thân thiện với sinh viên. Tọa lạc tại cơ sở Lý thường Kiệt (268 - Lý Thường Kiệt, Q10, TPHCM) và trong tương lai sẽ xây dựng thêm 1 khu vực ăn uống ở cơ sở Dĩ An (Làng ĐHQH, Dĩ An, Bình Dương). Đến với BK Food Court, các bạn sinh viên, thầy cô và khách tham quan sẽ được đón nhận một trải nghiệm ăn uống hiện đại với tiêu chí tự phục vụ: trong đó đồ ăn được cung cấp từ nhiều nhà cung cấp và chế biến từ nhiều nhà cung cấp khác nhau và sẽ được mang ra khu vực tự phục vụ. </p>
               </div>
             </div>
             <div id="img_bk" class="col-lg-6 col-md-6 col-sm-12 text-center">
@@ -154,25 +154,16 @@ export default {
         await this.$http.post('/api/cart', this.$store.state.cart)
       } catch (error) {
         console.log(error)
+        this.$router.push("/login");
       }
-
-      // const accessToken = this.$cookies.get("accessToken");
-      // try {
-      //   const res = await this.$http.post("/api/auth", {
-      //     accessToken: accessToken
-      //   });
-      // } catch (error) {
-      //   this.$router.push("/login");
-      // }
     },
-    async buy(food) {
-      this.$router.push("/checkout");
-      const accessToken = this.$cookies.get("accessToken");
+    async buy(foodId) {
       try {
-        const res = await this.$http.post("/api/auth", {
-          accessToken: accessToken
-        });
+        this.$store.commit('addToCart', foodId)
+        await this.$http.post('/api/cart', this.$store.state.cart)
+        this.$router.push("/checkout")
       } catch (error) {
+        console.log(error)
         this.$router.push("/login");
       }
     }
@@ -343,7 +334,12 @@ body {
 #img_bk {
   padding: 0;
 }
-
+.btn btn-success mr-3{
+  margin-left: 25%;
+}
+.btn btn-primary{
+  margin-left: 9%;
+}
 .img-fluid1 {
   max-width: 100%;
   height: auto;

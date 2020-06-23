@@ -8,7 +8,8 @@ const store = new Vuex.Store({
     categories: [],
     foods: [],
     cart: [],
-    totalMoneyAfterDiscount: 0
+    totalMoneyAfterDiscount: 0,
+    isReadyToPay: false
   },
   mutations: {
     setCategories(state, categories) {
@@ -51,6 +52,9 @@ const store = new Vuex.Store({
     },
     updateTotalMoney(state, value) {
       state.totalMoneyAfterDiscount = value
+    },
+    readyToPay(state) {
+      state.isReadyToPay = true
     }
   },
   actions: {
