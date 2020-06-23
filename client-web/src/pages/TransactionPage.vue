@@ -22,11 +22,11 @@
       <div class="basket-product">
         <div class="item">
           <div class="product-details">
-            <h1><span class="item-name"></span><a @click="view_detail" id="trans" href=""><strong>#123456789</strong></a></h1>
+            <h1><span class="item-name"></span><a @click="view_detail" id="trans" href=""><strong>{{  }}</strong></a></h1>
           </div>
         </div>
-        <div class="price">22/06/2020</div>
-        <div class="quantity1">120.000</div>
+        <div class="price">{{  }}</div>
+        <div class="quantity1">{{ }}</div>
         <div class="subtotal">Giao dịch thành công</div>
   </div>
 
@@ -267,6 +267,8 @@ aside {
 
 .basket {
   width: 70%;
+  min-height: 600px;
+
 }
 
 .basket-module {

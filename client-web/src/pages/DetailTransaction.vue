@@ -32,11 +32,7 @@
         </div>
         
       </div>
-      <div class="back">
-        <a class="button-back">
-          Back
-        </a>
-      </div>
+        <button @click="backwardTrans" class="btn btn-danger">Back</button>
     </div>
       
     </main>
@@ -137,6 +133,9 @@ export default {
         this.totalMoney * 0.85 : this.totalMoney
       this.$store.commit('updateTotalMoney', totalMoneyAfterDiscount)
       return totalMoneyAfterDiscount
+    },
+    async backwardTrans() {
+      this.$router.push('/transaction')
     }
   }, 
   async mounted() {
@@ -164,14 +163,14 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300;600&display=swap");
-.back {
-    margin-top: 18%;
-}
+
 #trans {
   text-decoration: none;
 }
 .button-back {
   margin-top: 9%;
+  cursor: pointer;
+  color: red;
 }
 .content-wrapper {
   min-height: 400px;
