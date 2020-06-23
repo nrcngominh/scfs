@@ -25,7 +25,6 @@
 <div class = "confirm-button">
   <button class = "button"><span class= "button-data">Xác nhận</span></button>
 </div>
-</div>
 
 
 <div class = "notice">
@@ -51,7 +50,7 @@
  </div>
 
 </div>
-
+</div>
 
 
 </div>
