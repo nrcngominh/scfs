@@ -53,8 +53,14 @@
                                         <a @click="forwardRegister" class="button-small is-blued"><span>Đăng ký</span></a>
                                     </li> 
                                     <li :class = "{hidden: isLogined}">
-                                        <div id="avatar">
+                                        <div class="dropdown" id="avatar">
                                             <img src="@/assets/alarm.png" alt="">
+                                            <div class="dropdown-content">
+                                                <a href="#">Tài khoản</a>
+                                                <a @click="trans">Đơn hàng của tôi</a>
+                                                <a href="#">Cài đặt</a>
+                                                <a @click="logout">Đăng xuất</a>
+                                            </div>
                                         </div>
                                     </li> 
                                     <li id="cart" :class = "{hidden: isLogined}">
@@ -69,6 +75,7 @@
                                             <img src="@/assets/account.png" alt=""> 
                                             <div class="dropdown-content">
                                                 <a href="#">Tài khoản</a>
+                                                <a @click="trans">Đơn hàng của tôi</a>
                                                 <a href="#">Cài đặt</a>
                                                 <a @click="logout">Đăng xuất</a>
                                             </div>
@@ -88,6 +95,7 @@ export default{
     name: "Header",
     data() {
         return {
+            notifys: [],
             email: "",
             isActive: false,
             isLogined: true,
@@ -105,6 +113,9 @@ export default{
             delete this.$http.defaults.headers['x-access-token']
             this.isLogined = true;
             this.isActive = false;
+        },
+        async trans() {
+            this.$router.push('/transaction')
         },
         async checkout() {
             this.$router.push('/checkout')
