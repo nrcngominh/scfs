@@ -127,14 +127,12 @@ export default {
   },
   computed: {
     cart() {
-      const temp = this.$store.state.cart.map(item => {
+      return this.$store.state.cart.map(item => {
         return {
           food: this.$store.state.foods.find(food => food._id == item.foodId),
           quantity: item.quantity
         }
       })
-      console.log(temp)
-      return temp
     },
     totalMoney() {
       let sum = 0

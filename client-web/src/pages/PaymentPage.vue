@@ -109,6 +109,12 @@ export default {
         this.billId = res.data.billId
         this.qrCode = res.data.momoQRCode
         this.orderInfoHidden = false
+        try {
+          this.$store.commit('setCart', [])
+          await this.$http.post('/api/cart', this.$store.state.cart)
+        } catch (error) {
+          console.log(error)          
+        }
       } catch (error) {
         console.log(error)
       }
