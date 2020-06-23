@@ -30,11 +30,13 @@ TransactionRouter.post('/api/transaction', async (req, res) => {
     })
     
     // Sleep
-    const sleepTimeInSeconds = 15
+    // const sleepTimeInSeconds = 3
 
-    await new Promise(r => setTimeout(r, sleepTimeInSeconds * 1000))
-    await TransactionService.makeTransactionPaid(transaction.momoTransId)
-    await axios.post('http://127.0.0.1:3000/api/momo', transaction)
+    // await new Promise(r => setTimeout(r, sleepTimeInSeconds * 1000))
+    // console.log(req.body.billId)
+    // await axios.put('http://127.0.0.1:3000/api/momo', {
+    //   billId: req.body.billId
+    // })
 })
 
 TransactionRouter.get('/api/transaction', async (req, res) => {
@@ -44,6 +46,20 @@ TransactionRouter.get('/api/transaction', async (req, res) => {
     } catch (error) {
         console.log(error)
     }
+})
+
+TransactionRouter.put('/api/transaction', async (req, res) => {
+  try {
+    await TransactionService.makeTransactionPaid(req.body.billId)
+    res.status(202).send({
+      message: 'Success'
+    })
+    await axios.put('http://127.0.0.1:3000/api/momo', {
+      billId: req.body.billId
+    })
+  } catch (error) {
+    console.log(error)
+  }
 })
 
 export default TransactionRouter

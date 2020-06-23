@@ -26,8 +26,17 @@ const findByAccountId = async(accountId) => {
   })
 }
 
+const updatePaidByBillId = async (billId) => {
+  return OrderModel.updateOne({
+    billId: billId
+  }, {
+    hasPaid: true
+  })
+}
+
 export default {
   create,
   findByBillId,
-  findByAccountId
+  findByAccountId,
+  updatePaidByBillId
 }

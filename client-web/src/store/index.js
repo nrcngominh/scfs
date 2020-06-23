@@ -58,8 +58,9 @@ const store = new Vuex.Store({
     }
   },
   actions: {
-    SOCKET_ABCD(state, arg) {
-      console.log(arg)
+    SOCKET_PAYMENT_SUCCESS(state, arg) {
+      const json = JSON.parse(arg)
+      console.log(json)
     }
   }
 });
