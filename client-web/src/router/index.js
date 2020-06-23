@@ -12,6 +12,7 @@ import PaymentPage from '../pages/PaymentPage.vue'
 import TransactionPage from '../pages/TransactionPage.vue'
 import MomoPage from '../pages/MomoPage.vue'
 
+import DetailTransaction from '../pages/DetailTransaction.vue'
 
 axios.defaults.baseURL = process.env.VUE_APP_DOMAIN || 'http://localhost/'
 Vue.prototype.$http = axios
@@ -94,7 +95,15 @@ const router = new VueRouter({
             meta: {
                 title: 'MOMO Fake Server Dashboard'
             }
-        }
+        },
+        {
+            path: '/detail-transaction',
+            name: 'DetailTransaction',
+            component: DetailTransaction,
+            meta: {
+                title: 'BK Food | Detail Transaction'
+            }
+        },
     ]
 })
 router.beforeEach((to, from, next) => {

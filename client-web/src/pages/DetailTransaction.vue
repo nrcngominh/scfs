@@ -5,42 +5,44 @@
     <!-- end header -->
   <body>
     <main>
-<div class="basket content-wrapper">
-      <div class="basket-labels">
-        <ul>
-          <li class="item item-heading">Vật phẩm</li>
-          <li class="price1">Gía</li>
-          <li class="quantity">Số lượng</li>
-          <li class="subtotal1">Thành tiền</li>
-        </ul>
-      </div>
+    
+    <div class="basket content-wrapper">
+        <div>
+          <h5>Chi tiết đơn hàng</h5>
+        </div>
+        <div class="wrap_basket">
+        <div class="basket-labels">
+          <ul>
+            <li class="item item-heading">Mã đơn hàng</li>
+            <li class="price1">Ngày mua</li>
+            <li class="quantity">Tổng tiền</li>
+            <li class="subtotal1">Trạng thái đơn hàng</li>
+          </ul>
+        </div>
       
-      <div class="basket-product" v-for="item in cart" :key="item.food._id" >
-        <div class="item">
-          <div class="product-details">
-            <h1><span class="item-name"></span><strong>{{item.food.name}}</strong></h1>
+        <div class="basket-product">
+          <div class="item">
+            <div class="product-details">
+              <h1><span class="item-name"></span><a id="trans" href=""><strong>#123456789</strong></a></h1>
+            </div>
           </div>
+          <div class="price">22/06/2020</div>
+          <div class="quantity1">120.000</div>
+          <div class="subtotal">Giao dịch thành công</div>
         </div>
-        <div class="price">{{item.food.price}}</div>
-        <div class="quantity">
-          <input type="number" v-bind:value="item.quantity" v-on:input = "updateQuantity(item.food._id, $event.target.value)" min="1" class="quantity-field">
-        </div>
-        <div class="subtotal">{{item.food.price * item.quantity}}</div>
-  </div>
-
-    </div>
-    <aside>
-      <div class="summary">
-        <div class="summary-subtotal">
-          <div class="subtotal-title">Subtotal</div>
-          <div class="subtotal-value final-value" id="basket-subtotal">{{totalMoney}}</div>
-        </div>
+        
       </div>
-
-    </aside>
+      <div class="back">
+        <a class="button-back">
+          Back
+        </a>
+      </div>
+    </div>
+      
     </main>
+    
     </body>
-
+  <!-- start footer -->
   <div class="mt-3">
       <Footer />
   </div>
@@ -158,6 +160,19 @@ export default {
 
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300;600&display=swap");
+.back {
+    margin-top: 18%;
+}
+#trans {
+  text-decoration: none;
+}
+.button-back {
+  margin-top: 9%;
+}
 .content-wrapper {
   min-height: 400px;
 }
@@ -221,6 +236,7 @@ button,
 .price,
 .price1,
 .subtotal1,
+.quantity1,
 .quantity,
 .subtotal,
 .basket-product,
@@ -228,17 +244,8 @@ button,
 .product-details {
   float: left;
 }
-/* .price1,
-.subtotal1{
-    width: 33%;
-    float: left;
-} */
 
-.price:after,
-.subtotal:after,
-.subtotal-value:after,
-.total-value:after,
-.promo-value:after {
+.quantity1:after {
   content: 'VND';
 }
 
@@ -267,6 +274,7 @@ aside {
 
 .basket {
   width: 70%;
+  min-height: 600px;
 }
 
 .basket-module {
@@ -305,9 +313,12 @@ label {
 .basket-labels {
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
-  margin-top: 1.625rem;
+  margin-top: 0.625rem;
 }
-
+h5 {
+  color:#162945;
+  font-family: "Montserrat", sans-serif;
+}
 ul {
   list-style: none;
   margin: 0;
@@ -320,7 +331,7 @@ li {
   padding: 0.625rem 0;
 }
 li.subtotal1 {
-    float: right;
+    float: left;
     text-align: right;
 }
 li.price:before,
@@ -329,19 +340,20 @@ li.subtotal:before {
 }
 
 .item {
-  width: 55%;
+  width: 32%;
 }
-
-.price,
 .price1,
-.subtotal1,
 .quantity,
+.price,
+.subtotal1,
 .subtotal {
-  width: 15%;
+  width: 20%;
 }
-
+.quantity1 {
+  width: 25.6%;
+}
 .subtotal {
-  text-align: right;
+  text-align: left;
 }
 
 .remove {
@@ -387,7 +399,7 @@ li.subtotal:before {
 }
 
 .product-details {
-  padding: 0 1.5rem;
+  padding: 0 4.2rem;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -400,12 +412,6 @@ li.subtotal:before {
   font-size: 0.625rem;
   padding: 2px;
   width: 3.75rem;
-}
-
-aside {
-  float: right;
-  position: relative;
-  width: 30%;
 }
 
 .summary {
@@ -533,7 +539,8 @@ aside {
   .subtotal {
     width: 33%;
   }
-  .quantity {
+  .quantity,
+  .quantity1 {
     text-align: center;
     width: 34%;
   }

@@ -38,7 +38,7 @@
                                             <a href="#" class="Navbar-link title f12 "> <span id="platform">Pricing</span> </a>
                                         </li>
                                         <li class=Navbar-item>
-                                            <a href="#" class="Navbar-link title f12 "> <span>About us</span> </a>
+                                            <a href="#" class="Navbar-link title f12 "> <span>About Us</span> </a>
                                         </li>
                                     </ul>  
                                 </div>
@@ -47,10 +47,10 @@
                             <div class="Navbar-element">
                                 <ul>
                                     <li :class = "{hidden: isActive}">
-                                        <a @click="forwardLogin" class="button-small is-blue"><span>Login</span></a>
+                                        <a @click="forwardLogin" class="button-small is-blue"><span>Đăng nhập</span></a>
                                     </li>
                                     <li :class = "{hidden: isActive}">
-                                        <a @click="forwardRegister" class="button-small is-blued"><span>Sign up</span></a>
+                                        <a @click="forwardRegister" class="button-small is-blued"><span>Đăng ký</span></a>
                                     </li> 
                                     <li :class = "{hidden: isLogined}">
                                         <div id="avatar">
@@ -68,9 +68,9 @@
                                         <div class="dropdown" id="avatar">
                                             <img src="@/assets/account.png" alt=""> 
                                             <div class="dropdown-content">
-                                                <a href="#">Account</a>
-                                                <a href="#">Setting</a>
-                                                <a @click="logout">Log out</a>
+                                                <a href="#">Tài khoản</a>
+                                                <a href="#">Cài đặt</a>
+                                                <a @click="logout">Đăng xuất</a>
                                             </div>
                                         </div>
                                     </li>                   

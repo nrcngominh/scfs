@@ -7,7 +7,7 @@
   <!-- start footer -->
   <body>
     <main>
-<div class="basket content-wrapper">
+      <div class="basket content-wrapper">
       <div class="basket-module">
       </div>
       <div class="basket-labels">
@@ -18,9 +18,6 @@
           <li class="subtotal1">Thành tiền</li>
         </ul>
       </div>
-
-
-
       
       <div class="basket-product" v-for="item in cart" :key="item.food._id" >
         <div class="item">
@@ -71,7 +68,7 @@
 
 
         <div class="summary-promotional">
-          <label for="promo-code">Nhập mã giảm giá</label>
+          <label for="promo-code" class = "promoCodeFont">Nhập mã giảm giá</label>
           <input id="promo-code" v-model="promoCode" type="text" name="promo-code" maxlength="5" class="promo-code-field">
           <button class="promo-code-cta" @click="applyPromotionCode()">Xác nhận</button>        
         </div>
@@ -334,7 +331,7 @@ label {
   padding: 0.5rem;
   text-transform: uppercase;
   transition: all 0.2s linear;
-  width: 60%;
+  width: 58%;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
   -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
   -o-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
