@@ -4,7 +4,6 @@ import AccountRepo from '../../repositories/account-repository'
 import OrderRepo from '../../repositories/order-repository'
 
 const TransactionRouter = Router()
-
 TransactionRouter.all('/', AuthMiddleware)
 
 /*
