@@ -49,7 +49,8 @@
                                     <div class="form__input-icon">
                                         <input id="password" v-model="password" @keyup.enter="nextPasswordRetype" class="form__input" type="password"/>
                                         <p :class = "{hidden: error_pass}" id="form__input-error">Bạn cần phải nhập password</p>
-                                        <p class="form__input-info">Mật khẩu của bạn phải chứa tối thiểu 8 ký tự</p>
+                                        <p :class = "{hidden: error_pass_format}" id="form__input-error">Mật khẩu của bạn phải chứa tối thiểu 8 ký tự</p>
+                                        <p :class = "{hidden: pass_format}" class="form__input-info">Mật khẩu của bạn phải chứa tối thiểu 8 ký tự</p>
                                     </div>
                                 </div>
                                 <div :class = "{hidden: is_setup}" class="form__field">
@@ -115,6 +116,8 @@ export default {
       error_email: true,
       error_email_format: true,
       error_pass: true,
+      pass_format: false,
+      error_pass_format: true,
       error_repass: true,
       error_fullname: true,
       error_phone: true
@@ -152,6 +155,12 @@ export default {
             this.error_email_format = false;
             return;
         }
+        if(this.password.length < 8) {
+            document.getElementById("password").style.border = "2px solid red";
+            this.error_pass_format = false;
+            this.pass_format = true;
+            return;
+        }
         if (this.password != this.passwordRetype) {
             alert('Mật khẩu nhập lại không khớp')
             return;
@@ -166,6 +175,7 @@ export default {
         }   
     },
     async register() {
+        
         if (this.fullName == "" || this.phoneNumber == "") {
             
             if(this.fullName == "") {
@@ -194,10 +204,23 @@ export default {
         }
     },
     async back() {
+        this.error_email = true;
+        this.error_email_format = true;
+        this.error_pass = true;
+        this.pass_format = false;
+        this.error_pass_format = true;
+        this.error_repass = true;
+        this.error_fullname = true;
+        this.error_phone = true;
         this.setup = 'tabs__number_is_active';
         this.info = 'tabs__number_is_notactive';
         this.is_setup = false;
         this.setup_success = true;
+        document.getElementById("email").style.border = null;
+        document.getElementById("password").style.border = null;
+        document.getElementById("passwordRetype").style.border = null;
+        document.getElementById("full-name").style.border = null;
+        document.getElementById("phone-number").style.border = null;
     },
     nextPassword() {
       document.getElementById('password').focus();
@@ -228,16 +251,17 @@ export default {
 }
 #_login {
     color: #EB1510;
-    text-decoration: underline;
 }
 .hidden {
     display: none;
 }
 #_login:hover {
     cursor: pointer;
+    text-decoration: underline;
 }
 .grid.u-justify-space.u-align-center a {
     cursor: pointer;
+    text-decoration: none;
 }
 
 @media (min-width: 801px) {

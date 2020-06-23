@@ -109,6 +109,7 @@ export default {
 }
 .grid.u-justify-space.u-align-center a {
     cursor: pointer;
+    text-decoration: none;
 }
 @media (min-width: 801px) {
     .form__label, h1 {
