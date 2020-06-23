@@ -8,6 +8,7 @@ import MomoRouter from './momo-router'
 import AuthRouter from './auth-router'
 import CartRouter from './cart-router'
 import OrderRouter from './order-router'
+import TransactionRouter from './transaction-router'
 
 const BaseRouter = Router()
 
@@ -38,5 +39,6 @@ BaseRouter.use('/momo', MomoRouter)
 BaseRouter.use('/auth', AuthRouter)
 BaseRouter.use('/cart', CartRouter)
 BaseRouter.use('/order', OrderRouter)
+BaseRouter.use('/transaction', TransactionRouter)
 
 export default BaseRouter
