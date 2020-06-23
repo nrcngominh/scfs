@@ -164,9 +164,7 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300;600&display=swap");
-.back {
-    margin-top: 18%;
-}
+
 #trans {
   text-decoration: none;
 }

@@ -69,6 +69,7 @@
                                             <img src="@/assets/account.png" alt=""> 
                                             <div class="dropdown-content">
                                                 <a href="#">Tài khoản</a>
+                                                <a @click="trans">Lịch sử giao dịch</a>
                                                 <a href="#">Cài đặt</a>
                                                 <a @click="logout">Đăng xuất</a>
                                             </div>
@@ -105,6 +106,9 @@ export default{
             delete this.$http.defaults.headers['x-access-token']
             this.isLogined = true;
             this.isActive = false;
+        },
+        async trans() {
+            this.$router.push('/transaction')
         },
         async checkout() {
             this.$router.push('/checkout')
