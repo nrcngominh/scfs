@@ -52,6 +52,11 @@ const store = new Vuex.Store({
     updateTotalMoney(state, value) {
       state.totalMoneyAfterDiscount = value
     }
+  },
+  actions: {
+    SOCKET_ABCD(state, arg) {
+      console.log(arg)
+    }
   }
 });
 

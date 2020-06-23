@@ -67,10 +67,10 @@ export default {
   },
   async beforeCreate() {
     document.body.className = "login";
-    const accessToken = this.$cookies.get("accessToken")
+    const accessToken = this.$http.defaults.headers['x-access-token']
     try {
         await this.$http.post('/api/auth', {
-        accessToken: accessToken
+            accessToken: accessToken
         })
         this.$router.push('/')
     } catch (error) {
@@ -84,6 +84,7 @@ export default {
           email: this.email,
           password: this.password
         })
+        this.$http.defaults.headers['x-access-token'] = res.data.accessToken
         this.$cookies.set('accessToken', res.data.accessToken)
         this.$router.push('/')
       } catch (err) { 
