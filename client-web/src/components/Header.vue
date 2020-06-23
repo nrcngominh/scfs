@@ -55,6 +55,7 @@
                                     <li :class = "{hidden: isLogined}">
                                         <div class="dropdown" id="avatar">
                                             <img src="@/assets/alarm.png" alt="">
+                                            <span id="count-cart">{{0}}</span>
                                             <div class="dropdown-content">
                                                 <a href="#">Giao dịch thành công</a>
                                             </div>
