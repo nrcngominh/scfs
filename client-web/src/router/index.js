@@ -9,6 +9,7 @@ import HomePage from '../pages/HomePage'
 import CheckoutPage from '../pages/CheckoutPage.vue'
 import VendorPage from '../pages/VendorPage.vue'
 import PaymentPage from '../pages/PaymentPage.vue'
+import TransactionPage from '../pages/TransactionPage.vue'
 
 
 axios.defaults.baseURL = process.env.VUE_APP_DOMAIN || 'http://localhost/'
@@ -18,13 +19,11 @@ Vue.use(VueRouter)
 
 const router = new VueRouter({
     mode: 'history',
-    routes: [
-        {
+    routes: [{
             path: '/',
             name: 'LayoutPage',
             component: LayoutPage,
-            children: [
-                {
+            children: [{
                     path: '',
                     name: 'HomePage',
                     component: HomePage,
@@ -72,11 +71,19 @@ const router = new VueRouter({
             component: ErrorPage
         },
         {
-            path: 'vendor',
+            path: '/vendor',
             name: 'VendorPage',
             component: VendorPage,
             meta: {
                 title: 'BK Food | Vendor'
+            }
+        },
+        {
+            path: '/transaction',
+            name: 'TransactionPage',
+            component: TransactionPage,
+            meta: {
+                title: 'BK Food | Transaction'
             }
         },
     ]
