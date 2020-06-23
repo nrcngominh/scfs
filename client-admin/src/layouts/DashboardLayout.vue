@@ -7,6 +7,10 @@
         <md-icon>dashboard</md-icon>
         <p>Dashboard</p>
       </sidebar-link>
+      <sidebar-link to="/food">
+        <md-icon>restaurant</md-icon>
+        <p>Food</p>
+      </sidebar-link>
       <sidebar-link to="/notification">
         <md-icon>notifications</md-icon>
         <p>Notification</p>

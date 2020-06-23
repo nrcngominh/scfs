@@ -3,6 +3,16 @@ import CartModel from '../models/cart-model'
 /*
  * Find all
  */
+const create = async (accountId) => {
+  return CartModel.create({
+    customerId: accountId,
+    items: null
+  })
+}
+
+/*
+ * Find all
+ */
 const findById = async (accountId) => {
   return CartModel.findOne({
     customerId: accountId
@@ -19,6 +29,7 @@ const update = async (customerId, cart) => {
 }
 
 export default {
+  create,
   findById,
   update
 }

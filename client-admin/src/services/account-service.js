@@ -10,29 +10,24 @@ const login = async (email, password) => {
     password: password
   });
   store.commit("login", {
-    email: email,
-    accessToken: res.data.accessToken
+    email: email
   });
+  axios.defaults.headers['x-access-token'] = res.data.accessToken
   ipcRenderer.send('login')
   return res;
 };
 
 const logout = async () => {
+  store.commit("logout")
+  delete axios.defaults.headers['x-access-token']
   ipcRenderer.send('logout')
 };
 
 const auth = async () => {
-  const token = store.state.accessToken;
-  if (token) {
-    try {
-      await axios.post("/api/auth/admin", {
-        accessToken: token
-      });
-      return true;
-    } catch (error) {
-      return false;
-    }
-  } else {
+  try {
+  await axios.post("/api/auth/admin");
+    return true;
+  } catch (error) {
     return false;
   }
 };

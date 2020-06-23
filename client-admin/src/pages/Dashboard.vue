@@ -1,141 +1,51 @@
 <template>
   <div class="content dashboard-content">
-    <div class="category-select">
-      <md-field>
-        <label>Category</label>
-        <md-input v-model="filterCategory"></md-input>
-      </md-field>
-      <md-field>
-        <label>Name</label>
-        <md-input v-model="filterName"></md-input>
-      </md-field>
-    </div>
-
-    <div
-      class="category-grid-container"
-      :class="{ 'category-hidden': obj.hasFood != null && !obj.hasFood }"
-      v-for="obj in categories"
-      :key="obj.category"
-    >
-      <div class="category-header">
-        <p>{{ obj.category }}</p>
-      </div>
-      <div class="food-grid-container">
-        <md-card
-          v-for="food in obj.foods"
-          :key="food.name"
-          class="food-content"
-          :class="{ 'food-hidden': food.active != null && !food.active }"
-        >
-          <div class="food-content-grid-container">
-            <div>
-              <img :src="food.img" />
+    <div class="order-grid-container">
+      <md-card
+        v-for="order in orders"
+        :key="order.billId"
+        class="order-content"
+      >
+        <div class="order-content-grid-container">
+          <div class="order-text-content">
+            <div class="order-header">
+              <div>Bill ID:</div>
+              <div>{{ order.billId }}</div>
+              <div>MOMO ID:</div>
+              <div>{{ order.momoTransId }}</div>
             </div>
-            <div class="food-text-content">
-              <div>Name:</div>
-              <div class="name">{{ food.name }}</div>
-
-              <div>Price:</div>
-              <div class="price">{{ food.price }}</div>
-
-              <div>Description:</div>
-              <div>{{ food.description }}</div>
-            </div>
-
-            <div class="food-action-container">
-              <md-button @click="editFood(food)">Edit</md-button>
-              <md-button @click="removeFood(food)">Remove</md-button>
-            </div>
-          </div>
-        </md-card>
-      </div>
-    </div>
-
-    <div>
-      <md-dialog class="edit-dialog" :md-active.sync="editDialogActive">
-        <md-dialog-title>Edit food</md-dialog-title>
-
-        <md-tabs md-dynamic-height>
-          <md-tab md-label="Content">
-            <div class="tab-content">
-              <md-field>
-                <label>Name</label>
-                <md-input v-model="selectedFood.name"></md-input>
-              </md-field>
-
-              <md-field>
-                <label>Price</label>
-                <md-input v-model="selectedFood.price"></md-input>
-              </md-field>
-
-              <md-field>
-                <label>Description</label>
-                <md-input v-model="selectedFood.description"></md-input>
-              </md-field>
-            </div>
-            <div class="edit-button-wrapper">
-              <md-button @click="submitEdit()">Submit</md-button>
-              <md-button @click="editDialogActive = false">Cancel</md-button>
-            </div>
-          </md-tab>
-
-          <md-tab md-label="Image">
-            <div class="tab-content">
-              <div class="file-upload">
-                <md-field>
-                  <label>Chooose image to upload</label>
-                  <md-input v-model="imagePath"></md-input>
-                </md-field>
-                <div class="browse-button-wrapper">
-                  <md-button class="md-raised md-primary" @click="selectFile"
-                    >Browse</md-button
-                  >
-                </div>
+            <hr />``
+            <div class="food-list-container">
+              <div class="food-list-item">
+                <div>Tên món</div>
+                <div>Số lượng</div>
               </div>
             </div>
-
-            <div class="edit-button-wrapper">
-              <md-button @click="uploadImage">Upload</md-button>
-              <md-button @click="editDialogActive = false">Cancel</md-button>
+            <div class="food-list-container">
+              <div class="food-list-item" v-for="item in order.items"
+                :key="item.food._id">
+                <div>{{ item.food.name }}</div>
+                <div>{{ item.quantity }}</div>
+              </div>
             </div>
-          </md-tab>
-        </md-tabs>
-      </md-dialog>
-    </div>
+          </div>
 
-    <div class="edit-food-confirm">
-      <md-dialog-confirm
-        :md-active.sync="editConfirmActive"
-        md-title="Update food?"
-        md-content="Are you sure to update the food?"
-        md-confirm-text="Confirm"
-        md-cancel-text="Cancel"
-        @md-cancel="editConfirmActive = false"
-        @md-confirm="confirmEdit"
-      />
-    </div>
-
-    <div class="remove-food-confirm">
-      <md-dialog-confirm
-        :md-active.sync="removeConfirmActive"
-        md-title="Remove food?"
-        md-content="Are you sure to remove the food?"
-        md-confirm-text="Confirm"
-        md-cancel-text="Cancel"
-        @md-cancel="removeConfirmActive = false"
-        @md-confirm="confirmRemove"
-      />
+          <div class="order-action-container">
+            <md-button @click="serveOrder(order)" class="md-raised md-primary">Ready</md-button>
+          </div>
+        </div>
+      </md-card>
     </div>
 
     <div class="upload-image-confirm">
       <md-dialog-confirm
-        :md-active.sync="uploadImageConfirm"
-        md-title="Upload new image?"
-        md-content="Are you sure to upload new image for the food?"
+        :md-active.sync="serveConfirmActive"
+        md-title="Order ready?"
+        md-content="Are you sure the order is ready to serve the customer?"
         md-confirm-text="Confirm"
         md-cancel-text="Cancel"
-        @md-cancel="uploadImageConfirm = false"
-        @md-confirm="confirmUpload"
+        @md-cancel="serveConfirmActive = false"
+        @md-confirm="confirmServe"
       />
     </div>
 
@@ -155,115 +65,43 @@
 <script>
 import FoodService from "../services/food-service";
 import FileService from "../services/file-service";
+import OrderService from "../services/order-service";
 
 export default {
   name: "Dashboard",
   data() {
     return {
-      responseArr: [],
-      filterName: "",
-      filterCategory: "",
-      editDialogActive: false,
-      editConfirmActive: false,
-      uploadImageConfirm: false,
-      removeConfirmActive: false,
+      orders: [],
       successAlertActive: false,
       failedAlertActive: false,
-      selectedFoodRef: null,
-      selectedFood: {
-        _id: "",
-        name: "",
-        price: "",
-        description: ""
-      },
-      imagePath: ""
+      serveConfirmActive: false,
+      orderToServe: null
     };
   },
-  computed: {
-    categories() {
-      const regexMatchCategory = new RegExp(this.filterCategory, "i");
-      const regexMatchName = new RegExp(this.filterName, "i");
-      this.responseArr.forEach(obj => {
-        if (!this.filterCategory || regexMatchCategory.test(obj.category)) {
-          obj.hasFood = false;
-          obj.foods.forEach(food => {
-            if (!this.filterName || (food.name && regexMatchName.test(food.name))) {
-              food.active = true;
-              obj.hasFood = true;
-            } else {
-              food.active = false;
-            }
-          });
-        } else {
-          obj.hasFood = false;
-        }
-      });
-      return this.responseArr;
-    }
-  },
   methods: {
-    selectFood(food) {
-      this.selectedFoodRef = food;
-      this.selectedFood._id = food._id;
-      this.selectedFood.name = food.name;
-      this.selectedFood.price = food.price;
-      this.selectedFood.description = food.description;
-      this.selectFood.img = food.img
+    async serveOrder(order) {
+      this.orderToServe = order,
+      this.serveConfirmActive = true
     },
-    editFood(food) {
-      this.selectFood(food)
-      this.imagePath = ""
-      this.editDialogActive = true;
-    },
-    submitEdit() {
-      this.editConfirmActive = true;
-    },
-    async confirmEdit() {
+    async confirmServe() {
       try {
-        await FoodService.update(this.selectedFood);
-        this.successAlertActive = true;
-        this.selectedFoodRef.name = this.selectedFood.name
-        this.selectedFoodRef.price = this.selectedFood.price
-        this.selectedFoodRef.description = this.selectedFood.description
+        await OrderService.serveOrder(this.orderToServe)
+        await this.sync()
+        this.successAlertActive = true
       } catch (error) {
-        this.failedAlertActive = true;
+        this.failedAlertActive = true
       }
     },
-    removeFood(food) {
-      this.selectFood(food)
-      this.removeConfirmActive = true;
-    },
-    async confirmRemove() {
+    async sync() {
       try {
-        await FoodService.removeById(this.selectedFood._id);
-        this.successAlertActive = true;
-        this.selectedFoodRef.active = false
-        this.selectedFoodRef.name = null
+        const res = await OrderService.getAllUnserved()
+        this.orders = res.data
       } catch (error) {
-        this.failedAlertActive = true;
-      }
-    },
-    async selectFile() {
-      this.imagePath = await FileService.openFileDialog();
-    },
-    uploadImage() {
-      this.uploadImageConfirm = true
-    },
-    async confirmUpload() {
-      try {
-        const data = await FoodService.uploadImage(this.selectedFood._id, this.imagePath)
-        this.successAlertActive = true;
-        this.selectedFoodRef.img = data.img;
-      } catch (error) {
-        this.failedAlertActive = true;
       }
     }
   },
   async mounted() {
-    try {
-      const res = await FoodService.getAll();
-      this.responseArr = res.data;
-    } catch (error) {}
+    await this.sync()
   }
 };
 </script>

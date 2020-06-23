@@ -10,7 +10,8 @@ import {
   ProfilePage,
   AboutPage,
   NotificationPage,
-  LoginPage
+  LoginPage,
+  FoodPage
 } from "../pages";
 
 Vue.use(VueRouter);
@@ -20,14 +21,19 @@ const routes = [
     path: "/",
     component: DashboardLayout,
     redirect: "/dashboard",
-    // beforeEnter: async (to, from, next) => {
-    //   (await AccountService.auth()) ? next() : next("/login");
-    // },
+    beforeEnter: async (to, from, next) => {
+      (await AccountService.auth()) ? next() : next("/login");
+    },
     children: [
       {
         path: "dashboard",
         name: "Dashboard",
         component: Dashboard
+      },
+      {
+        path: "food",
+        name: "FoodPage",
+        component: FoodPage
       },
       {
         path: "profile",
