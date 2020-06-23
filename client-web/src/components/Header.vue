@@ -55,9 +55,12 @@
                                     <li :class = "{hidden: isLogined}">
                                         <div class="dropdown" id="avatar">
                                             <img src="@/assets/alarm.png" alt="">
-                                            <span id="count-cart">{{0}}</span>
+                                            <span id="count-cart">{{$store.state.notifications.length}}</span>
                                             <div class="dropdown-content">
-                                                <a href="#">Giao dịch thành công</a>
+                                                <a v-for="noti in $store.state.notifications"
+                                                :key="noti.id">
+                                                <div @click="$router.push(noti.url)">{{ noti.message }}</div>
+                                                </a>
                                             </div>
                                         </div>
                                     </li> 
