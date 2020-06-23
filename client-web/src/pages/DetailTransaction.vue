@@ -7,32 +7,40 @@
     <main>
     
     <div class="basket content-wrapper">
-      <div>
-      <h5>Đơn hàng của tôi</h5>
-    </div>
-      <div class="basket-labels">
-        <ul>
-          <li class="item item-heading">Mã đơn hàng</li>
-          <li class="price1">Ngày mua</li>
-          <li class="quantity">Tổng tiền</li>
-          <li class="subtotal1">Trạng thái đơn hàng</li>
-        </ul>
-      </div>
-      
-      <div class="basket-product">
-        <div class="item">
-          <div class="product-details">
-            <h1><span class="item-name"></span><a @click="view_detail" id="trans" href=""><strong>#123456789</strong></a></h1>
-          </div>
+        <div>
+          <h5>Chi tiết đơn hàng</h5>
         </div>
-        <div class="price">22/06/2020</div>
-        <div class="quantity1">120.000</div>
-        <div class="subtotal">Giao dịch thành công</div>
-  </div>
-
+        <div class="wrap_basket">
+        <div class="basket-labels">
+          <ul>
+            <li class="item item-heading">Mã đơn hàng</li>
+            <li class="price1">Ngày mua</li>
+            <li class="quantity">Tổng tiền</li>
+            <li class="subtotal1">Trạng thái đơn hàng</li>
+          </ul>
+        </div>
+      
+        <div class="basket-product">
+          <div class="item">
+            <div class="product-details">
+              <h1><span class="item-name"></span><a id="trans" href=""><strong>#123456789</strong></a></h1>
+            </div>
+          </div>
+          <div class="price">22/06/2020</div>
+          <div class="quantity1">120.000</div>
+          <div class="subtotal">Giao dịch thành công</div>
+        </div>
+        
+      </div>
+      <div class="back">
+        <a class="button-back">
+          Back
+        </a>
+      </div>
     </div>
-
+      
     </main>
+    
     </body>
   <!-- start footer -->
   <div class="mt-3">
@@ -115,9 +123,6 @@ export default {
         this.$router.push('/login')
       }
     },
-    async view_detail() {
-      this.$router.push('/detail-transaction')
-    },
     updateQuantity(foodId, newQuantity) {
       this.$store.commit('updateQuantity', {
         foodId: foodId,
@@ -159,8 +164,14 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300;600&display=swap");
+.back {
+    margin-top: 18%;
+}
 #trans {
   text-decoration: none;
+}
+.button-back {
+  margin-top: 9%;
 }
 .content-wrapper {
   min-height: 400px;
@@ -263,6 +274,7 @@ aside {
 
 .basket {
   width: 70%;
+  min-height: 600px;
 }
 
 .basket-module {

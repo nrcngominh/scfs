@@ -7,7 +7,7 @@
   <!-- start footer -->
   <body>
     <main>
-<div class="basket content-wrapper">
+      <div class="basket content-wrapper">
       <div class="basket-module">
       </div>
       <div class="basket-labels">
@@ -18,9 +18,6 @@
           <li class="subtotal1">Subtotal</li>
         </ul>
       </div>
-
-
-
       
       <div class="basket-product" v-for="item in cart" :key="item.food._id" >
         <div class="item">

@@ -10,7 +10,7 @@ import CheckoutPage from '../pages/CheckoutPage.vue'
 import VendorPage from '../pages/VendorPage.vue'
 import PaymentPage from '../pages/PaymentPage.vue'
 import TransactionPage from '../pages/TransactionPage.vue'
-
+import DetailTransaction from '../pages/DetailTransaction.vue'
 
 axios.defaults.baseURL = process.env.VUE_APP_DOMAIN || 'http://localhost/'
 Vue.prototype.$http = axios
@@ -84,6 +84,14 @@ const router = new VueRouter({
             component: TransactionPage,
             meta: {
                 title: 'BK Food | Transaction'
+            }
+        },
+        {
+            path: '/detail-transaction',
+            name: 'DetailTransaction',
+            component: DetailTransaction,
+            meta: {
+                title: 'BK Food | Detail Transaction'
             }
         },
     ]
