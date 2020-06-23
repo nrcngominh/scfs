@@ -38,11 +38,6 @@
         </div>
       </div>
 
-
-
-
-
-
     </div>
     <aside>
       <div class="summary">
@@ -56,17 +51,6 @@
           </div>
         </div>
         
-
-
-
-
-
-
-
-
-
-
-
         <div class="summary-promotional">
           <label for="promo-code" class = "promoCodeFont">Nhập mã giảm giá</label>
           <input id="promo-code" v-model="promoCode" type="text" name="promo-code" maxlength="5" class="promo-code-field">
