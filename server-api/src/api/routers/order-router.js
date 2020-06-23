@@ -30,6 +30,12 @@ OrderRouter.get('/', async(req, res) => {
  * Post cart info
  */
 OrderRouter.post('/', async (req, res) => {
+  if (!Array.isArray(req.body.cart) || !req.body.cart.length) {
+    res.status('400').send({
+      message: "Failed"
+    })
+    return
+  }
   const account = await AccountRepo.findByEmail(req.jwtDecodedData.email)
   const billId = randomNumber(10)
   const order = {

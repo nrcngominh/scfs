@@ -94,6 +94,9 @@ export default {
   },
   async beforeCreate() {
     await redirectIfAuthFailed()
+    if (!this.$store.state.isReadyToPay) {
+      this.$router.push('/checkout')
+    }
     document.body.className = "user";
   },
   methods: {

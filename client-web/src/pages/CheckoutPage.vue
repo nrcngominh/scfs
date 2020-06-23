@@ -80,7 +80,7 @@
           <div class="total-value final-value" id="basket-total">{{totalMoneyAfterDiscount()}}</div>
         </div>
         <div class="summary-checkout">
-          <button class="checkout-cta" @click="$router.push('/payment')">Xác nhận đơn hàng</button>
+          <button class="checkout-cta" @click="readyToPay()">Xác nhận đơn hàng</button>
         </div>
       </div>
 
@@ -178,10 +178,17 @@ export default {
       this.realPromoCode = this.promoCode
     },
     totalMoneyAfterDiscount() {
-      const totalMoneyAfterDiscount = this.realPromoCode == "BKU18" ? 
-        this.totalMoney * 0.85 : this.totalMoney
+      // const totalMoneyAfterDiscount = this.realPromoCode == "BKU18" ? 
+      //   this.totalMoney * 0.85 : this.totalMoney
+      const totalMoneyAfterDiscount = this.totalMoney
       this.$store.commit('updateTotalMoney', totalMoneyAfterDiscount)
       return totalMoneyAfterDiscount
+    },
+    readyToPay() {
+      if (this.totalMoney != 0) {
+        this.$store.commit('readyToPay')
+        this.$router.push('/payment')
+      }
     }
   }, 
   async mounted() {
