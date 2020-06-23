@@ -69,7 +69,7 @@
                                             <img src="@/assets/account.png" alt=""> 
                                             <div class="dropdown-content">
                                                 <a href="#">Tài khoản</a>
-                                                <a @click="trans">Lịch sử giao dịch</a>
+                                                <a @click="trans">Đơn hàng của tôi</a>
                                                 <a href="#">Cài đặt</a>
                                                 <a @click="logout">Đăng xuất</a>
                                             </div>
