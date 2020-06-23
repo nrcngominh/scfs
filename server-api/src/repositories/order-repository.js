@@ -11,7 +11,7 @@ const create = async(order) => {
  * Find by bill id
  */
 const findByBillId = async(billId) => {
-  return OrderModel.find({
+  return OrderModel.findOne({
     billId: billId
   })
 }

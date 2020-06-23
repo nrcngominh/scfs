@@ -70,6 +70,10 @@ export default {
   data() {
     return {
         menu: "HomePage",
+        order: {
+          items: [],
+          totalMoney: 0,
+        },
         promoCode: "",
         realPromoCode: ""
     }
@@ -139,7 +143,14 @@ export default {
     }
   }, 
   async mounted() {
-    
+    try {
+      const billId = this.$router.currentRoute.params.billId
+      const res = await this.$http.get('/api/transaction/' + billId)
+      this.order = res.data
+    }
+     catch (error) {
+       console.log(error)
+     }
     let navbar = document.getElementById("nav");
     //let sticky = navbar.offsetTop;
     window.onscroll = () => {
