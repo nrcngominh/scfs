@@ -47,7 +47,7 @@
                                 </div>
                                 
                                 <div :class = "{hidden: is_setup}" class="form__field">
-                                    <label for="password" class="form__label">Password</label>
+                                    <label for="password" class="form__label">Mật khẩu</label>
                                     <div class="form__input-icon">
                                         <input id="password" v-model="password" @keyup.enter="submit" class="form__input" type="password"/>
                                         <p class="form__input-info">Mật khẩu của bạn phải chứa tối thiểu 8 ký tự</p>
@@ -61,22 +61,30 @@
                                     </div>
                                 </div>
                                 <div :class = "{hidden: setup_success}" class="form__field">
-                                    <label for="" class="form__label">Họ và tên</label>
+                                    <label for="fullname" class="form__label">Họ và tên</label>
                                     <input @keyup.enter="nextInput" class="form__input"/>
                                     <p class="form__input-error"></p>
                                 </div>
                                 <div :class = "{hidden: setup_success}" class="form__field">
-                                    <label for="" class="form__label">Số điện thoại</label>
+                                    <label for="phonenumber" class="form__label">Số điện thoại</label>
                                     <input @keyup.enter="nextInput" class="form__input"/>
                                     <p class="form__input-error"></p>
                                 </div>
                                 <div id="back" :class = "{hidden: setup_success}">
                                     <a @click = "back"><span>Quay lại</span></a>
                                 </div>
-                                <div class="tabs__foo">
+                                <div :class = "{hidden: is_setup}" class="tabs__foo">
                                     <div class="grid mt-4">
                                     <div class="grid-cell grid-cell--col12 mt-4 p-0">
                                         <button @click="next" class="button isRed w-100">Tiếp tục</button>
+                                        <div class="grid-cell grid-cell--col1--desktop-l desktop-l"></div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div :class = "{hidden: setup_success}" class="tabs__foo">
+                                    <div class="grid mt-4">
+                                    <div class="grid-cell grid-cell--col12 mt-4 p-0">
+                                        <button @click="register" class="button isRed w-100">Đăng ký</button>
                                         <div class="grid-cell grid-cell--col1--desktop-l desktop-l"></div>
                                     </div>
                                     </div>
@@ -98,7 +106,8 @@ export default {
     return {
       email: "",
       password: "",
-      msg: "Next",
+      fullname: "",
+      phonenumber: "",
       setup: 'tabs__number_is_active',
       info: 'tabs__number_is_notactive',
       is_setup: false,
@@ -109,43 +118,48 @@ export default {
     document.body.className = "register";
   },
   methods: {
-    async login() {
-      try {
-        console.log('Logging in...')
-        const res = await this.$http.post('/api/login/', {
-          email: this.email,
-          password: this.password
-        })
-        console.log(res.data)
-        if (res.data.status == 'success') {
-            if (res.data.type === 'customer') {
-                this.$router.push('user')
-            } else if (res.data.type === 'admin') {
-                this.$router.push('admin')
-            }
-        } else {
-          alert('Login failed')
-        }
-      } catch (err) { 
-        console.log(err)
-      }
-    },
     async submit() {
       this.register();
     },
     async next() {
-        this.setup = 'tabs__number_is_notactive';
-        this.info = 'tabs__number_is_active';
-        this.is_setup = true;
-        this.setup_success = false;
-        this.msg = "Register"
+        try {
+            const res = await this.$http.post('api/login/', {
+                email: this.email,
+                password: this.password
+            })
+            this.$http.defaults.headers['x-access-token'] = res.data.accessToken
+            this.$cookies.set('accessToken', res.data.accessToken)
+            //
+            this.setup = 'tabs__number_is_notactive';
+            this.info = 'tabs__number_is_active';
+            this.is_setup = true;
+            this.setup_success = false;
+        } catch (err) {
+            alert(err)
+        }   
+    },
+    async register() {
+        try {
+            const res = await this.$http.post('api/register/', {
+                fullname: this.fullname,
+                phonenumber: this.phonenumber
+            })
+            this.$http.defaults.headers['x-access-token'] = res.data.accessToken
+            this.$cookies.set('accessToken', res.data.accessToken)
+            //
+            this.setup = 'tabs__number_is_notactive';
+            this.info = 'tabs__number_is_active';
+            this.is_setup = true;
+            this.setup_success = false;
+        } catch (err) {
+            alert(err)
+        }
     },
     async back() {
         this.setup = 'tabs__number_is_active';
         this.info = 'tabs__number_is_notactive';
         this.is_setup = false;
         this.setup_success = true;
-        this.msg = "Next"
     },
     nextInput() {
       document.getElementById('password').focus();
