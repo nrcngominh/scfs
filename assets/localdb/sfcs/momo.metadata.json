@@ -1,1 +1,1 @@
-{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"sfcs.momo"}],"uuid":"e124fb2375264b568d5d181e72fdb233"}
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"sfcs.momo"}],"uuid":"33e7b6f712f64a728eb7884d1495d4d1"}
