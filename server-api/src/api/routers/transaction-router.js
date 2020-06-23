@@ -30,4 +30,20 @@ TransactionRouter.get('/', async(req, res) => {
   }
 })
 
+/*
+ * Get order info
+ */
+TransactionRouter.get('/:billId', async(req, res) => {
+  try {
+    const bill = await OrderRepo.findByBillId(req.params.billId)
+    res.status(200).send(bill)
+  }
+  catch (error) {
+    console.log(error)
+    res.status('404').send({
+      message: "Failed"
+    })
+  }
+})
+  
 export default TransactionRouter
