@@ -38,14 +38,14 @@ const authWithType = async (req, res, next, type) => {
 /*
  * Authentication for customer
  */
-AuthMiddleware.post('/', async (req, res, next) => {
+AuthMiddleware.all('/', async (req, res, next) => {
   authWithType(req, res, next, 'customer')
 })
 
 /*
  * Authentication for admin
  */
-AuthMiddleware.post('/admin', async (req, res, next) => {
+AuthMiddleware.all('/admin', async (req, res, next) => {
   authWithType(req, res, next, 'admin')
 })
 
