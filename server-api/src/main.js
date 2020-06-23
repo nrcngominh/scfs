@@ -1,9 +1,10 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
-import BaseRouter from './api/routers'
-import BaseSocket from './sockets'
 import cookieParser from 'cookie-parser'
+import SocketIO from 'socket.io'
+import BaseSocket from './sockets'
+import BaseRouter from './api/routers'
 
 // Setup MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
@@ -27,7 +28,9 @@ const server = app.listen(process.env.PORT || 3000, () => {
 })
 
 // Create socket for server
-BaseSocket.listen(server)
+const io = SocketIO.listen(server)
+BaseSocket.initial(io)
 
 // Routing for API
 app.use('/api', BaseRouter)
+

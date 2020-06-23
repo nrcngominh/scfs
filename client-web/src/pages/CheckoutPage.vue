@@ -22,7 +22,7 @@
 
 
       
-      <div class="basket-product" v-for="item in $store.state.cart.items" :key="item.food._id" >
+      <div class="basket-product" v-for="item in cart" :key="item.food._id" >
         <div class="item">
           <div class="product-image">
             <img v-bind:src="item.food.img" alt="Placholder Image 2" class="product-frame">
@@ -37,9 +37,9 @@
         </div>
         <div class="subtotal">{{item.food.price * item.quantity}}</div>
         <div class="remove">
-          <button @click="$store.commit('removeItem', item.food._id)">Remove</button>
+          <button @click="removeItem(item.food._id)">Remove</button>
         </div>
-  </div>
+      </div>
 
 
 
@@ -124,11 +124,22 @@ export default {
     }
   },
   computed: {
+    cart() {
+      const temp = this.$store.state.cart.map(item => {
+        return {
+          food: this.$store.state.foods.find(food => food._id == item.foodId),
+          quantity: item.quantity
+        }
+      })
+      console.log(temp)
+      return temp
+    },
     totalMoney() {
-      const items = this.$store.state.cart.items
       let sum = 0
-      for (let i = 0; i < items.length; i++) {
-        sum += items[i].quantity * items[i].food.price
+      if (this.cart) {
+        this.cart.forEach(item => {
+          sum += item.quantity * item.food.price
+        })
       }
       return sum
     }
@@ -137,31 +148,24 @@ export default {
     document.body.className = "user";
   },
   methods: {
-    async addToCart() {
-      const accessToken = this.$cookies.get("accessToken")
+    async updateQuantity(foodId, newQuantity) {
       try {
-        const res = await this.$http.post('/api/auth', {
-          accessToken: accessToken
+        this.$store.commit('updateQuantity', {
+          foodId: foodId,
+          newQuantity: newQuantity
         })
+        await this.$http.post('/api/cart', this.$store.state.cart)
       } catch (error) {
-        this.$router.push('/login')
+        console.log(error)
       }
     },
-    async buy() {
-      const accessToken = this.$cookies.get("accessToken")
+    async removeItem(foodId) {
       try {
-        const res = await this.$http.post('/api/auth', {
-          accessToken: accessToken
-        })
+        this.$store.commit('removeItem', foodId)
+        await this.$http.post('/api/cart', this.$store.state.cart)
       } catch (error) {
-        this.$router.push('/login')
+        console.log(error)
       }
-    },
-    updateQuantity(foodId, newQuantity) {
-      this.$store.commit('updateQuantity', {
-        foodId: foodId,
-        newQuantity: newQuantity
-      })
     },
     applyPromotionCode() {
       this.realPromoCode = this.promoCode
@@ -174,7 +178,6 @@ export default {
     }
   }, 
   async mounted() {
-    
     let navbar = document.getElementById("nav");
     //let sticky = navbar.offsetTop;
     window.onscroll = () => {
@@ -411,7 +414,8 @@ li.subtotal:before {
 }
 
 .product-image {
-  width: 30%;
+  width: 25%;
+  height: 20%;
 }
 
 .product-details {
@@ -445,11 +449,12 @@ aside {
 }
 
 .summary {
+  margin-top: 6.5%;
   margin-left: -6px;
   background-color: aliceblue;
   border: 1px solid #aaa;
   padding: 1rem;
-  position: fixed;
+  position: auto;
   width: 250px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;

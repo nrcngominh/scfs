@@ -5,39 +5,57 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    cart: {
-        items: []
-    },
+    categories: [],
+    foods: [],
+    cart: [],
     totalMoneyAfterDiscount: 0
   },
   mutations: {
-    addToCart(state, payload) {
-      const food = payload.food
-      const itemExisted = (state.cart.items.find(item => {
-        return item.food._id == food._id
+    setCategories(state, categories) {
+      state.categories = categories
+    },
+    setFoods(state, foods) {
+      state.foods = foods
+    },
+    setCart(state, cart) {
+      state.cart = cart.map(item => {
+        return {
+          foodId: item.foodId,
+          quantity: item.quantity
+        }
+      })
+    },
+    addToCart(state, foodId) {
+      const itemExisted = (state.cart.find(item => {
+        return item.foodId == foodId
       }))
       if (itemExisted) {
         itemExisted.quantity++
       } else {
-        state.cart.items.push({
-          food: food,
+        state.cart.push({
+          foodId: foodId,
           quantity: 1
         })
       }
     },
     updateQuantity(state, payload) {
-      const itemExisted = (state.cart.items.find(item => {
-        return item.food._id == payload.foodId
+      const itemExisted = (state.cart.find(item => {
+        return item.foodId == payload.foodId
       }))
       if (itemExisted) {
         itemExisted.quantity = payload.newQuantity
       }
     },
     removeItem(state, foodId) {
-      state.cart.items = state.cart.items.filter(item => item.food._id != foodId)
+      state.cart = state.cart.filter(item => item.foodId != foodId)
     },
     updateTotalMoney(state, value) {
       state.totalMoneyAfterDiscount = value
+    }
+  },
+  actions: {
+    SOCKET_ABCD(state, arg) {
+      console.log(arg)
     }
   }
 });

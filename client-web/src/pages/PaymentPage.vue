@@ -9,31 +9,14 @@
 
 
 
-
+<div class="payment-method">
 <div class = "all-payment-method">
   <div>{{$store.state.totalMoneyAfterDiscount}}</div>
-  <h3 class="title">1. Please select a payment method for your order</h3>
+  <h3 class="title">1. Phương thức thanh toán</h3>
     <ul class="list"><li class="styles__StyledMethod-sc-1u5r3pb-1 fTvtIP">
-     
         </li>
-        <li class="styles__StyledMethod-sc-1u5r3pb-1 fTvtIP">
           <label class="RadioCheckout__StyledRadio-bkaeis-0 bqACGT">
-            <input type="radio" readonly="" name="payment-methods" value="cybersource">
-            <span class="radio-fake"></span>
-            <span class="label"> Visa, Master, JCB <em class = "message">(not available now)</em></span>
-            </label>
-            <div class="VirtualCredit__StyledCredit-sc-1kid5w3-0 ZLPVe"></div>
-            </li>
-            <li class="styles__StyledMethod-sc-1u5r3pb-1 fTvtIP">
-              <label class="RadioCheckout__StyledRadio-bkaeis-0 bqACGT">
-                <input type="radio" readonly="" name="payment-methods" value="pay123">
-                <span class="radio-fake"></span>
-                <span class="label"> ATM Card/Internet Banking <em class = "message">(not available now)</em></span>
-                </label>
-                </li>
-                <li class="styles__StyledMethod-sc-1u5r3pb-1 fTvtIP">
-                  <label class="RadioCheckout__StyledRadio-bkaeis-0 bqACGT">
-                    <input type="radio" readonly="" name="payment-methods" value="momo">
+            <input type="radio" readonly="" name="payment-methods" value="momo">
                     <span class="radio-fake"></span>
                     <span class="label"> MoMo wallet<a class="detail-discount-payment-checkout" target="_blank" href="https://momo.vn" data-placement="bottom" data-original-title="" title="" data-toggle="tooltip" data-title="Vui lòng tải ứng dụng MoMo để thanh toán">
                     </a>
@@ -43,11 +26,34 @@
                               </li>
                               </ul></div>
 <div class = "confirm-button">
-  <button class = "button"><span class= "button-data">Confirm Order</span></button>
+  <button class = "button"><span class= "button-data">Xác nhận</span></button>
 </div>
+</div>
+
+
 <div class = "notice">
-  <em><p>Please check your order carefully befor click "Confirm Order"</p></em> 
+  <em><p>Vui lòng kiểm tra kỹ đơn hàng trước khi xác nhận</p></em> 
   
+<div class = "order-title">Đơn hàng
+  <button class = "fix-button"> Chỉnh sửa </button>
+</div>
+  <div class= "basket">
+      <div class="basket-product" v-for="item in $store.state.cart.items" :key="item.food._id" >
+        <div class="item">
+          <div class="product-details">
+            <div class="item-name">{{item.food.name}}</div>
+          </div>
+        </div>
+        <div class="price">Giá: {{item.food.price}}VND</div>
+        <div class="quantity">Số lượng: 
+          {{item.quantity}}
+                  </div>
+        <div class="subtotal">Tạm tính: {{item.food.price * item.quantity}}VND</div>
+  </div>
+</div>
+
+
+
 </div>
   <div class="mt-3">
       <Footer />
@@ -179,5 +185,25 @@ ul.list{
 .message{
   font-size:10px;
 }
-
+.basket{
+  width: 40%;
+  box-sizing: border-box;
+  padding: 15px 25px 10px 15px;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(221, 221, 221);
+  border-image: initial;
+  
+}
+.basket-product{
+  border-bottom: 1px solid rgb(201, 201, 201);
+}
+.item-name{
+  font-size: 20px;
+  color: black;
+}
+.payment-method{
+  width: 50%;
+}
 </style>
