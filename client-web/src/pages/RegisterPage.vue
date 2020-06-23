@@ -42,32 +42,32 @@
                             <div class="form">
                                 <div :class = "{hidden: is_setup}" class="form__field">
                                     <label for="email" class="form__label">Email</label>
-                                    <input v-model="email" @keyup.enter="nextInput" class="form__input"/>
+                                    <input v-model="email" @keyup.enter="nextPassword" class="form__input"/>
                                     <p class="form__input-error"></p>
                                 </div>
                                 
                                 <div :class = "{hidden: is_setup}" class="form__field">
                                     <label for="password" class="form__label">Mật khẩu</label>
                                     <div class="form__input-icon">
-                                        <input id="password" v-model="password" @keyup.enter="submit" class="form__input" type="password"/>
+                                        <input id="password" v-model="password" @keyup.enter="nextPasswordRetype" class="form__input" type="password"/>
                                         <p class="form__input-info">Mật khẩu của bạn phải chứa tối thiểu 8 ký tự</p>
                                     </div>
                                 </div>
                                 <div :class = "{hidden: is_setup}" class="form__field">
                                     <label for="password" class="form__label">Xác nhận mật khẩu</label>
                                     <div class="form__input-icon">
-                                        <input id="password2" v-model="passwordRetype" @keyup.enter="submit" class="form__input" type="password"/>
+                                        <input id="passwordRetype" v-model="passwordRetype" @keyup.enter="next" class="form__input" type="password"/>
                                         <p class="form__input-error"></p>
                                     </div>
                                 </div>
                                 <div :class = "{hidden: setup_success}" class="form__field">
                                     <label for="fullname" class="form__label">Họ và tên</label>
-                                    <input v-model="fullName" @keyup.enter="nextInput" class="form__input"/>
+                                    <input id="full-name" v-model="fullName" @keyup.enter="nextPhoneNumber" class="form__input"/>
                                     <p class="form__input-error"></p>
                                 </div>
                                 <div :class = "{hidden: setup_success}" class="form__field">
                                     <label for="phonenumber" class="form__label">Số điện thoại</label>
-                                    <input v-model="phoneNumber" @keyup.enter="nextInput" class="form__input"/>
+                                    <input id="phone-number" v-model="phoneNumber" @keyup.enter="register" class="form__input"/>
                                     <p class="form__input-error"></p>
                                 </div>
                                 <div id="back" :class = "{hidden: setup_success}">
@@ -131,7 +131,7 @@ export default {
             this.setup = 'tabs__number_is_notactive';
             this.info = 'tabs__number_is_active';
             this.is_setup = true;
-            this.setup_success = false;
+            this.setup_success = false; 
         } catch (err) {
             alert(err)
         }   
@@ -158,8 +158,14 @@ export default {
         this.is_setup = false;
         this.setup_success = true;
     },
-    nextInput() {
+    nextPassword() {
       document.getElementById('password').focus();
+    },
+    nextPasswordRetype() {
+      document.getElementById('passwordRetype').focus();
+    },
+    nextPhoneNumber() {
+      document.getElementById('phone-number').focus();
     },
     backwardPage() {
         this.$router.push('/login')
