@@ -9,6 +9,7 @@ const OrderSchema = mongoose.Schema({
   discountCode: String,
   discountValue: Number,
   hasPaid: Boolean,
+  hasServed: Boolean,
   items: [{
     foodId: String,
     quantity: Number
