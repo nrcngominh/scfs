@@ -123,13 +123,6 @@ export default {
     },
     async next() {
         try {
-            const res = await this.$http.post('api/login/', {
-                email: this.email,
-                password: this.password
-            })
-            this.$http.defaults.headers['x-access-token'] = res.data.accessToken
-            this.$cookies.set('accessToken', res.data.accessToken)
-            //
             this.setup = 'tabs__number_is_notactive';
             this.info = 'tabs__number_is_active';
             this.is_setup = true;
@@ -146,11 +139,6 @@ export default {
             })
             this.$http.defaults.headers['x-access-token'] = res.data.accessToken
             this.$cookies.set('accessToken', res.data.accessToken)
-            //
-            this.setup = 'tabs__number_is_notactive';
-            this.info = 'tabs__number_is_active';
-            this.is_setup = true;
-            this.setup_success = false;
         } catch (err) {
             alert(err)
         }
