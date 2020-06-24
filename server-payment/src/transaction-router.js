@@ -22,7 +22,7 @@ TransactionRouter.use((req, res, next) => {
     next()
   })
 
-TransactionRouter.post('/api/transaction', async (req, res) => {
+TransactionRouter.post('/api/transact', async (req, res) => {
     // Fake a customer to complete payment, then response to server
     const transaction = await TransactionService.create(req.body.billId, req.body.amount)
     res.status(201).send({
@@ -39,7 +39,7 @@ TransactionRouter.post('/api/transaction', async (req, res) => {
     // })
 })
 
-TransactionRouter.get('/api/transaction', async (req, res) => {
+TransactionRouter.get('/api/transact', async (req, res) => {
     try {
         const transactions = await TransactionService.getAll()
         res.status(200).send(transactions)
@@ -48,7 +48,7 @@ TransactionRouter.get('/api/transaction', async (req, res) => {
     }
 })
 
-TransactionRouter.put('/api/transaction', async (req, res) => {
+TransactionRouter.put('/api/transact', async (req, res) => {
   try {
     await TransactionService.makeTransactionPaid(req.body.billId)
     res.status(202).send({

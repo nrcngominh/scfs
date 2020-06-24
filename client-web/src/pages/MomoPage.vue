@@ -43,7 +43,7 @@ export default {
   methods: {
     async commitPay(transaction) {
       try {
-        await this.$http.put('http://127.0.0.1:4000/api/transaction', {
+        await this.$http.put(process.env.VUE_APP_DOMAIN +'/api/transact', {
           billId: transaction.billId
         })
         transaction.hasPaid = true
