@@ -33,7 +33,7 @@ Vue.$cookies.config('1d')
 
 Vue.use(new VueSocketIO({
     debug: true,
-    connection: SocketIO(process.env.VUE_APP_DOMAIN || 'http://localhost/'),
+    connection: SocketIO(process.env.VUE_APP_DOMAIN),
     vuex: {
         store,
         actionPrefix: 'SOCKET_',

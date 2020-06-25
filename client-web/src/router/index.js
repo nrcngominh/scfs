@@ -14,7 +14,7 @@ import MomoPage from '../pages/MomoPage.vue'
 
 import DetailTransaction from '../pages/DetailTransaction.vue'
 
-axios.defaults.baseURL = process.env.VUE_APP_DOMAIN || 'http://localhost/'
+axios.defaults.baseURL = process.env.VUE_APP_DOMAIN
 Vue.prototype.$http = axios
 
 Vue.use(VueRouter)

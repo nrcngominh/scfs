@@ -139,7 +139,7 @@ export default {
   async mounted() {
     try {
       const billId = this.$router.currentRoute.params.billId
-      const res = await this.$http.get('/api/transact/' + billId)
+      const res = await this.$http.get('/api/transaction/' + billId)
       this.order = res.data
       console.log(billId)
     }

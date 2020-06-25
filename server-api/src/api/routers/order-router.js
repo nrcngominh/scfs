@@ -94,7 +94,7 @@ OrderRouter.post('/', async (req, res) => {
   const totalMoney = await OrderService.getTotalMoney(req.body.cart)
 
   try {
-    const transRes = await axios.post('http://127.0.0.1:4000/api/transaction', {
+    const transRes = await axios.post(process.env.PAYMENT_HOST + 'api/transaction', {
       billId: billId,
       amount: totalMoney
     })
