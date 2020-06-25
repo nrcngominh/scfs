@@ -39,6 +39,6 @@ BaseRouter.use('/momo', MomoRouter)
 BaseRouter.use('/auth', AuthRouter)
 BaseRouter.use('/cart', CartRouter)
 BaseRouter.use('/order', OrderRouter)
-BaseRouter.use('/transact', TransactionRouter)
+BaseRouter.use('/transaction', TransactionRouter)
 
 export default BaseRouter

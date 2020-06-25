@@ -65,8 +65,7 @@ services:
                     
   # Database
   mongo:
-    image: mongo
-    command: ["--bind_ip_all"]
+    image: sfcs/mongo:v1
     restart: unless-stopped
     volumes:
       - .docker/data/mongodb:/data/db
