@@ -169,17 +169,17 @@ export default {
     }
   },
   async mounted() {
-    let navbar = document.getElementById("nav");
-    //let sticky = navbar.offsetTop;
-    window.onscroll = () => {
-      if (window.pageYOffset >= 150) {
-        //navbar.classList.add("sticky");
-        navbar.classList.add("hidden");
-      } else {
-        //navbar.classList.remove("sticky");
-        navbar.classList.remove("hidden");
-      }
-    };
+    // let navbar = document.getElementById("nav");
+    // //let sticky = navbar.offsetTop;
+    // window.onscroll = () => {
+    //   if (window.pageYOffset >= 150) {
+    //     //navbar.classList.add("sticky");
+    //     navbar.classList.add("hidden");
+    //   } else {
+    //     //navbar.classList.remove("sticky");
+    //     navbar.classList.remove("hidden");
+    //   }
+    // };
   }
 };
 </script>
