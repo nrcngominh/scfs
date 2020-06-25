@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"sfcs.food"}],"uuid":"9c280fc93ad8495fa745a4b7df534801"}
