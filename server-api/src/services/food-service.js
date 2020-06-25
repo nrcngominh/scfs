@@ -23,7 +23,7 @@ const getAllAndGroupByCategory = async () => {
   ]
 
   foods.forEach(food => {
-    food.img = url.resolve(process.env.DOMAIN, `images/${food.img}`)
+    food.img = url.resolve(process.env.HOST, `images/${food.img}`)
   })
 
   return Array.from(categories, category => {

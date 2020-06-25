@@ -141,7 +141,7 @@ export default {
   }, 
   async mounted() {
     try {
-        const res = await this.$http.get('/api/transact/')
+        const res = await this.$http.get('/api/transaction/')
         this.orders = res.data
     } catch (error) {
       console.log(error)

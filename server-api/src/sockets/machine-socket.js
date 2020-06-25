@@ -7,7 +7,7 @@ const setMachineListener = (io, socket) => {
     console.log(order)
     const bill = PaymentService.createBill(JSON.parse(order))
     try {
-      const transRes = await axios.post('http://127.0.0.1:4000/api/transaction', bill)
+      const transRes = await axios.post(process.env.PORT + 'api/transaction', bill)
       console.log(bill)
       socket.emit("send_bill", {
         momoQrCode: bill.momoQrCode

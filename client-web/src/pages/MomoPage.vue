@@ -43,7 +43,7 @@ export default {
   methods: {
     async commitPay(transaction) {
       try {
-        await this.$http.put(process.env.VUE_APP_DOMAIN +'/api/transact', {
+        await this.$http.put('api/momo', {
           billId: transaction.billId
         })
         transaction.hasPaid = true

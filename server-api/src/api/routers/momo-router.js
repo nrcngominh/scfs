@@ -11,6 +11,9 @@ const MomoRouter = Router()
  */
 MomoRouter.put('/', async (req, res) => {
   const billId = req.body.billId
+  await axios.put(process.env.PAYMENT_HOST + 'api/transaction', {
+    billId: billId
+  })
   await OrderRepo.updatePaidByBillId(billId)
   res.status(200).send({
     message: 'Success'
@@ -25,7 +28,7 @@ MomoRouter.put('/', async (req, res) => {
  */
 MomoRouter.get('/', async (req, res) => {
   try {
-    const transactionsRes = await axios.get('http://127.0.0.1:4000/api/transaction')
+    const transactionsRes = await axios.get(process.env.PAYMENT_HOST + 'api/transaction')
     res.status(200).send(transactionsRes.data)
   }
   catch (error) {
