@@ -596,7 +596,9 @@ span#count-cart {
 .Dropdown-link:hover {
     text-decoration: none
 }
-
+.dropdown-content a:hover {
+    color:black;
+}
 .Navbar {
     padding: 10px 0;
     z-index: 300;
