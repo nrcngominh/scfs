@@ -214,6 +214,7 @@ export default{
 }
 .Navbar-element a {
     cursor: pointer;
+    border-bottom: 0.3px solid #9d9797d9;
 }
 .Navbar-element a:hover {
     color: #fff;
