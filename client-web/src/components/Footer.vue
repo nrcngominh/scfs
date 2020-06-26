@@ -7,7 +7,7 @@
             <div class="col-sm-12 col-md-6">
               <h6>Description</h6>
               <p class="text-justify">
-                Để đáp ứng các nhu cầu của sinh viên, trường đại học Bách Khoa đã tiến hành xây dựng 1 một khu vực ăn uống đáp ứng được các tiêu chí: hiện đại, an toàn và thân thiện với sinh viên. Tọa lạc tại cơ sở Lý thường Kiệt (268 - Lý Thường Kiệt, Q10, TPHCM) và trong tương lai sẽ xây dựng thêm 1 khu vực ăn uống ở cơ sở Dĩ An (Làng ĐHQH, Dĩ An, Bình Dương). Đến với BK Food Court, các bạn sinh viên, thầy cô và khách tham quan sẽ được đón nhận một trải nghiệm ăn uống hiện đại với tiêu chí tự phục vụ: trong đó đồ ăn được cung cấp từ nhiều nhà cung cấp và chế biến từ nhiều nhà cung cấp khác nhau và sẽ được mang ra khu vực tự phục vụ.
+                Để đáp ứng các nhu cầu của sinh viên, trường đại học Bách Khoa đã tiến hành xây dựng 1 một khu vực ăn uống đáp ứng được các tiêu chí: hiện đại, an toàn và thân thiện với sinh viên. Tọa lạc tại cơ sở Lý thường Kiệt (268 - Lý Thường Kiệt, Q10, TPHCM) và trong tương lai sẽ xây dựng thêm 1 khu vực ăn uống ở cơ sở Dĩ An (Làng ĐHQH, Dĩ An, Bình Dương). Đến với BK Food Court, các bạn sinh viên, thầy cô và khách tham quan sẽ được đón nhận một trải nghiệm ăn uống hiện đại với tiêu chí tự phục vụ.
                 <br/>
                 <a href="https://www.freepik.com/free-photos-vectors/food">Food psd tạo bởi freepik - www.freepik.com</a>
                 . Icon tạo bởi <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> từ <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
