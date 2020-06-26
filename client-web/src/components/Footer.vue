@@ -22,6 +22,7 @@
                 <li><a>Vuex</a></li>
                 <li><a>Express</a></li>
                 <li><a>Nginx</a></li>
+                <li><a>Docker</a></li>
               </ul>
             </div>
 
