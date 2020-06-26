@@ -598,7 +598,7 @@ span#count-cart {
 }
 
 .Navbar {
-    padding: 10px 0;
+    padding: 16px 0;
     z-index: 300;
     width: 100%;
 }
