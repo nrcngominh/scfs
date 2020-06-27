@@ -6,12 +6,11 @@ import SocketIO from 'socket.io'
 import BaseSocket from './sockets'
 import BaseRouter from './api/routers'
 
-const mongoRemoteUri = process.DB_URI
+const mongoRemoteUri = process.env.DB_REMOTE_URI
 const dbHost = process.env.DB_HOST
 const dbPort = process.env.DB_PORT
 const dbName = process.env.DB_NAME
 const mongoUri = `mongodb://${dbHost}:${dbPort}/${dbName}`
-console.log(mongoRemoteUri || mongoUri)
 
 // Connect to MongoDB
 const connectWithRetry = () => {

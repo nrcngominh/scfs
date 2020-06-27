@@ -3,6 +3,7 @@ import cors from 'cors'
 import mongoose from 'mongoose'
 import TransactionRouter from './transaction-router'
 
+const mongoRemoteUri = process.env.DB_REMOTE_URI
 const dbHost = process.env.DB_HOST
 const dbPort = process.env.DB_PORT
 const dbName = process.env.DB_NAME
