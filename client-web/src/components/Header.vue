@@ -214,6 +214,7 @@ export default{
 }
 .Navbar-element a {
     cursor: pointer;
+    border-bottom: 0.3px solid #9d9797d9;
 }
 .Navbar-element a:hover {
     color: #fff;
@@ -596,9 +597,11 @@ span#count-cart {
 .Dropdown-link:hover {
     text-decoration: none
 }
-
+.dropdown-content a:hover {
+    color:black;
+}
 .Navbar {
-    padding: 16px 0;
+    padding: 10px 0;
     z-index: 300;
     width: 100%;
 }
