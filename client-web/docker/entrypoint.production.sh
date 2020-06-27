@@ -1,5 +1,5 @@
 # Restore images
 mkdir -p /data/images
-cp -rf images/* /data/images/
+cp -rf /app/images/* /data/images/
 
-nginx -g daemon off
+nginx -g "daemon off;"

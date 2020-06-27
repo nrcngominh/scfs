@@ -17,8 +17,6 @@ services:
       - PAYMENT_HOST=http://server-payment:${SERVER_PAYMENT_PORT}/
     ports:
       - "${PUBLIC_SERVER_API_PORT}:${SERVER_API_PORT}"
-    depends_on:
-      - database
           
   # Server for MOMO Service Fake
   server-payment:
@@ -31,19 +29,18 @@ services:
       - API_HOST=http://server-api:${SERVER_API_PORT}/
     ports:
       - "${PUBLIC_SERVER_PAYMENT_PORT}:${SERVER_PAYMENT_PORT}"
-    depends_on:
-      - database
 
   # Client web, images and webserver
   client-web:
     image: sfcs/client-web:v1.production
     restart: unless-stopped
     volumes:
+      - ./database/images:/app/images
       - ${DOCKER_IMAGES}:/data/images
     environment:
       - VUE_APP_DOMAIN=${HOST}
     ports:
-      - "80:80"
+      - "4430:80"
     depends_on:
       - server-api
       - server-payment
