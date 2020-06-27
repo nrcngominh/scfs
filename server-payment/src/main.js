@@ -10,7 +10,7 @@ const mongoUri = `mongodb://${dbHost}:${dbPort}/${dbName}`
 
 // Connect to MongoDB
 const connectWithRetry = () => {
-  return mongoose.connect(mongoUri, {
+  return mongoose.connect(mongoRemoteUri || mongoUri, {
     useNewUrlParser: true,
     useUnifiedTopology: true},
   (err) => {
@@ -21,7 +21,6 @@ const connectWithRetry = () => {
   })
 }
 connectWithRetry()
-console.log('Connected to database')
 
 const app = express()
 app.use(cors())
