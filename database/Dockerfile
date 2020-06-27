@@ -1,10 +1,9 @@
 FROM mongo
 
-WORKDIR /dump
+WORKDIR /raw
 
-COPY mongo .
+COPY . .
 
-CMD mongod --fork --logpath /var/log/mongodb.log; \
-    mongorestore; \
-    mongod --shutdown; \
-    docker-entrypoint.sh mongod
+RUN chmod 777 ./docker/entrypoint.sh
+
+ENTRYPOINT ./docker/entrypoint.sh

@@ -6,15 +6,13 @@ import SocketIO from 'socket.io'
 import BaseSocket from './sockets'
 import BaseRouter from './api/routers'
 
-const mongoRemoteUri = process.env.DB_REMOTE_URI
 const dbHost = process.env.DB_HOST
-const dbPort = process.env.DB_PORT
 const dbName = process.env.DB_NAME
-const mongoUri = `mongodb://${dbHost}:${dbPort}/${dbName}`
+const mongoUri = `mongodb://${dbHost}/${dbName}`
 
 // Connect to MongoDB
 const connectWithRetry = () => {
-  return mongoose.connect(mongoRemoteUri || mongoUri, {
+  return mongoose.connect(mongoUri, {
     useNewUrlParser: true,
     useUnifiedTopology: true},
   (err) => {
