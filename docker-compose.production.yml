@@ -6,7 +6,6 @@ services:
     image: sfcs/database:v1.production
     restart: unless-stopped
     volumes:
-      - ${DOCKER_MONGO}:/data/db
       - ${DOCKER_IMAGES}:/data/images
 
   # Server for REST API and SOCKET.IO
