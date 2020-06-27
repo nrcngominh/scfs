@@ -1,15 +1,13 @@
 version: "3.8"
 
 services:
-  # Mongo and files storage
+  # Files storage
   database:
     image: sfcs/database:v1.production
     restart: unless-stopped
     volumes:
       - ${DOCKER_MONGO}:/data/db
       - ${DOCKER_IMAGES}:/data/images
-    ports:
-      - "${PUBLIC_DATABASE_PORT}:27017"
 
   # Server for REST API and SOCKET.IO
   server-api:
