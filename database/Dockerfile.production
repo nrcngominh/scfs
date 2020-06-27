@@ -1,9 +1,9 @@
-FROM mongo
+FROM ubuntu
 
 WORKDIR /raw
 
 COPY . .
 
-RUN chmod 777 ./docker/entrypoint.sh
+RUN chmod 777 ./docker/entrypoint.production.sh
 
-ENTRYPOINT ./docker/entrypoint.sh
+ENTRYPOINT ./docker/entrypoint.production.sh
