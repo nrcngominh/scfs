@@ -1,13 +1,6 @@
 version: "3.8"
 
 services:
-  # Files storage
-  database:
-    image: sfcs/database:v1.production
-    restart: unless-stopped
-    volumes:
-      - ${DOCKER_IMAGES}:/data/images
-
   # Server for REST API and SOCKET.IO
   server-api:
     image: sfcs/server-api:v1.production
@@ -41,7 +34,7 @@ services:
     depends_on:
       - database
 
-  # Client web for customer
+  # Client web, images and webserver
   client-web:
     image: sfcs/client-web:v1.production
     restart: unless-stopped

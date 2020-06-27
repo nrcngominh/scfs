@@ -13,4 +13,9 @@ FROM nginx:1.19 as production-stage
 COPY --from=build-stage /app/nginx.conf.production /etc/nginx/conf.d/default.conf
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 
-CMD ["nginx", "-g", "daemon off;"]
+COPY ../database/images /app/images
+
+COPY ./docker .
+RUN chmod 777 ./docker/entrypoint.production.sh
+
+ENTRYPOINT ./docker/entrypoint.production.sh
