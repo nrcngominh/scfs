@@ -11,5 +11,5 @@ cd ../client-web
 sudo docker build -t sfcs/client-web:v1.production . -f Dockerfile.production
 
 cd ..
-sudo docker-compose -f docker-compose.yml.production down
-sudo docker-compose -f docker-compose.yml.production up
+sudo docker-compose -f docker-compose.production.yml down
+sudo docker-compose -f docker-compose.production.yml up
