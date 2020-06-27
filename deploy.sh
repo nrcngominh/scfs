@@ -1,0 +1,15 @@
+cd database
+sudo docker build -t sfcs/database:v1.production . -f Dockerfile.production
+
+cd ../server-api
+sudo docker build -t sfcs/server-api:v1.production . -f Dockerfile.production
+
+cd ../server-payment
+sudo docker build -t sfcs/server-payment:v1.production . -f Dockerfile.production
+
+cd ../client-web
+sudo docker build -t sfcs/client-web:v1.production . -f Dockerfile.production
+
+cd ..
+sudo docker-compose -f docker-compose.yml.production down
+sudo docker-compose -f docker-compose.yml.production up

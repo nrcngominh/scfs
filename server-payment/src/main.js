@@ -5,9 +5,10 @@ import TransactionRouter from './transaction-router'
 
 const dbHost = process.env.DB_HOST
 const dbName = process.env.DB_NAME
-const mongoUri = `mongodb://${dbHost}/${dbName}`
+const mongoUri = `${dbHost}/${dbName}`
 
 // Connect to MongoDB
+console.log(mongoUri)
 const connectWithRetry = () => {
   return mongoose.connect(mongoUri, {
     useNewUrlParser: true,
