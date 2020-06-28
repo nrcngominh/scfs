@@ -1,0 +1,47 @@
+body {
+    font-family: $font;
+}
+
+.wrapper {
+    .food-container {
+        margin: auto;
+        display: grid;
+        // background-color: #2196F3;
+        padding: 10px;
+        @include xs {
+            grid-template-columns: repeat(1, 1fr);
+        }
+        @include sm {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @include md {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        @include lg {
+            grid-template-columns: repeat(4, 1fr);
+        }
+        @include el {
+            width: $el-width;
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+    
+    .food-item {
+        background-color: rgba(255, 255, 255, 0.8);
+        // border: 1px solid rgba(0, 0, 0, 0.8);
+        padding: 10px;
+        font-size: 25px;
+        text-align: center;
+
+        img {
+            width: 100%;
+        }
+
+        .order-buttons {
+            display: inline-block;
+            div {
+                margin: 0 .3em;
+            }
+        }
+    }
+}

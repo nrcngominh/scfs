@@ -13,7 +13,7 @@
                     <nav class="sessions__navbar login__navbar grid">
                       <div class="grid u-justify-space u-align-center">
                         <a class="bklogo" @click="forwardUser">
-                            <img src="@/assets/bklogo.png" alt="">
+                            <img src="@/assets/images/bklogo.png" alt="">
                         </a>
                         <p class="f12">
                             Bạn chưa có tài khoản BK Food? <a id="_signup" @click="forwardPage">Đăng ký tại đây</a>
@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import '../assets/global.css'
+import '../assets/scss/global.css'
 
 import {redirectIfAuthSuccess} from '../services/auth-services'
 

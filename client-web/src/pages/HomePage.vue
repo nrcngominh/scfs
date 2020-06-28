@@ -64,7 +64,7 @@
               </div>
             </div>
             <div id="img_bk" class="col-lg-6 col-md-6 col-sm-12 text-center">
-              <img data-aos="fade-up" src="@/assets/bkfood.jpg" alt class="img-fluid1" />
+              <img data-aos="fade-up" src="@/assets/images/bkfood.jpg" alt class="img-fluid1" />
             </div>
           </div>
         </div>
@@ -279,7 +279,7 @@ body {
   text-decoration: none;
   text-align: center;
   line-height: 50px;
-  background-image: url("../assets/scroll.png");
+  background-image: url("../assets/images/scroll.png");
   background-size: contain;
   background-repeat: no-repeat;
   text-decoration: none;
@@ -293,7 +293,7 @@ body {
   text-decoration: none;
   text-align: center;
   line-height: 50px;
-  background-image: url("../assets/messenger.png");
+  background-image: url("../assets/images/messenger.png");
   background-size: contain;
   background-repeat: no-repeat;
   text-decoration: none;

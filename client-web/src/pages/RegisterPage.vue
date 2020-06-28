@@ -10,7 +10,7 @@
                         <nav class="sessions__navbar grid">
                         <div class="grid u-justify-space u-align-center">
                             <a class="bklogo" @click="forwardUser">
-                                <img src="@/assets/bklogo.png" alt="">
+                                <img src="@/assets/images/bklogo.png" alt="">
                             </a>
                             <p class="f12">
                                 Đã có tài khoản? <a id="_login" @click="backwardPage">Đăng nhập</a>

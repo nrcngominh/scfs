@@ -7,7 +7,7 @@
                             <div  class="Navbar-inner Navbar-height--44 grid-cell grid-cell--col10">
                                 <div class=Navbar-header>
                                     <a class="Logo" @click="home">
-                                        <img id="bkLogo" src="@/assets/logobk1.png" alt="">
+                                        <img id="bkLogo" src="@/assets/images/logobk1.png" alt="">
                                     </a>
                                     <div class=tablet--flex>
                                         <div class="Navbar-buttonMenu"> <span></span> <span></span> <span></span> <span></span> </div>
@@ -54,7 +54,7 @@
                                     </li> 
                                     <li :class = "{hidden: isLogined}">
                                         <div class="dropdown" id="avatar">
-                                            <img src="@/assets/alarm.png" alt="">
+                                            <img src="@/assets/images/alarm.png" alt="">
                                             <span id="count-cart">{{$store.state.notifications.length}}</span>
                                             <div class="dropdown-content">
                                                 <a v-for="noti in $store.state.notifications"
@@ -66,14 +66,14 @@
                                     </li> 
                                     <li id="cart" :class = "{hidden: isLogined}">
                                         <div @click="checkout" id="avatar">
-                                            <img src="@/assets/cart.png" alt="">
+                                            <img src="@/assets/images/cart.png" alt="">
                                             <span id="count-cart">{{$store.state.cart.length}}</span> 
                                         </div>
                                         
                                     </li>    
                                     <li :class = "{hidden: isLogined}">
                                         <div class="dropdown" id="avatar">
-                                            <img src="@/assets/account.png" alt=""> 
+                                            <img src="@/assets/images/account.png" alt=""> 
                                             <div class="dropdown-content">
                                                 <a href="#">Tài khoản</a>
                                                 <a @click="trans">Đơn hàng của tôi</a>
@@ -404,7 +404,7 @@ ul {
 }
 
 .intro {
-    background-image: url('../assets/bklast.png');
+    background-image: url('../assets/images/bklast.png');
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
