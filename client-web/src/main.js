@@ -8,7 +8,7 @@ import VueQrCodeComponent from 'vue-qrcode-component'
 import axios from 'axios'
 
 import './assets/scss/index.scss'
-
+  
 
 axios.defaults.baseURL = process.env.VUE_APP_DOMAIN
 Vue.prototype.$http = axios
@@ -33,17 +33,17 @@ Vue.use(VueCookies)
 Vue.$cookies.config('1d')
 
 Vue.use(new VueSocketIO({
-    debug: true,
-    connection: SocketIO(process.env.VUE_APP_DOMAIN),
-    vuex: {
-        store,
-        actionPrefix: 'SOCKET_',
-        mutationPrefix: 'SOCKET_'
-    },
+  debug: true,
+  connection: SocketIO(process.env.VUE_APP_DOMAIN),
+  vuex: {
+    store,
+    actionPrefix: 'SOCKET_',
+    mutationPrefix: 'SOCKET_'
+  }
 }))
 
 new Vue({
-    store,
-    router,
-    render: h => h(App),
+  store,
+  router,
+  render: h => h(App)
 }).$mount('#app')

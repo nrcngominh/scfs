@@ -131,96 +131,98 @@ export default {
       this.register();
     },
     async next() {
-        if (this.password == "" || this.email == "" || this.passwordRetype == "") {
+      if (this.password == "" || this.email == "" || this.passwordRetype == "") {
             
-            if(this.email == "") {
-                document.getElementById("email").style.border = "2px solid red";
-                this.error_email = false;
-                return;
-            }
-            if(this.password == "") {
-                document.getElementById("password").style.border = "2px solid red";
-                this.error_pass = false;
-                return;
-            }
-            if(this.passwordRetype == "") {
-                document.getElementById("passwordRetype").style.border = "2px solid red";
-                this.error_repass = false;
-                return;
-            }
+        if(this.email == "") {
+          document.getElementById("email").style.border = "2px solid red";
+          this.error_email = false;
+          return;
         }
-        let a = this.email.indexOf('@');
-        if(a < 1) {
-            document.getElementById("email").style.border = "2px solid red";
-            this.error_email_format = false;
-            return;
+        if(this.password == "") {
+          document.getElementById("password").style.border = "2px solid red";
+          this.error_pass = false;
+          return;
         }
-        if(this.password.length < 8) {
-            document.getElementById("password").style.border = "2px solid red";
-            this.error_pass_format = false;
-            this.pass_format = true;
-            return;
+        if(this.passwordRetype == "") {
+          document.getElementById("passwordRetype").style.border = "2px solid red";
+          this.error_repass = false;
+          return;
         }
-        if (this.password != this.passwordRetype) {
-            alert('Mật khẩu nhập lại không khớp')
-            return;
-        }
-        try {
-            this.setup = 'tabs__number_is_notactive';
-            this.info = 'tabs__number_is_active';
-            this.is_setup = true;
-            this.setup_success = false; 
-        } catch (err) {
-            alert(err)
-        }   
+      }
+      let a = this.email.indexOf('@');
+      if(a < 1) {
+        document.getElementById("email").style.border = "2px solid red";
+        this.error_email_format = false;
+        return;
+      }
+      if(this.password.length < 8) {
+        document.getElementById("password").style.border = "2px solid red";
+        this.error_pass_format = false;
+        this.pass_format = true;
+        return;
+      }
+      if (this.password != this.passwordRetype) {
+        alert('Mật khẩu nhập lại không khớp')
+        return;
+      }
+      try {
+        this.setup = 'tabs__number_is_notactive';
+        this.info = 'tabs__number_is_active';
+        this.is_setup = true;
+        this.setup_success = false; 
+      }
+      catch (err) {
+        alert(err)
+      }   
     },
     async register() {
         
-        if (this.fullName == "" || this.phoneNumber == "") {
+      if (this.fullName == "" || this.phoneNumber == "") {
             
-            if(this.fullName == "") {
-                document.getElementById("full-name").style.border = "2px solid red";
-                this.error_fullname = false;
-                return;
-            }
-            if(this.password == "") {
-                document.getElementById("phone-number").style.border = "2px solid red";
-                this.error_phone = false;
-                return;
-            }
+        if(this.fullName == "") {
+          document.getElementById("full-name").style.border = "2px solid red";
+          this.error_fullname = false;
+          return;
         }
-        try {
-            await this.$http.post('api/register/', {
-                email: this.email,
-                password: this.password,
-                fullName: this.fullName,
-                phoneNumber: this.phoneNumber
-            })
-            alert('Đăng kí thành công')
-            this.$router.push('/login')
-        } catch (err) {
-            console.log(err)
-            alert('Đăng kí không thành công')
+        if(this.password == "") {
+          document.getElementById("phone-number").style.border = "2px solid red";
+          this.error_phone = false;
+          return;
         }
+      }
+      try {
+        await this.$http.post('api/register/', {
+          email: this.email,
+          password: this.password,
+          fullName: this.fullName,
+          phoneNumber: this.phoneNumber
+        })
+        alert('Đăng kí thành công')
+        this.$router.push('/login')
+      }
+      catch (err) {
+        console.log(err)
+        alert('Đăng kí không thành công')
+      }
     },
     async back() {
-        this.error_email = true;
-        this.error_email_format = true;
-        this.error_pass = true;
-        this.pass_format = false;
-        this.error_pass_format = true;
-        this.error_repass = true;
-        this.error_fullname = true;
-        this.error_phone = true;
-        this.setup = 'tabs__number_is_active';
-        this.info = 'tabs__number_is_notactive';
-        this.is_setup = false;
-        this.setup_success = true;
-        document.getElementById("email").style.border = null;
-        document.getElementById("password").style.border = null;
-        document.getElementById("passwordRetype").style.border = null;
-        document.getElementById("full-name").style.border = null;
-        document.getElementById("phone-number").style.border = null;
+      this.error_email = true;
+      this.error_email_format = true;
+      this.error_pass = true;
+      this.pass_format = false;
+      this.error_pass_format = true;
+      this.error_repass = true;
+      this.error_fullname = true;
+      this.error_phone = true;
+      this.setup = 'tabs__number_is_active';
+      this.info = 'tabs__number_is_notactive';
+      this.is_setup = false;
+      this.setup_success = true;
+      document.getElementById("email").style.border = null;
+      document.getElementById("password").style.border = null;
+      document.getElementById("passwordRetype").style.border = null;
+      document.getElementById("full-name").style.border = null;
+      document.getElementById("phone-number").style.border = null;
     },
     nextPassword() {
       document.getElementById('password').focus();
@@ -232,10 +234,10 @@ export default {
       document.getElementById('phone-number').focus();
     },
     backwardPage() {
-        this.$router.push('/login')
+      this.$router.push('/login')
     },
     forwardUser() {
-        this.$router.push('/')
+      this.$router.push('/')
     }
   }
 }

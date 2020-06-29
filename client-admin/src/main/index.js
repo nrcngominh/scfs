@@ -78,4 +78,4 @@ app.on("activate", () => {
 // code. You can also put them in separate files and import them here.
 
 // Listen for events from renderer
-require('./events')
+require("./events");

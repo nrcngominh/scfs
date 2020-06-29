@@ -187,7 +187,10 @@ export default {
         if (!this.filterCategory || regexMatchCategory.test(obj.category)) {
           obj.hasFood = false;
           obj.foods.forEach(food => {
-            if (!this.filterName || (food.name && regexMatchName.test(food.name))) {
+            if (
+              !this.filterName ||
+              (food.name && regexMatchName.test(food.name))
+            ) {
               food.active = true;
               obj.hasFood = true;
             } else {
@@ -208,11 +211,11 @@ export default {
       this.selectedFood.name = food.name;
       this.selectedFood.price = food.price;
       this.selectedFood.description = food.description;
-      this.selectFood.img = food.img
+      this.selectFood.img = food.img;
     },
     editFood(food) {
-      this.selectFood(food)
-      this.imagePath = ""
+      this.selectFood(food);
+      this.imagePath = "";
       this.editDialogActive = true;
     },
     submitEdit() {
@@ -222,23 +225,23 @@ export default {
       try {
         await FoodService.update(this.selectedFood);
         this.successAlertActive = true;
-        this.selectedFoodRef.name = this.selectedFood.name
-        this.selectedFoodRef.price = this.selectedFood.price
-        this.selectedFoodRef.description = this.selectedFood.description
+        this.selectedFoodRef.name = this.selectedFood.name;
+        this.selectedFoodRef.price = this.selectedFood.price;
+        this.selectedFoodRef.description = this.selectedFood.description;
       } catch (error) {
         this.failedAlertActive = true;
       }
     },
     removeFood(food) {
-      this.selectFood(food)
+      this.selectFood(food);
       this.removeConfirmActive = true;
     },
     async confirmRemove() {
       try {
         await FoodService.removeById(this.selectedFood._id);
         this.successAlertActive = true;
-        this.selectedFoodRef.active = false
-        this.selectedFoodRef.name = null
+        this.selectedFoodRef.active = false;
+        this.selectedFoodRef.name = null;
       } catch (error) {
         this.failedAlertActive = true;
       }
@@ -247,11 +250,14 @@ export default {
       this.imagePath = await FileService.openFileDialog();
     },
     uploadImage() {
-      this.uploadImageConfirm = true
+      this.uploadImageConfirm = true;
     },
     async confirmUpload() {
       try {
-        const data = await FoodService.uploadImage(this.selectedFood._id, this.imagePath)
+        const data = await FoodService.uploadImage(
+          this.selectedFood._id,
+          this.imagePath
+        );
         this.successAlertActive = true;
         this.selectedFoodRef.img = data.img;
       } catch (error) {

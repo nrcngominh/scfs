@@ -14,7 +14,8 @@
               <div>MOMO ID:</div>
               <div>{{ order.momoTransId }}</div>
             </div>
-            <hr />``
+            <hr />
+            ``
             <div class="food-list-container">
               <div class="food-list-item">
                 <div>Tên món</div>
@@ -22,8 +23,11 @@
               </div>
             </div>
             <div class="food-list-container">
-              <div class="food-list-item" v-for="item in order.items"
-                :key="item.food._id">
+              <div
+                class="food-list-item"
+                v-for="item in order.items"
+                :key="item.food._id"
+              >
                 <div>{{ item.food.name }}</div>
                 <div>{{ item.quantity }}</div>
               </div>
@@ -31,7 +35,9 @@
           </div>
 
           <div class="order-action-container">
-            <md-button @click="serveOrder(order)" class="md-raised md-primary">Ready</md-button>
+            <md-button @click="serveOrder(order)" class="md-raised md-primary"
+              >Ready</md-button
+            >
           </div>
         </div>
       </md-card>
@@ -80,28 +86,26 @@ export default {
   },
   methods: {
     async serveOrder(order) {
-      this.orderToServe = order,
-      this.serveConfirmActive = true
+      (this.orderToServe = order), (this.serveConfirmActive = true);
     },
     async confirmServe() {
       try {
-        await OrderService.serveOrder(this.orderToServe)
-        await this.sync()
-        this.successAlertActive = true
+        await OrderService.serveOrder(this.orderToServe);
+        await this.sync();
+        this.successAlertActive = true;
       } catch (error) {
-        this.failedAlertActive = true
+        this.failedAlertActive = true;
       }
     },
     async sync() {
       try {
-        const res = await OrderService.getAllUnserved()
-        this.orders = res.data
-      } catch (error) {
-      }
+        const res = await OrderService.getAllUnserved();
+        this.orders = res.data;
+      } catch (error) {}
     }
   },
   async mounted() {
-    await this.sync()
+    await this.sync();
   }
 };
 </script>

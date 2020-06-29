@@ -15,7 +15,7 @@ const store = new Vuex.Store({
     cart: [],
     totalMoneyAfterDiscount: 0,
     isReadyToPay: false,
-    notifications: [],
+    notifications: []
   },
   mutations: {
     setNavOnTopSlide(state, value) {
@@ -41,7 +41,8 @@ const store = new Vuex.Store({
       }))
       if (itemExisted) {
         itemExisted.quantity++
-      } else {
+      }
+      else {
         state.cart.push({
           foodId: foodId,
           quantity: 1

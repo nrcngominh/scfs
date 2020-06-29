@@ -1,0 +1,30 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module",
+    "parser": "babel-eslint"
+  },
+  "rules": {
+    "indent": [
+      "warn",
+      2
+    ],
+    "brace-style": [
+      "error",
+      "stroustrup"
+    ],
+    "comma-dangle": [
+      "error",
+      "never"
+    ],
+    "no-unused-vars": [
+      "warn"
+    ],
+    "no-var": [
+      "off"
+    ],
+    "one-var": [
+      "off"
+    ]
+  }
+}
