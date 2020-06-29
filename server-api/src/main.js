@@ -7,12 +7,11 @@ import BaseSocket from './sockets'
 import BaseRouter from './api/routers'
 
 const dbHost = process.env.DB_HOST
-const dbPort = process.env.DB_PORT
 const dbName = process.env.DB_NAME
-const mongoUri = `mongodb://${dbHost}:${dbPort}/${dbName}`
-console.log(mongoUri)
+const mongoUri = `${dbHost}/${dbName}`
 
 // Connect to MongoDB
+console.log(mongoUri)
 const connectWithRetry = () => {
   return mongoose.connect(mongoUri, {
     useNewUrlParser: true,
@@ -25,7 +24,6 @@ const connectWithRetry = () => {
   })
 }
 connectWithRetry()
-console.log('Connected to database')
 
 // Setup server
 const app = express()

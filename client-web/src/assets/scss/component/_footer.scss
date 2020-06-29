@@ -1,0 +1,48 @@
+.footer-grid {
+    display: grid;
+    .footer-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    @mixin stack-footer {
+        @include xs {
+            @content;
+        }
+
+        @include sm {
+            @content;
+        }
+    }
+
+    @mixin grid-footer {
+        @include md {
+            @content;
+        }
+
+        @include lg {
+            @content;
+        }
+
+        @include el {
+            @content;
+        }
+    }
+
+    @include stack-footer {
+        grid-template-columns: 1fr;
+    }
+
+    @include grid-footer {
+        grid-template-columns: 1fr 1fr 1fr;
+        .footer-item {
+            &.social {
+                grid-column-start: 2;
+            }
+            &.license {
+                grid-column-start: 2;
+            }
+        }
+    }
+}

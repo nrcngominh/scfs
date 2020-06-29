@@ -1,19 +1,57 @@
 version: "3.8"
 
 services:
-  # Proxy server
-  webserver:
-    image: nginx:1.19-alpine
+  # Mongo and files storage
+  database:
+    image: sfcs/database:v1.dev
     restart: unless-stopped
     volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf
-      - ./database/images:/data/images
+      - ${DOCKER_MONGO}:/data/db
+      - ${DOCKER_IMAGES}:/data/images
     ports:
-      - "80:80"
+      - "${PUBLIC_DATABASE_PORT}:27017"
+
+  # Server for REST API and SOCKET.IO
+  server-api:
+    image: sfcs/server-api:v1.dev
+    restart: unless-stopped
+    command: npm run dev
+    volumes:
+      - ./server-api/src:/app/src
+      - ${DOCKER_IMAGES}:/app/images
+    environment:
+      - HOST=${HOST}
+      - DB_HOST=mongodb://database:27017
+      - DB_NAME=${DB_NAME}
+      - PORT=${SERVER_API_PORT}
+      - ACCESS_TOKEN_SECRET=${ACCESS_TOKEN_SECRET}
+      - IMAGES_DIRECTORY=/app/images
+      - PAYMENT_HOST=http://server-payment:${SERVER_PAYMENT_PORT}/
+    ports:
+      - "${PUBLIC_SERVER_API_PORT}:${SERVER_API_PORT}"
+    depends_on:
+      - database
+          
+  # Server for MOMO Service Fake
+  server-payment:
+    image: sfcs/server-payment:v1.dev
+    restart: unless-stopped
+    command: npm run dev
+    volumes:
+      - ./server-payment/src:/app/src
+    environment:
+      - DB_HOST=mongodb://database:27017
+      - DB_NAME=${DB_NAME}
+      - PORT=${SERVER_PAYMENT_PORT}
+      - API_HOST=http://server-api:${SERVER_API_PORT}/
+    ports:
+      - "${PUBLIC_SERVER_PAYMENT_PORT}:${SERVER_PAYMENT_PORT}"
+    depends_on:
+      - database
 
   # Client web for customer
   client-web:
-    image: sfcs/client-web:v1
+    image: sfcs/client-web:v1.dev
     restart: unless-stopped
     command: npm run dev
     volumes:
@@ -21,53 +59,17 @@ services:
     environment:
       - VUE_APP_DOMAIN=${HOST}
     ports:
-      - "8080:8080"
+      - "${PUBLIC_CLIENT_WEB_PORT}:8080"
     depends_on:
       - server-api
       - server-payment
 
-  # Server for REST API and SOCKET.IO
-  server-api:
-    image: sfcs/server-api:v1
-    restart: unless-stopped
-    command: npm run dev
-    volumes:
-      - ./server-api/src:/app/src
-    environment:
-      - HOST=${HOST}
-      - DB_HOST=${DB_HOST}
-      - DB_NAME=${DB_NAME}
-      - PORT=${SERVER_API_PORT}
-      - ACCESS_TOKEN_SECRET=${ACCESS_TOKEN_SECRET}
-      - IMAGES_DIRECTORY=${IMAGES_DIRECTORY}
-      - PAYMENT_HOST=http://server-payment:${SERVER_PAYMENT_PORT}/
-    ports:
-      - "3000:3000"
-    depends_on:
-      - mongo
-          
-  # Server for MOMO Service Fake
-  server-payment:
-    image: sfcs/server-payment:v1
-    restart: unless-stopped
-    command: npm run dev
-    volumes:
-      - ./server-payment/src:/app/src
-    environment:
-      - DB_HOST=${DB_HOST}
-      - DB_NAME=${DB_NAME}
-      - PORT=${SERVER_PAYMENT_PORT}
-      - API_HOST=http://server-api:${SERVER_API_PORT}/
-    ports:
-      - "4000:4000"
-    depends_on:
-      - mongo
-                    
-  # Database
-  mongo:
-    image: sfcs/mongo:v1
+  # Proxy server
+  webserver:
+    image: nginx:1.19-alpine
     restart: unless-stopped
     volumes:
-      - .docker/data/mongodb:/data/db
+      - ./client-web/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ${DOCKER_IMAGES}:/app/images
     ports:
-      - "27017:27017"
+      - "80:80"

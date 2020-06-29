@@ -42,7 +42,7 @@ p.text.f20.is-txtWhite.u-mb40.u-mb24--tablet{
     font-weight: 800;
 }
 .intro {
-    background-image: url('../assets/bklast1.png');
+    background-image: url('../assets/images/bklast1.png');
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;

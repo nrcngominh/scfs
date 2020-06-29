@@ -60,11 +60,11 @@
                   Chào mừng đến với
                   <span>BK Food Court</span>
                 </h3>
-                <p data-aos="fade-up" class="mt-4">Để đáp ứng các nhu cầu của sinh viên, trường đại học Bách Khoa đã tiến hành xây dựng 1 một khu vực ăn uống đáp ứng được các tiêu chí: hiện đại, an toàn và thân thiện với sinh viên. Tọa lạc tại cơ sở Lý thường Kiệt (268 - Lý Thường Kiệt, Q10, TPHCM) và trong tương lai sẽ xây dựng thêm 1 khu vực ăn uống ở cơ sở Dĩ An (Làng ĐHQH, Dĩ An, Bình Dương). Đến với BK Food Court, các bạn sinh viên, thầy cô và khách tham quan sẽ được đón nhận một trải nghiệm ăn uống hiện đại với tiêu chí tự phục vụ: trong đó đồ ăn được cung cấp từ nhiều nhà cung cấp và chế biến từ nhiều nhà cung cấp khác nhau và sẽ được mang ra khu vực tự phục vụ. </p>
+                <p data-aos="fade-up" class="mt-4">Để đáp ứng các nhu cầu của sinh viên, trường đại học Bách Khoa đã tiến hành xây dựng 1 một khu vực ăn uống đáp ứng được các tiêu chí: hiện đại, an toàn và thân thiện với sinh viên. Tọa lạc tại cơ sở Lý thường Kiệt (268 - Lý Thường Kiệt, Q10, TPHCM) và trong tương lai sẽ xây dựng thêm 1 khu vực ăn uống ở cơ sở Dĩ An (Làng ĐHQH, Dĩ An, Bình Dương). Đến với BK Food Court, các bạn sinh viên, thầy cô và khách tham quan sẽ được đón nhận một trải nghiệm ăn uống hiện đại với tiêu chí tự phục vụ. </p>
               </div>
             </div>
             <div id="img_bk" class="col-lg-6 col-md-6 col-sm-12 text-center">
-              <img data-aos="fade-up" src="@/assets/bkfood.jpg" alt class="img-fluid1" />
+              <img data-aos="fade-up" src="@/assets/images/bkfood.jpg" alt class="img-fluid1" />
             </div>
           </div>
         </div>
@@ -279,7 +279,7 @@ body {
   text-decoration: none;
   text-align: center;
   line-height: 50px;
-  background-image: url("../assets/scroll.png");
+  background-image: url("../assets/images/scroll.png");
   background-size: contain;
   background-repeat: no-repeat;
   text-decoration: none;
@@ -293,7 +293,7 @@ body {
   text-decoration: none;
   text-align: center;
   line-height: 50px;
-  background-image: url("../assets/messenger.png");
+  background-image: url("../assets/images/messenger.png");
   background-size: contain;
   background-repeat: no-repeat;
   text-decoration: none;
