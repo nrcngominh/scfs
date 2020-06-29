@@ -1,6 +1,6 @@
 <template>
   <view class="container">
-    <app-loading v-if="!isAppReady"> </app-loading>
+    <app-loading v-if="!isAppReady"></app-loading>
     <app v-if="isAppReady"></app>
   </view>
 </template>
@@ -11,16 +11,18 @@ import { VueNativeBase } from "native-base";
 import { AppLoading } from "expo";
 import * as Font from "expo-font";
 import App from "../App.vue";
-import axios from 'axios'
-import { ScrollView } from 'react-native'
-import React, {Component} from "react";
+import axios from "axios";
+import { ScrollView } from "react-native";
+import React, { Component } from "react";
+
+axios.defaults.baseURL = "https://sfcs-hcmut.duckdns.org";
 
 // registering all native-base components to the global scope of the Vue
 Vue.use(VueNativeBase);
 Vue.use(ScrollView, {
-  name: 'scroll-view',
+  name: "scroll-view",
   noPreventDefault: false
-})
+});
 export default {
   components: { App, AppLoading },
   data() {
@@ -30,7 +32,6 @@ export default {
   },
   created() {
     this.loadFonts();
-      axios.defaults.baseURL = 'https://sfcs-hcmut.duckdns.org'
   },
   methods: {
     async loadFonts() {
