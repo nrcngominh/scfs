@@ -12,10 +12,15 @@ import { AppLoading } from "expo";
 import * as Font from "expo-font";
 import App from "../App.vue";
 import axios from 'axios'
+import { ScrollView } from 'react-native'
+import React, {Component} from "react";
 
 // registering all native-base components to the global scope of the Vue
 Vue.use(VueNativeBase);
-
+Vue.use(ScrollView, {
+  name: 'scroll-view',
+  noPreventDefault: false
+})
 export default {
   components: { App, AppLoading },
   data() {
