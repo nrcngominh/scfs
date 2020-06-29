@@ -42,7 +42,7 @@
       </nb-grid>
       
       <!-- content-cart -->
-      <nb-text v-if="seg === 2">Cart</nb-text>
+      
       <!-- content-notification -->
       <nb-text v-if="seg === 3">Notification</nb-text>
       <!-- content-contact -->
@@ -54,7 +54,7 @@
       <nb-footer-tab>
         <nb-button :active="tab1" :onPress="toggleTab1" >
           <nb-icon type="FontAwesome" name="home" :active="tab1" />
-          <nb-text>Trang chủ</nb-text>
+          <nb-text class="title">Trang chủ</nb-text>
         </nb-button>
 
         <nb-button v-for="data in datas"
@@ -66,7 +66,7 @@
             <nb-text>10</nb-text>
           </nb-badge>
           <nb-icon type="FontAwesome" name="clipboard" :active="tab2" />
-          <nb-text>Đơn hàng</nb-text>
+          <nb-text class="title">Đơn hàng</nb-text>
         </nb-button>
 
         <nb-button :active="tab3" :onPress="toggleTab3" vertical badge>
@@ -74,12 +74,12 @@
             <nb-text>51</nb-text>
           </nb-badge>
           <nb-icon type="FontAwesome" name="bell" :active="tab3" />
-          <nb-text>Thông báo</nb-text>
+          <nb-text class="title">Thông báo</nb-text>
         </nb-button>
 
         <nb-button :active="tab4" :onPress="toggleTab4">
           <nb-icon type="FontAwesome" name="user-circle" :active="tab4" />
-          <nb-text>Tôi</nb-text>
+          <nb-text class="title">Tôi</nb-text>
         </nb-button>
       </nb-footer-tab>
     </nb-footer>
@@ -90,7 +90,7 @@
 import IntroSlide from "./introSlide"
 import TabCategory from "./tabCategory"
 import ContactTab from "./contactTab"
-import NotificationTab from "./notificationTab"
+//import NotificationTab from "./notificationTab"
 export default {
   props: {
     navigation: {
@@ -155,5 +155,8 @@ export default {
 }
 .intro_slide {
   height: 220;
+}
+.title {
+  font-size: 10;
 }
 </style>

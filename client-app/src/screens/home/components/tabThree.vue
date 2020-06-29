@@ -1,37 +1,36 @@
 <template>
   <nb-content padder :style="{ marginTop: 0 }">
-    <nb-card :style="{ flex: 0 }">
+    <nb-card :style="{ flex: 0 }" v-for="food in foods"
+    :key="food._id">
       <nb-card-item>
-        <image square :source="logo" class="thumnail" />
+        <image square :source="{uri: food.img}" class="thumnail" />
         <nb-body :style="{marginLeft: 10}">
-          <nb-h1 class="title-food">Xôi mặn</nb-h1>
-          <nb-h3 class="title-price">15.000đ</nb-h3>
-          <nb-h3 class="title-price">Ngon bổ rẻ</nb-h3>
+          <nb-h1 class="title-food">{{food.name}}</nb-h1>
+          <nb-h3 class="title-price">Giá: {{food.price}} VNĐ</nb-h3>
+          <nb-h3 class="title-price">{{food.description}}</nb-h3>
         </nb-body>
       </nb-card-item>
     </nb-card>
-
-    <nb-card :style="{ flex: 0 }">
-      <nb-card-item>
-        <image square :source="logo1" class="thumnail" />
-        <nb-body :style="{marginLeft: 10}">
-          <nb-h1 class="title-food">Cơm gà</nb-h1>
-          <nb-h3 class="title-price">15.000đ</nb-h3>
-          <nb-h3 class="title-price">Ngon bổ rẻ</nb-h3>
-        </nb-body>
-      </nb-card-item>
-    </nb-card>
-
   </nb-content>
 </template>
 <script>
+import axios from 'axios'
 import logo from "../../../../assets/images/xoi.jpg";
 import logo1 from "../../../../assets/images/com-ga.jpg";
+import FoodService from "../../../services/food-service.js"
 export default {
   data() {
     return {
       logo,
-      logo1
+      logo1,
+      foods: []
+    }
+  },
+  async mounted() {
+    try {
+      this.foods = await FoodService.getFoodByCategory('Rice')
+    } catch (error) {
+
     }
   }
 }
