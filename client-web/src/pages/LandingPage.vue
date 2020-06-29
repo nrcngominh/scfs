@@ -1,17 +1,21 @@
 <template>
-  <div class="wrapper">
-    <div class="food-container">
-      <div class="food-item" v-for="item in arr" :key="item">
+  <div class="landing-page">
+    <landing-slide class="slide">
+      
+    </landing-slide>
+
+    <section class="food-container wrapper">
+      <div class="food-item" v-for="food in foods" :key="food.name">
         <div class="food-image">
           <div class="food-image-content">
-            <img src="https://sfcs-hcmut.duckdns.org/images/1592813725496.jpg" alt="Food image">
+            <img :src="food.img" alt="Food image">
           </div>
         </div>
         <div class="food-body">
           <div class="food-content">
-            <h3 class="title">Pepsi</h3>
-            <p class="description">Ngon bổ rẻ</p>
-            <p class="price">Giá: 10.000 vnđ</p>
+            <h3 class="title">{{ food.name }}</h3>
+            <p class="description">{{ food.price }}</p>
+            <p class="price">Giá: {{ food.price }} VNĐ</p>
           </div>
           <div class="order-buttons">
             <div class="btn btn-primary">Mua</div>
@@ -19,13 +23,18 @@
           </div>
         </div>
       </div>
-    </div>
+    </section>
   </div>
 </template>
 
 <script>
+import LandingSlide from '../components/LandingSlide'
+
 export default {
   name: 'LandingPage',
+  components: {
+    LandingSlide
+  },
   data() {
     return {
       arr: null
@@ -33,6 +42,11 @@ export default {
   },
   mounted() {
     this.arr = [1, 2, 3, 4]
+  },
+  computed: {
+    foods() {
+      return this.$store.state.foods;
+    }
   }
 }
 </script>

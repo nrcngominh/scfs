@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import axios from 'axios'
 
 import MainLayout from '../layouts/MainLayout'
 import LandingPage from '../pages/LandingPage'
@@ -16,9 +15,6 @@ import LandingPage from '../pages/LandingPage'
 // import TransactionPage from '../pages/TransactionPage'
 // import DetailTransaction from '../pages/DetailTransaction'
 // import MomoPage from '../pages/MomoPage'
-
-axios.defaults.baseURL = process.env.VUE_APP_DOMAIN
-Vue.prototype.$http = axios
 
 Vue.use(VueRouter)
 
@@ -127,7 +123,7 @@ const router = new VueRouter({
 })
 router.beforeEach((to, from, next) => {
     document.title = to.meta.title
-    axios.defaults.headers['x-access-token'] = Vue.$cookies.get('accessToken')
+    Vue.prototype.$http.defaults.headers['x-access-token'] = Vue.$cookies.get('accessToken')
     next()
 })
 export default router;

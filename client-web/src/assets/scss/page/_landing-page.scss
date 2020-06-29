@@ -1,4 +1,4 @@
-.wrapper {
+.landing-page {
     p, h3 {
         margin: 0;
         padding: 0;
@@ -85,16 +85,16 @@
                         display: none;
                     }
                 }
-                .btn {
-                    margin-left: 0px;
-                    margin-right: 10px;
+                .order-buttons {
+                    width: 100%;
+                    display: flex;
+                    .btn {
+                        margin-left: 0px;
+                        margin-right: 10px;
+                    }
                 }
             }
 
-            .order-buttons {
-                width: 100%;
-                display: flex;
-            }
         }
     }
 
@@ -117,6 +117,21 @@
                     }
                 }
             }
+            .order-buttons {
+                width: 100%;
+                display: inline-block;
+                .btn {
+                    margin-left: 0px;
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+
+    .slide {
+        height: 100vh;
+        img {
+            height: 100%;
         }
     }
 }

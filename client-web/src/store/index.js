@@ -9,6 +9,7 @@ const randomNumber = (numOfDigits) => {
 
 const store = new Vuex.Store({
   state: {
+    navOnTopSlide: true,
     categories: [],
     foods: [],
     cart: [],
@@ -17,6 +18,9 @@ const store = new Vuex.Store({
     notifications: [],
   },
   mutations: {
+    setNavOnTopSlide(state, value) {
+      state.navOnTopSlide = value
+    },
     setCategories(state, categories) {
       state.categories = categories
     },

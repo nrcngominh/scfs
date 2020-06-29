@@ -1,0 +1,62 @@
+.slide-container {
+    img {
+        position: absolute;
+        z-index: -10;
+        width: 100%;
+        object-fit: cover;
+    }
+    .slide-content {
+        text-align: center;
+        padding-top: 40vh;
+        color: white;
+        width: 100%;
+        z-index: -5;
+        font-family: $modern-font;
+        h1 {
+            font-size: 5em;
+            font-weight: bolder;
+            &.short-title {
+                display: none;
+            }
+            @include xs {
+                &.full-title {
+                    display: none;
+                }
+                &.short-title {
+                    display: inherit;
+                }
+                font-size: 3.5em;
+            }
+            @include sm {
+                &.full-title {
+                    display: none;
+                }
+                &.short-title {
+                    display: inherit;
+                }
+            }
+            @include md {
+                &.full-title {
+                    display: none;
+                }
+                &.short-title {
+                    display: inherit;
+                }
+            }
+        }
+        p {
+            font-size: 1.5em;
+            @include xs {
+                font-size: 1em;
+            }
+        }
+        .btn {
+            margin-top: 25px;
+            width: 200px;
+            font-size: 1.1em;;
+            border-radius: 20px;
+            background: #fca503;
+            color: rgb(255, 255, 255);
+        }
+    }
+}
