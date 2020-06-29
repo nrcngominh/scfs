@@ -27,7 +27,6 @@
     </nb-header>
     <!-- header-contact -->
     <nb-header v-if="seg === 4">
-      <nb-left/>
       <nb-body>
         <nb-title>Thông tin tài khoản</nb-title>
       </nb-body>
