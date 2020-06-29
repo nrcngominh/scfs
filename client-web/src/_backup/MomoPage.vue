@@ -47,22 +47,24 @@ export default {
           billId: transaction.billId
         })
         transaction.hasPaid = true
-      } catch (error) {
+      }
+      catch (error) {
         console.log(error)
       }
     }
   },
   async mounted() {
     try {
-        const res = await this.$http.get('/api/momo')
-        let counter = 0
-        this.transactions = res.data.map(trans => {
-          trans.index = counter++
-          trans.status = trans.hasPaid ? 'Paid' : 'Unpaid'
-          return trans
-        })
-    } catch (error) {
-        console.log(error)
+      const res = await this.$http.get('/api/momo')
+      let counter = 0
+      this.transactions = res.data.map(trans => {
+        trans.index = counter++
+        trans.status = trans.hasPaid ? 'Paid' : 'Unpaid'
+        return trans
+      })
+    }
+    catch (error) {
+      console.log(error)
     }
   }
 }

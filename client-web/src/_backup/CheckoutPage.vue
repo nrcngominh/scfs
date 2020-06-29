@@ -1,76 +1,91 @@
 <template>
-  <div>
-    <!--start header -->
-    <Header />
-    <!-- end header -->
-    <!-- start introslide -->
+<div>
+  <!--start header -->
+  <Header />
+  <!-- end header -->
+  <!-- start introslide -->
   <!-- start footer -->
   <body>
     <main>
       <div class="basket content-wrapper">
-      <div class="basket-module">
-      </div>
-      <div class="basket-labels">
-        <ul>
-          <li class="item item-heading">Vật phẩm</li>
-          <li class="price1">Giá</li>
-          <li class="quantity">Số lượng</li>
-          <li class="subtotal1">Thành tiền</li>
-        </ul>
-      </div>
-      
-      <div class="basket-product" v-for="item in cart" :key="item.food._id" >
-        <div class="item">
-          <div class="product-image">
-            <img v-bind:src="item.food.img" alt="Placholder Image 2" class="product-frame">
-          </div>
-          <div class="product-details">
-            <h1><span class="item-name"></span><strong>{{item.food.name}}</strong></h1>
-          </div>
+        <div class="basket-module"></div>
+        <div class="basket-labels">
+          <ul>
+            <li class="item item-heading">Vật phẩm</li>
+            <li class="price1">Giá</li>
+            <li class="quantity">Số lượng</li>
+            <li class="subtotal1">Thành tiền</li>
+          </ul>
         </div>
-        <div class="price">{{item.food.price}}</div>
-        <div class="quantity">
-          <input type="number" v-bind:value="item.quantity" v-on:input = "updateQuantity(item.food._id, $event.target.value)" min="1" class="quantity-field">
-        </div>
-        <div class="subtotal">{{item.food.price * item.quantity}}</div>
-        <div class="remove">
-          <button @click="removeItem(item.food._id)">Remove</button>
-        </div>
-      </div>
 
-    </div>
-    <aside>
-      <div class="summary">
-        <div class="summary-total-items"><span class="total-items"></span>Giỏ hàng</div>
-        <div class="summary-subtotal">
-          <div class="subtotal-title">Tạm tính</div>
-          <div class="subtotal-value final-value" id="basket-subtotal">{{totalMoney}}</div>
-          <div class="summary-promo hide">
-            <div class="promo-title">Giảm giá</div>
-            <div class="promo-value final-value" id="basket-promo"></div>
+        <div class="basket-product" v-for="item in cart" :key="item.food._id">
+          <div class="item">
+            <div class="product-image">
+              <img v-bind:src="item.food.img" alt="Placholder Image 2" class="product-frame" />
+            </div>
+            <div class="product-details">
+              <h1>
+                <span class="item-name"></span>
+                <strong>{{item.food.name}}</strong>
+              </h1>
+            </div>
+          </div>
+          <div class="price">{{item.food.price}}</div>
+          <div class="quantity">
+            <input
+              type="number"
+              v-bind:value="item.quantity"
+              v-on:input="updateQuantity(item.food._id, $event.target.value)"
+              min="1"
+              class="quantity-field"
+            />
+          </div>
+          <div class="subtotal">{{item.food.price * item.quantity}}</div>
+          <div class="remove">
+            <button @click="removeItem(item.food._id)">Remove</button>
           </div>
         </div>
-        
-        <div class="summary-promotional">
-          <label for="promo-code" class = "promoCodeFont">Nhập mã giảm giá</label>
-          <input id="promo-code" v-model="promoCode" type="text" name="promo-code" maxlength="5" class="promo-code-field">
-          <button class="promo-code-cta" @click="applyPromotionCode()">Xác nhận</button>        
-        </div>
-        <div class="summary-total">
-          <div class="total-title">Thành tiền</div>
-          <div class="total-value final-value" id="basket-total">{{totalMoneyAfterDiscount()}}</div>
-        </div>
-        <div class="summary-checkout">
-          <button class="checkout-cta" @click="readyToPay()">Xác nhận đơn hàng</button>
-        </div>
       </div>
+      <aside>
+        <div class="summary">
+          <div class="summary-total-items">
+            <span class="total-items"></span>Giỏ hàng
+          </div>
+          <div class="summary-subtotal">
+            <div class="subtotal-title">Tạm tính</div>
+            <div class="subtotal-value final-value" id="basket-subtotal">{{totalMoney}}</div>
+            <div class="summary-promo hide">
+              <div class="promo-title">Giảm giá</div>
+              <div class="promo-value final-value" id="basket-promo"></div>
+            </div>
+          </div>
 
-    </aside>
+          <div class="summary-promotional">
+            <label for="promo-code" class="promoCodeFont">Nhập mã giảm giá</label>
+            <input
+              id="promo-code"
+              v-model="promoCode"
+              type="text"
+              name="promo-code"
+              maxlength="5"
+              class="promo-code-field"
+            />
+            <button class="promo-code-cta" @click="applyPromotionCode()">Xác nhận</button>
+          </div>
+          <div class="summary-total">
+            <div class="total-title">Thành tiền</div>
+            <div class="total-value final-value" id="basket-total">{{totalMoneyAfterDiscount()}}</div>
+          </div>
+          <div class="summary-checkout">
+            <button class="checkout-cta" @click="readyToPay()">Xác nhận đơn hàng</button>
+          </div>
+        </div>
+      </aside>
     </main>
-    </body>
+  </body>
 
   <div class="mt-3">
-      <Footer />
+    <Footer />
   </div>
   <!-- end footer -->
 </div>
@@ -80,15 +95,15 @@
 <script src="//code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="simple.money.format.js"></script>
 <script>
-import Footer from '../components/Footer';
-import Header from '../components/Header';
-import IntroSlide from '../components/IntroSlide';
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+import IntroSlide from "../components/IntroSlide";
 
-import $ from 'jquery';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import $ from "jquery";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
-import {redirectIfAuthFailed} from '../services/auth-services'
+import { redirectIfAuthFailed } from "../services/auth-services";
 
 AOS.init({
   offset: 300,
@@ -97,14 +112,16 @@ AOS.init({
 export default {
   name: "HomePage",
   components: {
-    Header, Footer, IntroSlide
+    Header,
+    Footer,
+    IntroSlide
   },
   data() {
     return {
-        menu: "HomePage",
-        promoCode: "",
-        realPromoCode: ""
-    }
+      menu: "HomePage",
+      promoCode: "",
+      realPromoCode: ""
+    };
   },
   computed: {
     cart() {
@@ -112,78 +129,76 @@ export default {
         return {
           food: this.$store.state.foods.find(food => food._id == item.foodId),
           quantity: item.quantity
-        }
-      })
+        };
+      });
     },
     totalMoney() {
-      let sum = 0
+      let sum = 0;
       if (this.cart) {
         this.cart.forEach(item => {
-          sum += item.quantity * item.food.price
-        })
+          sum += item.quantity * item.food.price;
+        });
       }
-      return sum
+      return sum;
     }
   },
   async beforeCreate() {
     document.body.className = "user";
-    await redirectIfAuthFailed()
+    await redirectIfAuthFailed();
   },
   methods: {
     async updateQuantity(foodId, newQuantity) {
       try {
-        this.$store.commit('updateQuantity', {
+        this.$store.commit("updateQuantity", {
           foodId: foodId,
           newQuantity: newQuantity
-        })
-        await this.$http.post('/api/cart', this.$store.state.cart)
+        });
+        await this.$http.post("/api/cart", this.$store.state.cart);
       } catch (error) {
-        console.log(error)
+        console.log(error);
         this.$router.push("/login");
-
       }
     },
     async removeItem(foodId) {
       try {
-        this.$store.commit('removeItem', foodId)
-        await this.$http.post('/api/cart', this.$store.state.cart)
+        this.$store.commit("removeItem", foodId);
+        await this.$http.post("/api/cart", this.$store.state.cart);
       } catch (error) {
-        console.log(error)
+        console.log(error);
         this.$router.push("/login");
-
       }
     },
     applyPromotionCode() {
-      this.realPromoCode = this.promoCode
+      this.realPromoCode = this.promoCode;
     },
     totalMoneyAfterDiscount() {
-      // const totalMoneyAfterDiscount = this.realPromoCode == "BKU18" ? 
+      // const totalMoneyAfterDiscount = this.realPromoCode == "BKU18" ?
       //   this.totalMoney * 0.85 : this.totalMoney
-      const totalMoneyAfterDiscount = this.totalMoney
-      this.$store.commit('updateTotalMoney', totalMoneyAfterDiscount)
-      return totalMoneyAfterDiscount
+      const totalMoneyAfterDiscount = this.totalMoney;
+      this.$store.commit("updateTotalMoney", totalMoneyAfterDiscount);
+      return totalMoneyAfterDiscount;
     },
     readyToPay() {
       if (this.totalMoney != 0) {
-        this.$store.commit('readyToPay')
-        this.$router.push('/payment')
+        this.$store.commit("readyToPay");
+        this.$router.push("/payment");
       }
     }
-  }, 
+  },
   async mounted() {
     let navbar = document.getElementById("nav");
     //let sticky = navbar.offsetTop;
     window.onscroll = () => {
-        if (window.pageYOffset >= 150) {
-            //navbar.classList.add("sticky");
-            navbar.classList.add("hidden");
-        } else {
-            //navbar.classList.remove("sticky");
-            navbar.classList.remove("hidden");
-        }
+      if (window.pageYOffset >= 150) {
+        //navbar.classList.add("sticky");
+        navbar.classList.add("hidden");
+      } else {
+        //navbar.classList.remove("sticky");
+        navbar.classList.remove("hidden");
+      }
     };
   }
-}
+};
 </script>
 
 
@@ -196,7 +211,7 @@ export default {
 .body {
   background-color: rgba(251, 251, 251, 1);
   color: #666;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 62.5%;
   margin: 0 auto;
 }
@@ -271,7 +286,7 @@ button,
 .subtotal-value:after,
 .total-value:after,
 .promo-value:after {
-  content: 'VND';
+  content: "VND";
 }
 
 .hide {
@@ -286,7 +301,7 @@ main {
   padding: 1rem 0;
   width: 91%;
 }
-.item-name{
+.item-name {
   font-size: 15px;
 }
 .basket,
@@ -316,10 +331,10 @@ label {
   text-transform: uppercase;
   transition: all 0.2s linear;
   width: 58%;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-  -o-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -o-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 
 .promo-code-field:hover,
@@ -352,12 +367,12 @@ li {
   padding: 0.625rem 0;
 }
 li.subtotal1 {
-    float: right;
-    text-align: right;
+  float: right;
+  text-align: right;
 }
 li.price:before,
 li.subtotal:before {
-  content: '';
+  content: "";
 }
 
 .item {
@@ -482,10 +497,10 @@ aside {
 }
 
 .summary-promo {
-  -webkit-transition: all .3s ease;
-  -moz-transition: all .3s ease;
-  -o-transition: all .3s ease;
-  transition: all .3s ease;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .promo-title {
@@ -494,7 +509,7 @@ aside {
 }
 
 .promo-value {
-  color: #8B0000;
+  color: #8b0000;
   float: left;
   text-align: right;
   width: 30%;

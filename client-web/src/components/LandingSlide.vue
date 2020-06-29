@@ -1,6 +1,6 @@
 <template>
   <div class="slide-container">
-    <img src="@/assets/images/slide1.webp">
+    <img src="@/assets/images/slide1.webp" />
     <div class="slide-content">
       <div>
         <h1 class="full-title">Welcome to BKFOOD</h1>
@@ -13,8 +13,7 @@
 </template>
 
 <script>
-
 export default {
-  name: 'LandingSlide'
-}
+  name: "LandingSlide"
+};
 </script>

@@ -1,14 +1,12 @@
 <template>
   <div class="landing-page">
-    <landing-slide class="slide">
-      
-    </landing-slide>
+    <landing-slide class="slide"></landing-slide>
 
     <section class="food-container wrapper">
       <div class="food-item" v-for="food in foods" :key="food.name">
         <div class="food-image">
           <div class="food-image-content">
-            <img :src="food.img" alt="Food image">
+            <img :src="food.img" alt="Food image" />
           </div>
         </div>
         <div class="food-body">
@@ -28,25 +26,25 @@
 </template>
 
 <script>
-import LandingSlide from '../components/LandingSlide'
+import LandingSlide from "../components/LandingSlide";
 
 export default {
-  name: 'LandingPage',
+  name: "LandingPage",
   components: {
     LandingSlide
   },
   data() {
     return {
       arr: null
-    }
+    };
   },
   mounted() {
-    this.arr = [1, 2, 3, 4]
+    this.arr = [1, 2, 3, 4];
   },
   computed: {
     foods() {
       return this.$store.state.foods;
     }
   }
-}
+};
 </script>
