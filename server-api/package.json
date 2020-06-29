@@ -30,7 +30,7 @@
     "start": "node -r dist/main.js",
     "dev": "nodemon --exec \"babel-node src/main.js\"",
     "debug": "nodemon --inspect",
-    "lint": "eslint src"
+    "lint": "eslint src --fix"
   },
   "author": "NRC",
   "license": "ISC"

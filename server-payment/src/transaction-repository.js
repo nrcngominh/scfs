@@ -3,7 +3,7 @@ import TransactionModel from './transaction-model'
 /*
  * Create
  */
-const create = async(transactionInfo) => {
+const create = async (transactionInfo) => {
   return TransactionModel.create(transactionInfo)
 }
 
