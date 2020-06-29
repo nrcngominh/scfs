@@ -58,16 +58,14 @@ export default {
         foods = foods.concat(obj.foods);
       });
       this.$store.commit("setFoods", foods);
-    }
-    catch (error) {
+    } catch (error) {
       console.log(error);
     }
 
     try {
       const cartRes = await this.$http.get("/api/cart");
       this.$store.commit("setCart", cartRes.data);
-    }
-    catch (error) {
+    } catch (error) {
       console.log(error);
     }
   }
