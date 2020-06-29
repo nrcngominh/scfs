@@ -34,8 +34,8 @@ const router = new VueRouter({
   linkExactActiveClass: "nav-item active"
 });
 
-import axios from 'axios'
-axios.defaults.baseURL = process.env.VUE_APP_DOMAIN
+import axios from "axios";
+axios.defaults.baseURL = process.env.VUE_APP_DOMAIN;
 /* eslint-disable no-new */
 new Vue({
   el: "#app",
