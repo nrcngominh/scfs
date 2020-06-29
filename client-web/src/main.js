@@ -13,7 +13,7 @@ import './assets/scss/index.scss'
 axios.defaults.baseURL = process.env.VUE_APP_DOMAIN
 Vue.prototype.$http = axios
 
-    import router from './router'
+import router from './router'
 
 //Add fontawesome
 // import { library } from '@fortawesome/fontawesome-svg-core'
