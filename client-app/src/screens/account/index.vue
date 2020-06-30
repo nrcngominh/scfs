@@ -9,10 +9,13 @@
     </nb-view>
     <nb-content padder>
       <nb-list>
-        <nb-list-item v-for="item in listItemArr" :key="item">
+        <nb-list-item v-for="listItem in listItemArr" 
+        :key="listItem.route"
+        button
+        :onPress="() => handleListItemClick(listItem)">
           <nb-left>
             <nb-text>
-              {{ item }}
+              {{ listItem.text }}
             </nb-text>
           </nb-left>
           <nb-right>
@@ -23,22 +26,39 @@
     </nb-content>
   </nb-container>
 </template>
-
 <script>
+import SettingAccount from "./settingAccount.vue"
 import accountImage from "../../../assets/images/avatar.png";
 export default {
+  props: {
+    navigation: {
+    type: Object
+    }
+  },
+  components: { SettingAccount },
   data() {
     return {
       accountImage,
       listItemArr: [
-        "Cài đặt",
-        "Mã giảm giá",
-        "Thanh toán",
-        "Lịch sử giao dịch",
-        "Thông báo",
-        "Đăng xuất"
-        ]
+        {
+          route: "SettingAccount",
+          text: "Cài đặt"
+        },
+        {
+          route: "NotificationAccount",
+          text: "Thông báo"
+        },
+        {
+          route: "CouponAccount",
+          text: "Mã giảm giá"
+        }
+      ]
     };
+  },
+  methods: {
+    handleListItemClick(dataObj) {
+      this.navigation.navigate(dataObj.route);
+    }
   }
 };
 </script>

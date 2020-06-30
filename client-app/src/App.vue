@@ -12,18 +12,20 @@ import {
 } from "vue-native-router";
 import { Root } from "native-base";
 import HomeScreen from "./screens/home";
-import SideBarScreen from "./screens/sidebar/index.vue";
-import ScrollableTabaScreen from "./screens/home/tabCategory.vue"
+import ScrollableTabaScreen from "./screens/home/tabCategory";
+import AccountScreen from "./screens/account";
+import SettingAccountSreen from "./screens/account/settingAccount"
 const Drawer = createDrawerNavigator(
   {
     Home: { screen: HomeScreen },
+    Account: {screen: AccountScreen},
   },
   {
     initialRouteName: "Home",
     contentOptions: {
       activeTintColor: "#e91e63"
     },
-    contentComponent: SideBarScreen
+    contentComponent: AccountScreen
   }
 );
 
@@ -32,6 +34,7 @@ const AppNavigation = createAppContainer(
     {
       Drawer: { screen: Drawer },
       ScrollableTab: { screen: ScrollableTabaScreen },
+      SettingAccount: {screen: SettingAccountSreen}
     },
     {
       initialRouteName: "Drawer",

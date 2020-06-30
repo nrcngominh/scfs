@@ -13,14 +13,12 @@
     </nb-header>
     <!-- header-cart -->
     <nb-header v-if="seg === 2">
-      <nb-left/>
       <nb-body>
         <nb-title>Đơn hàng hiện tại</nb-title>
       </nb-body>
     </nb-header>
     <!-- header-notification -->
     <nb-header v-if="seg === 3">
-      <nb-left> </nb-left>
       <nb-body>
         <nb-title>Thông báo</nb-title>
       </nb-body>
@@ -88,7 +86,7 @@
 <script>
 import IntroSlide from "./introSlide"
 import TabCategory from "./tabCategory"
-import ContactTab from "./contactTab"
+import ContactTab from "../account"
 //import NotificationTab from "./notificationTab"
 export default {
   props: {

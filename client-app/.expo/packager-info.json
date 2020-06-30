@@ -1,9 +1,10 @@
 {
   "expoServerPort": 19000,
-  "expoServerNgrokUrl": "https://ge-ups.anonymous.client-app.exp.direct",
-  "packagerNgrokUrl": "https://packager.ge-ups.anonymous.client-app.exp.direct",
-  "ngrokPid": 4498,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
   "devToolsPort": 19002,
-  "packagerPort": 19003,
-  "packagerPid": 32464
+  "packagerPort": 19001,
+  "packagerPid": 8610,
+  "webpackServerPort": null
 }
