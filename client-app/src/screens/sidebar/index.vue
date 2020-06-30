@@ -28,7 +28,7 @@
 <script>
 import { Dimensions, Platform } from "react-native";
 // import drawerCover from "../../../assets/drawer-cover.png";
-import drawerImage from "../../../assets/bklogo.png";
+import drawerImage from "../../../assets/images/bklogo.png";
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
