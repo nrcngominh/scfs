@@ -6,7 +6,7 @@
         <h1 class="full-title">Welcome to BKFOOD</h1>
         <h1 class="short-title">BKFOOD</h1>
         <p>A Smart Food Court System</p>
-        <div class="btn">Order Now</div>
+        <div class="btn">Order Now!</div>
       </div>
     </div>
   </div>

@@ -1,16 +1,22 @@
 <template>
   <div class="main-container">
-    <my-header
-      class="my-header"
-      :class="{'on-top': $store.state.navOnTopSlide,
+    <header>
+      <my-header
+        class="my-header"
+        :class="{'on-top': $store.state.navOnTopSlide,
                        scrolled: !$store.state.navOnTopSlide}"
-    />
+      />
+    </header>
 
-    <div class="content">
-      <router-view />
-    </div>
+    <main>
+      <div class="content">
+        <router-view />
+      </div>
+    </main>
 
-    <my-footer class="footer wrapper" />
+    <footer>
+      <my-footer class="footer wrapper" />
+    </footer>
   </div>
 </template>
 
@@ -38,35 +44,6 @@ export default {
   methods: {
     handleScroll() {
       this.$store.commit("setNavOnTopSlide", window.scrollY === 0);
-    }
-  },
-  async beforeCreate() {
-    try {
-      const foodRes = await this.$http.get("/api/food");
-      this.$store.commit(
-        "setCategories",
-        foodRes.data.map(obj => {
-          return {
-            label: obj.category,
-            _id: obj.foods[0].categoryId
-          };
-        })
-      );
-
-      let foods = [];
-      foodRes.data.forEach(obj => {
-        foods = foods.concat(obj.foods);
-      });
-      this.$store.commit("setFoods", foods);
-    } catch (error) {
-      console.log(error);
-    }
-
-    try {
-      const cartRes = await this.$http.get("/api/cart");
-      this.$store.commit("setCart", cartRes.data);
-    } catch (error) {
-      console.log(error);
     }
   }
 };

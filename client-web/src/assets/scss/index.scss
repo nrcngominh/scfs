@@ -1,13 +1,17 @@
-// ORDER IS IMPORTANT!
-
-// Import variable, mixins
-@import './base/index.scss';
+/* ORDER IS IMPORTANT! */
 
 // Import bootstrap
-@import 'node_modules/bootstrap/scss/bootstrap';
-@import 'node_modules/bootstrap-vue/src/index.scss';
+@import "bootstrap/scss/bootstrap";
+@import "bootstrap-vue/src/index.scss";
+
+// Reset css
+@import "./reset/reset";
+@import "./reset/reset-bootstrap";
+
+// Import variable, mixins
+@import "./base/index.scss";
 
 // Import component, layout and pages
-@import './component/index.scss';
-@import './layout/index.scss';
-@import './page/index.scss';
+@import "./component/index.scss";
+@import "./layout/index.scss";
+@import "./page/index.scss";
