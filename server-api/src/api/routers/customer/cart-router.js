@@ -1,7 +1,7 @@
 import Router from 'express'
 import AuthMiddleware from '../middlewares/auth-middleware'
-import AccountRepo from '../../repositories/account-repository'
-import CartRepo from '../../repositories/cart-repository'
+import AccountRepo from '../../../repositories/account-repository'
+import CartRepo from '../../../repositories/cart-repository'
 
 const CartRouter = Router()
 
@@ -10,7 +10,7 @@ CartRouter.all('/', AuthMiddleware)
 /*
  * Get cart info
  */
-CartRouter.get('/', async(req, res) => {
+CartRouter.get('/', async (req, res) => {
   const account = await AccountRepo.findByEmail(req.jwtDecodedData.email)
   try {
     const cart = await CartRepo.findById(account._id)
@@ -34,7 +34,7 @@ CartRouter.post('/', async (req, res) => {
       message: "Success"
     })
   }
-  catch(error) {
+  catch (error) {
     console.log(error)
     res.status('400').send({
       message: "Failed"

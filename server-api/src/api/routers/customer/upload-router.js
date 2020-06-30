@@ -2,7 +2,7 @@ import Router from 'express'
 import multer from 'multer'
 import path from 'path'
 import url from 'url'
-import FoodService from '../../services/food-service'
+import FoodService from '../../../services/food-service'
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -12,7 +12,7 @@ var storage = multer.diskStorage({
     cb(null, Date.now() + path.extname(file.originalname))
   }
 })
-const upload = multer({storage: storage})
+const upload = multer({ storage: storage })
 
 const UploadRouter = Router()
 

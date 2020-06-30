@@ -1,8 +1,8 @@
 <template>
   <div class="landing-page">
     <landing-slide class="slide"></landing-slide>
-
     <section class="food-container wrapper">
+      Food
       <div class="food-item" v-for="food in foods" :key="food.name">
         <div class="food-image">
           <div class="food-image-content">

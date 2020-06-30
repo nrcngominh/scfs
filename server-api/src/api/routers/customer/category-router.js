@@ -1,4 +1,4 @@
-import CategoryRepo from '../../repositories/category-repository'
+import CategoryRepo from '../../../repositories/category-repository'
 import Router from 'express'
 
 const CategoryRouter = Router()

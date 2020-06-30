@@ -37,19 +37,20 @@ $nav-bar-height: 65px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 0 10px;
 
 	.logo {
 		img {
 			height: 45px;
 		}
+		margin-left: 10px;
 		margin-right: 20px;
 	}
 
 	.toggle-button {
 		display: flex;
 		align-items: center;
-		margin-left: 20px;
+		margin-left: 10px;
+		margin-right: 10px;
 		&:hover {
 			cursor: pointer;
 		}
@@ -103,14 +104,13 @@ $nav-bar-height: 65px;
 		}
 
 		.nav-icons-ul {
-			margin-left: 20px;
 			li {
 				display: flex;
 				align-items: center;
 				&:hover {
 					cursor: pointer;
 				}
-				margin: 0 0 0 10px;
+				margin-right: 10px;
 			}
 			img {
 				height: 30px;

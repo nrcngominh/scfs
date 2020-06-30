@@ -1,5 +1,5 @@
 import Router from 'express'
-import { verifyToken } from '../../services/jwt-service'
+import { verifyToken } from '../../../services/jwt-service'
 
 const AuthMiddleware = Router()
 

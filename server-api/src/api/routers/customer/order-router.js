@@ -1,9 +1,9 @@
 import Router from 'express'
 import AuthMiddleware from '../middlewares/auth-middleware'
-import AccountRepo from '../../repositories/account-repository'
-import OrderService from '../../services/order-service'
-import OrderRepo from '../../repositories/order-repository'
-import FoodRepo from '../../repositories/food-repository'
+import AccountRepo from '../../../repositories/account-repository'
+import OrderService from '../../../services/order-service'
+import OrderRepo from '../../../repositories/order-repository'
+import FoodRepo from '../../../repositories/food-repository'
 import axios from 'axios'
 const OrderRouter = Router()
 
@@ -16,7 +16,7 @@ const randomNumber = (numOfDigits) => {
 /*
  * Get order info
  */
-OrderRouter.get('/admin/', async(req, res) => {
+OrderRouter.get('/admin/', async (req, res) => {
   try {
     const orders = await OrderRepo.findAllUnserved()
     const processedOrders = await Promise.all(orders.map(async order => {
@@ -48,7 +48,7 @@ OrderRouter.get('/admin/', async(req, res) => {
 /*
  * Get order info
  */
-OrderRouter.put('/admin/', async(req, res) => {
+OrderRouter.put('/admin/', async (req, res) => {
   try {
     await OrderRepo.updateServedByBillId(req.body.billId)
     res.status(202).send({
@@ -65,7 +65,7 @@ OrderRouter.put('/admin/', async(req, res) => {
 /*
  * Get order info
  */
-OrderRouter.get('/', async(req, res) => {
+OrderRouter.get('/', async (req, res) => {
   try {
     const order = await OrderRepo.findByBillId(req.params.billId)
     res.status(200).send(order)
@@ -114,7 +114,7 @@ OrderRouter.post('/', async (req, res) => {
       momoQrCode: momoQrCode
     })
   }
-  catch(error) {
+  catch (error) {
     console.log(error)
     res.status('400').send({
       message: "Failed"

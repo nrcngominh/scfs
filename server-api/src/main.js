@@ -16,13 +16,12 @@ const connectWithRetry = () => {
   return mongoose.connect(mongoUri, {
     useNewUrlParser: true,
     useUnifiedTopology: true
-  },
-    (err) => {
-      if (err) {
-        console.error('Failed to connect to MongoDB on startup - retrying in 5 sec', err)
-        setTimeout(connectWithRetry, 5000)
-      }
-    })
+  }, (err) => {
+    if (err) {
+      console.error('Failed to connect to MongoDB on startup - retrying in 5 sec', err)
+      setTimeout(connectWithRetry, 5000)
+    }
+  })
 }
 connectWithRetry()
 
@@ -34,12 +33,12 @@ app.use(cookieParser())
 
 // Start server
 const server = app.listen(process.env.PORT, () => {
-  console.log('Server is running on port', server.address().port)
+  console.log('REST server is running on port', server.address().port)
 })
 
 // Create socket for server
 const io = SocketIO.listen(server)
 BaseSocket.initial(io)
 
-// Routing for API
-app.use('/api', BaseRouter)
+// Routing
+app.use('/', BaseRouter)

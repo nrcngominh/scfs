@@ -13,13 +13,12 @@ const connectWithRetry = () => {
   return mongoose.connect(mongoUri, {
     useNewUrlParser: true,
     useUnifiedTopology: true
-  },
-    (err) => {
-      if (err) {
-        console.error('Failed to connect to MongoDB on startup - retrying in 5 sec', err)
-        setTimeout(connectWithRetry, 5000)
-      }
-    })
+  }, (err) => {
+    if (err) {
+      console.error('Failed to connect to MongoDB on startup - retrying in 5 sec', err)
+      setTimeout(connectWithRetry, 5000)
+    }
+  })
 }
 connectWithRetry()
 
@@ -30,5 +29,5 @@ app.use(express.urlencoded())
 app.use(TransactionRouter)
 
 const server = app.listen(process.env.PORT, () => {
-  console.log('Server is running on port', server.address().port);
+  console.log('Fake MOMO server is running on port', server.address().port);
 })

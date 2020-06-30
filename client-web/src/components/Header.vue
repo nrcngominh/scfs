@@ -3,10 +3,6 @@
     <div class="header-wrapper">
       <div class="header-content wrapper">
         <nav class="left-nav">
-          <div class="logo">
-            <img :src="logoUrl" alt="Logo" />
-          </div>
-
           <div
             class="toggle-button padding-top-nav"
             @click="showDropdown = !showDropdown"
@@ -14,7 +10,9 @@
           >
             <img :src="menuButtonUrl" alt="Logo" />
           </div>
-
+          <div class="logo">
+            <img :src="logoUrl" alt="Logo" />
+          </div>
           <ul class="nav-tabs-ul padding-top-nav">
             <li>
               <div>HOME</div>

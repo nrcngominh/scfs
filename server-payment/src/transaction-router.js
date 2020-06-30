@@ -1,25 +1,27 @@
 import Router from 'express'
 import TransactionService from './transaction-service'
 
-const TransactionRouter = Router()
+const RequestLoggerMiddleware = Router()
 
-TransactionRouter.use((req, res, next) => {
-  // console.log()
-  // console.log(new Date().toISOString()
-  //   .replace(/T/, ' ')
-  //   .replace(/\..+/, '')
-  // )
-  // console.log(req.method, req.originalUrl)
-  // console.log('Headers:', req.headers)
-  // if (req.method == 'GET') {
-  //   console.log('Params:', req.params)
-  // }
-  // else {
-  //   console.log('Body:', req.body)
-  // }
-  // console.log()
-  next()
+RequestLoggerMiddleware.all('/', (req, res, next) => {
+  console.log()
+  console.log(new Date().toISOString()
+    .replace(/T/, ' ')
+    .replace(/\..+/, '')
+  )
+  console.log(req.method, req.originalUrl)
+  console.log('Headers:', req.headers)
+  if (req.method == 'GET') {
+    console.log('Params:', req.params)
+  }
+  else {
+    console.log('Body:', req.body)
+  }
+  console.log()
+  next();
 })
+
+const TransactionRouter = Router()
 
 TransactionRouter.post('/api/transaction', async (req, res) => {
   // Fake a customer to complete payment, then response to server

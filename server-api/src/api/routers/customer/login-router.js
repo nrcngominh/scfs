@@ -1,6 +1,6 @@
 import Router from 'express'
-import { loginWithType } from '../../services/account-service'
-import { generateToken } from '../../services/jwt-service'
+import { loginWithType } from '../../../services/account-service'
+import { generateToken } from '../../../services/jwt-service'
 
 const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET
 

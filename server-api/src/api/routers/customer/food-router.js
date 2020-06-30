@@ -1,5 +1,5 @@
 import Router from 'express'
-import FoodService from '../../services/food-service'
+import FoodService from '../../../services/food-service'
 
 const FoodRouter = Router()
 

@@ -1,6 +1,6 @@
 import Router from 'express'
-import CartRepo from '../../repositories/cart-repository'
-import { registerCustomer } from '../../services/account-service'
+import CartRepo from '../../../repositories/cart-repository'
+import { registerCustomer } from '../../../services/account-service'
 
 const RegisterRouter = Router()
 

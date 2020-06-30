@@ -1,7 +1,7 @@
 import Router from 'express'
-import BaseSocket from '../../sockets'
+import BaseSocket from '../../../sockets'
 import axios from 'axios'
-import OrderRepo from '../../repositories/order-repository'
+import OrderRepo from '../../../repositories/order-repository'
 
 const MomoRouter = Router()
 

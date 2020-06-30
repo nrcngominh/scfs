@@ -1,8 +1,8 @@
 import Router from 'express'
 import AuthMiddleware from '../middlewares/auth-middleware'
-import AccountRepo from '../../repositories/account-repository'
-import OrderRepo from '../../repositories/order-repository'
-import FoodRepo from '../../repositories/food-repository'
+import AccountRepo from '../../../repositories/account-repository'
+import OrderRepo from '../../../repositories/order-repository'
+import FoodRepo from '../../../repositories/food-repository'
 
 const TransactionRouter = Router()
 TransactionRouter.all('/', AuthMiddleware)
@@ -10,7 +10,7 @@ TransactionRouter.all('/', AuthMiddleware)
 /*
  * Get order info
  */
-TransactionRouter.get('/', async(req, res) => {
+TransactionRouter.get('/', async (req, res) => {
   try {
     const account = await AccountRepo.findByEmail(req.jwtDecodedData.email)
     console.log(account._id)
@@ -35,7 +35,7 @@ TransactionRouter.get('/', async(req, res) => {
 /*
  * Get order info
  */
-TransactionRouter.get('/:billId', async(req, res) => {
+TransactionRouter.get('/:billId', async (req, res) => {
   try {
     let bill = await OrderRepo.findByBillId(req.params.billId)
     const date = bill.date.toLocaleDateString("de-AT").replace('.', '/').replace('.', '/')
@@ -65,5 +65,5 @@ TransactionRouter.get('/:billId', async(req, res) => {
     })
   }
 })
-  
+
 export default TransactionRouter
