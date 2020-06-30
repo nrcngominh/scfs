@@ -30,6 +30,7 @@ footer {
           }
           p {
             font-size: 0.9em;
+            line-height: 1.5em;
           }
         }
       }
@@ -63,10 +64,11 @@ footer {
       }
 
       @include grid-footer {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
         .footer-item {
-          &.license {
-            grid-column: 1 / span 2;
+          &.credit,
+          &.social {
+            grid-column: 1 / span 3;
           }
         }
       }

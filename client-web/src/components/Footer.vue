@@ -4,8 +4,28 @@
       <div class="footer-grid">
         <div class="footer-item product">
           <div>
-            <h3>Product</h3>
-            <p>Smart Food Course System</p>
+            <h3>Address</h3>
+            <p>268 Ly Thuong Kiet St., District 10, Ho Chi Minh City</p>
+          </div>
+        </div>
+
+        <div class="footer-item about">
+          <div>
+            <h3>About Us</h3>
+            <p>Richard</p>
+            <p>Tho</p>
+            <p>Son</p>
+            <p>Phong</p>
+            <p>Thanh</p>
+          </div>
+        </div>
+
+        <div class="footer-item platform">
+          <div>
+            <h3>Platform</h3>
+            <p>VueJS</p>
+            <p>Bootstrap</p>
+            <p>Socket.IO</p>
           </div>
         </div>
 
@@ -29,10 +49,10 @@
           </div>
         </div>
 
-        <div class="footer-item license">
+        <div class="footer-item credit">
           <div>
-            <h3>License</h3>
-            <p>CNPM666 &copy; 2020. For Educational Purposes Only</p>
+            <h3>Credit</h3>
+            <p>CNPM666 &copy; 2020. For Educational Purposes Only.</p>
           </div>
         </div>
       </div>
