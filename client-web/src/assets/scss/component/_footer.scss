@@ -1,48 +1,111 @@
-.footer-grid {
-    display: grid;
-    .footer-item {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+footer {
+  background: #dddddd;
+  .footer-container {
+    font-family: $modern-font;
+    padding: 20px 10px;
+    display: flex;
+    justify-content: center;
 
-    @mixin stack-footer {
+    > div {
+      width: $md-width;
+    }
+    .logo {
+      img {
+        width: 40px;
+      }
+    }
+    .footer-grid {
+      display: grid;
+      row-gap: 20px;
+      .footer-item {
+        display: flex;
+        flex-direction: column;
+
+        > div {
+          text-align: center;
+          h3 {
+            font-size: 1.5em;
+            font-weight: bolder;
+            padding-bottom: 10px;
+          }
+          p {
+            font-size: 0.9em;
+          }
+        }
+      }
+
+      @mixin stack-footer {
         @include xs {
-            @content;
+          @content;
         }
 
         @include sm {
-            @content;
+          @content;
         }
-    }
+      }
 
-    @mixin grid-footer {
+      @mixin grid-footer {
         @include md {
-            @content;
+          @content;
         }
 
         @include lg {
-            @content;
+          @content;
         }
 
         @include el {
-            @content;
+          @content;
         }
-    }
+      }
 
-    @include stack-footer {
+      @include stack-footer {
         grid-template-columns: 1fr;
-    }
+      }
 
-    @include grid-footer {
-        grid-template-columns: 1fr 1fr 1fr;
+      @include grid-footer {
+        grid-template-columns: 1fr 1fr;
         .footer-item {
-            &.social {
-                grid-column-start: 2;
-            }
-            &.license {
-                grid-column-start: 2;
-            }
+          &.license {
+            grid-column: 1 / span 2;
+          }
         }
+      }
     }
+  }
+
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    .social-icon {
+      margin: 0 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: white;
+      width: 3rem;
+      height: 3rem;
+      font-size: 1.3em;
+      border-radius: 100%;
+      cursor: pointer;
+      -webkit-transition: all 0.1s linear;
+      -o-transition: all 0.1s linear;
+      transition: all 0.1s linear;
+      &:hover {
+        font-size: 1.7em;
+      }
+
+      &.facebook {
+        color: #3b5998;
+      }
+      &.twitter {
+        color: #00aced;
+      }
+      &.github {
+        color: #180a07;
+      }
+      &.linkedin {
+        color: #007bb6;
+      }
+    }
+  }
 }

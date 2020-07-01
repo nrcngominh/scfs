@@ -1,6 +1,6 @@
 <template>
   <div class="header-container">
-    <header>
+    <div class="header-wrapper">
       <div class="header-content wrapper">
         <nav class="left-nav">
           <div class="logo">
@@ -42,7 +42,7 @@
           </ul>
         </nav>
       </div>
-    </header>
+    </div>
 
     <div class="dropdown-wrapper">
       <div class="nav-dropdown" :class="{'nav-dropdown-active': showDropdown}">
