@@ -16,8 +16,7 @@
               <nb-card
                 :style="{height: 180, marginRight: 6}"
                 v-for="food in item.foods"
-                :key="food._id"
-              >
+                :key="food._id">
                 <image
                   :source="{uri: food.img}"
                   :style="{flex: 1, resizeMode: 'cover', width: 130, height: 150}"

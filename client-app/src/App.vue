@@ -8,37 +8,76 @@
 import {
   createAppContainer,
   createStackNavigator,
-  createDrawerNavigator
+  createBottomTabNavigator
 } from "vue-native-router";
 import { Root } from "native-base";
-import HomeScreen from "./screens/home";
-import SideBarScreen from "./screens/sidebar/index.vue";
-import ScrollableTabaScreen from "./screens/home/tabCategory.vue"
-const Drawer = createDrawerNavigator(
+import * as React from 'react';
+import HomeScreen from "./screens/home/";
+import AccountScreen from "./screens/account";
+import SettingAccountScreen from "./screens/account/settingAccount";
+import IntroSlideScreen from "./screens/home/introSlide";
+import CartScreen from "./screens/cart";
+import NotificationScreen from "./screens/notification";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
+const IOSTabs = createBottomTabNavigator (
   {
-    Home: { screen: HomeScreen },
+    Home: {
+      screen: HomeScreen,
+      navigationOptions: {
+        tabBarIcon: ({focused, tintColor}) => {
+            return <MaterialCommunityIcons name="home" size={30} color={tintColor} />;
+        },
+        tabBarLabel: 'Trang chủ'
+      }
+    },
+    Cart: {
+      screen: CartScreen,
+      navigationOptions: {
+        tabBarIcon: ({focused, tintColor}) => {
+            return <MaterialCommunityIcons name="clipboard-text-outline" size={30} color={tintColor} />;
+        },
+        tabBarLabel: 'Đơn hàng'
+      }
+    },
+    Notification: {
+      screen: NotificationScreen,
+      navigationOptions: {
+        tabBarIcon: ({focused, tintColor}) => {
+            return <MaterialCommunityIcons name="bell" size={30} color={tintColor} />;
+        },
+        tabBarLabel: 'Thông báo'
+      }
+    },
+    Account: {
+      screen:  AccountScreen,
+      navigationOptions: {
+        tabBarIcon: ({focused, tintColor}) => {
+            return <MaterialCommunityIcons name="account-circle-outline" size={30} color={tintColor} />;
+        },
+        tabBarLabel: 'Tôi'
+      }
+    }
   },
   {
     initialRouteName: "Home",
-    contentOptions: {
-      activeTintColor: "#e91e63"
-    },
-    contentComponent: SideBarScreen
+    tabBarOptions: {
+      showIcon: true,
+      activeTintColor: "#4286f4",
+    }
   }
 );
-
-const AppNavigation = createAppContainer(
-  createStackNavigator(
-    {
-      Drawer: { screen: Drawer },
-      ScrollableTab: { screen: ScrollableTabaScreen },
-    },
-    {
-      initialRouteName: "Drawer",
-      headerMode: "none"
-    }
-  )
+const StackNavigator = createStackNavigator(
+  {
+    IOSTabs,
+    SettingAccount: SettingAccountScreen
+  },
+  {
+    initialRouteName: "IOSTabs",
+    headerMode: "none"
+  }
 );
+const AppNavigation = createAppContainer(StackNavigator)
 export default {
   components: { Root, AppNavigation }
 };

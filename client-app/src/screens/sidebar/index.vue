@@ -64,6 +64,9 @@ export default {
           icon: "phone-portrait",
           bg: "#DA4437",
           types: "4"
+        },
+        {
+          route: "SettingAccount"
         }
       ]
     };
