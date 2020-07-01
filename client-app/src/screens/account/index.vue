@@ -1,6 +1,11 @@
 <template>
   <nb-container :style="{ backgroundColor: '#fff', height: '100%' }">
-    <nb-view class="view">
+    <nb-header>
+      <nb-body>
+        <nb-title>Thông tin tài khoản</nb-title>
+      </nb-body>
+    </nb-header>
+    <nb-view class="view" :style="{marginTop: 15}">
       <image
         :source="accountImage"
         class="account-image"
@@ -12,10 +17,10 @@
         <nb-list-item v-for="listItem in listItemArr" 
         :key="listItem.route"
         button
-        :onPress="() => handleListItemClick(listItem)">
+        :onPress="() => this.navigation.navigate(listItem.route)">
           <nb-left>
             <nb-text>
-              {{ listItem.text }}
+              Cài đặt
             </nb-text>
           </nb-left>
           <nb-right>
@@ -30,11 +35,6 @@
 import SettingAccount from "./settingAccount.vue"
 import accountImage from "../../../assets/images/avatar.png";
 export default {
-  props: {
-    navigation: {
-    type: Object
-    }
-  },
   components: { SettingAccount },
   data() {
     return {
@@ -43,22 +43,12 @@ export default {
         {
           route: "SettingAccount",
           text: "Cài đặt"
-        },
-        {
-          route: "NotificationAccount",
-          text: "Thông báo"
-        },
-        {
-          route: "CouponAccount",
-          text: "Mã giảm giá"
         }
       ]
     };
   },
   methods: {
-    handleListItemClick(dataObj) {
-      this.navigation.navigate(dataObj.route);
-    }
+    
   }
 };
 </script>
