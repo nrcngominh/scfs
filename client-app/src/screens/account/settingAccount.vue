@@ -7,9 +7,8 @@
         </nb-button>
       </nb-left>
       <nb-body>
-        <nb-title>Badge Footer</nb-title>
+        <nb-title>Cài đặt</nb-title>
       </nb-body>
-      <nb-right />
     </nb-header>
   <view class="container">
     <text>This is the App Details screen</text>
