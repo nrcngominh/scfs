@@ -24,8 +24,8 @@
 </template>
 
 <script>
-import IntroSlide from "./introSlide.vue"
-import TabCategory from "./tabCategory.vue"
+import IntroSlide from "./introSlide"
+import TabCategory from "./tabCategory"
 export default {
   props: {
     navigation: {

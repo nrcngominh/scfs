@@ -27,7 +27,8 @@ const IOSTabs = createBottomTabNavigator (
       navigationOptions: {
         tabBarIcon: ({focused, tintColor}) => {
             return <MaterialCommunityIcons name="home" size={30} color={tintColor} />;
-        }
+        },
+        tabBarLabel: 'Trang chủ'
       }
     },
     Cart: {
@@ -35,7 +36,8 @@ const IOSTabs = createBottomTabNavigator (
       navigationOptions: {
         tabBarIcon: ({focused, tintColor}) => {
             return <MaterialCommunityIcons name="clipboard-text-outline" size={30} color={tintColor} />;
-        }
+        },
+        tabBarLabel: 'Đơn hàng'
       }
     },
     Notification: {
@@ -43,7 +45,8 @@ const IOSTabs = createBottomTabNavigator (
       navigationOptions: {
         tabBarIcon: ({focused, tintColor}) => {
             return <MaterialCommunityIcons name="bell" size={30} color={tintColor} />;
-        }
+        },
+        tabBarLabel: 'Thông báo'
       }
     },
     Account: {
@@ -51,7 +54,8 @@ const IOSTabs = createBottomTabNavigator (
       navigationOptions: {
         tabBarIcon: ({focused, tintColor}) => {
             return <MaterialCommunityIcons name="account-circle-outline" size={30} color={tintColor} />;
-        }
+        },
+        tabBarLabel: 'Tôi'
       }
     }
   },
@@ -66,7 +70,7 @@ const IOSTabs = createBottomTabNavigator (
 const StackNavigator = createStackNavigator(
   {
     IOSTabs,
-    IntroSlide : IntroSlideScreen,
+    SettingAccount: SettingAccountScreen
   },
   {
     initialRouteName: "IOSTabs",

@@ -17,10 +17,15 @@
         <nb-list-item v-for="listItem in listItemArr" 
         :key="listItem.route"
         button
-        :onPress="() => this.navigation.navigate(listItem.route)">
+        :onPress="() => this.props.navigation.navigate(listItem.route)">
           <nb-left>
+            <nb-icon
+            type="FontAwesome"
+              :name="listItem.icon"
+              :style="{ color: '#777', fontSize: 20, width: 30 }"
+            />
             <nb-text>
-              Cài đặt
+              {{listItem.text}}
             </nb-text>
           </nb-left>
           <nb-right>
@@ -28,12 +33,18 @@
           </nb-right>
         </nb-list-item>
       </nb-list>
+      <nb-view class="view-version">
+      <nb-text class="version">Phiên bản 3.6</nb-text>
+      <nb-text class="version">BK FOOD Corporation</nb-text>
+      </nb-view>
     </nb-content>
   </nb-container>
 </template>
+
 <script>
 import SettingAccount from "./settingAccount.vue"
 import accountImage from "../../../assets/images/avatar.png";
+
 export default {
   components: { SettingAccount },
   data() {
@@ -42,14 +53,42 @@ export default {
       listItemArr: [
         {
           route: "SettingAccount",
-          text: "Cài đặt"
+          text: "Cài đặt",
+          icon: "cog"
+        },
+        {
+          route: "CouponAccount",
+          text: "Ví Voucher",
+          icon: "ticket"
+        },
+        {
+          route: "TransactionAccount",
+          text: "Hóa đơn",
+          icon: "list-alt"
+        },
+        {
+          route: "PaymentAccount",
+          text: "Thanh toán",
+          icon: "credit-card"
+        },
+        {
+          route: "FeedbackAccount",
+          text: "Góp ý",
+          icon: "envelope-o"
+        },
+        {
+          route: "LicenseAccount",
+          text: "Chính sách quy định",
+          icon: "question-circle-o"
+        },
+        {
+          route: "LogoutAccount",
+          text: "Đăng xuất",
+          icon: "sign-out"
         }
       ]
     };
   },
-  methods: {
-    
-  }
 };
 </script>
 
@@ -65,5 +104,14 @@ export default {
   background-color: #fff;
   align-items: center;
   height: 120;
+}
+.version {
+  align-items: center;
+  font-size: 12;
+  color: gray;
+}
+.view-version {
+  align-items: center;
+  margin-top: 10
 }
 </style>
