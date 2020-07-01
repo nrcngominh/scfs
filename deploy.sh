@@ -1,4 +1,4 @@
-cd database
+jacd database
 sudo docker build -t sfcs/database:v1.production . -f Dockerfile.production
 
 cd ../server-api

@@ -1,79 +1,75 @@
-footer {
-  background: #dddddd;
-  .footer-container {
-    font-family: $modern-font;
-    display: flex;
-    justify-content: center;
+.footer-container {
+  font-family: $modern-font;
+  display: flex;
+  justify-content: center;
 
-    > div {
-      width: $md-width;
+  > div {
+    width: $md-width;
+  }
+  .logo {
+    img {
+      width: 40px;
     }
-    .logo {
-      img {
-        width: 40px;
+  }
+  .footer-grid {
+    display: grid;
+    row-gap: 20px;
+    .footer-item {
+      display: flex;
+      flex-direction: column;
+
+      > div {
+        text-align: center;
+        h3 {
+          font-size: 1.5em;
+          font-weight: bolder;
+          padding-bottom: 10px;
+        }
+        p {
+          font-size: 0.9em;
+          line-height: 1.5em;
+        }
       }
     }
-    .footer-grid {
-      display: grid;
-      row-gap: 20px;
+
+    @mixin stack-footer {
+      @include xs {
+        @content;
+      }
+
+      @include sm {
+        @content;
+      }
+    }
+
+    @mixin grid-footer {
+      @include md {
+        @content;
+      }
+
+      @include lg {
+        @content;
+      }
+
+      @include el {
+        @content;
+      }
+    }
+
+    @include stack-footer {
+      grid-template-columns: 1fr;
+    }
+
+    @include grid-footer {
+      grid-template-columns: 1fr 1fr 1fr;
       .footer-item {
-        display: flex;
-        flex-direction: column;
-
-        > div {
-          text-align: center;
-          h3 {
-            font-size: 1.5em;
-            font-weight: bolder;
-            padding-bottom: 10px;
-          }
-          p {
-            font-size: 0.9em;
-            line-height: 1.5em;
-          }
-        }
-      }
-
-      @mixin stack-footer {
-        @include xs {
-          @content;
-        }
-
-        @include sm {
-          @content;
-        }
-      }
-
-      @mixin grid-footer {
-        @include md {
-          @content;
-        }
-
-        @include lg {
-          @content;
-        }
-
-        @include el {
-          @content;
-        }
-      }
-
-      @include stack-footer {
-        grid-template-columns: 1fr;
-      }
-
-      @include grid-footer {
-        grid-template-columns: 1fr 1fr 1fr;
-        .footer-item {
-          &.credit,
-          &.social {
-            grid-column: 1 / span 3;
-          }
+        &.credit,
+        &.social {
+          grid-column: 1 / span 3;
         }
       }
     }
   }
-
   .social-icons {
     display: flex;
     justify-content: center;

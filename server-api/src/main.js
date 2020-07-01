@@ -1,17 +1,16 @@
+import 'module-alias/register'
 import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
-import cookieParser from 'cookie-parser'
 import SocketIO from 'socket.io'
-import BaseSocket from './sockets'
-import BaseRouter from './api/routers'
+import BaseSocket from '@socket'
+import BaseRouter from '@router'
 
 const dbHost = process.env.DB_HOST
 const dbName = process.env.DB_NAME
 const mongoUri = `${dbHost}/${dbName}`
 
 // Connect to MongoDB
-console.log(mongoUri)
 const connectWithRetry = () => {
   return mongoose.connect(mongoUri, {
     useNewUrlParser: true,
@@ -29,7 +28,6 @@ connectWithRetry()
 const app = express()
 app.use(cors())
 app.use(express.json())
-app.use(cookieParser())
 
 // Start server
 const server = app.listen(process.env.PORT, () => {

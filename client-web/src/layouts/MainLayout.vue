@@ -3,7 +3,7 @@
     <header>
       <my-header
         class="my-header"
-        :class="{'on-top': $store.state.navOnTopSlide,
+        :class="{'on-top': $store.state.header.navOnTopSlide,
                        scrolled: !$store.state.navOnTopSlide}"
       />
     </header>
@@ -21,8 +21,8 @@
 </template>
 
 <script>
-import MyHeader from "../components/Header";
-import MyFooter from "../components/Footer";
+import MyHeader from "@/components/Header";
+import MyFooter from "@/components/Footer";
 
 export default {
   name: "MainLayout",
@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     handleScroll() {
-      this.$store.commit("setNavOnTopSlide", window.scrollY === 0);
+      // this.$store.commit("setNavOnTopSlide", window.scrollY === 0);
     }
   }
 };

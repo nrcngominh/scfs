@@ -1,3 +1,5 @@
+import { setMachineListener } from './machine-socket'
+
 let io = null
 
 const initial = async (_io) => {
@@ -8,6 +10,8 @@ const initial = async (_io) => {
     socket.on("disconnect", () => {
       console.log(socket.handshake.address, 'disconnected')
     })
+
+    setMachineListener(io, socket)
   })
 }
 const getIO = () => {

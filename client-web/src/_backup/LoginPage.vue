@@ -16,7 +16,10 @@
                   </a>
                   <p class="f12">
                     Bạn chưa có tài khoản BK Food?
-                    <a id="_signup" @click="forwardPage">Đăng ký tại đây</a>
+                    <a
+                      id="_signup"
+                      @click="forwardPage"
+                    >Đăng ký tại đây</a>
                   </p>
                 </div>
               </nav>
@@ -88,8 +91,7 @@ export default {
         this.$http.defaults.headers["x-access-token"] = res.data.accessToken;
         this.$cookies.set("accessToken", res.data.accessToken);
         this.$router.push("/");
-      }
-      catch (err) {
+      } catch (err) {
         alert("Login failed");
       }
     },
