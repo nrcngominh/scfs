@@ -7,7 +7,7 @@
         </nb-button>
       </nb-left>
       <nb-body>
-        <nb-title>Ví Voucher</nb-title>
+        <nb-title>Thanh toán</nb-title>
       </nb-body>
       <nb-right/>
     </nb-header>
