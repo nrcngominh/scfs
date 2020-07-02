@@ -1,6 +1,6 @@
 <template>
   <nb-container :style="{ backgroundColor: '#fff' }">
-      <nb-card>
+      <nb-card :onPress="() => this.props.navigation.navigate('Home')">
         <nb-card-item cardBody>
           <image
             :source="cardImage"

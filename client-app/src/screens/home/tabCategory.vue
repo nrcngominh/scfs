@@ -13,11 +13,14 @@
 
           <nb-view :style="{height: 200}">
             <scroll-view horizontal="{true}">
-              <nb-card
+              <touchable-opacity
+              :onPress="() => this.props.navigation.navigate('DetailFood')"
+              pointerEvents="none"
                 :style="{height: 180, marginRight: 6}"
                 v-for="food in item.foods"
                 :key="food._id">
                 <image
+                  
                   :source="{uri: food.img}"
                   :style="{flex: 1, resizeMode: 'cover', width: 130, height: 150}"
                 />
@@ -27,7 +30,7 @@
                     <nb-h3 class="title-price">Giá: {{food.price}} đ</nb-h3>
                   </nb-body>
                 </nb-card-item>
-              </nb-card>
+              </touchable-opacity>
             </scroll-view>
           </nb-view>
         </nb-view>
@@ -39,12 +42,13 @@
 <script>
 import React, { Component } from "react";
 import axios from "axios";
-
-// import FoodService from "../../services/food-service.js";
 export default {
   data() {
     return {
-      categories: []
+      categories: [],
+      item: {
+        route: "DetailFood"
+      }
     };
   },
   async mounted() {
@@ -53,6 +57,9 @@ export default {
       this.categories = res.data;
       console.log(this.categories.map(item => item.category));
     } catch (error) {}
+  },
+  methods: {
+    
   }
 };
 </script>
