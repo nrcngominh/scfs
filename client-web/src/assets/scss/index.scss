@@ -1,9 +1,6 @@
 /* ORDER IS IMPORTANT! */
 
-// Reset css
-@import "reset/reset";
-
-// Import variable, mixins
+// Import reset, colors, fonts, variables, mixins
 @import "base/index.scss";
 
 // Import component, layout and pages
