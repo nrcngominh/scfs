@@ -16,7 +16,7 @@
               <div>HOME</div>
             </li>
             <li>
-              <div>ABOUT US</div>
+              <div>ABOUT</div>
             </li>
           </ul>
         </nav>
@@ -36,10 +36,10 @@
 
           <ul class="nav-login-register" :class="{'hidden': loggedIn}">
             <li>
-              <div>REGISTER</div>
+              <div class="register" @click="register()">REGISTER</div>
             </li>
             <li>
-              <div @click="login()">LOGIN</div>
+              <div class="login" @click="login()">LOGIN</div>
             </li>
           </ul>
         </nav>
@@ -53,7 +53,7 @@
             <div>HOME</div>
           </li>
           <li>
-            <div>ABOUT US</div>
+            <div>ABOUT</div>
           </li>
         </ul>
       </div>
@@ -81,8 +81,21 @@ export default {
     ...mapState("account", ["loggedIn"])
   },
   methods: {
-    ...mapMutations("header", ["toggleDropdown"]),
-    ...mapMutations("account", ["login"])
+    // Show modal
+    disableBodyScroll() {
+      document.querySelector("body").classList.add("modal-active");
+    },
+    register() {
+      this.disableBodyScroll();
+      this.openRegisterTab();
+    },
+    login() {
+      this.disableBodyScroll();
+      this.openLoginTab();
+    },
+    ...mapMutations("account/modal", ["openRegisterTab", "openLoginTab"]),
+    // Toggle dropdown
+    ...mapMutations("header", ["toggleDropdown"])
   }
 };
 </script>

@@ -3,7 +3,7 @@
   @media (min-height: 400px) {
     height: 100vh;
     .slide-content {
-      padding-top: 40vh;
+      padding-top: 35vh;
     }
   }
   @media (max-height: 399px) {
@@ -15,7 +15,7 @@
   img {
     position: absolute;
     z-index: -10;
-    width: 100%;
+    width: 100vw;
     height: 100%;
     object-fit: cover;
   }

@@ -13,6 +13,8 @@
     <footer>
       <my-footer class="footer wrapper" />
     </footer>
+
+    <account-modal></account-modal>
   </div>
 </template>
 
@@ -20,12 +22,14 @@
 import { mapMutations } from "vuex";
 import MyHeader from "@/components/Header";
 import MyFooter from "@/components/Footer";
+import AccountModal from "@/components/AccountModal";
 
 export default {
   name: "MainLayout",
   components: {
     MyHeader,
-    MyFooter
+    MyFooter,
+    AccountModal
   },
   created() {
     window.addEventListener("scroll", this.scroll);

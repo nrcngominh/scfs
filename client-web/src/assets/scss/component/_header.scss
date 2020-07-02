@@ -1,5 +1,5 @@
 .header-container {
-	z-index: 1000;
+	z-index: 15;
 	font-family: $modern-font;
 	height: $nav-bar-height;
 	position: fixed;
@@ -123,8 +123,12 @@
 					display: none;
 				}
 				li {
-					cursor: pointer;
-					padding-left: 40px;
+					> div {
+						cursor: pointer;
+					}
+					.login {
+						margin-left: 40px;
+					}
 				}
 			}
 		}
@@ -138,7 +142,7 @@
 
 		ul {
 			li {
-				padding: 10px;
+				padding: 15px 20px;
 				cursor: pointer;
 				&:hover {
 					background: gray;

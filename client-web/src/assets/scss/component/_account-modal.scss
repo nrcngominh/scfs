@@ -1,0 +1,158 @@
+.account-modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  min-height: 100vh;
+  padding-top: 20vh;
+  z-index: 1000;
+  overflow-y: auto;
+  font-family: $modern-font;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba($color: white, $alpha: 0.6);
+
+  .account-modal-enter {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  .account-modal-enter-active {
+    transition: all 0.5s ease;
+  }
+
+  .account-modal-content {
+    box-shadow: 0 0 15px rgba($color: black, $alpha: 0.3);
+    background: white;
+    width: 30rem;
+
+    @include xs {
+      width: 100%;
+    }
+
+    .tab-headers {
+      display: grid;
+      grid-template-columns: 1fr 1fr 3rem;
+
+      .header {
+        height: 3em;
+
+        &.tab {
+          padding: 20px 0px;
+          text-align: center;
+          background: rgb(228, 227, 227);
+          color: rgb(165, 165, 165);
+          font-size: 1.2em;
+          font-weight: bold;
+          cursor: pointer;
+        }
+
+        &.active {
+          background: white;
+          color: black;
+        }
+
+        &.close-button {
+          cursor: pointer;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #f8ad22;
+          img {
+            filter: invert(1);
+            width: 20px;
+            height: 20px;
+          }
+          &:hover {
+            background: rgb(95, 95, 95);
+          }
+        }
+      }
+    }
+
+    .tab-body {
+      padding: 20px;
+      .tab-wrapper {
+        display: none;
+        &.active {
+          display: block;
+        }
+
+        .tab-content {
+          display: flex;
+          flex-direction: column;
+
+          .input {
+            display: flex;
+            flex-direction: column;
+
+            .input-line {
+              width: 100%;
+              display: flex;
+              flex-direction: row;
+              align-items: stretch;
+              margin-bottom: 20px;
+              border: 2px solid rgb(175, 175, 175);
+              border-radius: 20px;
+
+              &:focus-within {
+                border: 2px solid #f8ad22;
+              }
+
+              .image {
+                padding: 1em 0.5em 1em 1em;
+                display: flex;
+                justify-content: center;
+                img {
+                  width: 1.2em;
+                  height: 1.2em;
+                }
+              }
+
+              .text {
+                padding-top: 5px;
+                display: flex;
+                justify-content: center;
+                font-size: 1em;
+                flex-grow: 1;
+                input {
+                  background: transparent;
+                  width: 100%;
+                  border: none;
+                  &:focus {
+                    outline: none;
+                  }
+                }
+              }
+            }
+          }
+
+          .forgot-password {
+            cursor: pointer;
+            font-size: 0.9em;
+            color: rgb(24, 121, 167);
+            margin-bottom: 1em;
+          }
+
+          .button-wrapper {
+            display: flex;
+            justify-content: center;
+            .btn {
+              font-size: 1.2em;
+              width: 50%;
+              color: white;
+              border-radius: 1em;
+              background: #f8ad22;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.hidden {
+    display: none;
+  }
+}
