@@ -9,6 +9,7 @@
       <nb-body>
         <nb-title>Cài đặt</nb-title>
       </nb-body>
+      <nb-right/>
     </nb-header>
   <view class="container">
     <text>This is the App Details screen</text>

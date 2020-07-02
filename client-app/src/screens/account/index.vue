@@ -42,11 +42,9 @@
 </template>
 
 <script>
-import SettingAccount from "./settingAccount.vue"
 import accountImage from "../../../assets/images/avatar.png";
 
 export default {
-  components: { SettingAccount },
   data() {
     return {
       accountImage,
