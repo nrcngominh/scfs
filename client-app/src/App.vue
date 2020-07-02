@@ -15,6 +15,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import * as React from 'react';
 import HomeScreen from "./screens/home/";
 import DetailFoodScreen from "./screens/home/detailFood";
+import ShowAllFoodScreen from "./screens/home/showAllFood";
 import CartScreen from "./screens/cart";
 import NotificationScreen from "./screens/notification";
 import AccountScreen from "./screens/account";
@@ -76,6 +77,7 @@ const StackNavigator = createStackNavigator(
   {
     IOSTabs,
     DetailFood : {screen: DetailFoodScreen},
+    ShowAllFood: {screen: ShowAllFoodScreen},
     SettingAccount: {screen: SettingAccountScreen},
     CouponAccount: {screen: CouponAccountScreen},
     TransactionAccount: {screen: TransactionAccountScreen},

@@ -24,13 +24,15 @@
               <nb-text class="title-food">{{ item.category }}</nb-text>
             </nb-left>
             <nb-body />
-            <nb-text class="title-right">Xem tất cả</nb-text>
+            <nb-text 
+            :onPress="() => this.props.navigation.navigate('ShowAllFood')"
+            class="title-right">Xem tất cả</nb-text>
           </nb-list-item>
 
           <nb-view :style="{height: 200}">
             <scroll-view horizontal="{true}">
               <nb-button v-for="food in item.foods"
-              :key="food._id" :style="{height: 180, backgroundColor: 'none', marginTop: 10}"
+              :key="food._id" :style="sylesObj.button_card"
               :onPress="() => this.props.navigation.navigate('DetailFood')">
               <nb-card
               :style="sylesObj.touch_card"
@@ -87,6 +89,11 @@ export default {
           elevation: 4,
           height: 180,
           marginRight: 6
+        },
+        button_card: {
+          height: 180,
+          backgroundColor: 'none',
+          marginTop: 10
         }
       }
     };
