@@ -14,6 +14,10 @@ import { Root } from "native-base";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import * as React from 'react';
 import HomeScreen from "./screens/home/";
+import DetailFoodScreen from "./screens/home/detailFood";
+import ShowAllFoodScreen from "./screens/home/showAllFood";
+import CartScreen from "./screens/cart";
+import NotificationScreen from "./screens/notification";
 import AccountScreen from "./screens/account";
 import SettingAccountScreen from "./screens/account/settingAccount";
 import CouponAccountScreen from "./screens/account/couponAccount";
@@ -21,8 +25,6 @@ import PaymentAccountScreen from "./screens/account/paymentAccount";
 import TransactionAccountScreen from "./screens/account/transactionAccount";
 import FeedbackAccountScreen from "./screens/account/feedbackAccount";
 import LicenseAccountScreen from "./screens/account/licenseAccount";
-import CartScreen from "./screens/cart";
-import NotificationScreen from "./screens/notification";
 
 const IOSTabs = createBottomTabNavigator (
   {
@@ -74,6 +76,8 @@ const IOSTabs = createBottomTabNavigator (
 const StackNavigator = createStackNavigator(
   {
     IOSTabs,
+    DetailFood : {screen: DetailFoodScreen},
+    ShowAllFood: {screen: ShowAllFoodScreen},
     SettingAccount: {screen: SettingAccountScreen},
     CouponAccount: {screen: CouponAccountScreen},
     TransactionAccount: {screen: TransactionAccountScreen},
