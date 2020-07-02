@@ -1,11 +1,7 @@
 <template>
   <div class="main-container">
     <header>
-      <my-header
-        class="my-header"
-        :class="{'on-top': $store.state.header.navOnTopSlide,
-                       scrolled: !$store.state.navOnTopSlide}"
-      />
+      <my-header class="my-header" />
     </header>
 
     <main>
@@ -21,6 +17,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 import MyHeader from "@/components/Header";
 import MyFooter from "@/components/Footer";
 
@@ -30,21 +27,14 @@ export default {
     MyHeader,
     MyFooter
   },
-  data() {
-    return {
-      isOnTop: true
-    };
-  },
   created() {
-    window.addEventListener("scroll", this.handleScroll);
+    window.addEventListener("scroll", this.scroll);
   },
   destroyed() {
-    window.removeEventListener("scroll", this.handleScroll);
+    window.removeEventListener("scroll", this.scroll);
   },
   methods: {
-    handleScroll() {
-      // this.$store.commit("setNavOnTopSlide", window.scrollY === 0);
-    }
+    ...mapMutations("header", ["scroll"])
   }
 };
 </script>

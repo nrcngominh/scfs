@@ -1,51 +1,45 @@
 <template>
-  <div class="header-container">
+  <div class="header-container" :class="{transparent: transparentNav, solid: !transparentNav}">
     <div class="header-wrapper">
       <div class="header-content wrapper">
-        <nav class="left-nav">
-          <div
-            class="toggle-button"
-            @click="showDropdownNav()"
-            :class="{'nav-dropped': showDropdown}"
-          >
+        <nav class="nav-left">
+          <div class="toggle-button" @click="toggleDropdown()" :class="{'dropped': dropdown}">
             <img :src="menuButtonUrl" alt="Logo" />
           </div>
+
           <div class="logo">
             <img :src="logoUrl" alt="Logo" />
           </div>
-          <ul class="nav-tabs-ul">
+
+          <ul class="nav-tab">
             <li>
               <div>HOME</div>
             </li>
-
             <li>
               <div>ABOUT US</div>
             </li>
           </ul>
         </nav>
 
-        <nav class="right-nav">
-          <ul class="nav-icons-ul" :class="{'hidden': !$store.state.loggedIn}">
+        <nav class="nav-right">
+          <ul class="nav-icon" :class="{'hidden': !loggedIn}">
             <li>
               <img src="@/assets/images/cart.svg" alt="Logo" />
             </li>
-
             <li>
               <img src="@/assets/images/notification.svg" alt="Logo" />
             </li>
-
             <li>
               <img src="@/assets/images/user.svg" alt="Logo" />
             </li>
           </ul>
 
-          <ul class="login-register" :class="{'hidden': $store.state.loggedIn}">
+          <ul class="nav-login-register" :class="{'hidden': loggedIn}">
             <li>
               <div>REGISTER</div>
             </li>
-
             <li>
-              <div>LOGIN</div>
+              <div @click="login()">LOGIN</div>
             </li>
           </ul>
         </nav>
@@ -53,12 +47,11 @@
     </div>
 
     <div class="dropdown-wrapper">
-      <div class="nav-dropdown" :class="{'nav-dropdown-active': showDropdown}">
+      <div class="nav-dropdown" :class="{'active': dropdown}">
         <ul>
           <li>
             <div>HOME</div>
           </li>
-
           <li>
             <div>ABOUT US</div>
           </li>
@@ -69,35 +62,27 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from "vuex";
+
 export default {
   name: "Header",
-  data() {
-    return {
-      showDropdown: false
-    };
-  },
   computed: {
     menuButtonUrl() {
-      return this.showDropdown
+      return this.dropdown
         ? require("@/assets/images/close-menu.svg")
         : require("@/assets/images/open-menu.svg");
     },
     logoUrl() {
-      return this.$store.state.navOnTopSlide
+      return this.transparentNav
         ? require("@/assets/images/logo-white.png")
         : require("@/assets/images/logo.png");
-    }
+    },
+    ...mapState("header", ["dropdown", "transparentNav"]),
+    ...mapState("account", ["loggedIn"])
   },
   methods: {
-    showDropdownNav() {
-      if (!this.showDropdown) {
-        // this.$store.commit("setNavOnTopSlide", false);
-        this.showDropdown = true;
-      } else {
-        // this.$store.commit("setNavOnTopSlide", window.scrollY === 0);
-        this.showDropdown = false;
-      }
-    }
+    ...mapMutations("header", ["toggleDropdown"]),
+    ...mapMutations("account", ["login"])
   }
 };
 </script>

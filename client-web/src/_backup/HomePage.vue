@@ -2,7 +2,7 @@
   <div>
     <!--start header -->
     <div class="sticky" id="nav">
-      <Header :count= 0></Header>
+      <Header :count="0"></Header>
     </div>
     <!-- end header -->
 
@@ -60,7 +60,10 @@
                   Chào mừng đến với
                   <span>BK Food Court</span>
                 </h3>
-                <p data-aos="fade-up" class="mt-4">Để đáp ứng các nhu cầu của sinh viên, trường đại học Bách Khoa đã tiến hành xây dựng 1 một khu vực ăn uống đáp ứng được các tiêu chí: hiện đại, an toàn và thân thiện với sinh viên. Tọa lạc tại cơ sở Lý thường Kiệt (268 - Lý Thường Kiệt, Q10, TPHCM) và trong tương lai sẽ xây dựng thêm 1 khu vực ăn uống ở cơ sở Dĩ An (Làng ĐHQH, Dĩ An, Bình Dương). Đến với BK Food Court, các bạn sinh viên, thầy cô và khách tham quan sẽ được đón nhận một trải nghiệm ăn uống hiện đại với tiêu chí tự phục vụ. </p>
+                <p
+                  data-aos="fade-up"
+                  class="mt-4"
+                >Để đáp ứng các nhu cầu của sinh viên, trường đại học Bách Khoa đã tiến hành xây dựng 1 một khu vực ăn uống đáp ứng được các tiêu chí: hiện đại, an toàn và thân thiện với sinh viên. Tọa lạc tại cơ sở Lý thường Kiệt (268 - Lý Thường Kiệt, Q10, TPHCM) và trong tương lai sẽ xây dựng thêm 1 khu vực ăn uống ở cơ sở Dĩ An (Làng ĐHQH, Dĩ An, Bình Dương). Đến với BK Food Court, các bạn sinh viên, thầy cô và khách tham quan sẽ được đón nhận một trải nghiệm ăn uống hiện đại với tiêu chí tự phục vụ.</p>
               </div>
             </div>
             <div id="img_bk" class="col-lg-6 col-md-6 col-sm-12 text-center">
@@ -136,12 +139,13 @@ export default {
   },
   computed: {
     foods() {
-      return this.$store.state.foods
-        .filter(food => food.categoryId == this.selectedCategory._id)
+      return this.$store.state.foods.filter(
+        food => food.categoryId == this.selectedCategory._id
+      );
     },
     categories() {
-      this.selectedCategory = this.$store.state.categories[0]
-      return this.$store.state.categories
+      this.selectedCategory = this.$store.state.categories[0];
+      return this.$store.state.categories;
     }
   },
   beforeCreate() {
@@ -150,20 +154,20 @@ export default {
   methods: {
     async addToCart(foodId) {
       try {
-        this.$store.commit('addToCart', foodId)
-        await this.$http.post('/api/cart', this.$store.state.cart)
+        this.$store.commit("addToCart", foodId);
+        await this.$http.post("/api/cart", this.$store.state.cart);
       } catch (error) {
-        console.log(error)
+        console.log(error);
         this.$router.push("/login");
       }
     },
     async buy(foodId) {
       try {
-        this.$store.commit('addToCart', foodId)
-        await this.$http.post('/api/cart', this.$store.state.cart)
-        this.$router.push("/checkout")
+        this.$store.commit("addToCart", foodId);
+        await this.$http.post("/api/cart", this.$store.state.cart);
+        this.$router.push("/checkout");
       } catch (error) {
-        console.log(error)
+        console.log(error);
         this.$router.push("/login");
       }
     }
@@ -334,10 +338,10 @@ body {
 #img_bk {
   padding: 0;
 }
-.btn btn-success mr-3{
+.btn btn-success mr-3 {
   margin-left: 25%;
 }
-.btn btn-primary{
+.btn btn-primary {
   margin-left: 9%;
 }
 .img-fluid1 {
@@ -403,14 +407,14 @@ p.aos-init {
   width: auto;
   margin: 0 auto;
 }
-.nav-tabs .nav-item {
+.nav-tab .nav-item {
   margin-bottom: -1px;
 }
 .nav-item a {
   color: #333;
 }
-.menu_tab .nav-tabs .nav-item.show .nav-link,
-.nav-tabs .nav-link.active {
+.menu_tab .nav-tab .nav-item.show .nav-link,
+.nav-tab .nav-link.active {
   color: white;
   background-color: #ff5e18;
   border-color: #ff5e18;

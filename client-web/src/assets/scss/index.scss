@@ -5,13 +5,13 @@
 @import "bootstrap-vue/src/index.scss";
 
 // Reset css
-@import "./reset/reset";
-@import "./reset/reset-bootstrap";
+@import "reset/reset";
+@import "reset/reset-bootstrap";
 
 // Import variable, mixins
-@import "./base/index.scss";
+@import "base/index.scss";
 
 // Import component, layout and pages
-@import "./component/index.scss";
-@import "./layout/index.scss";
-@import "./page/index.scss";
+@import "component/index.scss";
+@import "layout/index.scss";
+@import "page/index.scss";
