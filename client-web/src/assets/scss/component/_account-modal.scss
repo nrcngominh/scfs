@@ -33,13 +33,15 @@
 
     .tab-headers {
       display: grid;
-      grid-template-columns: 1fr 1fr 3rem;
+      grid-template-columns: 1fr 1fr 3em;
 
       .header {
-        height: 3em;
+        height: 2.7em;
 
         &.tab {
-          padding: 20px 0px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           text-align: center;
           background: rgb(228, 227, 227);
           color: rgb(165, 165, 165);
@@ -133,18 +135,19 @@
             cursor: pointer;
             font-size: 0.9em;
             color: rgb(24, 121, 167);
-            margin-bottom: 1em;
+            margin-bottom: 20px;
           }
 
           .button-wrapper {
             display: flex;
             justify-content: center;
-            .btn {
+            button {
               font-size: 1.2em;
               width: 50%;
               color: white;
               border-radius: 1em;
               background: #f8ad22;
+              padding: 10px 0;
             }
           }
         }

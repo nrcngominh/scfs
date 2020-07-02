@@ -15,8 +15,8 @@
             <p class="price">Giá: {{ food.price }} VNĐ</p>
           </div>
           <div class="order-buttons">
-            <div class="btn btn-primary">Mua</div>
-            <div class="btn btn-success">Thêm vào giỏ</div>
+            <button class="buy">Mua</button>
+            <button class="add-to-cart">Thêm vào giỏ</button>
           </div>
         </div>
       </div>

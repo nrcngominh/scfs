@@ -3,7 +3,7 @@
   @media (min-height: 400px) {
     height: 100vh;
     .slide-content {
-      padding-top: 35vh;
+      padding-top: 32vh;
     }
   }
   @media (max-height: 399px) {
@@ -64,7 +64,8 @@
       }
       margin: 25px 0;
     }
-    .btn {
+    button {
+      padding: 7px 0;
       width: 200px;
       font-size: 1.2em;
       border-radius: 20px;

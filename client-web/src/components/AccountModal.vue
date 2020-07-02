@@ -39,7 +39,7 @@
               <div class="forgot-password">Forgot your password?</div>
 
               <div class="button-wrapper">
-                <div class="btn">Login</div>
+                <button class="login-button">Login</button>
               </div>
             </div>
           </div>
@@ -74,7 +74,7 @@
                 </div>
 
                 <div class="button-wrapper">
-                  <div class="btn">Register</div>
+                  <button class="register-button">Register</button>
                 </div>
               </div>
             </div>
@@ -104,6 +104,3 @@ export default {
   }
 };
 </script>
-
-<style>
-</style>
