@@ -26,26 +26,8 @@ services:
       - PORT=${SERVER_API_PORT}
       - ACCESS_TOKEN_SECRET=${ACCESS_TOKEN_SECRET}
       - IMAGES_DIRECTORY=/app/images
-      - PAYMENT_HOST=http://server-payment:${SERVER_PAYMENT_PORT}/
     ports:
       - "${PUBLIC_SERVER_API_PORT}:${SERVER_API_PORT}"
-    depends_on:
-      - database
-          
-  # Server for MOMO Service Fake
-  server-payment:
-    image: sfcs/server-payment:v1.dev
-    restart: unless-stopped
-    command: npm run dev
-    volumes:
-      - ./server-payment/src:/app/src
-    environment:
-      - DB_HOST=mongodb://database:27017
-      - DB_NAME=${DB_NAME}
-      - PORT=${SERVER_PAYMENT_PORT}
-      - API_HOST=http://server-api:${SERVER_API_PORT}/
-    ports:
-      - "${PUBLIC_SERVER_PAYMENT_PORT}:${SERVER_PAYMENT_PORT}"
     depends_on:
       - database
 
@@ -62,7 +44,6 @@ services:
       - "${PUBLIC_CLIENT_WEB_PORT}:8080"
     depends_on:
       - server-api
-      - server-payment
 
   # Proxy server
   webserver:
