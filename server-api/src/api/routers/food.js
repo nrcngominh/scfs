@@ -1,8 +1,8 @@
 import Router from 'express'
-import { getAllFoods } from '@controller/food'
+import FoodController from '@controller/food'
 
 const FoodRouter = Router()
 
-FoodRouter.get('/', getAllFoods)
+FoodRouter.get('/', FoodController.getAllFoods)
 
 export default FoodRouter

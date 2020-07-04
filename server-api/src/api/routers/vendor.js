@@ -1,8 +1,8 @@
 import Router from 'express'
-import { vendorLogin } from '@controller/login'
+import LoginController from '@controller/login'
 
 const VendorRouter = Router()
 
-VendorRouter.post('/login', vendorLogin)
+VendorRouter.post('/login', LoginController.vendor)
 
 export default VendorRouter

@@ -1,7 +1,7 @@
 <template>
-  <div class="account-modal-container" :class="{hidden: !active}" @click.self="closeModal()">
+  <div class="account-modal-container" :class="{hidden: !modalActive}" @click.self="close()">
     <transition name="account-modal">
-      <div class="account-modal-content" v-if="active">
+      <div class="account-modal-content" v-if="modalActive">
         <div class="tab-headers">
           <div class="header tab login" :class="{active: loginTab}" @click="openLoginTab()">Login</div>
           <div
@@ -9,75 +9,16 @@
             :class="{active : registerTab}"
             @click="openRegisterTab()"
           >Register</div>
-          <div class="header close-button" @click="closeModal()">
+          <div class="header close-button" @click="close()">
             <img src="@/assets/images/close-modal.svg" />
           </div>
         </div>
         <div class="tab-body">
           <div class="tab-wrapper" :class="{active: loginTab}">
-            <div class="tab-content login">
-              <div class="input">
-                <div class="input-line">
-                  <div class="image">
-                    <img src="@/assets/images/username.svg" />
-                  </div>
-                  <div class="text">
-                    <input type="text" placeholder="Email" />
-                  </div>
-                </div>
-
-                <div class="input-line">
-                  <div class="image">
-                    <img src="@/assets/images/password.svg" />
-                  </div>
-                  <div class="text">
-                    <input type="password" placeholder="Password" />
-                  </div>
-                </div>
-              </div>
-
-              <div class="forgot-password">Forgot your password?</div>
-
-              <div class="button-wrapper">
-                <button class="login-button">Login</button>
-              </div>
-            </div>
+            <login-form class="tab-content login" />
           </div>
           <div class="tab-wrapper" :class="{active: registerTab}">
-            <div class="tab-content register">
-              <div class="input">
-                <div class="input-line">
-                  <div class="image">
-                    <img src="@/assets/images/username.svg" />
-                  </div>
-                  <div class="text">
-                    <input type="text" placeholder="Email" />
-                  </div>
-                </div>
-
-                <div class="input-line">
-                  <div class="image">
-                    <img src="@/assets/images/password.svg" />
-                  </div>
-                  <div class="text">
-                    <input type="password" placeholder="Password" />
-                  </div>
-                </div>
-
-                <div class="input-line">
-                  <div class="image">
-                    <img src="@/assets/images/password.svg" />
-                  </div>
-                  <div class="text">
-                    <input type="password" placeholder="Retype password" />
-                  </div>
-                </div>
-
-                <div class="button-wrapper">
-                  <button class="register-button">Register</button>
-                </div>
-              </div>
-            </div>
+            <register-form class="tab-content register" />
           </div>
         </div>
       </div>
@@ -87,15 +28,30 @@
 
 <script>
 import { mapState, mapMutations } from "vuex";
+import LoginForm from "./LoginForm";
+import RegisterForm from "./RegisterForm";
 export default {
+  components: {
+    LoginForm,
+    RegisterForm
+  },
+  data() {
+    return {
+      loginData: {
+        email: "",
+        password: ""
+      },
+      registerData: {
+        email: "",
+        password: "",
+        confirmPassword: ""
+      }
+    };
+  },
   computed: {
-    ...mapState("account/modal", ["active", "loginTab", "registerTab"])
+    ...mapState("account/modal", ["modalActive", "loginTab", "registerTab"])
   },
   methods: {
-    closeModal() {
-      document.querySelector("body").classList.remove("modal-active");
-      this.close();
-    },
     ...mapMutations("account/modal", [
       "close",
       "openLoginTab",

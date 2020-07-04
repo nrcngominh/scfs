@@ -1,21 +1,23 @@
 .slide-container {
   position: relative;
-  @media (min-height: 400px) {
+
+  @include lg-h {
     height: 100vh;
     .slide-content {
       padding-top: 32vh;
     }
   }
-  @media (max-height: 399px) {
-    height: 400px;
+  @include sm-h {
+    height: $min-height;
     .slide-content {
-      padding-top: 150px;
+      padding-top: 25vh;
     }
   }
+
   img {
     position: absolute;
     z-index: -10;
-    width: 100vw;
+    width: 100%;
     height: 100%;
     object-fit: cover;
   }
@@ -26,7 +28,7 @@
     width: 100%;
     font-family: $modern-font;
     h1 {
-      font-size: 5em;
+      font-size: 5rem;
       font-weight: bolder;
       &.short-title {
         display: none;
@@ -38,7 +40,7 @@
         &.short-title {
           display: inherit;
         }
-        font-size: 3.5em;
+        font-size: 3.5rem;
       }
       @include sm {
         &.full-title {
@@ -58,18 +60,17 @@
       }
     }
     p {
-      font-size: 1.5em;
+      font-size: 1.5rem;
       @include xs {
-        font-size: 1em;
+        font-size: 1rem;
       }
-      margin: 25px 0;
+      margin: 3rem 0;
     }
     button {
-      padding: 7px 0;
-      width: 200px;
-      font-size: 1.2em;
-      border-radius: 20px;
-      background: #f8ad22;
+      padding: 0.5rem 0;
+      width: 12rem;
+      font-size: 1.2rem;
+      border-radius: 1.6rem;
       color: rgb(255, 255, 255);
     }
   }

@@ -1,21 +1,20 @@
 .account-modal-container {
   position: fixed;
   top: 0;
-  left: 0;
-  width: 100vw;
-  min-height: 100vh;
-  padding-top: 20vh;
+  bottom: 0;
+  width: 100%;
+  padding: 20vh 0;
   z-index: 1000;
-  overflow-y: auto;
   font-family: $modern-font;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: auto;
   background-color: rgba($color: white, $alpha: 0.6);
 
   .account-modal-enter {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(1rem);
   }
 
   .account-modal-enter-active {
@@ -23,20 +22,16 @@
   }
 
   .account-modal-content {
-    box-shadow: 0 0 15px rgba($color: black, $alpha: 0.3);
+    box-shadow: 0 0 1rem rgba($color: black, $alpha: 0.3);
     background: white;
     width: 30rem;
 
-    @include xs {
-      width: 100%;
-    }
-
     .tab-headers {
       display: grid;
-      grid-template-columns: 1fr 1fr 3em;
+      grid-template-columns: 1fr 1fr 2.8rem;
 
       .header {
-        height: 2.7em;
+        height: 3.5rem;
 
         &.tab {
           display: flex;
@@ -45,7 +40,7 @@
           text-align: center;
           background: rgb(228, 227, 227);
           color: rgb(165, 165, 165);
-          font-size: 1.2em;
+          font-size: 1.2rem;
           font-weight: bold;
           cursor: pointer;
         }
@@ -61,11 +56,11 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          background: #f8ad22;
+          background: $primary-color;
           img {
             filter: invert(1);
-            width: 20px;
-            height: 20px;
+            width: 1rem;
+            height: 1rem;
           }
           &:hover {
             background: rgb(95, 95, 95);
@@ -75,7 +70,7 @@
     }
 
     .tab-body {
-      padding: 20px;
+      padding: 1.6rem;
       .tab-wrapper {
         display: none;
         &.active {
@@ -95,29 +90,29 @@
               display: flex;
               flex-direction: row;
               align-items: stretch;
-              margin-bottom: 20px;
-              border: 2px solid rgb(175, 175, 175);
-              border-radius: 20px;
+              margin-bottom: 1.6rem;
+              border: 0.1rem solid rgb(175, 175, 175);
+              border-radius: 1.6rem;
 
               &:focus-within {
-                border: 2px solid #f8ad22;
+                border: 0.1rem solid #f8ad22;
               }
 
               .image {
-                padding: 1em 0.5em 1em 1em;
+                padding: 1rem 0.5rem 1rem 1rem;
                 display: flex;
                 justify-content: center;
                 img {
-                  width: 1.2em;
-                  height: 1.2em;
+                  width: 1.2rem;
+                  height: 1.2rem;
                 }
               }
 
               .text {
-                padding-top: 5px;
+                padding-top: 0.3rem;
                 display: flex;
                 justify-content: center;
-                font-size: 1em;
+                font-size: 1rem;
                 flex-grow: 1;
                 input {
                   background: transparent;
@@ -131,23 +126,16 @@
             }
           }
 
-          .forgot-password {
-            cursor: pointer;
-            font-size: 0.9em;
-            color: rgb(24, 121, 167);
-            margin-bottom: 20px;
-          }
-
           .button-wrapper {
             display: flex;
             justify-content: center;
             button {
-              font-size: 1.2em;
+              font-size: 1.2rem;
               width: 50%;
               color: white;
-              border-radius: 1em;
-              background: #f8ad22;
-              padding: 10px 0;
+              border-radius: 1rem;
+              background: $primary-color;
+              padding: 0.8rem 0;
             }
           }
         }
@@ -157,5 +145,12 @@
 
   &.hidden {
     display: none;
+  }
+
+  @include xs {
+    padding: 10vh 0;
+    .account-modal-content {
+      width: 100%;
+    }
   }
 }

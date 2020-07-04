@@ -31,7 +31,17 @@ const findByEmail = (email) => {
   }).select(' password type')
 }
 
+/**
+ * Find account by id
+ * @param {String} id
+ */
+const findById = (id) => {
+  return AccountModel.findById(id)
+    .select(' email type')
+}
+
 export default {
   createCustomer,
-  findByEmail
+  findByEmail,
+  findById
 }

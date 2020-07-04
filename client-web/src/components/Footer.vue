@@ -5,13 +5,13 @@
         <div class="footer-item product">
           <div>
             <h3>Address</h3>
-            <p>268 Ly Thuong Kiet St., District 10, Ho Chi Minh City</p>
+            <p>268 Ly Thuong Kiet, District 10, Ho Chi Minh City</p>
           </div>
         </div>
 
         <div class="footer-item about">
           <div>
-            <h3>About Us</h3>
+            <h3>Author</h3>
             <p>Richard</p>
             <p>Tho</p>
             <p>Son</p>
@@ -22,10 +22,8 @@
 
         <div class="footer-item platform">
           <div>
-            <h3>Platform</h3>
+            <h3>Powered By</h3>
             <p>VueJS</p>
-            <p>Bootstrap</p>
-            <p>Socket.IO</p>
           </div>
         </div>
 

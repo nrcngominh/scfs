@@ -17,6 +17,6 @@ const getAllFoods = async (req, res) => {
   }
 }
 
-export {
+export default {
   getAllFoods
 }

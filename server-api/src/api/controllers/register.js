@@ -5,9 +5,9 @@ import RegisterService from '@service/register'
  * @param {import('express').Request} req 
  * @param {import('express').Response} res 
  */
-const customerRegister = async (req, res) => {
+const customer = async (req, res) => {
   try {
-    await RegisterService.customerRegister(
+    await RegisterService.customer(
       req.body.email, req.body.password,
       req.body.fullName, req.body.phoneNumber
     )
@@ -23,6 +23,6 @@ const customerRegister = async (req, res) => {
   }
 }
 
-export {
-  customerRegister
+export default {
+  customer
 }

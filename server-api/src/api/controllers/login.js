@@ -22,8 +22,8 @@ const login = async (req, res, loginMethod) => {
  * @param {import("express").Request} req 
  * @param {import("express").Response} res 
  */
-const customerLogin = async (req, res) => {
-  login(req, res, LoginService.customerLogin)
+const customer = async (req, res) => {
+  login(req, res, LoginService.customer)
 }
 
 /**
@@ -31,8 +31,8 @@ const customerLogin = async (req, res) => {
  * @param {import("express").Request} req 
  * @param {import("express").Response} res 
  */
-const adminLogin = async (req, res) => {
-  login(req, res, LoginService.adminLogin)
+const admin = async (req, res) => {
+  login(req, res, LoginService.admin)
 }
 
 /**
@@ -40,12 +40,12 @@ const adminLogin = async (req, res) => {
  * @param {import("express").Request} req 
  * @param {import("express").Response} res 
  */
-const vendorLogin = async (req, res) => {
-  login(req, res, LoginService.vendorLogin)
+const vendor = async (req, res) => {
+  login(req, res, LoginService.vendor)
 }
 
-export {
-  customerLogin,
-  adminLogin,
-  vendorLogin
+export default {
+  customer,
+  admin,
+  vendor
 }

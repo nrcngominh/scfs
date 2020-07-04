@@ -1,44 +1,29 @@
-const resetModalTabs = (state) => {
-  state.loginTab = false
-  state.registerTab = false
-}
-
-const openModal = (state) => {
-  resetModalTabs(state)
-  state.active = true
-}
-
-const closeModal = (state) => {
-  resetModalTabs(state)
-  state.active = false
-}
+import AccountModal from './account-modal'
+import { login } from '@/services/account'
+import { auth } from '@/services/account'
 
 export default {
   namespaced: true,
   state: {
     loggedIn: false,
   },
-  modules: {
-    modal: {
-      namespaced: true,
-      state: {
-        active: false,
-        loginTab: false,
-        registerTab: false,
-      },
-      mutations: {
-        openLoginTab(state) {
-          openModal(state)
-          state.loginTab = true
-        },
-        openRegisterTab(state) {
-          openModal(state)
-          state.registerTab = true
-        },
-        close(state) {
-          closeModal(state)
-        }
+  mutations: {
+    login(state) {
+      state.loggedIn = true
+    }
+  },
+  actions: {
+    async login({ commit }, loginData) {
+      login(loginData)
+      commit('login')
+    },
+    async auth({ commit }) {
+      if (await auth()) {
+        commit('login')
       }
     }
+  },
+  modules: {
+    modal: AccountModal
   }
 }

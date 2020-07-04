@@ -1,44 +1,65 @@
 <template>
   <div class="landing-page">
     <landing-slide class="slide"></landing-slide>
-    <section class="food-container wrapper">
-      <div class="food-item" v-for="food in foods" :key="food.name">
-        <div class="food-image">
-          <div class="food-image-content">
-            <img :src="food.img" alt="Food image" />
-          </div>
-        </div>
-        <div class="food-body">
-          <div class="food-content">
-            <h3 class="title">{{ food.name }}</h3>
-            <p class="description">{{ food.price }}</p>
-            <p class="price">Giá: {{ food.price }} VNĐ</p>
-          </div>
-          <div class="order-buttons">
-            <button class="buy">Mua</button>
-            <button class="add-to-cart">Thêm vào giỏ</button>
-          </div>
+
+    <section class="categories">
+      <article class="description">
+        <h2>
+          MORE THAN
+          <span>200 FOODS</span> TO ORDER
+        </h2>
+        <p>Welcome to Smart Food Court System of Ho Chi Minh University of Technology</p>
+      </article>
+
+      <div class="wrapper">
+        <div class="category-container">
+          <article class="category-item" v-for="item in arr" :key="item">
+            <div class="category-image">
+              <div class="category-image-content">
+                <img src="/images/1592813725496.jpg" alt="category" />
+              </div>
+            </div>
+            <div class="category-content">
+              <h3>BREAKFAST</h3>
+              <p>Description</p>
+            </div>
+          </article>
         </div>
       </div>
+
+      <article class="category-button-wrapper">
+        <button>MORE CATEGORIES</button>
+      </article>
+    </section>
+
+    <section class="how-to-order">
+      <div class="wrapper">HOW TO ORDER</div>
     </section>
   </div>
 </template>
 
 <script>
 import LandingSlide from "@/components/LandingSlide";
+import { mapMutations } from "vuex";
 
 export default {
   name: "LandingPage",
+  data() {
+    return {
+      arr: [1, 2, 3, 4]
+    };
+  },
   components: {
     LandingSlide
   },
-  data() {
-    return {};
+  methods: {
+    ...mapMutations("header", ["enterLandingPage", "exitLandingPage"])
   },
-  computed: {
-    foods() {
-      return [];
-    }
+  mounted() {
+    this.enterLandingPage();
+  },
+  beforeDestroy() {
+    this.exitLandingPage();
   }
 };
 </script>
