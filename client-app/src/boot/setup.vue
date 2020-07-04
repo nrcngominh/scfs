@@ -14,6 +14,7 @@ import App from "../App.vue";
 import axios from "axios";
 import { ScrollView } from "react-native";
 import React, { Component } from "react";
+import {Modal} from "react-native";
 
 axios.defaults.baseURL = "https://sfcs-hcmut.duckdns.org";
 

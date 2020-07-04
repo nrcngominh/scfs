@@ -13,6 +13,8 @@ import {
 import { Root } from "native-base";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import * as React from 'react';
+import {Modal} from "react-native";
+
 import HomeScreen from "./screens/home/";
 import DetailFoodScreen from "./screens/home/detailFood";
 import ShowAllFoodScreen from "./screens/home/showAllFood";

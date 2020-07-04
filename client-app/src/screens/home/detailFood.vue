@@ -1,40 +1,52 @@
 <template>
-  <nb-container>
-    <nb-header>
-      <nb-left>
-        <nb-button transparent :onPress="() => this.props.navigation.goBack()">
-          <nb-icon name="arrow-back" />
-        </nb-button>
-      </nb-left>
-      <nb-body>
-        <nb-title :style="{width: 200}">Chi tiết sản phẩm</nb-title>
-      </nb-body>
-      <nb-right/>
-    </nb-header>
-  <view class="container">
-    <text>This is the App Details screen</text>
-    <button title="Go to home screen" @press="goToHomeScreen"></button>
+<nb-container>
+  <view>
+    <nb-button
+    title="hellow"
+    :onPress="setModalVisible">
+    <text>aaaa</text>
+    </nb-button>
+      <view
+      animationType="slide"
+      transparent
+      direction="up"
+      :class="{hidden: isActive}"
+      :style="styleObj.view">
+        <view :style="{backgroundColor: 'red', height: 500}">
+          <button title="Hello World" :onPress="setModalVisible">hello world</button>
+        </view>
+      </view>
   </view>
-  </nb-container>
+</nb-container>
 </template>
-
 <script>
+import React, { Component, useState } from "react";
+import {Modal} from "react-native";
+
 export default {
-  props: {
-    navigation: { type: Object }
+  data() {
+    return {
+      isActive: false,
+      styleObj: {
+        view: {
+          marginTop: 50,
+          // transitionDuration: 500,
+          // animationDuration: 500,
+          // animationTension: 300,
+          // transparentDuration: 500
+        }
+      }
+    }
   },
   methods: {
-    goToHomeScreen() {
-      this.navigation.navigate("Home");
+    setModalVisible() {
+      this.isActive = !this.isActive;
     }
   }
-}
+};
 </script>
-
-<style>
-.container {
-  align-items: center;
-  justify-content: center;
-  flex: 1;
+<style scoped>
+.hidden {
+  display: none;
 }
 </style>
