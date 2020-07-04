@@ -11,14 +11,14 @@
           <div></div>
         </article>
 
-        <article v-for="item in arr" :key="item" class="cart-grid-container">
+        <article v-for="item in cart" :key="item.food._id" class="cart-grid-container">
           <div class="product">
-            <img src="/images/1592813725496.jpg" alt="product" />
-            <p>Bánh mì</p>
+            <img :src="item.food.img" alt="product" />
+            <p>{{item.food.name}}</p>
           </div>
-          <div class="price">10000</div>
-          <div class="quantity">1</div>
-          <div class="subtotal">10000</div>
+          <div class="price">{{item.food.price}}</div>
+          <div class="quantity">{{item.quantity}}</div>
+          <div class="subtotal">{{item.food.subTotal}}</div>
           <div class="remove">
             <button class="remove-button">
               <img src="@/assets/images/close-modal.svg" alt="remove" />
@@ -52,12 +52,12 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "CartPage",
-  data() {
-    return {
-      arr: [1]
-    };
+  computed: {
+    ...mapState("cart", ["cart"])
   }
 };
 </script>

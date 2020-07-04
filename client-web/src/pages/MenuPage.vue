@@ -67,7 +67,7 @@
               <div class="buy">
                 <button>Buy</button>
               </div>
-              <div class="add">
+              <div class="add" @click="addToCart(food)">
                 <img src="@/assets/images/cart.svg" alt="favorite" />
               </div>
               <div class="favorite">
@@ -94,7 +94,8 @@ export default {
   },
   methods: {
     ...mapMutations("food", ["setMoneyMinMax"]),
-    ...mapActions("food", ["fetchAllFoods"])
+    ...mapActions("food", ["fetchAllFoods"]),
+    ...mapActions("cart", ["addToCart"])
   },
   async mounted() {
     await this.fetchAllFoods();
