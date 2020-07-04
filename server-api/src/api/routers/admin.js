@@ -1,8 +1,8 @@
 import Router from 'express'
-import { adminLogin } from '@controller/login'
+import LoginController from '@controller/login'
 
 const AdminRouter = Router()
 
-AdminRouter.post('/login', adminLogin)
+AdminRouter.post('/login', LoginController.admin)
 
 export default AdminRouter

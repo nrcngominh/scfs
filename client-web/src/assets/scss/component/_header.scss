@@ -1,5 +1,5 @@
 .header-container {
-	z-index: 1000;
+	z-index: 15;
 	font-family: $modern-font;
 	height: $nav-bar-height;
 	position: fixed;
@@ -9,7 +9,7 @@
 		height: 100%;
 		display: flex;
 		align-items: center;
-		transition: all 0.2s ease;
+		transition: background 0.2s ease;
 	}
 
 	&.solid {
@@ -31,6 +31,12 @@
 		}
 	}
 
+	&.modal-active {
+		.header-wrapper {
+			margin-right: $sidebar-width;
+		}
+	}
+
 	.header-content {
 		display: flex;
 		align-items: center;
@@ -47,22 +53,21 @@
 
 		.nav-left {
 			.logo {
-				margin-left: 10px;
-				margin-right: 20px;
+				margin-right: 1.6rem;
 				cursor: pointer;
 				img {
-					height: 40px;
+					height: 2.2rem;
 				}
 			}
 
 			.toggle-button {
 				display: flex;
 				align-items: center;
-				margin-left: 10px;
-				margin-right: 10px;
+				margin-right: 0.8rem;
 				cursor: pointer;
 				img {
-					height: 30px;
+					height: 1.8rem;
+					width: 1.8rem;
 				}
 				display: none;
 				@include xs {
@@ -71,25 +76,18 @@
 				@include sm {
 					display: inherit;
 				}
-
-				&.dropped {
-					img {
-						margin-left: 2px;
-						height: 25px;
-					}
-				}
 			}
 
 			.nav-tab {
 				li {
-					font-weight: 10px;
-					padding: 0 20px;
+					font-weight: 0.8rem;
+					padding: 0 1.6rem;
 					height: 100%;
 					display: flex;
 					align-items: center;
 					cursor: pointer;
 					div {
-						font-size: 1.2em;
+						font-size: 1.2rem;
 					}
 				}
 				@include xs {
@@ -107,10 +105,10 @@
 					display: flex;
 					align-items: center;
 					cursor: pointer;
-					margin-right: 10px;
+					margin-left: 0.8rem;
 				}
 				img {
-					height: 30px;
+					height: 1.8rem;
 				}
 				&.hidden {
 					display: none;
@@ -118,13 +116,16 @@
 			}
 
 			.nav-login-register {
-				padding-right: 10px;
 				&.hidden {
 					display: none;
 				}
 				li {
-					cursor: pointer;
-					padding-left: 40px;
+					> div {
+						cursor: pointer;
+					}
+					.login {
+						margin-left: 2.5rem;
+					}
 				}
 			}
 		}
@@ -138,7 +139,7 @@
 
 		ul {
 			li {
-				padding: 10px;
+				padding: 1rem 1.6rem;
 				cursor: pointer;
 				&:hover {
 					background: gray;

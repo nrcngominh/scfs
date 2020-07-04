@@ -1,33 +1,36 @@
+const refresh = (state) => {
+  if (state.landingPage && state.isTop && !state.dropdown) {
+    state.transparentNav = true
+  }
+  else {
+    state.transparentNav = false
+  }
+}
+
 export default {
   namespaced: true,
   state: {
-    transparentNav: true,
+    landingPage: false,
+    isTop: true,
+    transparentNav: false,
     dropdown: false
   },
   mutations: {
-    scroll: (state) => {
-      // Scroll down
-      if (window.scrollY !== 0) {
-        state.transparentNav = false
-        return
-      }
-      // Scroll top
-      if (!state.dropdown) {
-        state.transparentNav = true
-      }
+    enterLandingPage(state) {
+      state.landingPage = true
+      refresh(state)
     },
-    toggleDropdown: (state) => {
-      // Open dropdown
-      if (!state.dropdown) {
-        state.dropdown = true
-        state.transparentNav = false
-        return
-      }
-      // Close dropdown
-      state.dropdown = false
-      if (window.scrollY === 0) {
-        state.transparentNav = true
-      }
+    exitLandingPage(state) {
+      state.landingPage = false
+      refresh(state)
+    },
+    scroll(state, isTop) {
+      state.isTop = isTop
+      refresh(state)
+    },
+    toggleDropdown(state) {
+      state.dropdown = !state.dropdown
+      refresh(state)
     }
   }
 }

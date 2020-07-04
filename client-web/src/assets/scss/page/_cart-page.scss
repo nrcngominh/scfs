@@ -1,0 +1,158 @@
+.cart-page {
+  font-family: $serif-font;
+  border-radius: 1rem;
+
+  .cart-table {
+    border-radius: 1rem;
+    background: $light-gray;
+  }
+
+  .cart-grid-container {
+    display: grid;
+    grid-template-columns: 3fr 10rem 10rem 10rem 4rem;
+    text-align: left;
+
+    &.header {
+      border-radius: 1rem 1rem 0 0;
+      background: $primary-color;
+      color: white;
+      font-weight: 600;
+      font-size: 1.2rem;
+      > div {
+        padding: 1.5rem;
+      }
+    }
+
+    > div {
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+
+      &.product {
+        img {
+          margin-right: 1rem;
+          width: 3rem;
+          height: 3rem;
+        }
+      }
+
+      .remove-button {
+        background: none;
+        padding: 0;
+        img {
+          height: 1rem;
+          filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+        }
+      }
+    }
+
+    @mixin mobile {
+      @include xs {
+        @content;
+      }
+      @include sm {
+        @content;
+      }
+    }
+
+    @include mobile {
+      grid-template-columns: 1fr 4rem 5rem 5rem 1.8rem;
+      &.header {
+        border-radius: 0.5rem 0.5rem 0 0;
+        font-weight: 500;
+        font-size: 0.9rem;
+        > div {
+          padding: 0.5rem;
+        }
+      }
+
+      > div {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+        display: flex;
+        align-items: center;
+
+        &.product {
+          img {
+            display: none;
+          }
+        }
+
+        .remove-button {
+          img {
+            height: 0.8rem;
+            filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+          }
+        }
+      }
+    }
+  }
+
+  .total {
+    display: grid;
+    margin-top: 1rem;
+    grid-template-columns: 1fr auto;
+    .total-wrapper {
+      h2 {
+        font-size: 1.7rem;
+        margin-bottom: 0.5rem;
+      }
+      .total-grid-container {
+        display: grid;
+        border-radius: 1rem;
+        overflow: hidden;
+        background: $light-gray;
+        grid-template-columns: 7rem 1fr;
+
+        > div {
+          display: flex;
+          padding: 0.7rem;
+          align-items: center;
+
+          &.row-header {
+            background: $primary-color;
+            color: white;
+          }
+
+          &.coupon {
+            > input {
+              width: 7rem;
+              margin-right: 1rem;
+            }
+
+            button {
+              padding: 0.4rem 1.2rem;
+            }
+          }
+        }
+      }
+
+      button.checkout {
+        margin-top: 1rem;
+        width: 100%;
+        border-radius: 5rem;
+        color: white;
+        background: $primary-color;
+        padding: 1rem;
+      }
+    }
+
+    @mixin mobile {
+      @include xs {
+        @content;
+      }
+      @include sm {
+        @content;
+      }
+    }
+
+    @include mobile {
+      font-size: 0.8rem;
+      .total-wrapper {
+        h2 {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}

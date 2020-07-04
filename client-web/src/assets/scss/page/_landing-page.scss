@@ -1,118 +1,130 @@
 .landing-page {
-  .food-container {
-    margin: auto;
-    display: grid;
-    row-gap: 10px;
-    @include xs {
-      grid-template-columns: repeat(1, 1fr);
-    }
-    @include sm {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    @include md {
-      grid-template-columns: repeat(3, 1fr);
-    }
-    @include lg {
-      grid-template-columns: repeat(4, 1fr);
-    }
-    @include el {
-      width: $el-width;
-      grid-template-columns: repeat(4, 1fr);
-    }
-  }
-
-  @mixin stack-layout {
-    @include xs {
-      @content;
-    }
-  }
-
-  @mixin grid-layout {
-    @include sm {
-      @content;
-    }
-    @include md {
-      @content;
-    }
-    @include lg {
-      @content;
-    }
-    @include el {
-      @content;
-    }
-  }
-
-  .food-item {
-    padding: 10px;
+  section.categories {
+    background: $light-gray;
+    font-family: $serif-font;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-  }
+    padding: 3rem 0;
 
-  @include stack-layout {
-    .food-item {
+    article.description {
+      padding-bottom: 3rem;
+      h2 {
+        font-size: 3.5rem;
+        padding-bottom: 1rem;
+        color: $header-color;
+        span {
+          color: $primary-color;
+        }
+      }
+      p {
+        color: $content-color;
+      }
+    }
+
+    .category-container {
       display: grid;
-      grid-template-columns: 120px auto;
-      grid-template-rows: 120px;
-      .food-image {
-        .food-image-content {
+      column-gap: 2rem;
+      row-gap: 2rem;
+      grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+
+      article.category-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background: white;
+        border-radius: 30px;
+
+        .category-image {
+          position: relative;
           width: 100%;
-          height: 100%;
-          img {
-            height: 100%;
+
+          &::after {
+            content: "";
+            display: block;
+            padding-top: 75%;
+          }
+          .category-image-content {
+            position: absolute;
             width: 100%;
+            height: 100%;
+            img {
+              border-radius: 30px 30px 0 0;
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+
+        .category-content {
+          display: flex;
+          padding: 1rem;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+
+          h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: $header-color;
+          }
+
+          p {
+            color: $content-color;
           }
         }
       }
-      .food-body {
-        margin-left: 10px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        .food-content {
-          text-align: left;
-          p {
-            font-size: 0.6em;
-          }
-          .description {
-            display: none;
-          }
+
+      @include xs {
+        grid-template-columns: repeat(1, 1fr);
+      }
+      @include sm {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      @include md {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      @include lg {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      @include el {
+        width: $el-width;
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      @mixin grid-layout {
+        @include xs {
+          @content;
         }
-        .order-buttons {
-          width: 100%;
-          display: flex;
-          .btn {
-            margin-right: 10px;
-          }
+        @include sm {
+          @content;
         }
+        @include md {
+          @content;
+        }
+        @include lg {
+          @content;
+        }
+      }
+
+      @include grid-layout {
       }
     }
   }
 
-  @include grid-layout {
-    .food-item {
-      .food-image {
-        position: relative;
-        &::after {
-          content: "";
-          display: block;
-          padding-top: 100%;
-        }
-        .food-image-content {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          img {
-            width: 100%;
-            height: 100%;
-          }
-        }
-      }
-      .order-buttons {
-        width: 100%;
-        display: inline-block;
-        .btn {
-          margin-right: 10px;
-        }
-      }
+  .category-button-wrapper {
+    padding-top: 3rem;
+    button {
+      border-radius: 3rem;
+      padding: 1rem 3rem;
+      font-size: 1.5rem;
     }
+  }
+
+  section.how-to-order {
+    background: white;
   }
 }

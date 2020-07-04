@@ -1,7 +1,8 @@
 <template>
   <div class="main-container">
     <header>
-      <my-header class="my-header" />
+      <my-header />
+      <div :class="{'keep-header-space': !landingPage}"></div>
     </header>
 
     <main>
@@ -11,30 +12,40 @@
     </main>
 
     <footer>
-      <my-footer class="footer wrapper" />
+      <my-footer class="wrapper" />
     </footer>
+
+    <account-modal></account-modal>
   </div>
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapMutations, mapState } from "vuex";
 import MyHeader from "@/components/Header";
 import MyFooter from "@/components/Footer";
+import AccountModal from "@/components/AccountModal";
 
 export default {
   name: "MainLayout",
   components: {
     MyHeader,
-    MyFooter
+    MyFooter,
+    AccountModal
+  },
+  computed: {
+    ...mapState("header", ["landingPage"])
   },
   created() {
-    window.addEventListener("scroll", this.scroll);
+    window.addEventListener("scroll", this.scrollHandler);
   },
   destroyed() {
-    window.removeEventListener("scroll", this.scroll);
+    window.removeEventListener("scroll", this.scrollHandler);
   },
   methods: {
-    ...mapMutations("header", ["scroll"])
+    ...mapMutations("header", ["scroll"]),
+    scrollHandler() {
+      this.scroll(window.scrollY === 0);
+    }
   }
 };
 </script>

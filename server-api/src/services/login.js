@@ -1,5 +1,5 @@
 import AccountRepo from '@repository/account'
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import JwtService from './jwt'
 
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET
@@ -14,8 +14,7 @@ const login = async (email, password, typeValidator) => {
     throw 'Unauthorized'
   }
   return JwtService.generateToken({
-    _id: account._id,
-    type: account.type
+    _id: account._id
   }, ACCESS_TOKEN_SECRET, CUSTOMER_TOKEN_ALIVE_TIME)
 }
 
@@ -25,7 +24,7 @@ const login = async (email, password, typeValidator) => {
  * @param {String} password 
  * @returns {String} token
  */
-const customerLogin = async (email, password) => {
+const customer = async (email, password) => {
   return login(email, password, account => account.type === 'customer')
 }
 
@@ -35,7 +34,7 @@ const customerLogin = async (email, password) => {
  * @param {String} password 
  * @returns {String} token
  */
-const adminLogin = async (email, password) => {
+const admin = async (email, password) => {
   return login(email, password, account => account.type === 'admin')
 }
 
@@ -45,12 +44,12 @@ const adminLogin = async (email, password) => {
  * @param {String} password 
  * @returns {String} token
  */
-const vendorLogin = async (email, password) => {
+const vendor = async (email, password) => {
   return login(email, password, account => account.type === 'vendor')
 }
 
 export default {
-  customerLogin,
-  adminLogin,
-  vendorLogin
+  customer,
+  admin,
+  vendor
 }

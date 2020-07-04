@@ -1,14 +1,6 @@
 /* ORDER IS IMPORTANT! */
 
-// Import bootstrap
-@import "bootstrap/scss/bootstrap";
-@import "bootstrap-vue/src/index.scss";
-
-// Reset css
-@import "reset/reset";
-@import "reset/reset-bootstrap";
-
-// Import variable, mixins
+// Import reset, colors, fonts, variables, mixins
 @import "base/index.scss";
 
 // Import component, layout and pages
