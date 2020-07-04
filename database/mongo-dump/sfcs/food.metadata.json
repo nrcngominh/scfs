@@ -1,1 +1,1 @@
-{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"sfcs.food"}],"uuid":"4ffc9226e98a48d18b1c599ed360e272"}
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"sfcs.food"}],"uuid":"7b8caf929d144071a132f655ccfd14dd"}
