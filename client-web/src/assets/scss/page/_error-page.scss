@@ -1,0 +1,63 @@
+.error-page {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 10rem;
+    
+    article.error-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        h1 {
+            font-family: $serif-font;
+            font-size: 15rem;
+            color: grey;
+        }
+        .error-content {
+            h2 {
+                font-size: 4rem;
+                margin-bottom: 2rem;
+            }
+            p {
+                margin-bottom: 2rem;
+                color : $primary-color;
+            }
+            button {
+                font-weight: 600;
+                padding: 1rem 2rem 1rem 2rem;
+            }
+        }
+        @include xs {
+            grid-template-columns: repeat(1, 1fr);
+          }
+          @include sm {
+            grid-template-columns: repeat(1, 1fr);
+          }
+          @include md {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          @include lg {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          @include el {
+            width: $el-width;
+            grid-template-columns: repeat(2, 1fr);
+          }
+        @mixin grid-layout {
+            @include xs {
+              @content;
+            }
+            @include sm {
+              @content;
+            }
+            @include md {
+              @content;
+            }
+            @include lg {
+              @content;
+            }
+          }
+    
+          @include grid-layout {
+          }
+    }
+}

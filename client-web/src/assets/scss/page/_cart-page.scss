@@ -69,11 +69,13 @@
         }
       }
       .remove-button {
-        background: none;
-        padding: 0;
+        background: black;
+        border-radius: 0;
+        padding: 0.2rem 0.2rem 0 0.2rem;
         img {
-          height: 1rem;
-          filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+          height: 0.9rem;
+          filter: invert(1);
+          justify-content: center;
         }
       }
     }
@@ -111,9 +113,14 @@
         }
 
         .remove-button {
+          background: black;
+          border-radius: 0;
+          padding: 0.1rem 0.1rem 0 0.1rem;
+          position: relative;
+          margin-right: 1rem;
           img {
-            height: 0.8rem;
-            filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+            height: 0.6rem;
+            filter: invert(1);
           }
         }
       }

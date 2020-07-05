@@ -33,7 +33,42 @@
     </section>
 
     <section class="how-to-order">
-      <div class="wrapper">HOW TO ORDER</div>
+      <article class="wrapper">
+        <h2>
+        HOW TO ORDER
+        </h2>
+        <p>Follow the Steps</p>
+        <article class="wrapper-container">
+          <div class="wrapper-content">
+            <div class="logo-content">
+              <img src="@/assets/images/momo.png" alt="momo" />
+            </div>
+            <div class="number-content">1</div>
+            <div class="">Choose your location</div>
+          </div>
+          <div class="wrapper-content">
+            <div class="logo-content">
+              <img src="@/assets/images/momo.png" alt="momo" />
+            </div>
+            <div class="number-content">1</div>
+            <div class="">Choose your location</div>
+          </div>
+          <div class="wrapper-content">
+            <div class="logo-content">
+              <img src="@/assets/images/momo.png" alt="momo" />
+            </div>
+            <div class="number-content">1</div>
+            <div class="">Choose your location</div>
+          </div>
+          <div class="wrapper-content">
+            <div class="logo-content">
+              <img src="@/assets/images/momo.png" alt="momo" />
+            </div>
+            <div class="number-content">1</div>
+            <div class="">Choose your location</div>
+          </div>
+        </article>
+      </article>
     </section>
   </div>
 </template>

@@ -8,7 +8,7 @@ import LandingPage from '@/pages/LandingPage'
 import CartPage from '@/pages/CartPage'
 import MenuPage from '@/pages/MenuPage'
 import PaymentPage from '@/pages/PaymentPage'
-
+import ErrorPage from '@/pages/ErrorPage'
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -52,6 +52,15 @@ const router = new VueRouter({
           component: PaymentPage,
           meta: {
             title: 'BK Food | Payment',
+            auth: true
+          }
+        },
+        {
+          path: 'error',
+          name: 'Error Page',
+          component: ErrorPage,
+          meta: {
+            title: 'BK Food | Error',
             auth: true
           }
         }
