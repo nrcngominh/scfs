@@ -50,7 +50,6 @@ export default {
       setSubTotal(state)
     },
     increaseQuantitySync(state, item) {
-      console.log(item)
       increaseQuantity(item)
       setSubTotal(state)
     },
