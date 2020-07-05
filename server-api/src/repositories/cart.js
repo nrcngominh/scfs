@@ -1,4 +1,4 @@
-import CartModel from '@model/cart'
+import CartModel from '@/models/cart'
 
 /**
  * Create cart by customer ID
@@ -7,7 +7,7 @@ import CartModel from '@model/cart'
 const create = (customerId) => {
   return CartModel.create({
     customerId: customerId,
-    items: null
+    items: []
   })
 }
 

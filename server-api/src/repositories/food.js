@@ -1,4 +1,4 @@
-import FoodModel from '@model/food'
+import FoodModel from '@/models/food'
 
 const findAll = () => {
   return FoodModel.find()

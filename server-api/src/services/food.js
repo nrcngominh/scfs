@@ -1,4 +1,4 @@
-import FoodRepo from '@repository/food'
+import FoodRepo from '@/repositories/food'
 
 /**
  * Get all foods

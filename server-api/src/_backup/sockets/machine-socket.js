@@ -1,4 +1,4 @@
-import PaymentService from '@service/payment'
+import PaymentService from '@/services/payment'
 import axios from '../_backup/customer/node_modules/axios'
 
 const setMachineListener = (io, socket) => {

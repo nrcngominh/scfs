@@ -1,5 +1,5 @@
-import AuthenticationService from '@service/authentication'
-import AuthorizationService from '@service/authorization'
+import AuthenticationService from '@/services/authentication'
+import AuthorizationService from '@/services/authorization'
 
 const auth = async (req, res, next, authorizeMethod) => {
   try {

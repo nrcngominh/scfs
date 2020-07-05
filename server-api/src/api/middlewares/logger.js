@@ -1,9 +1,10 @@
-import Router from 'express'
-import MomoController from '@controller/momo'
-
-const MomoRouter = Router()
-
-MomoRouter.post('*', (req, res, next) => {
+/**
+ * Log middleware
+ * @param {import("express").Request} req 
+ * @param {import("express").Response} res 
+ * @param {import("express").NextFunction} next
+ */
+const log = async (req, res, next) => {
   console.log()
   console.log(new Date().toISOString()
     .replace(/T/, ' ')
@@ -19,9 +20,8 @@ MomoRouter.post('*', (req, res, next) => {
   }
   console.log()
   next();
-})
+}
 
-MomoRouter.post('/notify/qr', MomoController.notifyQrCode)
-
-export default MomoRouter
-
+export default {
+  log
+}

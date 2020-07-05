@@ -1,5 +1,5 @@
 import Router from 'express'
-import PayController from '@controller/pay'
+import PayController from '@/api/controllers/pay'
 
 const PayRouter = Router()
 

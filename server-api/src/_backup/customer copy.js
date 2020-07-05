@@ -1,5 +1,5 @@
 import Router from 'express'
-import FoodController from '@controller/food'
+import FoodController from '@/api/controllers/food'
 import AccountController from '@/api/controllers/login'
 
 const CustomerRouter = Router()

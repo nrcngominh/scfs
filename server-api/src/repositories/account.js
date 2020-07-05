@@ -1,4 +1,4 @@
-import AccountModel from '@model/account'
+import AccountModel from '@/models/account'
 
 const createAccount = (email, password, fullName, phoneNumber, type) => {
   return AccountModel.create({
@@ -18,7 +18,7 @@ const createAccount = (email, password, fullName, phoneNumber, type) => {
  * @param {Number} phoneNumber 
  */
 const createCustomer = (email, password, fullName, phoneNumber) => {
-  createAccount(email, password, fullName, phoneNumber, 'customer')
+  return createAccount(email, password, fullName, phoneNumber, 'customer')
 }
 
 /**

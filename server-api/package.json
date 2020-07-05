@@ -34,15 +34,7 @@
     "lint": "eslint src --fix"
   },
   "_moduleAliases": {
-    "@": "src",
-    "@router": "src/api/routers",
-    "@middleware": "src/api/middlewares",
-    "@validator": "src/api/validators",
-    "@controller": "src/api/controllers",
-    "@service": "src/services",
-    "@repository": "src/repositories",
-    "@model": "src/models",
-    "@socket": "src/sockets"
+    "@": "src"
   },
   "author": "NRC",
   "license": "ISC"

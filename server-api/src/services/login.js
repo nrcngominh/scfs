@@ -1,4 +1,4 @@
-import AccountRepo from '@repository/account'
+import AccountRepo from '@/repositories/account'
 import bcrypt from 'bcryptjs';
 import JwtService from './jwt'
 

@@ -1,4 +1,4 @@
-import MomoService from '@service/momo'
+import MomoService from '@/services/momo'
 
 /**
  * Handle QR Code pay

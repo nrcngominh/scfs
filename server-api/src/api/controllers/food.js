@@ -1,4 +1,4 @@
-import FoodService from '@service/food'
+import FoodService from '@/services/food'
 
 /**
  * Get all foods

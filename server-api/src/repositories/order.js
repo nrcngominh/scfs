@@ -1,4 +1,4 @@
-import OrderModel from '@model/order'
+import OrderModel from '@/models/order'
 
 /**
  * Create new order

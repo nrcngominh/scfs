@@ -1,5 +1,5 @@
 import Router from 'express'
-import CategoryController from '@controller/category'
+import CategoryController from '@/api/controllers/category'
 
 const CategoryRouter = Router()
 
