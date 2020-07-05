@@ -63,7 +63,7 @@
           <p>Bill ID: {{billId}}</p>
           <p>Open MOMO app on the mobile and scan this QR Code</p>
           <div class="qr-code-content">
-            <img src="@/assets/images/qr-code.png" alt="qr" />
+            <qr-code :text="qrCode"></qr-code>
           </div>
         </article>
       </div>

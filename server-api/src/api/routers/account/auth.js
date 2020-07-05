@@ -6,5 +6,6 @@ const AuthRouter = Router()
 
 AuthRouter.post('/customer', AuthMiddleware.customer, AuthController.auth)
 
+AuthRouter.post('/customer/google', AuthController.authGoogle)
 
 export default AuthRouter

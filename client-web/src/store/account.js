@@ -13,7 +13,7 @@ export default {
   },
   actions: {
     async login({ commit }, loginData) {
-      AccountService.login(loginData)
+      await AccountService.login(loginData)
       commit('login')
     },
     async auth({ commit }) {

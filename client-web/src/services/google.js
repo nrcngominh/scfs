@@ -1,8 +1,11 @@
 import QueryString from 'query-string';
+import { authGoogle } from '@/api/auth'
+import Vue from 'vue'
+import axios from 'axios'
 
 const stringifiedParams = QueryString.stringify({
   client_id: process.env.VUE_APP_GOOGLE_CLIENT_ID,
-  redirect_uri: 'http://richardpc.com/auth/google',
+  redirect_uri: process.env.VUE_APP_GOOGLE_REDIRECT_URI,
   scope: [
     'https://www.googleapis.com/auth/userinfo.email',
     'https://www.googleapis.com/auth/userinfo.profile',
@@ -14,6 +17,13 @@ const stringifiedParams = QueryString.stringify({
 
 const googleLoginUrl = `https://accounts.google.com/o/oauth2/v2/auth?${stringifiedParams}`;
 
+const loginGoogle = async (code) => {
+  const data = await authGoogle(code)
+  Vue.$cookies.set('accessToken', data.accessToken)
+  axios.defaults.headers['x-access-token'] = data.accessToken
+}
+
 export default {
-  googleLoginUrl
+  googleLoginUrl,
+  loginGoogle
 }

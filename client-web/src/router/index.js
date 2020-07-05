@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import axios from 'axios'
 import store from '@/store'
+import GoogleService from '@/services/google'
 
 import MainLayout from '@/layouts/MainLayout'
 import LandingPage from '@/pages/LandingPage'
@@ -59,7 +60,8 @@ const router = new VueRouter({
     },
     {
       path: '/auth/google',
-      beforeEnter: (to, from, next) => {
+      beforeEnter: async (to, from, next) => {
+        await GoogleService.loginGoogle(to.query.code)
         next('/')
       }
     }

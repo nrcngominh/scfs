@@ -34,6 +34,7 @@ const auth = async (req, res, next, authorizeMethod) => {
  * @param {import("express").NextFunction} next
  */
 const customer = async (req, res, next) => {
+  console.log(req.body)
   auth(req, res, next, AuthorizationService.customer)
 }
 
