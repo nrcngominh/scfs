@@ -26,6 +26,7 @@ services:
       - ${DOCKER_IMAGES}:/data/images
     environment:
       - VUE_APP_DOMAIN=${HOST}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
     ports:
       - "4430:80"
     depends_on:

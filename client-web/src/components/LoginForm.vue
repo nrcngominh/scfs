@@ -25,15 +25,28 @@
     <div class="button-wrapper">
       <button @click="performLogin()" class="login-button">Login</button>
     </div>
+
+    <div class="connect-with">
+      <div>or connect with</div>
+    </div>
+
+    <div class="connect-with-logo">
+      <div @click="loginWithGoogle()">
+        <img src="@/assets/images/google.png" alt="google" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import Google from "@/services/google";
+
 import { mapMutations, mapActions } from "vuex";
 export default {
   name: "LoginForm",
   data() {
     return {
+      googleLoginUrl: Google.googleLoginUrl,
       email: "",
       password: ""
     };
@@ -47,6 +60,9 @@ export default {
         password: this.password
       });
       this.close();
+    },
+    loginWithGoogle() {
+      window.location = this.googleLoginUrl;
     }
   }
 };

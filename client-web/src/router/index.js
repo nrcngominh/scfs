@@ -56,6 +56,12 @@ const router = new VueRouter({
           }
         }
       ]
+    },
+    {
+      path: '/auth/google',
+      beforeEnter: (to, from, next) => {
+        next('/')
+      }
     }
   ],
   scrollBehavior() {

@@ -40,6 +40,7 @@ services:
       - ./client-web/src:/app/src
     environment:
       - VUE_APP_DOMAIN=${HOST}
+      - VUE_APP_GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
     ports:
       - "${PUBLIC_CLIENT_WEB_PORT}:8080"
     depends_on:
