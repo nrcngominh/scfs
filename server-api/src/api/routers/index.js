@@ -8,6 +8,7 @@ import LoginRouter from './account/login'
 import AuthRouter from './account/auth'
 import FoodRouter from './food/food'
 import CategoryRouter from './food/category'
+import CouponRouter from './coupon'
 import BadRequestController from '@/api/controllers/bad-request'
 
 const BaseRouter = Router()
@@ -22,6 +23,7 @@ BaseRouter.use('/api/auth', AuthRouter)
 
 BaseRouter.use('/api/food', FoodRouter)
 BaseRouter.use('/api/category', CategoryRouter)
+BaseRouter.use('/api/coupon', CouponRouter)
 
 BaseRouter.use('/api/momo', MomoRouter)
 

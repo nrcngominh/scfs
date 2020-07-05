@@ -43,9 +43,11 @@
             <div>{{subTotal}}</div>
             <div class="row-header">COUPON</div>
             <div class="coupon">
-              <input type="text" />
-              <button>Apply</button>
+              <input type="text" v-model="coupon" />
+              <button @click="applyCoupon()">Apply</button>
             </div>
+            <div class="row-header">DISCOUNT</div>
+            <div>{{discount}}</div>
             <div class="row-header">TOTAL</div>
             <div>{{total}}</div>
           </div>
@@ -61,17 +63,20 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
+import { mapFields } from "vuex-map-fields";
 
 export default {
   name: "CartPage",
   computed: {
-    ...mapState("cart", ["cart", "subTotal", "total"])
+    ...mapState("cart", ["cart", "discount", "subTotal", "total"]),
+    ...mapFields("cart", ["coupon"])
   },
   methods: {
     ...mapActions("cart", [
       "removeFromCart",
       "increaseQuantity",
-      "decreaseQuantity"
+      "decreaseQuantity",
+      "applyCoupon"
     ]),
     goToPayment() {
       this.$router.push("/payment");

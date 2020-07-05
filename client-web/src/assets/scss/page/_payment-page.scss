@@ -91,11 +91,13 @@
         margin-bottom: 0.5rem;
       }
       .qr-code-content {
-        text-align: center;
         img {
           width: 20rem;
           height: 20rem;
         }
+      }
+      &.hidden {
+        display: none;
       }
     }
 

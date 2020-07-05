@@ -1,4 +1,7 @@
+import { getField, updateField } from 'vuex-map-fields'
 import { getCart, updateCart } from '@/api/cart'
+import { payQrCode } from '@/api/pay'
+import CouponService from '@/services/coupon'
 
 const increaseQuantity = (item) => {
   item.quantity++;
@@ -24,8 +27,18 @@ const addFoodToCart = (cart, food) => {
     })
 }
 
-const setSubTotal = (state) => {
+const setMoney = (state) => {
   state.subTotal = state.cart.reduce((a, b) => a + b.subTotal, 0)
+  const discountValue = Number(state.discount)
+  if (discountValue) {
+    state.total = state.subTotal - discountValue
+    return
+  }
+  const discountPercent = Number(state.discount.slice(0, -1))
+  if (discountPercent) {
+    state.total = state.subTotal * (100 - discountPercent) / 100.0
+    return
+  }
   state.total = state.subTotal
 }
 
@@ -34,28 +47,49 @@ export default {
   state: {
     cart: [],
     subTotal: 0,
+    couponId: "",
+    coupon: "",
+    discount: '',
+    billId: "",
+    qrCode: "",
+    pendingQrCode: false,
     total: 0
   },
+  getters: {
+    getField
+  },
   mutations: {
+    updateField,
     setCart(state, cart) {
       state.cart = cart
-      setSubTotal(state)
+      setMoney(state)
     },
     addToCartSync(state, food) {
       addFoodToCart(state.cart, food)
-      setSubTotal(state)
+      setMoney(state)
     },
     removeFromCartSync(state, itemToRemove) {
       state.cart = state.cart.filter(item => item !== itemToRemove)
-      setSubTotal(state)
+      setMoney(state)
     },
     increaseQuantitySync(state, item) {
       increaseQuantity(item)
-      setSubTotal(state)
+      setMoney(state)
     },
     decreaseQuantitySync(state, item) {
       decreaseQuantity(item)
-      setSubTotal(state)
+      setMoney(state)
+    },
+    applyCouponSync(state, coupon) {
+      state.discount = coupon.discount
+      state.couponId = coupon._id
+      console.log(state)
+      setMoney(state)
+    },
+    waitForPayment(state, payload) {
+      state.billId = payload.billId
+      state.qrCode = payload.qrCode
+      state.pendingQrCode = true
     }
   },
   actions: {
@@ -81,6 +115,16 @@ export default {
     async decreaseQuantity({ commit, state }, food) {
       commit('decreaseQuantitySync', food)
       await updateCart(state.cart)
+    },
+    async applyCoupon({ commit, state }) {
+      const couponObject = await CouponService.check(state.coupon)
+      if (couponObject) {
+        commit('applyCouponSync', couponObject)
+      }
+    },
+    async payQr({ commit, state }) {
+      const resData = await payQrCode(state.cart, state.couponId)
+      commit("waitForPayment", resData)
     }
   }
 }

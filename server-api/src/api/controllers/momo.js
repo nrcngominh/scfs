@@ -7,7 +7,7 @@ import MomoService from '@/services/momo'
  */
 const notifyQr = (req, res) => {
   try {
-    const resData = MomoService.notifyQrCode(req.body)
+    const resData = MomoService.notifyQrCodeReponse(req.body)
     res.status(200).send(resData)
   }
   catch (error) {

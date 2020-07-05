@@ -6,8 +6,13 @@ import MomoService from '@/services/momo'
  * @param {import("express").Response} res 
  */
 const qrCode = (req, res) => {
-  const rawQrCode = MomoService.payQrCode(req.body.amount, req.body.billId)
-  res.status(201).send(rawQrCode)
+  console.log(req.body)
+  const billId = "B123456"
+  const rawQrCode = MomoService.generatePayQrCode(10000, billId)
+  res.status(201).send({
+    billId: billId,
+    qrCode: rawQrCode
+  })
 }
 
 /**

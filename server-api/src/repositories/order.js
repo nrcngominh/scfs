@@ -23,24 +23,13 @@ const findByBillId = (billId) => {
  * @param {String} accountId 
  */
 const findByAccountId = (accountId) => {
-  console.log(accountId)
   return OrderModel.find({
     accountId: accountId
-  })
-}
-
-const updatePaidByBillId = (billId) => {
-  return OrderModel.updateOne({
-    billId: billId
-  }, {
-    hasPaid: true,
-    hasServed: false
   })
 }
 
 export default {
   create,
   findByBillId,
-  findByAccountId,
-  updatePaidByBillId
+  findByAccountId
 }

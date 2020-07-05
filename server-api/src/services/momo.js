@@ -19,7 +19,7 @@ const rawQrCodeGenerator = (amount, billId, signature) => {
   return `${MOMO_PAY_DOMAIN}/pay/store/${MOMO_STORE_SLUG}?a=${amount}&b=${billId}&s=${signature}`
 }
 
-const payQrCode = (amount, billId) => {
+const generatePayQrCode = (amount, billId) => {
   const signature = hashPayQrCode(amount, billId)
 
   return rawQrCodeGenerator(amount, billId, signature)
@@ -30,7 +30,7 @@ const hashNotifyResponse = (amount, message, momoTransId, partnerRefId, status) 
   return hash(data)
 }
 
-const notifyQrCode = (data) => {
+const notifyQrCodeReponse = (data) => {
   const status = 0
   const message = "Thành công"
   const amount = data.amount
@@ -51,6 +51,6 @@ const notifyQrCode = (data) => {
 }
 
 export default {
-  notifyQrCode,
-  payQrCode
+  notifyQrCodeReponse,
+  generatePayQrCode
 }

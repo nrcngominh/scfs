@@ -1,6 +1,5 @@
 import AccountModal from './account-modal'
-import { login } from '@/services/account'
-import { auth } from '@/services/account'
+import AccountService from '@/services/account'
 
 export default {
   namespaced: true,
@@ -14,11 +13,11 @@ export default {
   },
   actions: {
     async login({ commit }, loginData) {
-      login(loginData)
+      AccountService.login(loginData)
       commit('login')
     },
     async auth({ commit }) {
-      if (await auth()) {
+      if (await AccountService.auth()) {
         commit('login')
       }
     }

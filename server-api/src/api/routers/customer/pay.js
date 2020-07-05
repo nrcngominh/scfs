@@ -7,4 +7,3 @@ PayRouter.post('/qr', PayController.qrCode)
 PayRouter.post('/app', PayController.app)
 
 export default PayRouter
-

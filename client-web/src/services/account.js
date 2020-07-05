@@ -19,7 +19,7 @@ const auth = async () => {
   }
 }
 
-export {
+export default {
   login,
   auth
 }

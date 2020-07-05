@@ -26,9 +26,9 @@
 
           <div class="order-info-container total">
             <div>
-              <h4>COUPON</h4>
+              <h4>DISCOUNT</h4>
             </div>
-            <div class="coupon-code">-0</div>
+            <div class="coupon-code">{{discount}}</div>
           </div>
 
           <div class="order-info-container total">
@@ -55,12 +55,12 @@
             </div>
           </div>
 
-          <button>PLACE ORDER</button>
+          <button @click="payQr()">PLACE ORDER</button>
         </article>
 
-        <article class="qr-code-wrapper">
+        <article class="qr-code-wrapper" :class="{hidden: !pendingQrCode}">
           <h3>Scan To Pay</h3>
-          <p>Bill ID: 0000123002</p>
+          <p>Bill ID: {{billId}}</p>
           <p>Open MOMO app on the mobile and scan this QR Code</p>
           <div class="qr-code-content">
             <img src="@/assets/images/qr-code.png" alt="qr" />
@@ -72,12 +72,23 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "PaymentPage",
   computed: {
-    ...mapState("cart", ["cart", "subTotal", "total"])
+    ...mapState("cart", [
+      "cart",
+      "subTotal",
+      "total",
+      "discount",
+      "pendingQrCode",
+      "billId",
+      "qrCode"
+    ])
+  },
+  methods: {
+    ...mapActions("cart", ["payQr"])
   }
 };
 </script>
