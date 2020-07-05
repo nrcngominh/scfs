@@ -17,7 +17,15 @@
             <p>{{item.food.name}}</p>
           </div>
           <div class="price">{{item.food.price}}</div>
-          <div class="quantity">{{item.quantity}}</div>
+          <div class="quantity">
+            <div class="quantity-wrapper">
+              <button>-</button>
+              <div>
+                <input :value="item.quantity" type="text"> 
+              </div>
+              <button>+</button>
+            </div>
+          </div>
           <div class="subtotal">{{item.food.subTotal}}</div>
           <div class="remove">
             <button class="remove-button">
