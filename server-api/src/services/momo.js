@@ -26,8 +26,7 @@ const payQrCode = (amount, billId) => {
 }
 
 const hashNotifyResponse = (amount, message, momoTransId, partnerRefId, status) => {
-  const data = `amount=${amount}&message=${message}&momoTransId=${momoTransId}`
-    + `&partnerRefId=${partnerRefId}&status=${status}`
+  const data = `amount=${amount}&message=${message}&momoTransId=${momoTransId}&partnerRefId=${partnerRefId}&status=${status}`
   return hash(data)
 }
 
