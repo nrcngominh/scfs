@@ -19,16 +19,16 @@
           <div class="price">{{item.food.price}}</div>
           <div class="quantity">
             <div class="quantity-wrapper">
-              <button>-</button>
+              <button @click="decreaseQuantity(item)">-</button>
               <div>
-                <input :value="item.quantity" type="text"> 
+                <input :value="item.quantity" type="number" min="1" />
               </div>
-              <button>+</button>
+              <button @click="increaseQuantity(item)">+</button>
             </div>
           </div>
-          <div class="subtotal">{{item.food.subTotal}}</div>
+          <div class="subtotal">{{item.subTotal}}</div>
           <div class="remove">
-            <button class="remove-button">
+            <button class="remove-button" @click="removeFromCart(item)">
               <img src="@/assets/images/close-modal.svg" alt="remove" />
             </button>
           </div>
@@ -40,18 +40,18 @@
         <div class="total-wrapper">
           <div class="total-grid-container">
             <div class="row-header">SUBTOTAL</div>
-            <div>10000</div>
+            <div>{{subTotal}}</div>
             <div class="row-header">COUPON</div>
             <div class="coupon">
               <input type="text" />
               <button>Apply</button>
             </div>
             <div class="row-header">TOTAL</div>
-            <div>10000</div>
+            <div>{{total}}</div>
           </div>
 
           <div>
-            <button class="checkout">CHECKOUT</button>
+            <button @click="goToPayment()" class="checkout">CHECKOUT</button>
           </div>
         </div>
       </article>
@@ -60,12 +60,22 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "CartPage",
   computed: {
-    ...mapState("cart", ["cart"])
+    ...mapState("cart", ["cart", "subTotal", "total"])
+  },
+  methods: {
+    ...mapActions("cart", [
+      "removeFromCart",
+      "increaseQuantity",
+      "decreaseQuantity"
+    ]),
+    goToPayment() {
+      this.$router.push("/payment");
+    }
   }
 };
 </script>

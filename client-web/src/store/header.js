@@ -31,6 +31,10 @@ export default {
     toggleDropdown(state) {
       state.dropdown = !state.dropdown
       refresh(state)
+    },
+    closeDropdown(state) {
+      state.dropdown = false
+      refresh(state)
     }
   }
 }

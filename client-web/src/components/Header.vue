@@ -5,21 +5,25 @@
   >
     <div class="header-wrapper">
       <div class="header-content wrapper">
-        <nav class="nav-left">
-          <div class="toggle-button" @click="toggleDropdown()">
+        <div class="toggle-button-wrapper">
+          <div class="toggle-button" id="nav-toggle-button" @click="toggleDropdown()">
             <img :src="menuButtonUrl" alt="Logo" />
           </div>
+        </div>
 
+        <div class="logo-wrapper">
           <div class="logo" @click="goToHome()">
             <img :src="logoUrl" alt="Logo" />
           </div>
+        </div>
 
-          <ul class="nav-tab">
-            <li>
-              <div @click="goToHome()">HOME</div>
+        <nav class="nav-left" :class="{'nav-dropdown': dropdown}">
+          <ul class="nav-tab" id="nav-dropdown">
+            <li @click="goToHome()">
+              <div>HOME</div>
             </li>
-            <li>
-              <div @click="goToMenu()">MENU</div>
+            <li @click="goToMenu()">
+              <div>MENU</div>
             </li>
             <li>
               <div>ABOUT</div>
@@ -44,30 +48,10 @@
           </ul>
 
           <ul class="nav-login-register" :class="{'hidden': loggedIn}">
-            <li>
-              <div class="register" @click="register()">REGISTER</div>
-            </li>
-            <li>
-              <div class="login" @click="login()">LOGIN</div>
-            </li>
+            <li @click="register()">REGISTER</li>
+            <li class="login" @click="login()">LOGIN</li>
           </ul>
         </nav>
-      </div>
-    </div>
-
-    <div class="dropdown-wrapper">
-      <div class="nav-dropdown" :class="{'active': dropdown}">
-        <ul>
-          <li>
-            <div @click="goToHome()">HOME</div>
-          </li>
-          <li>
-            <div @click="goToMenu()">MENU</div>
-          </li>
-          <li>
-            <div>ABOUT</div>
-          </li>
-        </ul>
       </div>
     </div>
   </div>
@@ -78,6 +62,11 @@ import { mapState, mapMutations } from "vuex";
 
 export default {
   name: "Header",
+  data() {
+    return {
+      openingDropdown: false
+    };
+  },
   computed: {
     isTop() {
       return window.scrollY === 0;
@@ -98,7 +87,7 @@ export default {
   },
   methods: {
     ...mapMutations("account/modal", ["openRegisterTab", "openLoginTab"]),
-    ...mapMutations("header", ["toggleDropdown"]),
+    ...mapMutations("header", ["toggleDropdown", "closeDropdown"]),
     // Router
     goToHome() {
       this.$router.push("/");
@@ -115,6 +104,18 @@ export default {
     login() {
       this.openLoginTab();
     }
+  },
+  beforeCreate() {
+    window.addEventListener("click", e => {
+      const headerContainer = document.getElementById("nav-dropdown");
+      const toggleButton = document.getElementById("nav-toggle-button");
+      if (
+        !toggleButton.contains(e.target) &&
+        !headerContainer.contains(e.target)
+      ) {
+        this.closeDropdown();
+      }
+    });
   }
 };
 </script>

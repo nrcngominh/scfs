@@ -12,30 +12,30 @@
             <div>SUBTOTAL</div>
           </div>
 
-          <div class="order-info-container item" v-for="item in arr" :key="item">
-            <div class="order-info-content">Bánh mì x 4</div>
-            <div class="order-info-subtotal">40.000</div>
+          <div class="order-info-container item" v-for="item in cart" :key="item.food._id">
+            <div class="order-info-content">{{item.quantity}} X {{item.food.name}}</div>
+            <div class="order-info-subtotal">{{item.subTotal}}</div>
           </div>
 
           <div class="order-info-container total">
             <div>
               <h4>SUBTOTAL</h4>
             </div>
-            <div class="subtotal">160.000</div>
+            <div class="subtotal">{{subTotal}}</div>
           </div>
 
           <div class="order-info-container total">
             <div>
               <h4>COUPON</h4>
             </div>
-            <div class="coupon-code">-10.000</div>
+            <div class="coupon-code">-0</div>
           </div>
 
           <div class="order-info-container total">
             <div>
               <h4>TOTAL</h4>
             </div>
-            <div class="total">150.000</div>
+            <div class="total">{{total}}</div>
           </div>
         </div>
       </article>
@@ -72,12 +72,12 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "PaymentPage",
-  data() {
-    return {
-      arr: [1, 2, 3, 4]
-    };
+  computed: {
+    ...mapState("cart", ["cart", "subTotal", "total"])
   }
 };
 </script>

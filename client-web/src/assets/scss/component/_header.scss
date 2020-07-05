@@ -1,12 +1,10 @@
 .header-container {
 	z-index: 15;
 	font-family: $modern-font;
-	height: $nav-bar-height;
 	position: fixed;
 	width: 100%;
 
 	.header-wrapper {
-		height: 100%;
 		display: flex;
 		align-items: center;
 		transition: background 0.2s ease;
@@ -38,9 +36,28 @@
 	}
 
 	.header-content {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
+		display: grid;
+		grid-template-columns: auto 1fr auto;
+		grid-template-areas: "logo nav-tab nav-icon";
+
+		.toggle-button-wrapper {
+			grid-area: toggle-button;
+
+			display: none;
+		}
+
+		.logo-wrapper {
+			grid-area: logo;
+			display: flex;
+			align-items: center;
+			.logo {
+				margin-right: 1.6rem;
+				cursor: pointer;
+				img {
+					height: 2.2rem;
+				}
+			}
+		}
 
 		nav {
 			display: flex;
@@ -52,54 +69,22 @@
 		}
 
 		.nav-left {
-			.logo {
-				margin-right: 1.6rem;
-				cursor: pointer;
-				img {
-					height: 2.2rem;
-				}
-			}
-
-			.toggle-button {
-				display: flex;
-				align-items: center;
-				margin-right: 0.8rem;
-				cursor: pointer;
-				img {
-					height: 1.8rem;
-					width: 1.8rem;
-				}
-				display: none;
-				@include xs {
-					display: inherit;
-				}
-				@include sm {
-					display: inherit;
-				}
-			}
-
+			grid-area: nav-tab;
 			.nav-tab {
 				li {
 					font-weight: 0.8rem;
-					padding: 0 1.6rem;
+					margin: 0 1.6rem;
 					height: 100%;
 					display: flex;
 					align-items: center;
 					cursor: pointer;
-					div {
-						font-size: 1.2rem;
-					}
-				}
-				@include xs {
-					display: none;
-				}
-				@include sm {
-					display: none;
+					font-size: 1.2rem;
 				}
 			}
 		}
 
 		.nav-right {
+			grid-area: nav-icon;
 			.nav-icon {
 				li {
 					display: flex;
@@ -120,40 +105,76 @@
 					display: none;
 				}
 				li {
-					> div {
-						cursor: pointer;
-					}
-					.login {
+					cursor: pointer;
+					&.login {
 						margin-left: 2.5rem;
 					}
 				}
 			}
 		}
-	}
 
-	.nav-dropdown {
-		display: none;
-		color: white;
-		width: 100%;
-		background-color: rgb(41, 41, 41);
-
-		ul {
-			li {
-				padding: 1rem 1.6rem;
-				cursor: pointer;
-				&:hover {
-					background: gray;
-				}
+		@mixin mobile {
+			@include xs {
+				@content;
+			}
+			@include sm {
+				@content;
 			}
 		}
 
-		&.active {
-			@include xs {
-				display: inherit;
+		@include mobile {
+			grid-template-columns: auto 1fr auto;
+			grid-template-areas:
+				"toggle-button logo nav-icon"
+				"nav-tab nav-tab nav-tab";
+
+			.toggle-button-wrapper {
+				display: flex;
+				align-items: center;
+
+				.toggle-button {
+					margin-right: 0.8rem;
+					cursor: pointer;
+					img {
+						height: 1.8rem;
+						width: 1.8rem;
+					}
+				}
 			}
 
-			@include sm {
-				display: inherit;
+			.nav-left {
+				display: none;
+
+				&.nav-dropdown {
+					display: inherit;
+					margin-top: 1rem;
+					border-top: 1px solid rgb(158, 157, 157);
+
+					ul {
+						display: flex;
+						flex-direction: column;
+						align-items: flex-start;
+						margin-top: 1rem;
+						li {
+							width: 100%;
+							cursor: pointer;
+							margin: 1rem 0 0;
+						}
+						:first-child {
+							margin-top: 0;
+						}
+					}
+
+					&.active {
+						@include xs {
+							display: inherit;
+						}
+
+						@include sm {
+							display: inherit;
+						}
+					}
+				}
 			}
 		}
 	}

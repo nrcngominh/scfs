@@ -2,7 +2,6 @@
   font-family: $modern-font;
   display: flex;
   justify-content: center;
-
   > div {
     @include md {
       width: $md-width;
@@ -38,6 +37,7 @@
           font-size: 1.5rem;
           font-weight: bolder;
           padding-bottom: 0.8rem;
+          text-align: center;
         }
         p {
           font-size: 0.9rem;
