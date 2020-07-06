@@ -6,6 +6,8 @@ COPY . .
 
 RUN npm install
 
+RUN npm rebuild node-sass
+
 RUN npm run build
 
 FROM nginx:1.19 as production-stage
