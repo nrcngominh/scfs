@@ -35,24 +35,15 @@ export default {
     LoginForm,
     RegisterForm
   },
-  data() {
-    return {
-      loginData: {
-        email: "",
-        password: ""
-      },
-      registerData: {
-        email: "",
-        password: "",
-        confirmPassword: ""
-      }
-    };
-  },
   computed: {
-    ...mapState("account/modal", ["modalActive", "loginTab", "registerTab"])
+    ...mapState("customer/account/modal", [
+      "modalActive",
+      "loginTab",
+      "registerTab"
+    ])
   },
   methods: {
-    ...mapMutations("account/modal", [
+    ...mapMutations("customer/account/modal", [
       "close",
       "openLoginTab",
       "openRegisterTab"

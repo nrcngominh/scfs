@@ -1,18 +1,15 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import Header from './header'
-import Account from './account'
-import Food from './food'
-import Cart from './cart'
+import Customer from './customer'
+import Vendor from './vendor'
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
+  namspaced: true,
   modules: {
-    header: Header,
-    account: Account,
-    food: Food,
-    cart: Cart
+    customer: Customer,
+    vendor: Vendor
   }
 });
 

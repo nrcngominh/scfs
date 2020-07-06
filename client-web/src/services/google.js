@@ -1,7 +1,4 @@
 import QueryString from 'query-string';
-import { authGoogle } from '@/api/auth'
-import Vue from 'vue'
-import axios from 'axios'
 
 const stringifiedParams = QueryString.stringify({
   client_id: process.env.VUE_APP_GOOGLE_CLIENT_ID,
@@ -17,13 +14,6 @@ const stringifiedParams = QueryString.stringify({
 
 const googleLoginUrl = `https://accounts.google.com/o/oauth2/v2/auth?${stringifiedParams}`;
 
-const loginGoogle = async (code) => {
-  const data = await authGoogle(code)
-  Vue.$cookies.set('accessToken', data.accessToken)
-  axios.defaults.headers['x-access-token'] = data.accessToken
-}
-
 export default {
-  googleLoginUrl,
-  loginGoogle
+  googleLoginUrl
 }

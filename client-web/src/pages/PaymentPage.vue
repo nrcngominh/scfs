@@ -77,7 +77,7 @@ import { mapState, mapActions } from "vuex";
 export default {
   name: "PaymentPage",
   computed: {
-    ...mapState("cart", [
+    ...mapState("customer/cart", [
       "cart",
       "subTotal",
       "total",
@@ -88,7 +88,7 @@ export default {
     ])
   },
   methods: {
-    ...mapActions("cart", ["payQr"])
+    ...mapActions("customer/cart", ["payQr"])
   }
 };
 </script>

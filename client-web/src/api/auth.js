@@ -1,12 +1,23 @@
 import axios from 'axios'
 
-const authGoogle = async code => {
-  const res = await axios.post('/api/auth/customer/google', {
-    code: code
+const customerAuth = async () => {
+  return await axios.get('/api/auth/customer')
+}
+
+const vendorAuth = async () => {
+  return await axios.get('/api/auth/vendor')
+}
+
+const customerGoogleLoginAuth = async code => {
+  return await axios.get('/api/auth/customer/google', {
+    params: {
+      code: code
+    }
   })
-  return res.data
 }
 
 export {
-  authGoogle
+  customerAuth,
+  vendorAuth,
+  customerGoogleLoginAuth
 }

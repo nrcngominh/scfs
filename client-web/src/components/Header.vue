@@ -25,6 +25,9 @@
             <li @click="goToMenu()">
               <div>MENU</div>
             </li>
+            <li @click="goToVendor()">
+              <div>VENDOR</div>
+            </li>
             <li>
               <div>ABOUT</div>
             </li>
@@ -62,11 +65,6 @@ import { mapState, mapMutations } from "vuex";
 
 export default {
   name: "Header",
-  data() {
-    return {
-      openingDropdown: false
-    };
-  },
   computed: {
     isTop() {
       return window.scrollY === 0;
@@ -81,19 +79,25 @@ export default {
         ? require("@/assets/images/logo-white.png")
         : require("@/assets/images/logo.png");
     },
-    ...mapState("header", ["dropdown", "transparentNav"]),
-    ...mapState("account", ["loggedIn"]),
-    ...mapState("account/modal", ["modalActive"])
+    ...mapState("customer/header", ["dropdown", "transparentNav"]),
+    ...mapState("customer/account", ["loggedIn"]),
+    ...mapState("customer/account/modal", ["modalActive"])
   },
   methods: {
-    ...mapMutations("account/modal", ["openRegisterTab", "openLoginTab"]),
-    ...mapMutations("header", ["toggleDropdown", "closeDropdown"]),
+    ...mapMutations("customer/account/modal", [
+      "openRegisterTab",
+      "openLoginTab"
+    ]),
+    ...mapMutations("customer/header", ["toggleDropdown", "closeDropdown"]),
     // Router
     goToHome() {
       this.$router.push("/");
     },
     goToMenu() {
       this.$router.push("/menu");
+    },
+    goToVendor() {
+      this.$router.push("/vendor");
     },
     goToCart() {
       this.$router.push("/cart");

@@ -1,5 +1,5 @@
-import { getAllFoods } from '@/api/food'
-import { getAllCategories } from '@/api/category'
+import { getAllFoods } from '@/api/customer/food'
+import { getAllCategories } from '@/api/customer/category'
 import { getField, updateField } from 'vuex-map-fields'
 
 const filterCategory = (state, food) => {
@@ -61,8 +61,8 @@ export default {
   },
   actions: {
     async fetchAllFoods({ commit }) {
-      const allFoods = await getAllFoods()
-      const allCategories = await getAllCategories()
+      const allFoods = (await getAllFoods()).data
+      const allCategories = (await getAllCategories()).data
       allCategories.forEach(category => category.checked = true)
       commit('setAllFoods', allFoods)
       commit('setAllCategories', allCategories)

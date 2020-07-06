@@ -37,7 +37,7 @@
 
 <script>
 import { mapMutations } from "vuex";
-import { customerRegister } from "@/api/account";
+import { customerRegister } from "@/api/register";
 
 export default {
   name: "RegisterForm",
@@ -49,7 +49,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations("account/modal", ["close"]),
+    ...mapMutations("customer/account/modal", ["close"]),
     async performRegister() {
       await customerRegister({
         email: this.email,

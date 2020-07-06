@@ -88,14 +88,18 @@ import { mapFields } from "vuex-map-fields";
 export default {
   name: "MenuPage",
   computed: {
-    ...mapState("food", ["allCategories"]),
-    ...mapFields("food", ["searchPattern", "moneyMinValue", "moneyMaxValue"]),
-    ...mapGetters("food", ["getFoodsFiltered"])
+    ...mapState("customer/food", ["allCategories"]),
+    ...mapFields("customer/food", [
+      "searchPattern",
+      "moneyMinValue",
+      "moneyMaxValue"
+    ]),
+    ...mapGetters("customer/food", ["getFoodsFiltered"])
   },
   methods: {
-    ...mapMutations("food", ["setMoneyMinMax"]),
-    ...mapActions("food", ["fetchAllFoods"]),
-    ...mapActions("cart", ["addToCart"]),
+    ...mapMutations("customer/food", ["setMoneyMinMax"]),
+    ...mapActions("customer/food", ["fetchAllFoods"]),
+    ...mapActions("customer/cart", ["addToCart"]),
     addAndBuy(food) {
       this.addToCart(food);
       this.$router.push("/cart");

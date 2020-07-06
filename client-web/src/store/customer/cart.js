@@ -1,6 +1,6 @@
 import { getField, updateField } from 'vuex-map-fields'
-import { getCart, updateCart } from '@/api/cart'
-import { payQrCode } from '@/api/pay'
+import { getCart, updateCart } from '@/api/customer/cart'
+import { payQrCode } from '@/api/customer/pay'
 import CouponService from '@/services/coupon'
 
 const increaseQuantity = (item) => {
@@ -123,8 +123,8 @@ export default {
       }
     },
     async payQr({ commit, state }) {
-      const resData = await payQrCode(state.cart, state.couponId)
-      commit("waitForPayment", resData)
+      const res = await payQrCode(state.cart, state.couponId)
+      commit("waitForPayment", res.data)
     }
   }
 }

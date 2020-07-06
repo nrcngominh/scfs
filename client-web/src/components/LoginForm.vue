@@ -52,8 +52,8 @@ export default {
     };
   },
   methods: {
-    ...mapMutations("account/modal", ["close"]),
-    ...mapActions("account", ["login"]),
+    ...mapMutations("customer/account/modal", ["close"]),
+    ...mapActions("customer/account", ["login"]),
     async performLogin() {
       await this.login({
         email: this.email,

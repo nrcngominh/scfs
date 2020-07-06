@@ -1,15 +1,16 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import axios from 'axios'
 import store from '@/store'
 import GoogleService from '@/services/google'
 
 import MainLayout from '@/layouts/MainLayout'
+import VendorLayout from '@/layouts/VendorLayout'
 import LandingPage from '@/pages/LandingPage'
 import CartPage from '@/pages/CartPage'
 import MenuPage from '@/pages/MenuPage'
 import PaymentPage from '@/pages/PaymentPage'
 import ErrorPage from '@/pages/ErrorPage'
+import VendorPage from '@/pages/VendorPage'
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -55,14 +56,21 @@ const router = new VueRouter({
             title: 'BK Food | Payment',
             auth: true
           }
-        },
+        }
+      ]
+    },
+    {
+      path: '/vendor',
+      name: 'Vendor Layout',
+      component: VendorLayout,
+      children: [
         {
-          path: 'error',
-          name: 'Error Page',
-          component: ErrorPage,
+          path: '',
+          name: 'Vendor Page',
+          component: VendorPage,
           meta: {
-            title: 'BK Food | Error',
-            auth: true
+            title: 'BK Food | Vendor',
+            auth: false
           }
         }
       ]
@@ -73,20 +81,32 @@ const router = new VueRouter({
         await GoogleService.loginGoogle(to.query.code)
         next('/')
       }
+    },
+    {
+      path: '/error',
+      name: 'Error Page',
+      component: ErrorPage,
+      meta: {
+        title: 'BK Food | Error',
+        auth: false
+      }
+    },
+    {
+      path: '*',
+      redirect: '/error'
     }
   ],
   scrollBehavior() {
     document.getElementById('app').scrollIntoView();
   }
 })
-
 router.beforeEach(async (to, from, next) => {
   document.title = to.meta.title
-  const accessToken = Vue.$cookies.get('accessToken')
-  axios.defaults.headers['x-access-token'] = accessToken
-  await store.dispatch('account/auth')
-  if (to.meta.auth && !store.state.account.loggedIn) {
-    return next('/')
+  await store.dispatch('customer/account/auth')
+  if (to.meta.auth) {
+    if (!store.state.customer.account.loggedIn) {
+      return next('/')
+    }
   }
   next()
 })

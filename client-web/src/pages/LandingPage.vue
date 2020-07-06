@@ -34,9 +34,7 @@
 
     <section class="how-to-order">
       <article class="wrapper">
-        <h2>
-        HOW TO ORDER
-        </h2>
+        <h2>HOW TO ORDER</h2>
         <p>Follow the Steps</p>
         <article class="wrapper-container">
           <div class="wrapper-content">
@@ -44,28 +42,28 @@
               <img src="@/assets/images/momo.png" alt="momo" />
             </div>
             <div class="number-content">1</div>
-            <div class="">Choose your location</div>
+            <div class>Choose your location</div>
           </div>
           <div class="wrapper-content">
             <div class="logo-content">
               <img src="@/assets/images/momo.png" alt="momo" />
             </div>
             <div class="number-content">1</div>
-            <div class="">Choose your location</div>
+            <div class>Choose your location</div>
           </div>
           <div class="wrapper-content">
             <div class="logo-content">
               <img src="@/assets/images/momo.png" alt="momo" />
             </div>
             <div class="number-content">1</div>
-            <div class="">Choose your location</div>
+            <div class>Choose your location</div>
           </div>
           <div class="wrapper-content">
             <div class="logo-content">
               <img src="@/assets/images/momo.png" alt="momo" />
             </div>
             <div class="number-content">1</div>
-            <div class="">Choose your location</div>
+            <div class>Choose your location</div>
           </div>
         </article>
       </article>
@@ -88,7 +86,7 @@ export default {
     LandingSlide
   },
   methods: {
-    ...mapMutations("header", ["enterLandingPage", "exitLandingPage"])
+    ...mapMutations("customer/header", ["enterLandingPage", "exitLandingPage"])
   },
   mounted() {
     this.enterLandingPage();

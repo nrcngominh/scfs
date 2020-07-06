@@ -68,11 +68,11 @@ import { mapFields } from "vuex-map-fields";
 export default {
   name: "CartPage",
   computed: {
-    ...mapState("cart", ["cart", "discount", "subTotal", "total"]),
-    ...mapFields("cart", ["coupon"])
+    ...mapState("customer/cart", ["cart", "discount", "subTotal", "total"]),
+    ...mapFields("customer/cart", ["coupon"])
   },
   methods: {
-    ...mapActions("cart", [
+    ...mapActions("customer/cart", [
       "removeFromCart",
       "increaseQuantity",
       "decreaseQuantity",
