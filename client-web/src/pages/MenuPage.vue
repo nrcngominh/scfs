@@ -64,7 +64,7 @@
               <p>Giá: {{food.price}} VNĐ</p>
             </div>
             <div class="action">
-              <div class="buy">
+              <div class="buy" @click="addAndBuy(food)">
                 <button>Buy</button>
               </div>
               <div class="add" @click="addToCart(food)">
@@ -95,10 +95,14 @@ export default {
   methods: {
     ...mapMutations("food", ["setMoneyMinMax"]),
     ...mapActions("food", ["fetchAllFoods"]),
-    ...mapActions("cart", ["addToCart"])
+    ...mapActions("cart", ["addToCart"]),
+    addAndBuy(food) {
+      this.addToCart(food);
+      this.$router.push("/cart");
+    }
   },
-  async mounted() {
-    await this.fetchAllFoods();
+  mounted() {
+    this.fetchAllFoods();
   }
 };
 </script>

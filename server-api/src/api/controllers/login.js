@@ -1,4 +1,4 @@
-import LoginService from '@service/login'
+import LoginService from '@/services/login'
 
 const login = async (req, res, loginMethod) => {
   try {

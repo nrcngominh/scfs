@@ -1,4 +1,4 @@
-import AccountRepo from '@repository/account'
+import AccountRepo from '@/repositories/account'
 
 const authorize = async (accountId, typeValidator) => {
   const account = await AccountRepo.findById(accountId)

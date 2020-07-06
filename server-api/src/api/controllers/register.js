@@ -1,4 +1,4 @@
-import RegisterService from '@service/register'
+import RegisterService from '@/services/register'
 
 /**
  * Customer register

@@ -12,30 +12,30 @@
             <div>SUBTOTAL</div>
           </div>
 
-          <div class="order-info-container item" v-for="item in arr" :key="item">
-            <div class="order-info-content">Bánh mì x 4</div>
-            <div class="order-info-subtotal">40.000</div>
+          <div class="order-info-container item" v-for="item in cart" :key="item.food._id">
+            <div class="order-info-content">{{item.quantity}} X {{item.food.name}}</div>
+            <div class="order-info-subtotal">{{item.subTotal}}</div>
           </div>
 
           <div class="order-info-container total">
             <div>
               <h4>SUBTOTAL</h4>
             </div>
-            <div class="subtotal">160.000</div>
+            <div class="subtotal">{{subTotal}}</div>
           </div>
 
           <div class="order-info-container total">
             <div>
-              <h4>COUPON</h4>
+              <h4>DISCOUNT</h4>
             </div>
-            <div class="coupon-code">-10.000</div>
+            <div class="coupon-code">{{discount}}</div>
           </div>
 
           <div class="order-info-container total">
             <div>
               <h4>TOTAL</h4>
             </div>
-            <div class="total">150.000</div>
+            <div class="total">{{total}}</div>
           </div>
         </div>
       </article>
@@ -55,15 +55,15 @@
             </div>
           </div>
 
-          <button>PLACE ORDER</button>
+          <button @click="payQr()">PLACE ORDER</button>
         </article>
 
-        <article class="qr-code-wrapper">
+        <article class="qr-code-wrapper" :class="{hidden: !pendingQrCode}">
           <h3>Scan To Pay</h3>
-          <p>Bill ID: 0000123002</p>
+          <p>Bill ID: {{billId}}</p>
           <p>Open MOMO app on the mobile and scan this QR Code</p>
           <div class="qr-code-content">
-            <img src="@/assets/images/qr-code.png" alt="qr" />
+            <qr-code :text="qrCode"></qr-code>
           </div>
         </article>
       </div>
@@ -72,12 +72,23 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+
 export default {
   name: "PaymentPage",
-  data() {
-    return {
-      arr: [1, 2, 3, 4]
-    };
+  computed: {
+    ...mapState("cart", [
+      "cart",
+      "subTotal",
+      "total",
+      "discount",
+      "pendingQrCode",
+      "billId",
+      "qrCode"
+    ])
+  },
+  methods: {
+    ...mapActions("cart", ["payQr"])
   }
 };
 </script>

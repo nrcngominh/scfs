@@ -3,7 +3,7 @@
     <landing-slide class="slide"></landing-slide>
 
     <section class="categories">
-      <article class="description">
+      <article class="description wrapper">
         <h2>
           MORE THAN
           <span>200 FOODS</span> TO ORDER

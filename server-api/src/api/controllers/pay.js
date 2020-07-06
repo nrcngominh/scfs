@@ -1,4 +1,4 @@
-import MomoService from '@service/momo'
+import MomoService from '@/services/momo'
 
 /**
  * Handle QR Code pay
@@ -6,8 +6,13 @@ import MomoService from '@service/momo'
  * @param {import("express").Response} res 
  */
 const qrCode = (req, res) => {
-  const rawQrCode = MomoService.payQrCode(req.body.amount, req.body.billId)
-  res.status(201).send(rawQrCode)
+  console.log(req.body)
+  const billId = "B15645678"
+  const rawQrCode = MomoService.generatePayQrCode(10000, billId)
+  res.status(201).send({
+    billId: billId,
+    qrCode: rawQrCode
+  })
 }
 
 /**

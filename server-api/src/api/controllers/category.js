@@ -1,4 +1,4 @@
-import CategoryService from '@service/category'
+import CategoryService from '@/services/category'
 
 /**
  * Get all categories

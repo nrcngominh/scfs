@@ -2,7 +2,6 @@
   font-family: $modern-font;
   display: flex;
   justify-content: center;
-
   > div {
     @include md {
       width: $md-width;

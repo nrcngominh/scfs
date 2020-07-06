@@ -3,8 +3,8 @@ import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
 import SocketIO from 'socket.io'
-import BaseSocket from '@socket'
-import BaseRouter from '@router'
+import BaseSocket from '@/sockets'
+import BaseRouter from '@/api/routers'
 
 const dbHost = process.env.DB_HOST
 const dbName = process.env.DB_NAME

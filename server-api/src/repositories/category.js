@@ -1,4 +1,4 @@
-import CategoryModel from '@model/category'
+import CategoryModel from '@/models/category'
 
 /**
  * Find all categories

@@ -1,15 +1,22 @@
-import MomoService from '@service/momo'
+import MomoService from '@/services/momo'
 
 /**
  * Handle QR code notification from MOMO
  * @param {import("express").Request} req 
  * @param {import("express").Response} res 
  */
-const notifyQrCode = (req, res) => {
-  const resData = MomoService.notifyQrCode(req.body)
-  res.status(200).send(resData)
+const notifyQr = (req, res) => {
+  try {
+    const resData = MomoService.notifyQrCodeReponse(req.body)
+    res.status(200).send(resData)
+  }
+  catch (error) {
+    res.status(500).send({
+      message: 'Failed'
+    })
+  }
 }
 
 export default {
-  notifyQrCode
+  notifyQr
 }

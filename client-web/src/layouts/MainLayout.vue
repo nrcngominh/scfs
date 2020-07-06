@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from "vuex";
+import { mapMutations, mapState, mapActions } from "vuex";
 import MyHeader from "@/components/Header";
 import MyFooter from "@/components/Footer";
 import AccountModal from "@/components/AccountModal";
@@ -45,7 +45,11 @@ export default {
     ...mapMutations("header", ["scroll"]),
     scrollHandler() {
       this.scroll(window.scrollY === 0);
-    }
+    },
+    ...mapActions("cart", ["fetchCart"])
+  },
+  mounted() {
+    this.fetchCart();
   }
 };
 </script>

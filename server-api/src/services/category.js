@@ -1,4 +1,4 @@
-import CategoryRepo from '@repository/category'
+import CategoryRepo from '@/repositories/category'
 
 const getAll = async () => {
   return await CategoryRepo.findAll()

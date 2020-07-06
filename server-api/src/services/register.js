@@ -1,4 +1,5 @@
-import AccountRepo from '@repository/account'
+import AccountRepo from '@/repositories/account'
+import CartRepo from '@/repositories/cart'
 import bcrypt from 'bcryptjs';
 
 /**
@@ -10,7 +11,8 @@ import bcrypt from 'bcryptjs';
  */
 const customer = async (email, password, fullName, phoneNumber) => {
   const hashedPassword = bcrypt.hashSync(password, 10);
-  await AccountRepo.createCustomer(email, hashedPassword, fullName, phoneNumber)
+  const account = await AccountRepo.createCustomer(email, hashedPassword, fullName, phoneNumber)
+  await CartRepo.create(account._id)
 }
 
 export default {
