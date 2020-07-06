@@ -5,6 +5,7 @@ services:
   server-api:
     image: sfcs/server-api:v1.production
     restart: unless-stopped
+    build: ./server-api
     volumes:
       - ${DOCKER_IMAGES}:/app/images
     environment:
@@ -14,6 +15,9 @@ services:
       - PORT=${SERVER_API_PORT}
       - ACCESS_TOKEN_SECRET=${ACCESS_TOKEN_SECRET}
       - IMAGES_DIRECTORY=/app/images
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_REDIRECT_URI=${GOOGLE_REDIRECT_URI}
     ports:
       - "${PUBLIC_SERVER_API_PORT}:${SERVER_API_PORT}"
           
@@ -21,12 +25,14 @@ services:
   client-web:
     image: sfcs/client-web:v1.production
     restart: unless-stopped
+    build: ./client-web
     volumes:
       - ./database/images:/app/images
       - ${DOCKER_IMAGES}:/data/images
     environment:
       - VUE_APP_DOMAIN=${HOST}
-      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - VUE_APP_GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - VUE_APP_GOOGLE_REDIRECT_URI=${GOOGLE_REDIRECT_URI}
     ports:
       - "4430:80"
     depends_on:

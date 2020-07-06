@@ -9,43 +9,54 @@
               <input type="text" v-model="searchPattern" placeholder="Search..." />
             </div>
           </div>
-          <div class="price">
-            <h3>Price Filter</h3>
-            <div class="price-filter">
-              <div>Min</div>
-              <div>Max</div>
-              <div>
-                <input type="text" v-model="moneyMinValue" />
-                <span>.000đ</span>
-              </div>
-              <div>
-                <input type="text" v-model="moneyMaxValue" />
-                <span>.000đ</span>
+
+          <div class="dropdown-button" @click="toggleDropdown()" :class="{dropdown: dropdown}">
+            <img src="@/assets/images/dropdown-arrow.svg" alt="dropdown-button" />
+          </div>
+
+          <div class="mobile-dropdown" :class="{hidden: !dropdown}">
+            <div class="price">
+              <h3>Price Filter</h3>
+              <div class="price-filter">
+                <div>
+                  <div>Min</div>
+                  <div>
+                    <input type="text" v-model="moneyMinValue" />
+                    <span>.000đ</span>
+                  </div>
+                </div>
+                <div>
+                  <div>Max</div>
+                  <div>
+                    <input type="text" v-model="moneyMaxValue" />
+                    <span>.000đ</span>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="category">
-            <h3>Category</h3>
-            <div class="checkbox-wrapper">
-              <div class="item" v-for="category in allCategories" :key="category._id">
-                <input type="checkbox" v-model="category.checked" />
-                <label>{{ category.name }}</label>
+            <div class="category">
+              <h3>Category</h3>
+              <div class="checkbox-wrapper">
+                <div class="item" v-for="category in allCategories" :key="category._id">
+                  <input type="checkbox" v-model="category.checked" />
+                  <label>{{ category.name }}</label>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="tag">
-            <h3>Tag</h3>
-            <div class="tag-wrapper">
-              <div>Bò</div>
-              <div>Xào</div>
-              <div>Trà sữa</div>
-              <div>Canh</div>
-              <div>Chiên</div>
-              <div>Bún</div>
-              <div>Bánh</div>
-              <div>Bún</div>
-              <div>Bún</div>
-              <div>Bánh</div>
+            <div class="tag">
+              <h3>Tag</h3>
+              <div class="tag-wrapper">
+                <div>Bò</div>
+                <div>Xào</div>
+                <div>Trà sữa</div>
+                <div>Canh</div>
+                <div>Chiên</div>
+                <div>Bún</div>
+                <div>Bánh</div>
+                <div>Bún</div>
+                <div>Bún</div>
+                <div>Bánh</div>
+              </div>
             </div>
           </div>
         </nav>
@@ -87,6 +98,11 @@ import { mapFields } from "vuex-map-fields";
 
 export default {
   name: "MenuPage",
+  data() {
+    return {
+      dropdown: false
+    };
+  },
   computed: {
     ...mapState("customer/food", ["allCategories"]),
     ...mapFields("customer/food", [
@@ -103,6 +119,9 @@ export default {
     addAndBuy(food) {
       this.addToCart(food);
       this.$router.push("/cart");
+    },
+    toggleDropdown() {
+      this.dropdown = !this.dropdown;
     }
   },
   mounted() {
