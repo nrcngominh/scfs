@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
     build:
       context: ./server-api
-      dockerfile: ./server-api/Dockerfile.prod
+      dockerfile: Dockerfile.prod
     volumes:
       - ${DOCKER_IMAGES}:/app/images
     environment:
@@ -29,7 +29,7 @@ services:
     restart: unless-stopped
     build:
       context: ./client-web
-      dockerfile: ./client-web/Dockerfile.prod
+      dockerfile: Dockerfile.prod
     volumes:
       - ./database/images:/app/images
       - ${DOCKER_IMAGES}:/data/images
