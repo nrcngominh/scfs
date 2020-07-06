@@ -32,9 +32,6 @@
     "debug": "nodemon --inspect",
     "lint": "eslint src --fix"
   },
-  "_moduleAliases": {
-    "@": "src"
-  },
   "author": "NRC",
   "license": "ISC"
 }
