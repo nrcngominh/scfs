@@ -4,8 +4,10 @@ import AuthController from '@/api/controllers/auth'
 
 const AuthRouter = Router()
 
-AuthRouter.post('/customer', AuthMiddleware.customer, AuthController.auth)
+AuthRouter.get('/customer', AuthMiddleware.customer, AuthController.auth)
 
-AuthRouter.post('/customer/google', AuthController.authGoogle)
+AuthRouter.get('/customer/google', AuthController.authGoogle)
+
+AuthRouter.get('/vendor', AuthMiddleware.vendor, AuthController.auth)
 
 export default AuthRouter

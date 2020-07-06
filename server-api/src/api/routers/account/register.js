@@ -4,7 +4,7 @@ import RegisterController from '@/api/controllers/register'
 
 const RegisterRouter = Router()
 
-// RegisterRouter.post('*', RegisterValidator.rules, RegisterValidator.validator)
+RegisterRouter.post('*', RegisterValidator.rules, RegisterValidator.validator)
 
 RegisterRouter.post('/customer', RegisterController.customer)
 

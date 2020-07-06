@@ -18,7 +18,7 @@ const auth = async (req, res) => {
  * @param {import("express").Response} res 
  */
 const authGoogle = async (req, res) => {
-  const googleAccessToken = await GoogleService.getAccessTokenFromCode(req.body.code)
+  const googleAccessToken = await GoogleService.getAccessTokenFromCode(req.query.code)
   const accountInfo = await GoogleService.getAccountInfo(googleAccessToken)
   const accessToken = await LoginService.customerGoogle(accountInfo.email)
   res.status(200).send({
