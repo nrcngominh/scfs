@@ -5,7 +5,9 @@ services:
   server-api:
     image: sfcs/server-api:v1.production
     restart: unless-stopped
-    build: ./server-api
+    build:
+      context: ./server-api
+      dockerfile: ./server-api/Dockerfile.prod
     volumes:
       - ${DOCKER_IMAGES}:/app/images
     environment:
@@ -25,7 +27,9 @@ services:
   client-web:
     image: sfcs/client-web:v1.production
     restart: unless-stopped
-    build: ./client-web
+    build:
+      - context: ./client-web
+      - dockerfile: ./client-web/Dockerfile.prod
     volumes:
       - ./database/images:/app/images
       - ${DOCKER_IMAGES}:/data/images
