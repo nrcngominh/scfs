@@ -10,6 +10,8 @@ import CartPage from '@/pages/CartPage'
 import MenuPage from '@/pages/MenuPage'
 import PaymentPage from '@/pages/PaymentPage'
 import ErrorPage from '@/pages/ErrorPage'
+import TransactionPage from '@/pages/TransactionPage'
+import DetailTransactionPage from '@/pages/DetailTransactionPage'
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -62,6 +64,24 @@ const router = new VueRouter({
           component: ErrorPage,
           meta: {
             title: 'BK Food | Error',
+            auth: true
+          }
+        },
+        {
+          path: 'transaction',
+          name: 'Transaction Page',
+          component: TransactionPage,
+          meta: {
+            title: 'BK Food | Transaction',
+            auth: true
+          }
+        },
+        {
+          path: 'detail-transaction',
+          name: 'DetailTransaction Page',
+          component: DetailTransactionPage,
+          meta: {
+            title: 'BK Food | Detail Transaction',
             auth: true
           }
         }
