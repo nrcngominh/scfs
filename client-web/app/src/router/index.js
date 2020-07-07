@@ -20,6 +20,9 @@ const router = new VueRouter({
       path: '/',
       name: 'Main Layout',
       component: MainLayout,
+      meta: {
+        title: 'BK Food',
+      },
       children: [
         {
           path: '',
@@ -27,7 +30,6 @@ const router = new VueRouter({
           component: LandingPage,
           meta: {
             title: 'BK Food | Home',
-            auth: false
           }
         },
         {
@@ -36,7 +38,6 @@ const router = new VueRouter({
           component: MenuPage,
           meta: {
             title: 'BK Food | Menu',
-            auth: false
           }
         },
         {
@@ -70,13 +71,16 @@ const router = new VueRouter({
           component: VendorPage,
           meta: {
             title: 'BK Food | Vendor',
-            auth: false
           }
         }
       ]
     },
     {
       path: '/login/google',
+      name: "Login with Google",
+      meta: {
+        title: 'Redirecting...',
+      },
       beforeEnter: async (to, from, next) => {
         await LoginService.customerGoogle(to.query.code)
         next('/')
@@ -88,12 +92,14 @@ const router = new VueRouter({
       component: ErrorPage,
       meta: {
         title: 'BK Food | Error',
-        auth: false
       }
     },
     {
       path: '*',
-      redirect: '/error'
+      redirect: '/error',
+      meta: {
+        title: 'Redirecting...',
+      }
     }
   ],
   scrollBehavior() {
