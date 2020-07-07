@@ -28,13 +28,13 @@ services:
     build:
       context: ./client-web
       dockerfile: Dockerfile.prod
+      args:
+        - VUE_APP_DOMAIN=${HOST}
+        - VUE_APP_GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+        - VUE_APP_GOOGLE_REDIRECT_URI=${GOOGLE_REDIRECT_URI}
     volumes:
       - ./database/images:/app/images
       - ${DOCKER_IMAGES}:/data/images
-    environment:
-      - VUE_APP_DOMAIN=${HOST}
-      - VUE_APP_GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
-      - VUE_APP_GOOGLE_REDIRECT_URI=${GOOGLE_REDIRECT_URI}
     ports:
       - "4430:80"
     depends_on:
