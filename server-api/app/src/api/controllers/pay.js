@@ -20,6 +20,9 @@ const qrCode = (req, res) => {
  * @param {import("express").Response} res 
  */
 const app = (req, res) => {
+  res.status(404).send({
+    message: 'Failed'
+  })
 }
 
 export default {
