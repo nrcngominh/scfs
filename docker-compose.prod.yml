@@ -20,8 +20,6 @@ services:
       - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
       - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
       - GOOGLE_REDIRECT_URI=${GOOGLE_REDIRECT_URI}
-    ports:
-      - "${PUBLIC_SERVER_API_PORT}:${SERVER_API_PORT}"
           
   # Client web, images and webserver
   client-web:
