@@ -81,10 +81,10 @@ export default {
     },
     ...mapState("customer/header", ["dropdown", "transparentNav"]),
     ...mapState("customer/account", ["loggedIn"]),
-    ...mapState("customer/account/modal", ["modalActive"])
+    ...mapState("customer/accountModal", ["modalActive"])
   },
   methods: {
-    ...mapMutations("customer/account/modal", [
+    ...mapMutations("customer/accountModal", [
       "openRegisterTab",
       "openLoginTab"
     ]),

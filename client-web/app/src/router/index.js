@@ -18,7 +18,6 @@ const router = new VueRouter({
   routes: [
     {
       path: '/',
-      name: 'Main Layout',
       component: MainLayout,
       meta: {
         title: 'BK Food',
@@ -62,7 +61,6 @@ const router = new VueRouter({
     },
     {
       path: '/vendor',
-      name: 'Vendor Layout',
       component: VendorLayout,
       children: [
         {

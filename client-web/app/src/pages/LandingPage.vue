@@ -89,6 +89,11 @@ export default {
     ...mapMutations("customer/header", ["enterLandingPage", "exitLandingPage"])
   },
   mounted() {
+    this.sockets.listener.subscribe("SERVER_SAY_HI", data => {
+      console.log(data.message);
+    });
+
+    this.$socket.emit("CLIENT_SAY_HI", "Hello from client");
     this.enterLandingPage();
   },
   beforeDestroy() {
