@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '@/store'
-import GoogleService from '@/services/google'
+import LoginService from '@/services/login'
 
 import MainLayout from '@/layouts/MainLayout'
 import VendorLayout from '@/layouts/VendorLayout'
@@ -76,9 +76,9 @@ const router = new VueRouter({
       ]
     },
     {
-      path: '/auth/google',
+      path: '/login/google',
       beforeEnter: async (to, from, next) => {
-        await GoogleService.loginGoogle(to.query.code)
+        await LoginService.customerGoogle(to.query.code)
         next('/')
       }
     },
