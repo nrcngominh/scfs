@@ -6,7 +6,6 @@ import SocketIO from 'socket.io'
 import BaseSocket from '@/sockets'
 import BaseRouter from '@/api/routers'
 
-
 const dbHost = process.env.DB_HOST
 const dbName = process.env.DB_NAME
 const mongoUri = `${dbHost}/${dbName}`

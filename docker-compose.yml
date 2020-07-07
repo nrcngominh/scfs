@@ -19,15 +19,16 @@ services:
     build: ./server-api
     command: npm run dev
     volumes:
-      - ./server-api/src:/app/src
-      - ${DOCKER_IMAGES}:/app/images
+      - ./server-api/app:/app
+      - /app/node_modules
+      - ${DOCKER_IMAGES}:/images
     environment:
       - HOST=${HOST}
       - DB_HOST=mongodb://database:27017
       - DB_NAME=${DB_NAME}
       - PORT=${SERVER_API_PORT}
       - ACCESS_TOKEN_SECRET=${ACCESS_TOKEN_SECRET}
-      - IMAGES_DIRECTORY=/app/images
+      - IMAGES_DIRECTORY=/images
       - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
       - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
       - GOOGLE_REDIRECT_URI=${GOOGLE_REDIRECT_URI}
@@ -43,7 +44,8 @@ services:
     build: ./client-web
     command: npm run dev
     volumes:
-      - ./client-web/src:/app/src
+      - ./client-web/app:/app
+      - /app/node_modules
     environment:
       - VUE_APP_DOMAIN=${HOST}
       - VUE_APP_GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
