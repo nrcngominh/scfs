@@ -15,6 +15,8 @@ const notifyQr = (req, res) => {
       message: 'Failed'
     })
   }
+  const io = req.app.get('socket.io')
+  io.emit("MOMO", req.body)
 }
 
 export default {
