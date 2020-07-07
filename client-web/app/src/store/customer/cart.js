@@ -94,7 +94,7 @@ export default {
   },
   actions: {
     async fetchCart({ commit }) {
-      const cart = await getCart()
+      const cart = (await getCart()).data
       commit('setCart', cart.map(item => {
         item.subTotal = item.food.price * item.quantity
         return item

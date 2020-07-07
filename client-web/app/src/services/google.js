@@ -13,7 +13,7 @@ const stringifiedParams = QueryString.stringify({
 });
 
 const googleLoginUrl = `https://accounts.google.com/o/oauth2/v2/auth?${stringifiedParams}`;
-
+console.log(googleLoginUrl)
 export default {
   googleLoginUrl
 }
