@@ -37,7 +37,8 @@ const server = app.listen(process.env.PORT, () => {
 
 // Create socket for server
 const io = SocketIO.listen(server)
-BaseSocket.initial(io)
+const _io = BaseSocket.initial(io)
 
 // Routing
+app.set('socket-io', _io)
 app.use('/', BaseRouter)
