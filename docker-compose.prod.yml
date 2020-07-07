@@ -9,14 +9,14 @@ services:
       context: ./server-api
       dockerfile: Dockerfile.prod
     volumes:
-      - ${DOCKER_IMAGES}:/app/images
+      - ${DOCKER_IMAGES}:${IMAGES_DIRECTORY}
     environment:
       - HOST=${HOST}
       - DB_HOST=${DB_HOST}
       - DB_NAME=${DB_NAME}
       - PORT=${SERVER_API_PORT}
       - ACCESS_TOKEN_SECRET=${ACCESS_TOKEN_SECRET}
-      - IMAGES_DIRECTORY=/app/images
+      - IMAGES_DIRECTORY=${IMAGES_DIRECTORY}
       - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
       - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
       - GOOGLE_REDIRECT_URI=${GOOGLE_REDIRECT_URI}
@@ -33,7 +33,6 @@ services:
         - VUE_APP_GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
         - VUE_APP_GOOGLE_REDIRECT_URI=${GOOGLE_REDIRECT_URI}
     volumes:
-      - ./database/images:/app/images
       - ${DOCKER_IMAGES}:/data/images
     ports:
       - "4430:80"
