@@ -34,7 +34,7 @@ Vue.$cookies.config('1d')
 
 // Initialize socket-client.io
 Vue.use(new VueSocketIO({
-  debug: true,
+  debug: process.env.NODE_ENV === 'development',
   connection: SocketIO(process.env.VUE_APP_DOMAIN),
   vuex: {
     store,
