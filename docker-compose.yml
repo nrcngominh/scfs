@@ -23,7 +23,8 @@ services:
   client-web:
     image: sfcs/client-web:v1.production
     restart: unless-stopped
-    build: ./client-web
+    build:
+      context: ./client-web
       args:
         - VUE_APP_DOMAIN=${HOST}
         - VUE_APP_GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
