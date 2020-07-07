@@ -14,8 +14,8 @@ const store = new Vuex.Store({
     accountModal: AccountModal,
   },
   actions: {
-    SOCKET_MOMO(data) {
-      console.log(data)
+    SOCKET_MOMO(context, data) {
+      alert(JSON.stringify(data))
     }
   }
 });
