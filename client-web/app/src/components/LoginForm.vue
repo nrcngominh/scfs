@@ -52,7 +52,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations("customer/accountModal", ["close"]),
+    ...mapMutations("accountModal", ["close"]),
     ...mapActions("customer/account", ["login"]),
     async performLogin() {
       await this.login({

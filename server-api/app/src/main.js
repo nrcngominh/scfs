@@ -3,7 +3,7 @@ import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
 import SocketIO from 'socket.io'
-import BaseSocket from '@/sockets'
+import { initialSocketIO } from '@/sockets'
 import BaseRouter from '@/api/routers'
 
 const dbHost = process.env.DB_HOST
@@ -37,8 +37,8 @@ const server = app.listen(process.env.PORT, () => {
 
 // Create socket for server
 const io = SocketIO.listen(server)
-const _io = BaseSocket.initial(io)
+initialSocketIO(io)
+app.set('socket.io', io)
 
 // Routing
-app.set('socket-io', _io)
 app.use('/', BaseRouter)

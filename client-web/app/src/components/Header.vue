@@ -81,13 +81,10 @@ export default {
     },
     ...mapState("customer/header", ["dropdown", "transparentNav"]),
     ...mapState("customer/account", ["loggedIn"]),
-    ...mapState("customer/accountModal", ["modalActive"])
+    ...mapState("accountModal", ["modalActive"])
   },
   methods: {
-    ...mapMutations("customer/accountModal", [
-      "openRegisterTab",
-      "openLoginTab"
-    ]),
+    ...mapMutations("accountModal", ["openRegisterTab", "openLoginTab"]),
     ...mapMutations("customer/header", ["toggleDropdown", "closeDropdown"]),
     // Router
     goToHome() {

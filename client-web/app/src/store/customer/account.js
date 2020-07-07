@@ -1,4 +1,3 @@
-import AccountModal from './account-modal'
 import LoginService from '@/services/login'
 import AuthService from '@/services/auth'
 
@@ -22,8 +21,5 @@ export default {
         commit('login')
       }
     }
-  },
-  modules: {
-    modal: AccountModal
   }
 }
