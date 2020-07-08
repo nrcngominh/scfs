@@ -59,20 +59,6 @@ const router = new VueRouter({
             title: 'BK Food | Payment',
             auth: true
           }
-        }
-      ]
-    },
-    {
-      path: '/vendor',
-      component: VendorLayout,
-      children: [
-        {
-          path: '',
-          name: 'Vendor Page',
-          component: VendorPage,
-          meta: {
-            title: 'BK Food | Vendor',
-          }
         },
         {
           path: 'transaction',
@@ -90,6 +76,20 @@ const router = new VueRouter({
           meta: {
             title: 'BK Food | Detail Transaction',
             auth: true
+          }
+        }
+      ]
+    },
+    {
+      path: '/vendor',
+      component: VendorLayout,
+      children: [
+        {
+          path: '',
+          name: 'Vendor Page',
+          component: VendorPage,
+          meta: {
+            title: 'BK Food | Vendor',
           }
         }
       ]
