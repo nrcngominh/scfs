@@ -15,11 +15,11 @@ const store = new Vuex.Store({
     customer: Customer,
     vendor: Vendor
   },
-  // actions: {
-  //   SOCKET_MOMO(context, data) {
-  //     console.log(JSON.stringify(data))
-  //   }
-  // }
+  actions: {
+    SOCKET_MOMO(context, data) {
+      console.log(JSON.stringify(data))
+    }
+  }
 });
 
 export default store;

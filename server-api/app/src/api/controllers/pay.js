@@ -1,17 +1,16 @@
-import MomoService from '@/services/momo'
+import PayService from '@/services/pay'
 
 /**
  * Handle QR Code pay
  * @param {import("express").Request} req 
  * @param {import("express").Response} res 
  */
-const qrCode = (req, res) => {
-  const billId = "B001122"
-  const rawQrCode = MomoService.generatePayQrCode(10000, billId)
-  res.status(201).send({
-    billId: billId,
-    qrCode: rawQrCode
-  })
+const qrCode = async (req, res) => {
+  const cart = req.body.cart
+  const couponId = req.body.couponId
+  const account = req.decoded.account
+  const bill = await PayService.createBill(cart, couponId, account)
+  res.status(201).send(bill)
 }
 
 /**

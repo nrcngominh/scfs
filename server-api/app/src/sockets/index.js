@@ -9,8 +9,6 @@ const initialSocketIO = (io) => {
     socket.on("disconnect", () => {
       console.log(socket.handshake.address, 'disconnected')
     })
-
-    io.emit("MOMO", null)
   })
 }
 
