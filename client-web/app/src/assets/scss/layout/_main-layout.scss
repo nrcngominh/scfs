@@ -1,0 +1,34 @@
+body {
+	font-family: $font;
+
+	.main-container {
+		.wrapper {
+			margin: 0 auto;
+			padding: 1rem;
+			width: calc(100% - 2rem);
+
+			@include el {
+				width: $el-width;
+			}
+		}
+
+		.keep-header-space {
+			height: $nav-bar-height;
+		}
+
+		main {
+			min-height: calc(100vh - #{$nav-bar-height});
+		}
+
+		footer {
+			width: 100%;
+			background: #dddddd;
+		}
+	}
+
+	&.modal-active {
+		overflow: hidden;
+		background: #c1c1c1;
+		padding-right: $sidebar-width;
+	}
+}

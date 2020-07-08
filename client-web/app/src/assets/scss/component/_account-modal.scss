@@ -1,0 +1,163 @@
+.account-modal-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 20vh 0;
+  z-index: 1000;
+  font-family: $modern-font;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  background-color: rgba($color: white, $alpha: 0.6);
+
+  .account-modal-enter {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+
+  .account-modal-enter-active {
+    transition: all 0.5s ease;
+  }
+
+  .account-modal-content {
+    box-shadow: 0 0 1rem rgba($color: black, $alpha: 0.3);
+    background: white;
+    width: 30rem;
+
+    .tab-headers {
+      display: grid;
+      grid-template-columns: 1fr 1fr 2.8rem;
+
+      .header {
+        height: 3.5rem;
+
+        &.tab {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          background: rgb(228, 227, 227);
+          color: rgb(165, 165, 165);
+          font-size: 1.2rem;
+          font-weight: bold;
+          cursor: pointer;
+        }
+
+        &.active {
+          background: white;
+          color: black;
+        }
+
+        &.close-button {
+          cursor: pointer;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: $primary-color;
+          img {
+            filter: invert(1);
+            width: 1rem;
+            height: 1rem;
+          }
+          &:hover {
+            background: rgb(95, 95, 95);
+          }
+        }
+      }
+    }
+
+    .tab-body {
+      padding: 1.6rem;
+      .tab-wrapper {
+        display: none;
+        &.active {
+          display: block;
+        }
+
+        .tab-content {
+          display: flex;
+          flex-direction: column;
+
+          .input {
+            display: flex;
+            flex-direction: column;
+
+            .input-line {
+              overflow: hidden;
+              width: 100%;
+              position: relative;
+              display: flex;
+              flex-direction: row;
+              align-items: stretch;
+              margin-bottom: 1.6rem;
+              border: 0.1rem solid rgb(175, 175, 175);
+              border-radius: 1.6rem;
+
+              &:focus-within {
+                border: 0.1rem solid #f8ad22;
+              }
+
+              .image {
+                z-index: 25;
+                padding: 1rem 0.5rem 1rem 1rem;
+                display: flex;
+                justify-content: center;
+                img {
+                  width: 1.2rem;
+                  height: 1.2rem;
+                }
+              }
+
+              .text {
+                position: absolute;
+                width: 100%;
+                z-index: 20;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                font-size: 1rem;
+                flex-grow: 1;
+                input {
+                  padding-left: 2.7rem;
+                  background: transparent;
+                  width: 100%;
+                  border: none;
+                  &:focus {
+                    outline: none;
+                  }
+                }
+              }
+            }
+          }
+
+          .button-wrapper {
+            display: flex;
+            justify-content: center;
+            button {
+              font-size: 1.2rem;
+              width: 50%;
+              color: white;
+              border-radius: 1rem;
+              background: $primary-color;
+              padding: 0.8rem 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.hidden {
+    display: none;
+  }
+
+  @include xs {
+    padding: 10vh 0;
+    .account-modal-content {
+      width: 100%;
+    }
+  }
+}
