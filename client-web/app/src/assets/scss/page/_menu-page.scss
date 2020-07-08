@@ -30,6 +30,9 @@
         .search-container {
           margin-top: 1rem;
         }
+        input {
+          width: 100%;
+        }
       }
 
       .dropdown-button {
@@ -92,6 +95,11 @@
     article.menu-wrapper {
       grid-area: content;
       margin-left: 2rem;
+
+      article.sort-wrapper {
+        text-align: right;
+        margin-bottom: 1rem;
+      }
 
       .food-container {
         display: grid;

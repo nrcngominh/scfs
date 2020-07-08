@@ -63,6 +63,14 @@
       </div>
 
       <article class="menu-wrapper">
+        <article class="sort-wrapper">
+          <ul>
+            <li>Sort by price</li>
+            <li>Sort by name</li>
+            <li>Sort by popularity</li>
+          </ul>
+        </article>
+
         <div class="food-container">
           <article class="food-item" v-for="food in getFoodsFiltered" :key="food._id">
             <div class="food-image">
