@@ -33,7 +33,7 @@ export default {
     AccountModal
   },
   computed: {
-    ...mapState("customer/header", ["landingPage"])
+    ...mapState("header", ["landingPage"])
   },
   created() {
     window.addEventListener("scroll", this.scrollHandler);
@@ -42,7 +42,7 @@ export default {
     window.removeEventListener("scroll", this.scrollHandler);
   },
   methods: {
-    ...mapMutations("customer/header", ["scroll"]),
+    ...mapMutations("header", ["scroll"]),
     scrollHandler() {
       this.scroll(window.scrollY === 0);
     },

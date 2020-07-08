@@ -93,7 +93,10 @@ export default {
     }
   },
   actions: {
-    async fetchCart({ commit }) {
+    async fetchCart({ commit, rootState }) {
+      if (!rootState.account.customerLoggedIn) {
+        return
+      }
       const cart = (await getCart()).data
       commit('setCart', cart.map(item => {
         item.subTotal = item.food.price * item.quantity
@@ -101,20 +104,20 @@ export default {
       }))
     },
     async addToCart({ commit, state }, food) {
-      commit('addToCartSync', food)
       await updateCart(state.cart)
+      commit('addToCartSync', food)
     },
     async removeFromCart({ commit, state }, food) {
-      commit('removeFromCartSync', food)
       await updateCart(state.cart)
+      commit('removeFromCartSync', food)
     },
     async increaseQuantity({ commit, state }, food) {
-      commit('increaseQuantitySync', food)
       await updateCart(state.cart)
+      commit('increaseQuantitySync', food)
     },
     async decreaseQuantity({ commit, state }, food) {
-      commit('decreaseQuantitySync', food)
       await updateCart(state.cart)
+      commit('decreaseQuantitySync', food)
     },
     async applyCoupon({ commit, state }) {
       const couponObject = await CouponService.check(state.coupon)

@@ -1,23 +1,25 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import Header from './header'
+import Account from './account'
 import Customer from './customer'
 import Vendor from './vendor'
-import AccountModal from './account-modal'
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
   namspaced: true,
   modules: {
+    header: Header,
+    account: Account,
     customer: Customer,
-    vendor: Vendor,
-    accountModal: AccountModal,
+    vendor: Vendor
   },
-  actions: {
-    SOCKET_MOMO(context, data) {
-      alert(JSON.stringify(data))
-    }
-  }
+  // actions: {
+  //   SOCKET_MOMO(context, data) {
+  //     console.log(JSON.stringify(data))
+  //   }
+  // }
 });
 
 export default store;

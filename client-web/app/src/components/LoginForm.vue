@@ -52,10 +52,10 @@ export default {
     };
   },
   methods: {
-    ...mapMutations("accountModal", ["close"]),
-    ...mapActions("customer/account", ["login"]),
+    ...mapMutations("customer/accountModal", ["close"]),
+    ...mapActions("account", ["customerLogin"]),
     async performLogin() {
-      await this.login({
+      await this.customerLogin({
         email: this.email,
         password: this.password
       });

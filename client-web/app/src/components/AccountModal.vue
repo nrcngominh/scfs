@@ -36,10 +36,14 @@ export default {
     RegisterForm
   },
   computed: {
-    ...mapState("accountModal", ["modalActive", "loginTab", "registerTab"])
+    ...mapState("customer/accountModal", [
+      "modalActive",
+      "loginTab",
+      "registerTab"
+    ])
   },
   methods: {
-    ...mapMutations("accountModal", [
+    ...mapMutations("customer/accountModal", [
       "close",
       "openLoginTab",
       "openRegisterTab"

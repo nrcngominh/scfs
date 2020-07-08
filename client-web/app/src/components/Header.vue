@@ -35,7 +35,7 @@
         </nav>
 
         <nav class="nav-right">
-          <ul class="nav-icon" :class="{'hidden': !loggedIn}">
+          <ul class="nav-icon" :class="{'hidden': !customerLoggedIn}">
             <li @click="goToCart()">
               <img src="@/assets/images/cart.svg" alt="Logo" />
             </li>
@@ -45,12 +45,12 @@
             <li>
               <img src="@/assets/images/notification.svg" alt="Logo" />
             </li>
-            <li>
+            <li @click="performLogout()">
               <img src="@/assets/images/user.svg" alt="Logo" />
             </li>
           </ul>
 
-          <ul class="nav-login-register" :class="{'hidden': loggedIn}">
+          <ul class="nav-login-register" :class="{'hidden': customerLoggedIn}">
             <li @click="register()">REGISTER</li>
             <li class="login" @click="login()">LOGIN</li>
           </ul>
@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
+import { mapState, mapMutations, mapActions } from "vuex";
 
 export default {
   name: "Header",
@@ -79,13 +79,17 @@ export default {
         ? require("@/assets/images/logo-white.png")
         : require("@/assets/images/logo.png");
     },
-    ...mapState("customer/header", ["dropdown", "transparentNav"]),
-    ...mapState("customer/account", ["loggedIn"]),
-    ...mapState("accountModal", ["modalActive"])
+    ...mapState("header", ["dropdown", "transparentNav"]),
+    ...mapState("account", ["customerLoggedIn"]),
+    ...mapState("customer/accountModal", ["modalActive"])
   },
   methods: {
-    ...mapMutations("accountModal", ["openRegisterTab", "openLoginTab"]),
-    ...mapMutations("customer/header", ["toggleDropdown", "closeDropdown"]),
+    ...mapMutations("customer/accountModal", [
+      "openRegisterTab",
+      "openLoginTab"
+    ]),
+    ...mapMutations("header", ["toggleDropdown", "closeDropdown"]),
+    ...mapActions("account", ["customerLogout"]),
     // Router
     goToHome() {
       this.$router.push("/");
@@ -104,6 +108,9 @@ export default {
     },
     login() {
       this.openLoginTab();
+    },
+    performLogout() {
+      this.customerLogout();
     }
   },
   beforeCreate() {

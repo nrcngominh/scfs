@@ -21,6 +21,7 @@ const router = new VueRouter({
       component: MainLayout,
       meta: {
         title: 'BK Food',
+        type: 'customer'
       },
       children: [
         {
@@ -106,9 +107,11 @@ const router = new VueRouter({
 })
 router.beforeEach(async (to, from, next) => {
   document.title = to.meta.title
-  await store.dispatch('customer/account/auth')
-  if (to.meta.auth) {
-    if (!store.state.customer.account.loggedIn) {
+  if (to.matched.some(router => router.meta.type == "customer")) {
+    if (!store.state.account.customerLoggedIn) {
+      await store.dispatch('account/customerAuth')
+    }
+    if (to.meta.auth && !store.state.account.customerLoggedIn) {
       return next('/')
     }
   }

@@ -23,8 +23,14 @@ const customerGoogle = async (code) => {
   setAccessToken(res.data.accessToken)
 }
 
+const logout = async () => {
+  Vue.$cookies.remove('accessToken')
+  delete axios.defaults.headers['x-access-token']
+}
+
 export default {
   customer,
   vendor,
-  customerGoogle
+  customerGoogle,
+  logout
 }

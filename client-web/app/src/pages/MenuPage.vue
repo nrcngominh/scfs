@@ -78,7 +78,7 @@
               <div class="buy" @click="addAndBuy(food)">
                 <button>Buy</button>
               </div>
-              <div class="add" @click="addToCart(food)">
+              <div class="add" @click="addFoodToCart(food)">
                 <img src="@/assets/images/cart.svg" alt="favorite" />
               </div>
               <div class="favorite">
@@ -105,6 +105,7 @@ export default {
   },
   computed: {
     ...mapState("customer/food", ["allCategories"]),
+    ...mapState("account", ["customerLoggedIn"]),
     ...mapFields("customer/food", [
       "searchPattern",
       "moneyMinValue",
@@ -113,15 +114,27 @@ export default {
     ...mapGetters("customer/food", ["getFoodsFiltered"])
   },
   methods: {
+    ...mapMutations("customer/accountModal", ["openLoginTab"]),
     ...mapMutations("customer/food", ["setMoneyMinMax"]),
     ...mapActions("customer/food", ["fetchAllFoods"]),
     ...mapActions("customer/cart", ["addToCart"]),
-    addAndBuy(food) {
-      this.addToCart(food);
-      this.$router.push("/cart");
+    async addAndBuy(food) {
+      if (this.customerLoggedIn) {
+        await this.addToCart(food);
+        this.$router.push("/cart");
+      } else {
+        this.openLoginTab();
+      }
     },
     toggleDropdown() {
       this.dropdown = !this.dropdown;
+    },
+    async addFoodToCart(food) {
+      if (this.customerLoggedIn) {
+        await this.addToCart(food);
+      } else {
+        this.openLoginTab();
+      }
     }
   },
   mounted() {

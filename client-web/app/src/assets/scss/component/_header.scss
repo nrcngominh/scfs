@@ -39,6 +39,10 @@
 		display: grid;
 		grid-template-columns: auto 1fr auto;
 		grid-template-areas: "logo nav-tab nav-icon";
+		&.wrapper {
+			padding-top: 0.5rem;
+			padding-bottom: 0.5rem;
+		}
 
 		.toggle-button-wrapper {
 			grid-area: toggle-button;
@@ -147,7 +151,7 @@
 
 				&.nav-dropdown {
 					display: inherit;
-					margin-top: 1rem;
+					margin-top: 0.5rem;
 					border-top: 1px solid rgb(158, 157, 157);
 
 					ul {

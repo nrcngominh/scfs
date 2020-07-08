@@ -1,14 +1,11 @@
-import Header from './header'
-import Account from './account'
+import AccountModal from './account-modal'
 import Food from './food'
 import Cart from './cart'
-
 
 export default {
   namespaced: true,
   modules: {
-    header: Header,
-    account: Account,
+    accountModal: AccountModal,
     food: Food,
     cart: Cart
   }

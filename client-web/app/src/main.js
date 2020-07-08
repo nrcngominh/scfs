@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import VueCookies from 'vue-cookies'
 import App from './App'
-import VueSocketIO from 'vue-socket.io'
-import SocketIO from 'socket.io-client'
 import VueQrCodeComponent from 'vue-qrcode-component'
 
 Vue.config.productionTip = false;
@@ -31,17 +29,6 @@ axios.defaults.baseURL = process.env.VUE_APP_DOMAIN
 // Cookie settings
 Vue.use(VueCookies)
 Vue.$cookies.config('1d')
-
-// Initialize socket-client.io
-Vue.use(new VueSocketIO({
-  debug: process.env.NODE_ENV === 'development',
-  connection: SocketIO(process.env.VUE_APP_DOMAIN),
-  vuex: {
-    store,
-    actionPrefix: 'SOCKET_',
-    mutationPrefix: 'SOCKET_'
-  }
-}))
 
 // Initialize vuex and vue-router
 import store from './store'

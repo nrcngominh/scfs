@@ -49,7 +49,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations("accountModal", ["close"]),
+    ...mapMutations("customer/accountModal", ["close"]),
     async performRegister() {
       await customerRegister({
         email: this.email,

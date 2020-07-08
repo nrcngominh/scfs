@@ -28,7 +28,7 @@
       </div>
 
       <article class="category-button-wrapper">
-        <button>MORE CATEGORIES</button>
+        <button @click="goToMenu()">MORE CATEGORIES</button>
       </article>
     </section>
 
@@ -86,7 +86,10 @@ export default {
     LandingSlide
   },
   methods: {
-    ...mapMutations("customer/header", ["enterLandingPage", "exitLandingPage"])
+    ...mapMutations("header", ["enterLandingPage", "exitLandingPage"]),
+    goToMenu() {
+      this.$router.push("/menu");
+    }
   },
   mounted() {
     this.enterLandingPage();

@@ -4,11 +4,13 @@
  */
 const initialSocketIO = (io) => {
   io.sockets.on("connection", (socket) => {
-    console.log(socket.handshake.address, 'connected')
+    console.log(socket.handshake.address, 'connected, id =', socket.id)
 
     socket.on("disconnect", () => {
       console.log(socket.handshake.address, 'disconnected')
     })
+
+    io.emit("MOMO", null)
   })
 }
 
