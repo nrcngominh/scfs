@@ -1,0 +1,42 @@
+// Responsive
+@mixin xs {
+	@media screen and (min-width: $xs-width) and (max-width: #{$sm-width - 1px}) {
+		@content;
+	}
+}
+
+@mixin sm {
+	@media screen and (min-width: $sm-width) and (max-width: #{$md-width - 1px}) {
+		@content;
+	}
+}
+
+@mixin md {
+	@media screen and (min-width: $md-width) and (max-width: #{$lg-width - 1px}) {
+		@content;
+	}
+}
+
+@mixin lg {
+	@media screen and (min-width: $lg-width) and (max-width: #{$el-width - 1px}) {
+		@content;
+	}
+}
+
+@mixin el {
+	@media screen and (min-width: $el-width) {
+		@content;
+	}
+}
+
+@mixin sm-h {
+	@media screen and (max-height: #{$min-height - 1px}) {
+		@content;
+	}
+}
+
+@mixin lg-h {
+	@media screen and (min-height: $min-height) {
+		@content;
+	}
+}

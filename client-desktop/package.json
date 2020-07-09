@@ -1,0 +1,75 @@
+{
+  "name": "client-desktop",
+  "version": "1.0.0",
+  "main": "src/main/index.js",
+  "description": "Desktop app for manager and cook",
+  "keywords": [],
+  "author": {
+    "name": "Ngoc",
+    "email": "nrcngominh@gmail.com"
+  },
+  "license": "MIT",
+  "_moduleAliases": {
+    "@": "./src"
+  },
+  "scripts": {
+    "serve": "vue-cli-service serve --port 9090",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "start": "npm run build && electron-forge start",
+    "dev": "ELECTRON_NODE_ENV=development electron-forge start",
+    "make": "npm run build && electron-forge package && electron-forge make",
+    "publish": "electron-forge publish"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "core-js": "^3.6.5",
+    "electron-serve": "^1.0.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "module-alias": "^2.2.2",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^9.0.2",
+    "vue": "^2.6.11",
+    "vue-material": "^1.0.0-beta-14",
+    "vue-router": "^3.3.4",
+    "vuex": "^3.5.1"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.52",
+    "@electron-forge/maker-deb": "^6.0.0-beta.52",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.52",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.52",
+    "@electron-forge/maker-zip": "^6.0.0-beta.52",
+    "@vue/cli-plugin-babel": "~4.4.0",
+    "@vue/cli-plugin-eslint": "~4.4.0",
+    "@vue/cli-service": "~4.4.0",
+    "babel-eslint": "^10.1.0",
+    "electron": "9.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "client_desktop"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        }
+      ]
+    }
+  }
+}

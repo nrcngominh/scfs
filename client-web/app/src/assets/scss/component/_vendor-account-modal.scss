@@ -1,0 +1,8 @@
+.account-modal-container.vendor {
+  .tab-headers {
+    grid-template-columns: 1fr;
+    .header.active {
+      background: $light-gray;
+    }
+  }
+}
