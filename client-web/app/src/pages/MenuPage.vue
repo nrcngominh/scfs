@@ -64,11 +64,13 @@
 
       <article class="menu-wrapper">
         <article class="sort-wrapper">
-          <ul>
-            <li>Sort by price</li>
-            <li>Sort by name</li>
-            <li>Sort by popularity</li>
-          </ul>
+          <div class="select-container">
+            <select>
+              <option value="">Sort by price: low to high</option>
+              <option value="">Sort by price: high to low</option>
+              <option value="">Sort by latest</option>
+            </select>
+          </div>
         </article>
 
         <div class="food-container">
@@ -89,8 +91,9 @@
               <div class="add" @click="addFoodToCart(food)">
                 <img src="@/assets/images/cart.svg" alt="favorite" />
               </div>
-              <div class="favorite">
-                <img src="@/assets/images/heart.svg" alt="favorite" />
+              <div @click="toggleFavorite()" class="favorite">
+                <img v-if="isFavorite" src="@/assets/images/heart1.png" alt="favorite" />
+                <img v-else src="@/assets/images/heart2.png" alt="favorite" />
               </div>
             </div>
           </article>
@@ -108,7 +111,8 @@ export default {
   name: "MenuPage",
   data() {
     return {
-      dropdown: false
+      dropdown: false,
+      isFavorite: true
     };
   },
   computed: {
@@ -136,6 +140,9 @@ export default {
     },
     toggleDropdown() {
       this.dropdown = !this.dropdown;
+    },
+    toggleFavorite() {
+      this.isFavorite = !this.isFavorite;
     },
     async addFoodToCart(food) {
       if (this.customerLoggedIn) {
