@@ -4,7 +4,7 @@ import VueRouter from "vue-router";
 import "@/pages";
 import DashboardLayout from "@/layouts/DashboardLayout";
 
-import AccountService from "@/services/account-service";
+import AccountService from "@/services/account";
 import {
   Dashboard,
   ProfilePage,

@@ -1,5 +1,5 @@
 <template>
-  <div class="content"></div>
+  <div class="content notification-page-container"></div>
 </template>
 
 <script>

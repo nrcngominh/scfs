@@ -1,3 +1,4 @@
+require('module-alias/register')
 const { app, BrowserWindow, globalShortcut } = require("electron");
 const serve = require("electron-serve");
 const path = require("path");

@@ -1,19 +1,9 @@
 const { ipcMain } = require("electron");
-const axios = require("axios");
-const FormData = require("form-data");
-const fs = require("fs");
+const { uploadFoodImage } = require("@/api/food")
 
 ipcMain.on("upload-food-image", async (event, arg) => {
-  const data = new FormData();
-  data.append("uploaded_image", fs.createReadStream(arg.imagePath));
-  data.append("_id", arg._id);
-
   try {
-    const res = await axios.put("/api/upload/food", data, {
-      headers: {
-        ...data.getHeaders()
-      }
-    });
+    const res = await uploadFoodImage(arg._id, arg.imagePath)
     event.reply("upload-food-image-reply", res.data);
   } catch (error) {
     console.log(error);

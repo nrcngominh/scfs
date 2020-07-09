@@ -1,12 +1,17 @@
-import axios from "axios";
 const { ipcRenderer } = window.require("electron");
 
+import { getAllFood, removeFoodById, updateFoodInfo } from '@/api/food'
+
 const getAll = async () => {
-  return await axios.get("/api/food");
+  return await getAllFood()
 };
 
-const update = async food => {
-  return await axios.put("/api/food", food);
+const removeById = async id => {
+  return await removeFoodById(id)
+};
+
+const updateInfo = async food => {
+  return await updateFoodInfo(food)
 };
 
 const uploadImage = async (_id, imagePath) => {
@@ -27,17 +32,9 @@ const uploadImage = async (_id, imagePath) => {
   });
 };
 
-const removeById = async id => {
-  return await axios.delete("/api/food", {
-    data: {
-      _id: id
-    }
-  });
-};
-
 export default {
   getAll,
-  update,
+  updateInfo,
   uploadImage,
   removeById
 };

@@ -1,5 +1,5 @@
 <template>
-  <div class="login-page">
+  <div class="login-page-container">
     <md-content class="md-elevation-3">
       <div class="title">
         <img src="../assets/img/logo.png" />
@@ -15,11 +15,7 @@
 
         <md-field md-has-password>
           <label>Password</label>
-          <md-input
-            v-model="password"
-            @keyup.enter="performLogin"
-            type="password"
-          ></md-input>
+          <md-input v-model="password" @keyup.enter="performLogin" type="password"></md-input>
         </md-field>
       </div>
 
@@ -27,16 +23,14 @@
 
       <div class="actions md-layout md-alignment-center-space-between">
         <a href="#">Reset password</a>
-        <md-button class="md-raised md-primary" @click="performLogin"
-          >Log in</md-button
-        >
+        <md-button class="md-raised md-primary" @click="performLogin">Log in</md-button>
       </div>
     </md-content>
   </div>
 </template>
 
 <script>
-import AccountService from "../services/account-service";
+import AccountService from "@/services/account";
 
 export default {
   name: "LoginPage",

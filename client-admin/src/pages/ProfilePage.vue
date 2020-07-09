@@ -1,5 +1,5 @@
 <template>
-  <div class="content"></div>
+  <div class="content profile-page-container"></div>
 </template>
 
 <script>
