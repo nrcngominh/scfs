@@ -4,6 +4,6 @@ const adminAuth = async () => {
   return await axios.get("/api/auth/admin");
 }
 
-export {
+module.exports = {
   adminAuth
 }

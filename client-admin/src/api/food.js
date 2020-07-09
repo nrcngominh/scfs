@@ -30,7 +30,7 @@ const uploadFoodImage = async (foodId, imagePath) => {
   })
 }
 
-export {
+module.exports = {
   getAllFood,
   removeFoodById,
   updateFoodInfo,

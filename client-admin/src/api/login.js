@@ -7,6 +7,6 @@ const adminLogin = async (email, password) => {
   })
 }
 
-export {
+module.exports = {
   adminLogin
 }
