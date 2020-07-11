@@ -10,4 +10,6 @@ AuthRouter.get('/customer/google', AuthController.authGoogle)
 
 AuthRouter.get('/vendor', AuthMiddleware.vendor, AuthController.auth)
 
+AuthRouter.get('/admin', AuthMiddleware.admin, AuthController.auth)
+
 export default AuthRouter
