@@ -54,12 +54,14 @@
             :first-child {
               padding-bottom: 0.3rem;
             }
-
             input {
-              text-align: right;
+              text-align: center;
               border: 1px solid black;
               width: 2rem;
               margin-right: 0.1rem;
+              border-radius: 5px;
+              background-color: $light-gray;
+              justify-content: center;
             }
           }
         }

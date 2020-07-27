@@ -37,17 +37,24 @@ export default {
     allCategories: [],
     searchPattern: '',
     moneyMinValue: 5,
-    moneyMaxValue: 100
+    moneyMaxValue: 100,
+    selected: 'Sort by lastest'
   },
   getters: {
     getField,
     getFoodsFiltered(state) {
-      return state.allFoods.filter(food => {
+      const Food =  state.allFoods.filter(food => {
         const status = filterCategory(state, food)
           && filterMoney(state, food)
           && filterName(state, food)
         return status
-      })
+      });
+      if(state.selected == "Sort by lastest") {
+        return Food;
+      }
+      else if (state.selected == "Sort by price: low to high") {
+        return Food.sort((a, b) => a - b);
+      }
     }
   },
   mutations: {

@@ -35,6 +35,15 @@
               </div>
             </div>
             <div class="category">
+              <h3>Vendor</h3>
+              <div class="checkbox-wrapper">
+                <div class="item">
+                  <input type="checkbox" />
+                  <label>BKFOOD</label>
+                </div>
+              </div>
+            </div>
+            <div class="category">
               <h3>Category</h3>
               <div class="checkbox-wrapper">
                 <div class="item" v-for="category in allCategories" :key="category._id">
@@ -65,10 +74,10 @@
       <article class="menu-wrapper">
         <article class="sort-wrapper">
           <div class="select-container">
-            <select>
-              <option value="">Sort by price: low to high</option>
-              <option value="">Sort by price: high to low</option>
-              <option value="">Sort by latest</option>
+            <select v-model="selected">
+              <option selected="selected">Sort by lastest</option>
+              <option>Sort by price: low to high</option>
+              <option>Sort by price: high to low</option>
             </select>
           </div>
         </article>
@@ -119,7 +128,8 @@ export default {
     ...mapFields("customer/food", [
       "searchPattern",
       "moneyMinValue",
-      "moneyMaxValue"
+      "moneyMaxValue",
+      "selected"
     ]),
     ...mapGetters("customer/food", ["getFoodsFiltered"])
   },
