@@ -39,7 +39,7 @@
             <li @click="goToCart()">
               <img src="@/assets/images/cart.svg" alt="Logo" />
             </li>
-            <li>
+            <li @click="goToFavorite()">
               <img src="@/assets/images/heart.svg" alt="Logo" />
             </li>
             <li>
@@ -102,6 +102,9 @@ export default {
     },
     goToCart() {
       this.$router.push("/cart");
+    },
+    goToFavorite() {
+      this.$router.push("/favorite");
     },
     register() {
       this.openRegisterTab();

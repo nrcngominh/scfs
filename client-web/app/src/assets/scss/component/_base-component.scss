@@ -3,8 +3,8 @@ button {
   color: white;
   border-radius: 1rem;
   padding: 0.3rem 1rem;
+  transition: all 0.5s linear;
 }
-
 textarea:focus,
 input:focus {
   outline: none;

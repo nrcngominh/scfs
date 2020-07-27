@@ -54,6 +54,7 @@ export default {
     updateField,
     setAllFoods(state, allFoods) {
       state.allFoods = allFoods
+      state.allFoods.forEach(food => food.isFavorite = true);
     },
     setAllCategories(state, allCategories) {
       state.allCategories = allCategories

@@ -7,6 +7,7 @@ import MainLayout from '@/layouts/MainLayout'
 import VendorLayout from '@/layouts/VendorLayout'
 import LandingPage from '@/pages/LandingPage'
 import CartPage from '@/pages/CartPage'
+import FavoritePage from '@/pages/FavoritePage'
 import MenuPage from '@/pages/MenuPage'
 import PaymentPage from '@/pages/PaymentPage'
 import ErrorPage from '@/pages/ErrorPage'
@@ -52,6 +53,15 @@ const router = new VueRouter({
           }
         },
         {
+          path: 'favorite',
+          name: 'Favorite Page',
+          component: FavoritePage,
+          meta: {
+            title: 'BK Food | Favorite',
+            auth: true
+          }
+        },
+        {
           path: 'payment',
           name: 'Payment Page',
           component: PaymentPage,
@@ -85,11 +95,12 @@ const router = new VueRouter({
       component: VendorLayout,
       children: [
         {
-          path: '',
+          path: 'detail-vendor',
           name: 'Vendor Page',
           component: VendorPage,
           meta: {
             title: 'BK Food | Vendor',
+            auth: true
           }
         }
       ]

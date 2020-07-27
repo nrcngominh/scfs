@@ -72,7 +72,7 @@
             </select>
           </div>
         </article>
-
+      
         <div class="food-container">
           <article class="food-item" v-for="food in getFoodsFiltered" :key="food._id">
             <div class="food-image">
@@ -91,9 +91,8 @@
               <div class="add" @click="addFoodToCart(food)">
                 <img src="@/assets/images/cart.svg" alt="favorite" />
               </div>
-              <div @click="toggleFavorite()" class="favorite">
-                <img v-if="isFavorite" src="@/assets/images/heart1.png" alt="favorite" />
-                <img v-else src="@/assets/images/heart2.png" alt="favorite" />
+              <div :id="food._id" @click="toggleFavorite(food)" class="favorite">
+                <img :src="favoriteUrl(food.isFavorite)" alt="favorite" />
               </div>
             </div>
           </article>
@@ -112,7 +111,6 @@ export default {
   data() {
     return {
       dropdown: false,
-      isFavorite: true
     };
   },
   computed: {
@@ -141,8 +139,13 @@ export default {
     toggleDropdown() {
       this.dropdown = !this.dropdown;
     },
-    toggleFavorite() {
-      this.isFavorite = !this.isFavorite;
+    toggleFavorite(food) {
+      console.log(food._id)
+    },
+    favoriteUrl(foodIsFavorite) {
+      return foodIsFavorite
+        ? require("@/assets/images/heart1.png")
+        : require("@/assets/images/heart2.png");
     },
     async addFoodToCart(food) {
       if (this.customerLoggedIn) {
