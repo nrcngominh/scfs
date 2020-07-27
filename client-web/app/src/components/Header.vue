@@ -28,7 +28,7 @@
             <li @click="goToVendor()">
               <div>VENDOR</div>
             </li>
-            <li>
+            <li @click="goToAbout()">
               <div>ABOUT</div>
             </li>
           </ul>
@@ -105,6 +105,9 @@ export default {
     },
     goToFavorite() {
       this.$router.push("/favorite");
+    },
+    goToAbout(){
+      this.$router.push("/about");
     },
     register() {
       this.openRegisterTab();
