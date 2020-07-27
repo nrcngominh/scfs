@@ -1,6 +1,6 @@
 <template>
   <div class="slide-container">
-    <img src="@/assets/images/slide1.webp" />
+    <img src="@/assets/images/slide2.webp" />
     <div class="slide-content">
       <div class="wrapper">
         <h1 class="full-title">Welcome to BKFOOD</h1>
