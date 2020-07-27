@@ -17,9 +17,7 @@
           </div>
           <div class="price">10.000</div>
           <div class="quantity">
-            <div class="quantity-wrapper">
               <p>1</p>
-            </div>
           </div>
           <div class="subtotal">10000</div>
         </article>
@@ -48,7 +46,7 @@
             <div>
               <h4>Total</h4>
             </div>
-            <div class="total">total</div>
+            <div class="total">TOTAL</div>
           </article>
       </div>
     </div>

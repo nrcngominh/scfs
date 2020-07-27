@@ -13,7 +13,6 @@
       text-align: left;
         .total {
             color: red;
-            font-size: 1.5rem;
         }
       &.header {
         border-radius: 1rem 1rem 0 0;
@@ -42,31 +41,6 @@
         }
         &.quantity {
           display: flex;
-          align-items: center;
-          justify-content: center;
-  
-          .quantity-wrapper {
-            height: 2rem;
-            border: 1px solid $light-gray;
-            border-radius: 0.3rem;
-            overflow: hidden;
-            display: grid;
-            grid-template-columns: 3fr 4fr 3fr;
-            width: 100%;
-  
-            button {
-              height: 100%;
-              background-color: white;
-              border-radius: 0;
-              color: black;
-              padding: 0 0;
-  
-              &:hover {
-                background-color: $primary-color;
-                color: white;
-              }
-            }
-          }
         }
       }
   
