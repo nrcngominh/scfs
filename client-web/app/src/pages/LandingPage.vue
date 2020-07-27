@@ -39,28 +39,28 @@
         <article class="wrapper-container">
           <div class="wrapper-content">
             <div class="logo-content">
-              <img src="@/assets/images/momo.png" alt="step1" />
+              <img src="@/assets/images/search.png" alt="step1" />
             </div>
             <div class="number-content">1</div>
             <div class>Select Item</div>
           </div>
           <div class="wrapper-content">
             <div class="logo-content">
-              <img src="@/assets/images/momo.png" alt="step2" />
+              <img src="@/assets/images/vendor.png" alt="step2" />
             </div>
             <div class="number-content">2</div>
             <div class>Choose Vendor</div>
           </div>
           <div class="wrapper-content">
             <div class="logo-content">
-              <img src="@/assets/images/momo.png" alt="step3" />
+              <img src="@/assets/images/payment.png" alt="step3" />
             </div>
             <div class="number-content">3</div>
             <div class>Make your order</div>
           </div>
           <div class="wrapper-content">
             <div class="logo-content">
-              <img src="@/assets/images/takeawayicon.png" alt="step4" />
+              <img src="@/assets/images/takeaway.png" alt="step4" />
             </div>
             <div class="number-content">4</div>
             <div class>Take away</div>
