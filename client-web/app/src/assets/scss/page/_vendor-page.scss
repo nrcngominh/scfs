@@ -1,0 +1,183 @@
+.cart-page {
+    font-family: $serif-font;
+    border-radius: 1rem;
+    .cart-table {
+        border-radius: 1rem;
+        background: $light-gray;
+    }
+    .cart-grid-container {
+        display: grid;
+        grid-template-columns: 3fr 10rem 10rem 10rem 4rem;
+        text-align: left;
+        &.header {
+            border-radius: 1rem 1rem 0 0;
+            background: $primary-color;
+            color: white;
+            font-weight: 600;
+            font-size: 1.2rem;
+            >div {
+                padding: 1.5rem;
+            }
+        }
+        >div {
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            &.product {
+                img {
+                    margin-right: 1rem;
+                    width: 3rem;
+                    height: 3rem;
+                }
+            }
+            &.quantity {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                .quantity-wrapper {
+                    height: 2rem;
+                    border: 1px solid $light-gray;
+                    border-radius: 0.3rem;
+                    overflow: hidden;
+                    display: grid;
+                    grid-template-columns: 3fr 4fr 3fr;
+                    width: 100%;
+                    button {
+                        height: 100%;
+                        background-color: white;
+                        border-radius: 0;
+                        color: black;
+                        padding: 0 0;
+                        &:hover {
+                            background-color: $primary-color;
+                            color: white;
+                        }
+                    }
+                    input {
+                        height: 100%;
+                        width: calc(100% - 2px);
+                        text-align: center;
+                        border-left: 1px solid $light-gray;
+                        border-right: 1px solid $light-gray;
+                        &::-webkit-outer-spin-button,
+                        &::-webkit-inner-spin-button {
+                            -webkit-appearance: none;
+                            margin: 0;
+                        }
+                    }
+                }
+            }
+            .remove-button {
+                background: black;
+                border-radius: 0;
+                padding: 0.2rem 0.2rem 0 0.2rem;
+                img {
+                    height: 0.9rem;
+                    filter: invert(1);
+                    justify-content: center;
+                }
+            }
+        }
+        @mixin mobile {
+            @include xs {
+                @content;
+            }
+            @include sm {
+                @content;
+            }
+        }
+        @include mobile {
+            grid-template-columns: 1fr 4rem 5rem 5rem 1.8rem;
+            &.header {
+                border-radius: 0.5rem 0.5rem 0 0;
+                font-weight: 500;
+                font-size: 0.9rem;
+                >div {
+                    padding: 0.5rem;
+                }
+            }
+            >div {
+                padding: 0.5rem;
+                font-size: 0.8rem;
+                display: flex;
+                align-items: center;
+                &.product {
+                    img {
+                        display: none;
+                    }
+                }
+                .remove-button {
+                    background: black;
+                    border-radius: 0;
+                    padding: 0.1rem 0.1rem 0 0.1rem;
+                    position: relative;
+                    margin-right: 1rem;
+                    img {
+                        height: 0.6rem;
+                        filter: invert(1);
+                    }
+                }
+            }
+        }
+    }
+    .total {
+        display: grid;
+        margin-top: 1rem;
+        grid-template-columns: 1fr auto;
+        .total-wrapper {
+            h2 {
+                font-size: 1.7rem;
+                margin-bottom: 0.5rem;
+            }
+            .total-grid-container {
+                display: grid;
+                border-radius: 1rem;
+                overflow: hidden;
+                background: $light-gray;
+                grid-template-columns: 7rem 1fr;
+                >div {
+                    display: flex;
+                    padding: 0.7rem;
+                    align-items: center;
+                    &.row-header {
+                        background: $primary-color;
+                        color: white;
+                    }
+                    &.coupon {
+                        >input {
+                            width: 7rem;
+                            margin-right: 1rem;
+                        }
+                        button {
+                            padding: 0.4rem 1.2rem;
+                        }
+                    }
+                }
+            }
+            button.checkout {
+                margin-top: 1rem;
+                width: 100%;
+                border-radius: 5rem;
+                color: white;
+                background: $primary-color;
+                padding: 1rem;
+            }
+        }
+        @mixin mobile {
+            @include xs {
+                @content;
+            }
+            @include sm {
+                @content;
+            }
+        }
+        @include mobile {
+            font-size: 0.8rem;
+            .total-wrapper {
+                h2 {
+                    font-size: 1.5rem;
+                }
+            }
+        }
+    }
+}
