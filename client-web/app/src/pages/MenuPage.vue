@@ -39,7 +39,19 @@
               <div class="checkbox-wrapper">
                 <div class="item">
                   <input type="checkbox" />
-                  <label>BKFOOD</label>
+                  <label>BKFood</label>
+                </div>
+                <div class="item">
+                  <input type="checkbox" />
+                  <label>CircleK</label>
+                </div>
+                <div class="item">
+                  <input type="checkbox" />
+                  <label>KFC</label>
+                </div>
+                <div class="item">
+                  <input type="checkbox" />
+                  <label>Lotteria</label>
                 </div>
               </div>
             </div>
