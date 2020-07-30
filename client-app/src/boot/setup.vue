@@ -14,9 +14,9 @@ import App from "../App.vue";
 import axios from "axios";
 import { ScrollView } from "react-native";
 import React, { Component } from "react";
-import {Modal} from "react-native";
+import { Modal } from "react-native";
 
-axios.defaults.baseURL = "https://sfcs-hcmut.duckdns.org";
+axios.defaults.baseURL = "http://192.168.1.98";
 
 // registering all native-base components to the global scope of the Vue
 Vue.use(VueNativeBase);

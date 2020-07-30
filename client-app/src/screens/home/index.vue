@@ -17,7 +17,7 @@
         <nb-row><intro-slide class="intro_slide"/></nb-row>
         <nb-row>
           <scroll-view>
-              <nb-view orientation="horizontal" :style="{height: 220, marginTop: 20}" v-for="item in categories" :key="item.category">
+              <nb-view orientation="horizontal" :style="{height: 220, marginTop: 20}" v-for="item in categories" :key="item._id">
                 <nb-view :style="{flex: 1}">
                   <nb-list-item>
                     <nb-left>
@@ -82,6 +82,7 @@ import { StyleSheet, Text, View } from "react-native";
 import IntroSlide from "./introSlide";
 import React, { Component, useState } from "react";
 import axios from "axios";
+import FoodService from '../../services/food-service'
 
 export default {
   props: {
@@ -120,9 +121,7 @@ export default {
   },
   async mounted() {
     try {
-      const res = await axios.get("/api/food");
-      this.categories = res.data;
-      console.log(this.categories.map(item => item.category));
+      this.categories = await FoodService.getFoodsByCategory()
     } catch (error) {}
   },
   methods: {

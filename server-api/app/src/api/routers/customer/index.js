@@ -5,9 +5,7 @@ import AuthMiddleware from '@/api/middlewares/auth'
 
 const CustomerRouter = Router()
 
-CustomerRouter.all('*', AuthMiddleware.customer)
-
-CustomerRouter.use('/cart', CartRouter)
+CustomerRouter.use('/cart', AuthMiddleware.customer, CartRouter)
 CustomerRouter.use('/pay', PayRouter)
 
 export default CustomerRouter

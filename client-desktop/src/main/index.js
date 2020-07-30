@@ -1,4 +1,3 @@
-require('module-alias/register')
 const { app, BrowserWindow, globalShortcut } = require("electron");
 const serve = require("electron-serve");
 const path = require("path");
@@ -27,6 +26,11 @@ const createWindow = () => {
   // Disable default menu bar
   mainWindow.setMenu(null);
 
+  // Set title
+  mainWindow.webContents.on("did-finish-load", () => {
+    mainWindow.setTitle("Smart Food Court System Management");
+  });
+
   // Development mode
   if (process.env.ELECTRON_NODE_ENV === "development") {
     console.log("Development mode");
@@ -44,7 +48,6 @@ const createWindow = () => {
   }
   // Production mode
   else {
-    console.log("Production mode");
     loadUrlForSPA(mainWindow);
   }
 };
@@ -75,4 +78,4 @@ app.on("activate", () => {
 // code. You can also put them in separate files and import them here.
 
 // Listen for events from renderer
-require("./events");
+require('./events')

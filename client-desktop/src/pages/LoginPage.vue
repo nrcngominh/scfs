@@ -1,8 +1,8 @@
 <template>
-  <div class="login-page-container">
+  <div class="login-page">
     <md-content class="md-elevation-3">
       <div class="title">
-        <img src="@/assets/images/logo.png" />
+        <img src="../assets/img/logo.png" />
         <div class="md-title">Smart Food Court System</div>
         <div class="md-body-1">Manager Dashboard</div>
       </div>
@@ -15,7 +15,11 @@
 
         <md-field md-has-password>
           <label>Password</label>
-          <md-input v-model="password" @keyup.enter="performLogin" type="password"></md-input>
+          <md-input
+            v-model="password"
+            @keyup.enter="performLogin"
+            type="password"
+          ></md-input>
         </md-field>
       </div>
 
@@ -23,13 +27,17 @@
 
       <div class="actions md-layout md-alignment-center-space-between">
         <a href="#">Reset password</a>
-        <md-button class="md-raised md-primary" @click="performLogin">Log in</md-button>
+        <md-button class="md-raised md-primary" @click="performLogin"
+          >Log in</md-button
+        >
       </div>
     </md-content>
   </div>
 </template>
 
 <script>
+import AccountService from "../services/account-service";
+
 export default {
   name: "LoginPage",
   data() {
@@ -50,7 +58,8 @@ export default {
   methods: {
     async performLogin() {
       try {
-        // this.$router.push("/");
+        await AccountService.login(this.email, this.password);
+        this.$router.push("/");
       } catch (error) {
         if (!error.response) {
           this.status = "Cannot connect to server";

@@ -1,6 +1,17 @@
 import PayService from '@/services/pay'
 
 /**
+ * Handle QR Code pay by touch screen machine
+ * @param {import("express").Request} req 
+ * @param {import("express").Response} res 
+ */
+const qrCodeAnonymous = async (req, res) => {
+  const cart = req.body.cart
+  const bill = await PayService.createBillAnonymous(cart)
+  res.status(201).send(bill)
+}
+
+/**
  * Handle QR Code pay
  * @param {import("express").Request} req 
  * @param {import("express").Response} res 
@@ -26,5 +37,6 @@ const app = (req, res) => {
 
 export default {
   qrCode,
+  qrCodeAnonymous,
   app
 }

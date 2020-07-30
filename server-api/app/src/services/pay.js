@@ -55,6 +55,19 @@ const createBill = async (cart, couponId, account) => {
   }
 }
 
+const createBillAnonymous = async (cart) => {
+  const subTotal = await calcSubtotal(cart)
+  console.log(subTotal, cart)
+  const billId = 'B' + randomNumber(9)
+  const qrCode = MomoService.generatePayQrCode(subTotal, billId)
+  console.log(billId, qrCode)
+  return {
+    billId: billId,
+    qrCode: qrCode
+  }
+}
+
 export default {
-  createBill
+  createBill,
+  createBillAnonymous
 }
