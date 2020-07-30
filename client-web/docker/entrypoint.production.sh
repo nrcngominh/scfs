@@ -1,4 +1,3 @@
-# Restore images
 mkdir -p /data/images
 cp -rf /app/images/* /data/images/
 

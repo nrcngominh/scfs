@@ -73,7 +73,7 @@
 
     <section class="how-to-order">
       <article class="wrapper">
-        <h2>HOW TO ORDER</h2>
+        <h2>HOW TO ORDER?</h2>
         <p>Follow the Steps</p>
         <article class="wrapper-container">
           <div class="wrapper-content">

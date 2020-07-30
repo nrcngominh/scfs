@@ -1,17 +1,34 @@
-import axios from 'axios'
+const axios = require('axios')
 
+axios.defaults.baseURL = "http://192.168.1.98";
 
-const getFoodsByCategory = async (category) => {
-    const res = await axios.get('/api/food')
-    return res.data.filter(item => item.category == category)[0].foods
+const getAllCategories = async () => {
+    return await axios.get('/api/category')
 }
 
-const getCategories = async () => {
-    const res = await axios.get('/api/food')
-    return res.data.map(item => item.category);
+const getAll = async () => {
+    return await axios.get("/api/food");
+};
+
+const getFoodsByCategory = async () => {
+    const foods = (await getAll()).data;
+    const categoriesRes = (await getAllCategories()).data;
+    categoriesRes.forEach(category => (category.foods = []));
+    const categories = foods.map(food => {
+        const ownCategory = categoriesRes.find(
+            category => category._id === food.categoryId
+        );
+        ownCategory.foods.push(food);
+        food.img =
+            (process.env.VUE_APP_DOMAIN || "http://192.168.1.98") + food.img;
+        return ownCategory;
+    });
+    console.log(categories)
+    return categories
 }
+
+// getFoodsByCategory()
 
 export default {
-    getFoodsByCategory,
-    getCategories
+    getFoodsByCategory
 }

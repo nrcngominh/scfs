@@ -10,8 +10,10 @@ import FoodRouter from './food/food'
 import CategoryRouter from './food/category'
 import CouponRouter from './coupon'
 import BadRequestController from '@/api/controllers/bad-request'
-
+import LoggerMiddleware from '@/api/middlewares/logger'
 const BaseRouter = Router()
+
+BaseRouter.all('*', LoggerMiddleware.log)
 
 BaseRouter.use('/api/customer', CustomerRouter)
 BaseRouter.use('/api/admin', AdminRouter)

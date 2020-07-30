@@ -1,0 +1,56 @@
+.navbar-form {
+    margin-top: 21px;
+    margin-bottom: 21px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.md-toolbar-toggle{
+  display: none;
+}
+
+
+.navbar-nav.navbar-right > li > .dropdown-menu:before{
+    left: auto;
+    right: 12px;
+}
+
+.navbar-nav.navbar-right > li > .dropdown-menu:after{
+    left: auto;
+    right: 12px;
+}
+
+.footer:not(.footer-big){
+    nav > ul{
+       li:first-child{
+         margin-left: 0;
+       }
+    }
+}
+
+body > .navbar-collapse.collapse{
+    display: none !important;
+}
+
+.card{
+    form{
+        [class*="col-"]{
+            padding: 6px;
+        }
+        [class*="col-"]:first-child{
+            padding-left: 15px;
+        }
+        [class*="col-"]:last-child{
+            padding-right: 15px;
+        }
+    }
+}
+
+.wrapper .sidebar{
+    .navbar-form{
+        display: none !important;
+    }
+    .nav-mobile-menu{
+        display: none;
+    }
+}

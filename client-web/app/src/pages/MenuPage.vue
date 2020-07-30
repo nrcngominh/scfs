@@ -86,14 +86,21 @@
       <article class="menu-wrapper">
         <article class="sort-wrapper">
           <div class="select-container">
+<<<<<<< HEAD
             <select v-model="selected">
               <option selected="selected">Sort by lastest</option>
               <option>Sort by price: low to high</option>
               <option>Sort by price: high to low</option>
+=======
+            <select>
+              <option value>Sort by price: low to high</option>
+              <option value>Sort by price: high to low</option>
+              <option value>Sort by latest</option>
+>>>>>>> master
             </select>
           </div>
         </article>
-      
+
         <div class="food-container">
           <article class="food-item" v-for="food in getFoodsFiltered" :key="food._id">
             <div class="food-image">
@@ -113,7 +120,7 @@
                 <img src="@/assets/images/cart.svg" alt="favorite" />
               </div>
               <div :id="food._id" @click="toggleFavorite(food)" class="favorite">
-                <img :src="favoriteUrl(food.isFavorite)" alt="favorite" />
+                <img :src="favoriteUrl(food)" alt="favorite" />
               </div>
             </div>
           </article>
@@ -131,7 +138,7 @@ export default {
   name: "MenuPage",
   data() {
     return {
-      dropdown: false,
+      dropdown: false
     };
   },
   computed: {
@@ -162,10 +169,16 @@ export default {
       this.dropdown = !this.dropdown;
     },
     toggleFavorite(food) {
-      console.log(food._id)
+      food.isFavorite = !food.isFavorite;
+      const image = document.getElementById(food._id).firstElementChild;
+      console.log(image);
+      const imageUrl = food.isFavorite
+        ? require("@/assets/images/heart1.png")
+        : require("@/assets/images/heart2.png");
+      image.setAttribute("src", imageUrl);
     },
-    favoriteUrl(foodIsFavorite) {
-      return foodIsFavorite
+    favoriteUrl(food) {
+      return food.isFavorite
         ? require("@/assets/images/heart1.png")
         : require("@/assets/images/heart2.png");
     },
