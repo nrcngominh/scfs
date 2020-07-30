@@ -11,22 +11,61 @@
         <p>Welcome to Smart Food Court System of Ho Chi Minh University of Technology</p>
       </article>
 
-      <div class="wrapper">
+      
+
+       <div class="wrapper">
         <div class="category-container">
-          <article class="category-item" v-for="item in arr" :key="item">
+          <!-- line1 -->
+          <article class="category-item">
             <div class="category-image">
               <div class="category-image-content">
-                <img src="/images/1592813725496.jpg" alt="category" />
+                <img src="@/assets/images/breakfast.png" alt="category" />
               </div>
             </div>
             <div class="category-content">
               <h3>BREAKFAST</h3>
-              <p>Description</p>
+              <p>Provides enough nutrition for the start of a new day</p>
+            </div>
+          </article>
+          <!-- line2 -->
+          <article class="category-item">
+            <div class="category-image">
+              <div class="category-image-content">
+                <img src="@/assets/images/rice.jpg" alt="category" />
+              </div>
+            </div>
+            <div class="category-content">
+              <h3>RICE</h3>
+              <p>The perfect dish to blend everything</p>
+            </div>
+          </article>
+          <!-- line3 -->
+          <article class="category-item">
+            <div class="category-image">
+              <div class="category-image-content">
+                <img src="@/assets/images/vegetarian.jpg" alt="category" />
+              </div>
+            </div>
+            <div class="category-content">
+              <h3>VEGETARIAN DISHES</h3>
+              <p>As healthy and nutritous as you can get</p>
+            </div>
+          </article>
+          <!-- line4 -->
+          <article class="category-item">
+            <div class="category-image">
+              <div class="category-image-content">
+                <img src="@/assets/images/drink.jpg" alt="category" />
+              </div>
+            </div>
+            <div class="category-content">
+              <h3>DRINK</h3>
+              <p>Stay hydrated and refreshed</p>
             </div>
           </article>
         </div>
       </div>
-
+      
       <article class="category-button-wrapper">
         <button @click="goToMenu()">MORE CATEGORIES</button>
       </article>
@@ -34,7 +73,7 @@
 
     <section class="how-to-order">
       <article class="wrapper">
-        <h2>HOW TO ORDER</h2>
+        <h2>HOW TO ORDER?</h2>
         <p>Follow the Steps</p>
         <article class="wrapper-container">
           <div class="wrapper-content">
