@@ -1,10 +1,25 @@
 # Smart Food Court System
 
-## Prerequisite
+## Description
 
-* ``Docker`` version 19.03.12, build 48a66213f3
-* ``Docker Compose`` version 1.26.0, build d4451659
+* `server-api`: Provide API for system (NodeJS + MongoDB)
 
-## Development
+* `client-machine`: Touch screen machine at food court (Android)
 
-Run `start.sh` to build images and start app
+* `client-web`: Web application for customer and vendor (VueJS)
+
+* `client-app`: Cross-platform mobile app for customer (Vue Native)
+
+* `client-desktop`: Cross-platform desktop app for manager (ElectronJS and VueJS)
+
+* `database`: Sample database for development and testing
+
+* `script`: Scripts for development
+
+* `deploy`: Scripts for deployment
+
+* `doc`: SRS document for project 
+
+* `docker-compose.dev.yml`: Docker config for development.
+
+* `docker-compose.yml`: Docker config file for deployment (for Raspberry Pi 3B+)
