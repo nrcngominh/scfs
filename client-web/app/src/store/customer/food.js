@@ -43,6 +43,7 @@ export default {
   getters: {
     getField,
     getFoodsFiltered(state) {
+      var temp, i, j;
       const Food =  state.allFoods.filter(food => {
         const status = filterCategory(state, food)
           && filterMoney(state, food)
@@ -53,7 +54,34 @@ export default {
         return Food;
       }
       else if (state.selected == "Sort by price: low to high") {
-        return Food.sort((a, b) => a - b);
+        for(i = 0; i < Food.length; i++)
+        {		
+          for(j = i + 1; j < Food.length; j++)
+          {
+            if(Food[i].price > Food[j].price)
+            {
+              temp  = Food[i];
+              Food[i] = Food[j];
+              Food[j] = temp;
+            }
+          }
+        }
+        return Food;
+      }
+      else if (state.selected == "Sort by price: high to low") {
+        for(i = 0; i < Food.length; i++)
+        {		
+          for(j = i + 1; j < Food.length; j++)
+          {
+            if(Food[i].price < Food[j].price)
+            {
+              temp  = Food[i];
+              Food[i] = Food[j];
+              Food[j] = temp;
+            }
+          }
+        }
+        return Food;
       }
     }
   },

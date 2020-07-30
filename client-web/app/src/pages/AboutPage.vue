@@ -8,8 +8,6 @@
         <p>Description about my team</p>
       </article>
 
-      
-
        <div class="wrapper">
         <div class="category-container">
           <!-- line1 -->
@@ -23,7 +21,7 @@
               <h3>Ngô Minh Ngọc Richard</h3>
               <p>Student ID: 1813867</p>
               <p>Leader</p>
-              <a href="https://github.com/nrcngominh">Contact (github)</a> 
+              <a href="https://github.com/nrcngominh">Contact</a> 
             </div>
           </article>
           <!-- line2 -->
@@ -37,7 +35,7 @@
               <h3>Hà Ngọc Thọ</h3>
               <p>Student ID: 1814196</p>
               <p>Member</p>
-              <a href="https://github.com/ngocthoha">Contact (github)</a>              
+              <a href="https://github.com/ngocthoha">Contact</a>              
 
             </div>
           </article>
@@ -52,7 +50,7 @@
               <h3>Trần Quang Sơn</h3>
               <p>Student ID: 1813867</p>
               <p>Member</p>
-              <a href="https://github.com/sontranquang">Contact (github)</a> 
+              <a href="https://github.com/sontranquang">Contact</a> 
             </div>
           </article>
           <!-- line4 -->
@@ -66,7 +64,7 @@
               <h3>Nguyễn Trường Phong</h3>
               <p>Student ID: 1xxxxxx</p>
               <p>Member</p>       
-              <a href="https://github.com/phongngo1001">Contact (github)</a>        
+              <a href="https://github.com/phongngo1001">Contact</a>        
 
             </div>
             <!-- line5 -->
@@ -81,7 +79,7 @@
               <h3>Ngô Đình Thạnh</h3>
               <p>Student ID: 1xxxxxx</p>
               <p>Member</p>
-              <a href="https://github.com/tuyetca1518">Contact (github)</a> 
+              <a href="https://github.com/tuyetca1518">Contact</a> 
             </div>
           </article>
         </div>

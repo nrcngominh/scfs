@@ -45,8 +45,14 @@
             <li>
               <img src="@/assets/images/notification.svg" alt="Logo" />
             </li>
-            <li @click="performLogout()">
-              <img src="@/assets/images/user.svg" alt="Logo" />
+            <li>
+              <div class="dropdown">
+                <img src="@/assets/images/user.svg" alt="Logo" />
+                <div class="dropdown-content">
+                  <a @click="goToTransaction()">Transaction</a>
+                  <a @click="performLogout()">Logout</a>
+                </div>
+              </div>
             </li>
           </ul>
 
@@ -117,6 +123,9 @@ export default {
     },
     performLogout() {
       this.customerLogout();
+    },
+    goToTransaction() {
+      this.$router.push("/transaction");
     }
   },
   beforeCreate() {

@@ -1,60 +1,30 @@
 <template>
-  <div class="cart-page">
+  <div class="favorite-page">
     <div class="wrapper">
-      <h3>Your Cart</h3>
-      <div class="cart-table">
-        <article class="cart-grid-container header">
-          <div>PRODUCT</div>
-          <div>PRICE</div>
-          <div>QUANTITY</div>
-          <div>SUBTOTAL</div>
-          <div></div>
-        </article>
-
-        <article v-for="item in cart" :key="item.food._id" class="cart-grid-container">
-          <div class="product">
-            <img :src="item.food.img" alt="product" />
-            <p>{{item.food.name}}</p>
-          </div>
-          <div class="price">{{item.food.price}}</div>
-          <div class="quantity">
-            <div class="quantity-wrapper">
-              <button @click="decreaseQuantity(item)">-</button>
-              <div>
-                <input :value="item.quantity" type="number" min="1" />
+      <article class="menu-wrapper">
+        <div class="food-container">
+          <article class="food-item" v-for="food in getFoodsFiltered" :key="food._id">
+            <div class="food-image">
+              <div class="food-image-content">
+                <img :src="food.img" alt="food" />
               </div>
-              <button @click="increaseQuantity(item)">+</button>
             </div>
-          </div>
-          <div class="subtotal">{{item.subTotal}}</div>
-          <div class="remove">
-            <button class="remove-button" @click="removeFromCart(item)">
-              <img src="@/assets/images/close-modal.svg" alt="remove" />
-            </button>
-          </div>
-        </article>
-      </div>
-
-      <article class="total">
-        <div></div>
-        <div class="total-wrapper">
-          <div class="total-grid-container">
-            <div class="row-header">SUBTOTAL</div>
-            <div>{{subTotal}}</div>
-            <div class="row-header">COUPON</div>
-            <div class="coupon">
-              <input type="text" v-model="coupon" />
-              <button @click="applyCoupon()">Apply</button>
+            <div class="food-content">
+              <h3>{{food.name}}</h3>
+              <p>Giá: {{food.price}} VNĐ</p>
             </div>
-            <div class="row-header">DISCOUNT</div>
-            <div>{{discount}}</div>
-            <div class="row-header">TOTAL</div>
-            <div>{{total}}</div>
-          </div>
-
-          <div>
-            <button @click="goToPayment()" class="checkout">CHECKOUT</button>
-          </div>
+            <div class="action">
+              <div class="buy" @click="addAndBuy(food)">
+                <button>Buy</button>
+              </div>
+              <div class="add" @click="addFoodToCart(food)">
+                <img src="@/assets/images/cart.svg" alt="favorite" />
+              </div>
+              <div :id="food._id" @click="toggleFavorite(food)" class="favorite">
+                <img src="@/assets/images/heart2.png" alt="favorite" />
+              </div>
+            </div>
+          </article>
         </div>
       </article>
     </div>
@@ -62,25 +32,61 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapGetters, mapMutations } from "vuex";
 import { mapFields } from "vuex-map-fields";
 
 export default {
-  name: "FavoritePage",
+  name: "MenuPage",
+  data() {
+    return {
+      dropdown: false,
+    };
+  },
   computed: {
-    ...mapState("customer/cart", ["cart", "discount", "subTotal", "total"]),
-    ...mapFields("customer/cart", ["coupon"])
+    ...mapState("customer/food", ["allCategories"]),
+    ...mapState("account", ["customerLoggedIn"]),
+    ...mapFields("customer/food", [
+      "searchPattern",
+      "moneyMinValue",
+      "moneyMaxValue",
+      "selected"
+    ]),
+    ...mapGetters("customer/food", ["getFoodsFiltered"])
   },
   methods: {
-    ...mapActions("customer/cart", [
-      "removeFromCart",
-      "increaseQuantity",
-      "decreaseQuantity",
-      "applyCoupon"
-    ]),
-    goToPayment() {
-      this.$router.push("/payment");
+    ...mapMutations("customer/accountModal", ["openLoginTab"]),
+    ...mapMutations("customer/food", ["setMoneyMinMax"]),
+    ...mapActions("customer/food", ["fetchAllFoods"]),
+    ...mapActions("customer/cart", ["addToCart"]),
+    async addAndBuy(food) {
+      if (this.customerLoggedIn) {
+        await this.addToCart(food);
+        this.$router.push("/cart");
+      } else {
+        this.openLoginTab();
+      }
+    },
+    toggleDropdown() {
+      this.dropdown = !this.dropdown;
+    },
+    toggleFavorite(food) {
+      console.log(food._id)
+    },
+    favoriteUrl(foodIsFavorite) {
+      return foodIsFavorite
+        ? require("@/assets/images/heart1.png")
+        : require("@/assets/images/heart2.png");
+    },
+    async addFoodToCart(food) {
+      if (this.customerLoggedIn) {
+        await this.addToCart(food);
+      } else {
+        this.openLoginTab();
+      }
     }
+  },
+  mounted() {
+    this.fetchAllFoods();
   }
 };
 </script>

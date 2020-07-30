@@ -25,7 +25,7 @@
             display: grid;
             column-gap: 2rem;
             row-gap: 2rem;
-            grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
             article.category-item {
                 display: flex;
                 align-items: center;
@@ -62,10 +62,17 @@
                         font-size: 1rem;
                         font-weight: 600;
                         margin-bottom: 1rem;
-                        color: $header-color;
+                        color: #162945;
                     }
                     p {
+                        color: $header-color;
+                    }
+                    a {
+                        text-decoration: none;
                         color: $content-color;
+                        &:hover {
+                            color: navy;
+                        }
                     }
                 }
             }
