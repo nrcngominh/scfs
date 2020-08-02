@@ -86,17 +86,10 @@
       <article class="menu-wrapper">
         <article class="sort-wrapper">
           <div class="select-container">
-<<<<<<< HEAD
             <select v-model="selected">
               <option selected="selected">Sort by lastest</option>
               <option>Sort by price: low to high</option>
               <option>Sort by price: high to low</option>
-=======
-            <select>
-              <option value>Sort by price: low to high</option>
-              <option value>Sort by price: high to low</option>
-              <option value>Sort by latest</option>
->>>>>>> master
             </select>
           </div>
         </article>
