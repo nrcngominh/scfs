@@ -3,7 +3,9 @@ button {
   color: white;
   border-radius: 1rem;
   padding: 0.3rem 1rem;
-  transition: all 0.5s linear;
+  &:hover {
+    background-color: rgb(241, 127, 13);
+  }
 }
 textarea:focus,
 input:focus {

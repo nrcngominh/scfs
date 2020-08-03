@@ -2,8 +2,7 @@
   <div class="content dashboard-content">
     <div class="order-grid-container">
       <md-card
-        v-for="order in orders"
-        :key="order.billId"
+        v-for="order in orders" :key="order.billId"
         class="order-content"
       >
         <div class="order-content-grid-container">
@@ -22,8 +21,7 @@
               </div>
             </div>
             <div class="food-list-container">
-              <div class="food-list-item" v-for="item in order.items"
-                :key="item.food._id">
+              <div class="food-list-item" v-for="item in order.items" :key="item.food._id">
                 <div>{{ item.food.name }}</div>
                 <div>{{ item.quantity }}</div>
               </div>

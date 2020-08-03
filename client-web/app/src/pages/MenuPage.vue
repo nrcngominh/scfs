@@ -66,17 +66,11 @@
             </div>
             <div class="tag">
               <h3>Tag</h3>
-              <div class="tag-wrapper">
-                <div>Bò</div>
-                <div>Xào</div>
-                <div>Trà sữa</div>
-                <div>Canh</div>
-                <div>Chiên</div>
-                <div>Bún</div>
-                <div>Bánh</div>
-                <div>Bún</div>
-                <div>Bún</div>
-                <div>Bánh</div>
+              <div class="tag-wrapper"
+              >
+                <div :class="{active: tag.active}" @click="selectTag(tag)" v-for="tag in tags" :key="tag.item">
+                  {{tag.item}}
+                </div>
               </div>
             </div>
           </div>
@@ -131,7 +125,41 @@ export default {
   name: "MenuPage",
   data() {
     return {
-      dropdown: false
+      dropdown: false,
+      tags: [
+        {
+          item: 'Bò',
+          active: false
+        },
+        {
+          item: 'Xào',
+          active: false
+        },
+        {
+          item: 'Trà Sữa',
+          active: false
+        },
+        {
+          item: 'Canh',
+          active: false
+        },
+        {
+          item: 'Chiên',
+          active: false
+        },
+        {
+          item: 'Bún',
+          active: false
+        },
+        {
+          item: 'Bánh',
+          active: false
+        },
+        {
+          item: 'Xôi',
+          active: false
+        }, 
+      ],
     };
   },
   computed: {
@@ -141,7 +169,8 @@ export default {
       "searchPattern",
       "moneyMinValue",
       "moneyMaxValue",
-      "selected"
+      "selected",
+      "selectedTag"
     ]),
     ...mapGetters("customer/food", ["getFoodsFiltered"])
   },
@@ -161,10 +190,15 @@ export default {
     toggleDropdown() {
       this.dropdown = !this.dropdown;
     },
+    selectTag(tag) {
+      if(this.selectedTag == '')
+        this.selectedTag = tag.item;
+      else this.selectedTag = '';
+      tag.active = !tag.active;
+    },
     toggleFavorite(food) {
       food.isFavorite = !food.isFavorite;
       const image = document.getElementById(food._id).firstElementChild;
-      console.log(image);
       const imageUrl = food.isFavorite
         ? require("@/assets/images/heart1.png")
         : require("@/assets/images/heart2.png");

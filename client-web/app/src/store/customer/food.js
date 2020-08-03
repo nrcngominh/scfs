@@ -30,6 +30,17 @@ const filterName = (state, food) => {
   return regexMatchName.test(food.name)
 }
 
+const filterTag = (state, food) => {
+  if (!state.selectedTag) {
+    return true
+  }
+  const regexMatchName = new RegExp(state.selectedTag, "i");
+  return regexMatchName.test(food.name)
+}
+
+const filterFavorite = (food) => {
+  return food.isFavorite == false;
+}
 export default {
   namespaced: true,
   state: {
@@ -38,16 +49,25 @@ export default {
     searchPattern: '',
     moneyMinValue: 5,
     moneyMaxValue: 100,
-    selected: 'Sort by lastest'
+    selected: 'Sort by lastest',
+    selectedTag: ''
   },
   getters: {
     getField,
+    getFoodsFavorite(state) {
+      const Food = state.allFoods.filter(food => {
+        const status = filterFavorite(food);
+        return status;
+      });
+      return Food;
+    },
     getFoodsFiltered(state) {
       var temp, i, j;
       const Food =  state.allFoods.filter(food => {
         const status = filterCategory(state, food)
           && filterMoney(state, food)
           && filterName(state, food)
+          && filterTag(state, food)
         return status
       });
       if(state.selected == "Sort by lastest") {
@@ -88,7 +108,7 @@ export default {
   mutations: {
     updateField,
     setAllFoods(state, allFoods) {
-      state.allFoods = allFoods
+      state.allFoods = allFoods;
       state.allFoods.forEach(food => food.isFavorite = true);
     },
     setAllCategories(state, allCategories) {

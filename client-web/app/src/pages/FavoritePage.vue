@@ -32,8 +32,7 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters, mapMutations } from "vuex";
-import { mapFields } from "vuex-map-fields";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "MenuPage",
@@ -43,19 +42,10 @@ export default {
     };
   },
   computed: {
-    ...mapState("customer/food", ["allCategories"]),
-    ...mapState("account", ["customerLoggedIn"]),
-    ...mapFields("customer/food", [
-      "searchPattern",
-      "moneyMinValue",
-      "moneyMaxValue",
-      "selected"
-    ]),
-    ...mapGetters("customer/food", ["getFoodsFiltered"])
+    ...mapGetters("customer/food", ["getFoodsFiltered"]),
+    ...mapGetters("customer/food", ["getFoodsFavorite"])
   },
   methods: {
-    ...mapMutations("customer/accountModal", ["openLoginTab"]),
-    ...mapMutations("customer/food", ["setMoneyMinMax"]),
     ...mapActions("customer/food", ["fetchAllFoods"]),
     ...mapActions("customer/cart", ["addToCart"]),
     async addAndBuy(food) {
