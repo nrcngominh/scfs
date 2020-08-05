@@ -3,8 +3,7 @@ import mongoose from 'mongoose'
 const OrderSchema = mongoose.Schema({
   billId: { type: String, required: true, index: true, unique: true },
   momoTransId: {
-    type: String, default: null,
-    index: true, unique: true, sparse: true
+    type: String, default: null
   },
   customerId: { type: String, required: true },
   date: { type: Date, default: Date.now() },

@@ -18,7 +18,7 @@
       :key="obj.category"
     >
       <div class="category-header">
-        <p>{{ obj.category }}</p>
+        <p>{{ obj.name }}</p>
       </div>
       <div class="food-grid-container">
         <md-card
@@ -182,7 +182,7 @@ export default {
       const regexMatchCategory = new RegExp(this.filterCategory, "i");
       const regexMatchName = new RegExp(this.filterName, "i");
       this.responseArr.forEach(obj => {
-        if (!this.filterCategory || regexMatchCategory.test(obj.category)) {
+        if (!this.filterCategory || regexMatchCategory.test(obj.name)) {
           obj.hasFood = false;
           obj.foods.forEach(food => {
             if (
@@ -268,17 +268,17 @@ export default {
       const foods = (await FoodService.getAll()).data;
       const categories = (await FoodService.getAllCategories()).data;
       categories.forEach(category => (category.foods = []));
-      this.responseArr = foods.map(food => {
+      foods.map(food => {
         const ownCategory = categories.find(
           category => category._id === food.categoryId
         );
-        console.log(ownCategory);
         ownCategory.foods.push(food);
         food.img =
           (process.env.VUE_APP_DOMAIN || "http://localhost") + food.img;
         return ownCategory;
       });
-      console.log(this.responseArr);
+      console.log(categories);
+      this.responseArr = categories;
     } catch (error) {
       console.log(error);
     }

@@ -5,9 +5,10 @@ import MomoService from '@/services/momo'
  * @param {import("express").Request} req 
  * @param {import("express").Response} res 
  */
-const notifyQr = (req, res) => {
+const notifyQr = async (req, res) => {
+  console.log(req.body)
   try {
-    const resData = MomoService.notifyQrCodeReponse(req.body)
+    const resData = await MomoService.notifyQrCodeReponse(req.body)
     res.status(200).send(resData)
   }
   catch (error) {

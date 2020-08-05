@@ -1,4 +1,5 @@
 import crypto from 'crypto'
+import OrderRepo from '@/repositories/order'
 
 const MOMO_SECRET_KEY = '1u6ECv61QSLpPVWzTVQS0pO0vIAU5v5Q'
 const MOMO_STORE_SLUG = 'MOMO1HG120200624-123321123'
@@ -30,13 +31,15 @@ const hashNotifyResponse = (amount, message, momoTransId, partnerRefId, status) 
   return hash(data)
 }
 
-const notifyQrCodeReponse = (data) => {
+const notifyQrCodeReponse = async (data) => {
   const status = 0
   const message = "Thành công"
   const amount = data.amount
-  const partnerRefId = data.partnerRefId
-  const momoTransId = data.momoTransId
+  const partnerRefId = data.order_id
+  const momoTransId = data.transaction_id
   const signature = hashNotifyResponse(amount, message, momoTransId, partnerRefId, status)
+
+  await OrderRepo.updatePaidByBillId(partnerRefId, momoTransId)
 
   const resData = {
     status: status,

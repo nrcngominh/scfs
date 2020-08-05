@@ -1,10 +1,7 @@
 <template>
   <div class="content dashboard-content">
     <div class="order-grid-container">
-      <md-card
-        v-for="order in orders" :key="order.billId"
-        class="order-content"
-      >
+      <md-card v-for="order in orders" :key="order.billId" class="order-content">
         <div class="order-content-grid-container">
           <div class="order-text-content">
             <div class="order-header">
@@ -13,7 +10,7 @@
               <div>MOMO ID:</div>
               <div>{{ order.momoTransId }}</div>
             </div>
-            <hr />``
+            <hr />
             <div class="food-list-container">
               <div class="food-list-item">
                 <div>Tên món</div>
@@ -78,28 +75,26 @@ export default {
   },
   methods: {
     async serveOrder(order) {
-      this.orderToServe = order,
-      this.serveConfirmActive = true
+      (this.orderToServe = order), (this.serveConfirmActive = true);
     },
     async confirmServe() {
       try {
-        await OrderService.serveOrder(this.orderToServe)
-        await this.sync()
-        this.successAlertActive = true
+        await OrderService.serveOrder(this.orderToServe);
+        await this.sync();
+        this.successAlertActive = true;
       } catch (error) {
-        this.failedAlertActive = true
+        this.failedAlertActive = true;
       }
     },
     async sync() {
       try {
-        const res = await OrderService.getAllUnserved()
-        this.orders = res.data
-      } catch (error) {
-      }
+        const res = await OrderService.getAllUnserved();
+        this.orders = res.data;
+      } catch (error) {}
     }
   },
   async mounted() {
-    await this.sync()
+    await this.sync();
   }
 };
 </script>

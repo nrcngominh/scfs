@@ -1,35 +1,62 @@
-import OrderModel from '@/models/order'
+import OrderModel from '../models/order'
+import momo from '@/services/momo'
 
-/**
- * Create new order
- * @param {Object} order 
+/*
+ * Create order
  */
-const create = (order) => {
+const create = async (order) => {
   return OrderModel.create(order)
 }
 
-/**
- * Find order by bill ID
- * @param {String} billId 
+/*
+ * Find by bill id
  */
-const findByBillId = (billId) => {
+const findByBillId = async (billId) => {
   return OrderModel.findOne({
     billId: billId
   })
 }
 
-/**
- * Find orders by customer ID
- * @param {String} accountId 
+/*
+ * Find by bill id
  */
-const findByAccountId = (accountId) => {
+const findByAccountId = async (accountId) => {
+  console.log(accountId)
   return OrderModel.find({
     accountId: accountId
   })
 }
 
+const updatePaidByBillId = async (billId, momoTransId) => {
+  return OrderModel.updateOne({
+    billId: billId
+  }, {
+    momoTransId: momoTransId,
+    hasPaid: true,
+    hasServed: false
+  })
+}
+
+const updateServedByBillId = async (billId) => {
+  return OrderModel.updateOne({
+    billId: billId
+  }, {
+    hasServed: true
+  })
+}
+
+const findAllUnserved = async () => {
+  return OrderModel.find({
+    hasPaid: true,
+    hasServed: false
+  })
+}
+
 export default {
   create,
+  findAllUnserved,
   findByBillId,
-  findByAccountId
+  findByAccountId,
+  updatePaidByBillId,
+  updateServedByBillId
 }

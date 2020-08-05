@@ -1,4 +1,5 @@
 import FoodService from '@/services/food'
+import FoodRepo from '@/repositories/food'
 
 /**
  * Get all foods
@@ -17,6 +18,39 @@ const getAllFoods = async (req, res) => {
   }
 }
 
+const editFood = async (req, res) => {
+  try {
+    console.log(req.body)
+    await FoodRepo.update(req.body)
+    res.status(202).send({
+      message: "Success"
+    })
+  }
+  catch (error) {
+    res.status(500).send({
+      message: 'Failed'
+    })
+  }
+}
+
+const removeFood = async (req, res) => {
+  try {
+    const _id = req.body._id
+    console.log(_id)
+    await FoodRepo.removeById(_id)
+    res.status(204).send({
+      message: "Success"
+    })
+  }
+  catch (error) {
+    res.status(500).send({
+      message: 'Failed'
+    })
+  }
+}
+
 export default {
-  getAllFoods
+  getAllFoods,
+  editFood,
+  removeFood
 }
