@@ -35,27 +35,6 @@
               </div>
             </div>
             <div class="category">
-              <h3>Vendor</h3>
-              <div class="checkbox-wrapper">
-                <div class="item">
-                  <input type="checkbox" />
-                  <label>BKFood</label>
-                </div>
-                <div class="item">
-                  <input type="checkbox" />
-                  <label>CircleK</label>
-                </div>
-                <div class="item">
-                  <input type="checkbox" />
-                  <label>KFC</label>
-                </div>
-                <div class="item">
-                  <input type="checkbox" />
-                  <label>Lotteria</label>
-                </div>
-              </div>
-            </div>
-            <div class="category">
               <h3>Category</h3>
               <div class="checkbox-wrapper">
                 <div class="item" v-for="category in allCategories" :key="category._id">
