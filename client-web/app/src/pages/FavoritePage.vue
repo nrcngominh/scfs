@@ -3,7 +3,7 @@
     <div class="wrapper">
       <article class="menu-wrapper">
         <div class="food-container">
-          <article class="food-item" v-for="food in getFoodsFiltered" :key="food._id">
+          <article class="food-item" v-for="food in getFoodsFavorite" :key="food._id">
             <div class="food-image">
               <div class="food-image-content">
                 <img :src="food.img" alt="food" />
@@ -32,51 +32,12 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "MenuPage",
-  data() {
-    return {
-      dropdown: false,
-    };
-  },
   computed: {
-    ...mapGetters("customer/food", ["getFoodsFiltered"]),
     ...mapGetters("customer/food", ["getFoodsFavorite"])
-  },
-  methods: {
-    ...mapActions("customer/food", ["fetchAllFoods"]),
-    ...mapActions("customer/cart", ["addToCart"]),
-    async addAndBuy(food) {
-      if (this.customerLoggedIn) {
-        await this.addToCart(food);
-        this.$router.push("/cart");
-      } else {
-        this.openLoginTab();
-      }
-    },
-    toggleDropdown() {
-      this.dropdown = !this.dropdown;
-    },
-    toggleFavorite(food) {
-      console.log(food._id)
-    },
-    favoriteUrl(foodIsFavorite) {
-      return foodIsFavorite
-        ? require("@/assets/images/heart1.png")
-        : require("@/assets/images/heart2.png");
-    },
-    async addFoodToCart(food) {
-      if (this.customerLoggedIn) {
-        await this.addToCart(food);
-      } else {
-        this.openLoginTab();
-      }
-    }
-  },
-  mounted() {
-    this.fetchAllFoods();
   }
 };
 </script>

@@ -23,7 +23,7 @@ const findByBillId = async (billId) => {
 const findByAccountId = async (accountId) => {
   console.log(accountId)
   return OrderModel.find({
-    accountId: accountId
+    customerId: accountId
   })
 }
 

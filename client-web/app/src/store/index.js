@@ -16,9 +16,9 @@ const store = new Vuex.Store({
     vendor: Vendor
   },
   actions: {
-    SOCKET_MOMO(context, data) {
-      alert(JSON.stringify(data))
-    }
+    // SOCKET_MOMO(context, data) {
+    // alert(JSON.stringify(data))
+    // }
   }
 });
 

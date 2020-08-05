@@ -6,19 +6,19 @@
         <article class="transaction-grid-container header">
           <div>ID</div>
           <div>DATE</div>
-          <div>PRODUCT</div>
           <div>TOTAL</div>
           <div>STATUS</div>
         </article>
 
-        <article class="transaction-grid-container">
-          <div @click="goToDetailTransaction" class="id-transaction">
-            <p>#123453789</p>
+        <article class="transaction-grid-container" v-for="order in orders" :key="order._id">
+          <div @click="goToDetailTransaction(order.billId)" class="id-transaction">
+            <p>{{order.billId}}</p>
           </div>
-          <div class="date-transaction">2/2/2</div>
-          <div class="product">Bánh mì</div>
-          <div class="total">total</div>
-          <div class="status-transaction">status</div>
+          <div
+            class="date-transaction"
+          >{{order.date.split("T")[1].substring(0, 8) + " " + order.date.split("T")[0]}}</div>
+          <div class="total">{{order.totalMoneyAfterDiscount}}</div>
+          <div class="status-transaction">{{ hasServed ? "Serving" : "Ready" }}</div>
         </article>
       </div>
     </div>
@@ -26,13 +26,22 @@
 </template>
 
 <script>
-
+import axios from "axios";
 export default {
   name: "TransactionPage",
+  data: () => ({
+    orders: []
+  }),
   methods: {
-      goToDetailTransaction() {
-          this.$router.push("/detail-transaction");
-      }
+    goToDetailTransaction(billId) {
+      this.$router.push({
+        path: "/detail-transaction",
+        query: { billId: billId }
+      });
+    }
+  },
+  async mounted() {
+    this.orders = (await axios.get("/api/customer/transaction")).data;
   }
 };
 </script>

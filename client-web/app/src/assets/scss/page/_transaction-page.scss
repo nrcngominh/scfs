@@ -1,74 +1,73 @@
 .transaction-page {
-    font-family: $serif-font;
+  font-family: $serif-font;
+  border-radius: 1rem;
+
+  .transaction-table {
     border-radius: 1rem;
-  
-    .transaction-table {
-      border-radius: 1rem;
-      background: $light-gray;
-    }
-  
-    .transaction-grid-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-      text-align: left;
-  
-      &.header {
-        border-radius: 1rem 1rem 0 0;
-        background: $primary-color;
-        color: white;
-        font-weight: 600;
-        font-size: 1.2rem;
-        > div {
-          padding: 1.5rem;
-        }
-      }
-  
+    background: $light-gray;
+  }
+
+  .transaction-grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    text-align: left;
+
+    &.header {
+      border-radius: 1rem 1rem 0 0;
+      background: $primary-color;
+      color: white;
+      font-weight: 600;
+      font-size: 1.2rem;
       > div {
         padding: 1.5rem;
+      }
+    }
+
+    > div {
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+
+      &.id-transaction {
+        cursor: pointer;
+      }
+      &.total {
         display: flex;
-        align-items: center;
-  
-        &.id-transaction {
-          cursor: pointer;
-        }
-        &.total {
-          display: flex;
-        }
       }
-  
-      @mixin mobile {
-        @include xs {
-          @content;
-        }
-        @include sm {
-          @content;
-        }
+    }
+
+    @mixin mobile {
+      @include xs {
+        @content;
       }
-  
-      @include mobile {
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-        &.header {
-          border-radius: 0.5rem 0.5rem 0 0;
-          font-weight: 500;
-          font-size: 0.9rem;
-          > div {
-            padding: 0.5rem;
-          }
-        }
-  
+      @include sm {
+        @content;
+      }
+    }
+
+    @include mobile {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      &.header {
+        border-radius: 0.5rem 0.5rem 0 0;
+        font-weight: 500;
+        font-size: 0.9rem;
         > div {
           padding: 0.5rem;
-          font-size: 0.8rem;
-          display: flex;
-          align-items: center;
-  
-          &.id-transaction {
-            img {
-              display: none;
-            }
+        }
+      }
+
+      > div {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+        display: flex;
+        align-items: center;
+
+        &.id-transaction {
+          img {
+            display: none;
           }
         }
       }
     }
   }
-  
+}

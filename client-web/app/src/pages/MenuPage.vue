@@ -66,11 +66,13 @@
             </div>
             <div class="tag">
               <h3>Tag</h3>
-              <div class="tag-wrapper"
-              >
-                <div :class="{active: tag.active}" @click="selectTag(tag)" v-for="tag in tags" :key="tag.item">
-                  {{tag.item}}
-                </div>
+              <div class="tag-wrapper">
+                <div
+                  :class="{active: tag.active}"
+                  @click="selectTag(tag)"
+                  v-for="tag in tags"
+                  :key="tag.item"
+                >{{tag.item}}</div>
               </div>
             </div>
           </div>
@@ -128,38 +130,38 @@ export default {
       dropdown: false,
       tags: [
         {
-          item: 'Bò',
+          item: "Bò",
           active: false
         },
         {
-          item: 'Xào',
+          item: "Xào",
           active: false
         },
         {
-          item: 'Trà Sữa',
+          item: "Trà Sữa",
           active: false
         },
         {
-          item: 'Canh',
+          item: "Canh",
           active: false
         },
         {
-          item: 'Chiên',
+          item: "Chiên",
           active: false
         },
         {
-          item: 'Bún',
+          item: "Bún",
           active: false
         },
         {
-          item: 'Bánh',
+          item: "Bánh",
           active: false
         },
         {
-          item: 'Xôi',
+          item: "Xôi",
           active: false
-        }, 
-      ],
+        }
+      ]
     };
   },
   computed: {
@@ -177,7 +179,7 @@ export default {
   methods: {
     ...mapMutations("customer/accountModal", ["openLoginTab"]),
     ...mapMutations("customer/food", ["setMoneyMinMax"]),
-    ...mapActions("customer/food", ["fetchAllFoods"]),
+    ...mapActions("customer/food", ["fetchAllFoods", "toggle"]),
     ...mapActions("customer/cart", ["addToCart"]),
     async addAndBuy(food) {
       if (this.customerLoggedIn) {
@@ -191,21 +193,22 @@ export default {
       this.dropdown = !this.dropdown;
     },
     selectTag(tag) {
-      if(this.selectedTag == '')
-        this.selectedTag = tag.item;
-      else this.selectedTag = '';
+      if (this.selectedTag == "") this.selectedTag = tag.item;
+      else this.selectedTag = "";
       tag.active = !tag.active;
     },
     toggleFavorite(food) {
+      console.log(food.isFavorite);
       food.isFavorite = !food.isFavorite;
       const image = document.getElementById(food._id).firstElementChild;
-      const imageUrl = food.isFavorite
+      const imageUrl = !food.isFavorite
         ? require("@/assets/images/heart1.png")
         : require("@/assets/images/heart2.png");
       image.setAttribute("src", imageUrl);
+      this.toggle();
     },
     favoriteUrl(food) {
-      return food.isFavorite
+      return !food.isFavorite
         ? require("@/assets/images/heart1.png")
         : require("@/assets/images/heart2.png");
     },
