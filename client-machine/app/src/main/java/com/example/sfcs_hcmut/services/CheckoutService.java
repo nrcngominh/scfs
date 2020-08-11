@@ -60,7 +60,7 @@ public class CheckoutService implements ICheckoutService {
     public void waitForPaymentSuccess(final Runnable runable) {
         Socket socket = SocketSingleton.getInstance().getSocket();
         final Gson gson = new Gson();
-        socket.on("payment_success", new Emitter.Listener() {
+        socket.on("MOMO", new Emitter.Listener() {
             @Override
             public void call(Object... args) {
                 if (status == CheckoutStatus.PENDING) {

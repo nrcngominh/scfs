@@ -90,6 +90,7 @@ export default {
       try {
         const res = await OrderService.getAllUnserved();
         this.orders = res.data;
+        console.log(res.data);
       } catch (error) {}
     }
   },
